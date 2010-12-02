@@ -4,13 +4,19 @@
 <node CREATED="1291089572500" ID="_" MODIFIED="1291089581593" POSITION="right" TEXT="REQUIREMENTS">
 <node CREATED="1291089610671" ID="Freemind_Link_1164794881" MODIFIED="1291089624000" TEXT="Xem l&#x1ea1;i c&#xe1;c v&#x1ea5;n &#x111;&#x1ec1; v&#x1ec1; requirements">
 <node CREATED="1291089627593" ID="Freemind_Link_213916522" MODIFIED="1291089632968" TEXT="&#x110;&#xe3; &#x111;&#x1ea7;y &#x111;&#x1ee7; ch&#x1b0;a"/>
-<node CREATED="1291089633140" ID="Freemind_Link_626040984" MODIFIED="1291089637125" TEXT="C&#xf3; g&#xec; conflict kh&#xf4;ng"/>
+<node CREATED="1291089633140" ID="Freemind_Link_626040984" MODIFIED="1291171617218" TEXT="C&#xf3; g&#xec; conflict kh&#xf4;ng">
+<icon BUILTIN="help"/>
+</node>
 <node CREATED="1291089638281" ID="Freemind_Link_478230632" MODIFIED="1291089646500" TEXT="C&#xf3; y&#xea;u c&#x1ea7;u n&#xe0;o b&#x1ecb; th&#x1eeb;a kh&#xf4;ng"/>
 <node CREATED="1291089649375" ID="Freemind_Link_885741415" MODIFIED="1291089653859" TEXT="C&#xf3; y&#xea;u c&#x1ea7;u n&#xe0;o kh&#x1ea3; thi kh&#xf4;ng"/>
 </node>
 <node CREATED="1291089656171" ID="Freemind_Link_764588645" MODIFIED="1291089667375" TEXT="T&#x1ed5;ng k&#x1ebf;t l&#x1ea1;i c&#xe1;c requirements">
 <node CREATED="1291089667328" ID="Freemind_Link_131530445" MODIFIED="1291089689265" TEXT="Ph&#xe2;n chia l&#x1ea1;i module l&#x1edb;n cho chu&#x1ea9;n"/>
-<node CREATED="1291089689500" ID="Freemind_Link_402181489" MODIFIED="1291089713125" TEXT="&#x110;&#x1eb7;t t&#xea;n v&#xe0; c&#xe1;ch th&#x1ee9;c traceability c&#x169;ng nh&#x1b0; tracking th&#x1ead;t t&#x1ed1;t"/>
+<node CREATED="1291089689500" ID="Freemind_Link_402181489" MODIFIED="1291089713125" TEXT="&#x110;&#x1eb7;t t&#xea;n v&#xe0; c&#xe1;ch th&#x1ee9;c traceability c&#x169;ng nh&#x1b0; tracking th&#x1ead;t t&#x1ed1;t">
+<node CREATED="1291171873953" ID="Freemind_Link_347906768" MODIFIED="1291171937796" TEXT="Khi m&#xe0; l&#xe0;m QA v&#xe0; design th&#xec; s&#x1ebd; ch&#x1ec9;nh s&#x1eed;a l&#x1ea1;i reqs"/>
+<node CREATED="1291171944031" ID="Freemind_Link_1858482218" MODIFIED="1291172003906" TEXT="V&#x1edb;i sai s&#xf3;t req n&#xe0;o th&#xec; s&#x1ebd; refer &#x111;&#x1ebf;n ng&#x1b0;&#x1edd;i l&#xe0;m req &#x111;&#xf3;"/>
+<node CREATED="1291172008546" ID="Freemind_Link_724482740" MODIFIED="1291172035046" TEXT="ph&#x1ea3;i c&#xf3; ng&#x1b0;&#x1edd;i review"/>
+</node>
 </node>
 </node>
 <node CREATED="1291089581859" ID="Freemind_Link_906311259" MODIFIED="1291089593859" POSITION="right" TEXT="QUALITY ASSUARANCE">
