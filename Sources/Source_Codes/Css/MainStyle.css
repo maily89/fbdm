@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Color */
+.mainBackground{
+	background:white;
+}
+.secondBackground{
+	background:blue;
+}
+.color1{
+	color:black;
+}
+.color2{
+	color:blue;
+}
+/* End of color */
+
+/* Main page */
+body{
+	background:white;
+	color:black;
+	text-align:left;
+}
+#wrapper{
+	width:1000px;
+	margin:30px;
+	border:1px;
+	padding:16px;
+}
+
+#Content{
+	width:930px;
+}
+
+#Menu{
+	width:220px;
+	margin:10px;
+}
+
+#Main{
+	width:700px;
+}
+
+/* End of Main Page */
+
+
+/* Main Component */
+.button{
+	width:70px;
+	height:30px;
+}
+.textBox{
+	width:180px;
+	height:30px;
+}
+.textField{
+	width:360px;
+	height:50px;
+}
+.table{
+	width:640px;
+	heiht:250px;
+}
+.shortDropdown{
+	width:180px;
+	height:30px;
+}
+.longDropdown{
+	width:360px;
+	height:30px;
+}
+
+/* End of Main Component */
