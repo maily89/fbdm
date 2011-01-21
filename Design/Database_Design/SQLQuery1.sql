@@ -10,18 +10,21 @@ IndustryName NVARCHAR(255) UNIQUE
 
 CREATE TABLE [Business.Lines]
 (
-LineID INT NOT NULL PRIMARY KEY ,
+--change because of old data
+LineID NVARCHAR(10) NOT NULL PRIMARY KEY ,
 IndustryID int FOREIGN KEY REFERENCES [Business.Industries](IndustryID),
 LineName NVARCHAR(255) UNIQUE
 )
 CREATE TABLE [Business.Types]
 (
-TypeID int NOT NULL PRIMARY KEY ,
+--change
+TypeID NVARCHAR(10) NOT NULL PRIMARY KEY ,
 TypeName NVARCHAR(255) UNIQUE
 )
 
 CREATE TABLE [Business.ScaleCriteria]
 (
+--Thieu phan thap phan 
 CriteriaID int NOT NULL PRIMARY KEY,
 CriteriaName NVARCHAR(255) UNIQUE,
 Unit NVARCHAR(50),
@@ -277,3 +280,6 @@ BranchID INT NOT NULL PRIMARY KEY ,
 BranchName NVARCHAR(255),
 Active VARCHAR(1)
 )
+
+//------------------- edit for old system
+
