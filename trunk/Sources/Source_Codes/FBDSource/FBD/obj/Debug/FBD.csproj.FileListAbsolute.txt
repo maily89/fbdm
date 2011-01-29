@@ -1,0 +1,5 @@
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD\bin\FBD.dll
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD\bin\FBD.pdb
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD\obj\Debug\ResolveAssemblyReference.cache
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD\obj\Debug\FBD.dll
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD\obj\Debug\FBD.pdb
