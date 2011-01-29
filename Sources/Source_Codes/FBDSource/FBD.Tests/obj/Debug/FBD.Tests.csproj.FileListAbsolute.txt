@@ -1,0 +1,8 @@
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\bin\Debug\FBD.Tests.dll.config
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\bin\Debug\FBD.Tests.dll
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\bin\Debug\FBD.Tests.pdb
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\bin\Debug\FBD.dll
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\bin\Debug\FBD.pdb
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\obj\Debug\FBD.Tests.dll
+D:\learning\DOAN_Datamining\SVN\Sources\Source_Codes\FBDSource\FBD.Tests\obj\Debug\FBD.Tests.pdb
