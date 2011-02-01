@@ -1,0 +1,24 @@
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\bin\Debug\CSV_import_export.exe
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\bin\Debug\CSV_import_export.pdb
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.frmExport.resources
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.frmImport.resources
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.frmMain.resources
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.Properties.Resources.resources
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.csproj.GenerateResource.Cache
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.exe
+C:\Documents and Settings\UserXP\Desktop\Import.Export yo CSV\CSV_import_export\obj\Debug\CSV_import_export.pdb
+C:\Documents and Settings\UserXP\Desktop\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.exe
+C:\Documents and Settings\UserXP\Desktop\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.pdb
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.exe
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.pdb
+G:\temp\Import.Export to CSV\CSV_import_export\bin\Debug\CSV_import_export.exe
+G:\temp\Import.Export to CSV\CSV_import_export\bin\Debug\CSV_import_export.pdb
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\ResolveAssemblyReference.cache
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.frmExport.resources
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.frmImport.resources
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.frmMain.resources
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.Properties.Resources.resources
+G:\temp\Import.Export to CSV\CSV_import_export\obj\Debug\CSV_import_export.csproj.GenerateResource.Cache
+F:\Final Project\CSV_import_export\obj\Debug\CSV_import_export.exe
+F:\Final Project\CSV_import_export\obj\Debug\CSV_import_export.pdb
