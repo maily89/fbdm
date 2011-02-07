@@ -7,5 +7,6 @@ namespace FBD.ViewModels
 {
     public class FIFinancialIndexViewModel
     {
+
     }
 }
