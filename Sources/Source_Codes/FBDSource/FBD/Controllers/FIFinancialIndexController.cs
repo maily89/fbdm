@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FBD.ViewModels;
+using FBD.Models;
 
 namespace FBD.Controllers
 {
@@ -13,7 +15,9 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            FIFinancialIndexViewModel viewModel = FIFinancialIndexLogic.SelectFinancialIndex();
+
+            return View(viewModel);
         }
 
         //
@@ -36,11 +40,11 @@ namespace FBD.Controllers
         // POST: /FIFinancialIndex/Create
 
         [HttpPost]
-        public ActionResult Add(FormCollection collection)
+        public ActionResult Add(BusinessFinancialIndex businessFinancialIndex)
         {
             try
             {
-                // TODO: Add insert logic here
+                FIFinancialIndexLogic.AddFinancialIndex(businessFinancialIndex);
 
                 return RedirectToAction("Index");
             }
@@ -53,20 +57,23 @@ namespace FBD.Controllers
         //
         // GET: /FIFinancialIndex/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            BusinessFinancialIndex businessFinancialIndex = FIFinancialIndexLogic.SelectFinancialIndexByID(id);
+
+            return View(businessFinancialIndex);
         }
 
         //
         // POST: /FIFinancialIndex/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                var financialIndex = FIFinancialIndexLogic.SelectFinancialIndexByID(id);
+                UpdateModel(financialIndex, "BusinessFinancialIndex");
  
                 return RedirectToAction("Index");
             }
@@ -88,11 +95,11 @@ namespace FBD.Controllers
         // POST: /FIFinancialIndex/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                FIFinancialIndexLogic.DeleteFinancialIndex(id);
  
                 return RedirectToAction("Index");
             }
