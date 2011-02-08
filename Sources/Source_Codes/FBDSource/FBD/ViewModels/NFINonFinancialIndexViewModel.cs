@@ -8,6 +8,6 @@ namespace FBD.ViewModels
 {
     public class NFINonFinancialIndexViewModel
     {
-        public List<NonBusinessFinancialIndex> NonFinancialIndexes { get; set; }
+        public List<BusinessNonFinancialIndex> NonFinancialIndexes { get; set; }
     }
 }
