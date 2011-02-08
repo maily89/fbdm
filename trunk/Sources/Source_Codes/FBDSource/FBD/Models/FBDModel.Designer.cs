@@ -42,36 +42,36 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUserGroupsRights", "SystemRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemRights), "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUserGroups))]
 
 // Original file name:
-// Generation date: 2/7/2011 1:28:31 PM
+// Generation date: 2/8/2011 3:22:37 PM
 namespace FBD.Models
 {
     
     /// <summary>
-    /// There are no comments for FBDEntities2 in the schema.
+    /// There are no comments for FBDEntities in the schema.
     /// </summary>
-    public partial class FBDEntities2 : global::System.Data.Objects.ObjectContext
+    public partial class FBDEntities : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new FBDEntities2 object using the connection string found in the 'FBDEntities2' section of the application configuration file.
+        /// Initializes a new FBDEntities object using the connection string found in the 'FBDEntities' section of the application configuration file.
         /// </summary>
-        public FBDEntities2() : 
-                base("name=FBDEntities2", "FBDEntities2")
+        public FBDEntities() : 
+                base("name=FBDEntities", "FBDEntities")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new FBDEntities2 object.
+        /// Initialize a new FBDEntities object.
         /// </summary>
-        public FBDEntities2(string connectionString) : 
-                base(connectionString, "FBDEntities2")
+        public FBDEntities(string connectionString) : 
+                base(connectionString, "FBDEntities")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new FBDEntities2 object.
+        /// Initialize a new FBDEntities object.
         /// </summary>
-        public FBDEntities2(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "FBDEntities2")
+        public FBDEntities(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "FBDEntities")
         {
             this.OnContextCreated();
         }

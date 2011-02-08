@@ -1457,7 +1457,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FBDModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="FBDEntities2">
+        <EntityContainer Name="FBDEntities">
           <EntitySet Name="BusinessFinancialIndex" EntityType="FBDModel.BusinessFinancialIndex" />
           <EntitySet Name="BusinessFinancialIndexLevels" EntityType="FBDModel.BusinessFinancialIndexLevels" />
           <EntitySet Name="BusinessFinancialIndexProportion" EntityType="FBDModel.BusinessFinancialIndexProportion" />
@@ -2415,7 +2415,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="FBDModelStoreContainer" CdmEntityContainer="FBDEntities2">
+        <EntityContainerMapping StorageEntityContainer="FBDModelStoreContainer" CdmEntityContainer="FBDEntities">
           <EntitySetMapping Name="BusinessFinancialIndex">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessFinancialIndex)">
               <MappingFragment StoreEntitySet="BusinessFinancialIndex">
