@@ -72,10 +72,13 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusinessIndustries.cs" />
+    <Compile Include="Models\DatabaseAccess.cs" />
     <Compile Include="Models\FBDModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +95,10 @@
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\BSNIndustry\Add.aspx" />
+    <Content Include="Views\BSNIndustry\Delete.aspx" />
+    <Content Include="Views\BSNIndustry\Edit.aspx" />
+    <Content Include="Views\BSNIndustry\Index.aspx" />
     <Content Include="Views\FIFinancialIndex\Add.aspx" />
     <Content Include="Views\FIFinancialIndex\Edit.aspx" />
     <Content Include="Views\FIFinancialIndex\Index.aspx" />
