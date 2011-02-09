@@ -78,10 +78,10 @@ namespace FBD.Models
         /// <param name="id">ID of the FinancialIndex editted</param>
         /// <param name="formValues">The information of the FinancialIndex editted</param>
         /// <returns>int</returns>
-        public static int EditFinancialIndex(string id, FormCollection formValues)
-        {
+        //public static int EditFinancialIndex(string id, FormCollection formValues)
+        //{
             
-        }
+        //}
 
         /// <summary>
         /// 1. Receive ID from parameter
