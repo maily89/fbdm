@@ -12,7 +12,7 @@
 
     <h2>Add</h2>
     <% Html.EnableClientValidation(); %>
-    <p><%= Model!=null?Model.Error:"" %></p>
+    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
 

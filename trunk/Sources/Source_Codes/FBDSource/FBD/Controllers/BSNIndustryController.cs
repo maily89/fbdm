@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
+using FBD.ViewModels;
 
 namespace FBD.Controllers
 {
@@ -17,8 +18,9 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            var model = BusinessIndustries.SelectIndustries();
-            return View(model);
+            var industries = BusinessIndustries.SelectIndustries();
+            
+            return View(industries);
         }
 
         //
@@ -26,6 +28,7 @@ namespace FBD.Controllers
 
         public ActionResult Details(int id)
         {
+            
             return View();
         }
 
@@ -47,15 +50,17 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    
                     entities.AddToBusinessIndustries(industry);
                     entities.SaveChanges();
                 }
                 else throw new Exception();
+                TempData["Message"] = "Industry ID "+industry.IndustryID+ " have been added sucessfully";
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
-                industry.Error = ex.Message;
+                TempData["Message"] = ex.Message;
                 return View(industry);
             }
         }
@@ -85,11 +90,13 @@ namespace FBD.Controllers
                     entities.SaveChanges();
                 }
                 else throw new ArgumentException();
+                TempData["Message"] = "IndustryID "+ temp.IndustryID + " have been updated sucessfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                industry.Error = ex.Message;
+                //TODO: Temporary error handle.
+                TempData["Message"] = ex.Message;
                 return View(industry);
             }
         }
@@ -99,28 +106,13 @@ namespace FBD.Controllers
  
         public ActionResult Delete(string id)
         {
-            var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
+            var industry = BusinessIndustries.SelectIndustryByID(id);
             entities.DeleteObject(industry);
             entities.SaveChanges();
+            TempData["Message"] = "Industry ID "+ industry.IndustryID+" have been deleted sucessfully";
             return RedirectToAction("Index");
         }
 
-        //
-        // POST: /BSNIndustry/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

@@ -96,7 +96,6 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Views\BSNIndustry\Add.aspx" />
-    <Content Include="Views\BSNIndustry\Delete.aspx" />
     <Content Include="Views\BSNIndustry\Edit.aspx" />
     <Content Include="Views\BSNIndustry\Index.aspx" />
     <Content Include="Views\FIFinancialIndex\Add.aspx" />

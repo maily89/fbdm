@@ -10,9 +10,6 @@ namespace FBD.Models
     [MetadataType(typeof(BusinessIndustryMetaData))] 
     public partial class BusinessIndustries
     {
-        //TODO: this is temporary error handle.
-        private string error = " ";
-        public string Error { get { return error; } set { error = value; } }
 
         public static List<BusinessIndustries> SelectIndustries()
         {
