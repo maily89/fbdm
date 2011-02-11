@@ -14,8 +14,7 @@ namespace FBD.Controllers
     {
         //
         // GET: /BSNIndustry/
-        FBDEntities entities = DatabaseAccess.Entities;
-
+        
         public ActionResult Index()
         {
             var industries = BusinessIndustries.SelectIndustries();
@@ -50,9 +49,7 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
-                    entities.AddToBusinessIndustries(industry);
-                    entities.SaveChanges();
+                    BusinessIndustries.AddIndustry(industry);
                 }
                 else throw new Exception();
                 TempData["Message"] = "Industry ID "+industry.IndustryID+ " have been added sucessfully";
@@ -82,20 +79,20 @@ namespace FBD.Controllers
         {
             try
             {
-                var temp=BusinessIndustries.SelectIndustryByID(id);
+                
                 if (ModelState.IsValid)
                 {
-
-                    temp.IndustryName = industry.IndustryName;
-                    entities.SaveChanges();
+                    BusinessIndustries.EditIndustry(industry);
+                    
                 }
                 else throw new ArgumentException();
-                TempData["Message"] = "IndustryID "+ temp.IndustryID + " have been updated sucessfully";
+                TempData["Message"] = "IndustryID "+ industry.IndustryID + " have been updated sucessfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 //TODO: Temporary error handle.
+                
                 TempData["Message"] = ex.Message;
                 return View(industry);
             }
@@ -106,10 +103,8 @@ namespace FBD.Controllers
  
         public ActionResult Delete(string id)
         {
-            var industry = BusinessIndustries.SelectIndustryByID(id);
-            entities.DeleteObject(industry);
-            entities.SaveChanges();
-            TempData["Message"] = "Industry ID "+ industry.IndustryID+" have been deleted sucessfully";
+            BusinessIndustries.DeleteIndustry(id);
+            TempData["Message"] = "Industry ID "+ id+" have been deleted sucessfully";
             return RedirectToAction("Index");
         }
 

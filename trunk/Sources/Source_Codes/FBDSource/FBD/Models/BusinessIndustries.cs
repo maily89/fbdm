@@ -13,14 +13,45 @@ namespace FBD.Models
 
         public static List<BusinessIndustries> SelectIndustries()
         {
-            return DatabaseAccess.Entities.BusinessIndustries.ToList();
+            FBDEntities entities = new FBDEntities();
+            return entities.BusinessIndustries.ToList();
         }
         public static BusinessIndustries SelectIndustryByID(string id)
         {
-            var industry = DatabaseAccess.Entities.BusinessIndustries.First(i => i.IndustryID == id);
+            FBDEntities entities = new FBDEntities();
+            var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
             return industry;
         }
 
+        public static BusinessIndustries SelectIndustryByID(string id,FBDEntities entities)
+        {
+            
+            var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
+            return industry;
+        }
+
+        public static void DeleteIndustry(string id)
+        {
+            FBDEntities entities = new FBDEntities();
+            var industry = BusinessIndustries.SelectIndustryByID(id,entities);
+            entities.DeleteObject(industry);
+            entities.SaveChanges();
+        }
+
+        public static void EditIndustry(BusinessIndustries industry)
+        {
+            FBDEntities entities = new FBDEntities();
+            var temp = BusinessIndustries.SelectIndustryByID(industry.IndustryID,entities);
+            temp.IndustryName = industry.IndustryName;
+            entities.SaveChanges();
+        }
+
+        public static void AddIndustry(BusinessIndustries industry)
+        {
+            FBDEntities entities = new FBDEntities();
+            entities.AddToBusinessIndustries(industry);
+            entities.SaveChanges();
+        }
         public class BusinessIndustryMetaData
         {
             [DisplayName("Industry ID")]

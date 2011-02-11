@@ -36,7 +36,8 @@
             </div>
             
             
-            <input type="submit" value="Create" />
+            <input type="submit" value="Add" />
+            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
             
         </fieldset>
 
