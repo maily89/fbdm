@@ -78,7 +78,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessIndustries.cs" />
-    <Compile Include="Models\DatabaseAccess.cs" />
     <Compile Include="Models\FBDModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

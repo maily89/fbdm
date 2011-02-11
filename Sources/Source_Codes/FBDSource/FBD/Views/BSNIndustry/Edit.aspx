@@ -40,6 +40,7 @@
             
             
             <input type="submit" value="Edit" />
+            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
             
         </fieldset>
 

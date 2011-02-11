@@ -12,10 +12,10 @@
         <tr>
             <th></th>
             <th>
-                IndustryID
+                Industry ID
             </th>
             <th>
-                IndustryName
+                Industry Name
             </th>
         </tr>
 
