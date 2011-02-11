@@ -19,6 +19,6 @@ namespace FBD.Models
                 return entities;
             }
         }
-
+        
     }
 }

@@ -42,7 +42,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUserGroupsRights", "SystemRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemRights), "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUserGroups))]
 
 // Original file name:
-// Generation date: 2/8/2011 3:22:37 PM
+// Generation date: 2/11/2011 9:38:36 AM
 namespace FBD.Models
 {
     

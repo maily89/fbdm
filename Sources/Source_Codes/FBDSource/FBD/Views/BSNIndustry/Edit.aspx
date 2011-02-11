@@ -12,7 +12,7 @@
 
     <h2>Edit</h2>
     <% Html.EnableClientValidation(); %>
-    <p><%= Model!=null?Model.Error:"" %></p>
+    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
@@ -23,8 +23,10 @@
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.IndustryID) %>
             </div>
+            
             <div class="editor-field">
-                <%= Html.TextBoxFor(model=>model.IndustryID, new { @readonly = "readonly" })%>
+                <%= Html.TextBox("id",Model.IndustryID,new {@readonly="true", @disabled="true"}) %>
+                <%= Html.HiddenFor(model => model.IndustryID)%>
                 
             </div>
             
