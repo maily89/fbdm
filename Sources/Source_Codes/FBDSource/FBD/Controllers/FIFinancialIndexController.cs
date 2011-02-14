@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -12,18 +13,26 @@ namespace FBD.Controllers
         //
         // GET: /FIFinancialIndex/
 
+        /// <summary>
+        /// Use FIFinancialIndexLogic class to select all the financial indexes 
+        /// in the table Business.FinancialIndex then display to the [Index] View
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            // Select the list of financial indexes
             var lstFinancialIndex = BusinessFinancialIndex.SelectFinancialIndex();
 
+            // If error occurs
             if (lstFinancialIndex == null)
             {
-                Error error = new Error();
-                // insert error properties here
-                RedirectToAction("Error");
+                // Dispay error message when displaying financial indexes
+                TempData["Message"] = Constants.ERR_INDEX_FI_FINANCIAL_INDEX;
+                return View(lstFinancialIndex);
             }
 
-            return View();
+            // If there is no error, displaying the list of financial index
+            return View(lstFinancialIndex);
         }
 
         //
@@ -37,79 +46,140 @@ namespace FBD.Controllers
         //
         // GET: /FIFinancialIndex/Create
 
-        public ActionResult Create()
+        /// <summary>
+        /// Forward to Add View
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Add()
         {
             return View();
         }
 
         //
         // POST: /FIFinancialIndex/Create
-
+        /// <summary>
+        /// 1. Receive information from parameter
+        /// 2. Check user right and input validation.
+        /// 3. Use Logic class to insert new Financial Index
+        /// 4. Redirect to [Index] View with label displaying: "A new Financial Index has been added successfully"
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Add(BusinessFinancialIndex businessFinancialIndex)
         {
             try
             {
-                // TODO: Add insert logic here
+                // If there is no error from client
+                if (ModelState.IsValid)
+                {
+                    // Add new business financial index that has been inputted
+                    BusinessFinancialIndex.AddFinancialIndex(businessFinancialIndex);
+                }
+                else throw new Exception();
 
+                // Display successful message when adding new financial index
+                TempData["Message"] = Constants.SCC_ADD_FI_FINANCIAL_INDEX;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception)
             {
-                return View();
+                // Display error message when adding new financial index
+                TempData["Message"] = Constants.ERR_ADD_POST_FI_FINANCIAL_INDEX;
+                return View(businessFinancialIndex);
             }
         }
 
         //
         // GET: /FIFinancialIndex/Edit/5
-
-        public ActionResult Edit(int id)
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to select appropriate Financial Index from Business.FinancialIndex table
+        /// 3. Display in [Edit] view
+        /// </summary>
+        /// <param name="id">id of the financial index to be editted</param>
+        /// <returns></returns>
+        public ActionResult Edit(string id)
         {
-            return View();
+            BusinessFinancialIndex financialIndex = null;
+
+            try
+            {
+                // Select the financial index to be editted
+                financialIndex = BusinessFinancialIndex.SelectFinancialIndexByID(id);
+            }
+            catch (Exception)
+            {
+                // Display error message when selecting financial index
+                TempData["Message"] = Constants.ERR_EDIT_FI_FINANCIAL_INDEX;
+                return View(financialIndex);
+            }
+
+            // Display financial index to be editted
+            return View(financialIndex);
         }
 
-        //
-        // POST: /FIFinancialIndex/Edit/5
-
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to update appropriate Financial Index with ID selected in DB
+        /// 3. Display in [Index] view with label displaying: "The Financial Index with ID xyz has been editted successfully"
+        /// </summary>
+        /// <param name="businessFinancialIndex">the financial index to be editted</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, BusinessFinancialIndex businessFinancialIndex)
         {
             try
             {
-                // TODO: Add update logic here
+                // If there is no error from client
+                if (ModelState.IsValid)
+                {
+                    // Edit financial index that has been inputted
+                    BusinessFinancialIndex.EditFinancialIndex(businessFinancialIndex);
+                }
+                else throw new Exception();
 
+                // Display successful message after editting the financial index
+                TempData["Message"] = Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_1 + id
+                                      + Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_2;
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                // Display error message after editting the financial index
+                TempData["Message"] = Constants.ERR_EDIT_POST_FI_FINANCIAL_INDEX;
+                return View(businessFinancialIndex);
             }
         }
 
         //
         // GET: /FIFinancialIndex/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /FIFinancialIndex/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to delete the Financial Index with selected ID from the Business.FinancialIndex table
+        /// 3. Back to [Index] view with label displaying: "A Financial Index has been deleted successfully" 
+        /// </summary>
+        /// <param name="id">id of the financial index to be deleted</param>
+        /// <returns></returns>
+        public ActionResult Delete(string id)
         {
             try
             {
-                // TODO: Add delete logic here
+                // Delete the selected financial index
+                BusinessFinancialIndex.DeleteFinancialIndex(id);
 
-                return RedirectToAction("Index");
+                // Display successful message after deleting the financial index
+                TempData["Message"] = Constants.SCC_DELETE_FI_FINANCIAL_INDEX;
+                RedirectToAction("Index");
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                // Display error message after deleting the financial index
+                TempData["Message"] = Constants.ERR_DELETE_FI_FINANCIAL_INDEX;
+                RedirectToAction("Index");
             }
+
+            return View();
         }
     }
 }
