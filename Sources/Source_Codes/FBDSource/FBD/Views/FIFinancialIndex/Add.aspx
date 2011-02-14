@@ -15,7 +15,8 @@
     
     <% Html.EnableClientValidation(); %>
     
-    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p style="color:Red"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <br />
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
