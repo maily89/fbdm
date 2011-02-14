@@ -76,7 +76,6 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
-    <Compile Include="Controllers\BSNTypeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
@@ -111,18 +110,13 @@
     <Content Include="Views\BSNLine\Add.aspx" />
     <Content Include="Views\BSNLine\Edit.aspx" />
     <Content Include="Views\BSNLine\Index.aspx" />
-
     <Content Include="Views\BSNType\Add.aspx" />
     <Content Include="Views\BSNType\Edit.aspx" />
     <Content Include="Views\BSNType\Index.aspx" />
     <Content Include="Views\FIFinancialIndex\Add.aspx" />
     <Content Include="Views\FIFinancialIndex\Edit.aspx" />
     <Content Include="Views\FIFinancialIndex\Index.aspx" />
-
     <Content Include="Views\Error\Index.aspx" />
-    <Content Include="Views\FIFinancialIndex\Add.aspx" />
-    <Content Include="Views\FIFinancialIndex\Edit.aspx" />
-    <Content Include="Views\FIFinancialIndex\Index.aspx" />
     <Content Include="Views\SYSReportingPeriod\Add.aspx" />
     <Content Include="Views\SYSReportingPeriod\Index.aspx" />
     <Content Include="Web.config" />
