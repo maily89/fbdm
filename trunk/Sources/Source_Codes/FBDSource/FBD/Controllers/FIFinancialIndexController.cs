@@ -20,17 +20,25 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            // Select the list of financial indexes
-            var lstFinancialIndex = BusinessFinancialIndex.SelectFinancialIndex();
+            List<BusinessFinancialIndex> lstFinancialIndex = null;
 
-            // If error occurs
-            if (lstFinancialIndex == null)
+            try
+            {
+                // Select the list of financial indexes
+                lstFinancialIndex = BusinessFinancialIndex.SelectFinancialIndex();
+
+                // If error occurs
+                if (lstFinancialIndex == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
             {
                 // Dispay error message when displaying financial indexes
                 TempData["Message"] = Constants.ERR_INDEX_FI_FINANCIAL_INDEX;
                 return View(lstFinancialIndex);
             }
-
             // If there is no error, displaying the list of financial index
             return View(lstFinancialIndex);
         }
@@ -74,13 +82,21 @@ namespace FBD.Controllers
                 if (ModelState.IsValid)
                 {
                     // Add new business financial index that has been inputted
-                    BusinessFinancialIndex.AddFinancialIndex(businessFinancialIndex);
+                    int result = BusinessFinancialIndex.AddFinancialIndex(businessFinancialIndex);
+
+                    if (result == 1)
+                    {
+                        // Display successful message when adding new financial index
+                        TempData["Message"] = Constants.SCC_ADD_FI_FINANCIAL_INDEX;
+                        return RedirectToAction("Index");
+                    }
+
+                    if (result == 0)
+                    {
+                        throw new Exception();
+                    }                    
                 }
                 else throw new Exception();
-
-                // Display successful message when adding new financial index
-                TempData["Message"] = Constants.SCC_ADD_FI_FINANCIAL_INDEX;
-                return RedirectToAction("Index");
             }
             catch(Exception)
             {
@@ -88,6 +104,8 @@ namespace FBD.Controllers
                 TempData["Message"] = Constants.ERR_ADD_POST_FI_FINANCIAL_INDEX;
                 return View(businessFinancialIndex);
             }
+
+            return View(businessFinancialIndex);
         }
 
         //
@@ -107,6 +125,11 @@ namespace FBD.Controllers
             {
                 // Select the financial index to be editted
                 financialIndex = BusinessFinancialIndex.SelectFinancialIndexByID(id);
+
+                if (financialIndex == null)
+                {
+                    throw new Exception();
+                }
             }
             catch (Exception)
             {
@@ -135,14 +158,22 @@ namespace FBD.Controllers
                 if (ModelState.IsValid)
                 {
                     // Edit financial index that has been inputted
-                    BusinessFinancialIndex.EditFinancialIndex(businessFinancialIndex);
-                }
-                else throw new Exception();
+                    int result = BusinessFinancialIndex.EditFinancialIndex(businessFinancialIndex);
 
-                // Display successful message after editting the financial index
-                TempData["Message"] = Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_1 + id
-                                      + Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_2;
-                return RedirectToAction("Index");
+                    if (result == 1)
+                    {
+                        // Display successful message after editting the financial index
+                        TempData["Message"] = Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_1 + id
+                                              + Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_2;
+                        return RedirectToAction("Index");
+                    }
+
+                    if (result == 0)
+                    {
+                        throw new Exception();
+                    }
+                }
+                else throw new Exception();                
             }
             catch
             {
@@ -150,6 +181,8 @@ namespace FBD.Controllers
                 TempData["Message"] = Constants.ERR_EDIT_POST_FI_FINANCIAL_INDEX;
                 return View(businessFinancialIndex);
             }
+
+            return View(businessFinancialIndex);
         }
 
         //
@@ -166,17 +199,25 @@ namespace FBD.Controllers
             try
             {
                 // Delete the selected financial index
-                BusinessFinancialIndex.DeleteFinancialIndex(id);
+                int result = BusinessFinancialIndex.DeleteFinancialIndex(id);
 
-                // Display successful message after deleting the financial index
-                TempData["Message"] = Constants.SCC_DELETE_FI_FINANCIAL_INDEX;
-                RedirectToAction("Index");
+                if (result == 1)
+                {
+                    // Display successful message after deleting the financial index
+                    TempData["Message"] = Constants.SCC_DELETE_FI_FINANCIAL_INDEX;
+                    return RedirectToAction("Index");
+                }
+
+                if (result == 0)
+                {
+                    throw new Exception();
+                }
             }
             catch (Exception)
             {
                 // Display error message after deleting the financial index
                 TempData["Message"] = Constants.ERR_DELETE_FI_FINANCIAL_INDEX;
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
             return View();
