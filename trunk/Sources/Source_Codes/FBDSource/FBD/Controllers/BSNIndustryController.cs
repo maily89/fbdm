@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
-
+using FBD.ViewModels;
 
 namespace FBD.Controllers
 {
