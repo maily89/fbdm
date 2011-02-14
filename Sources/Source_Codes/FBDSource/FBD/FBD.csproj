@@ -120,6 +120,9 @@
     <Content Include="Views\FIFinancialIndex\Index.aspx" />
 
     <Content Include="Views\Error\Index.aspx" />
+    <Content Include="Views\FIFinancialIndex\Add.aspx" />
+    <Content Include="Views\FIFinancialIndex\Edit.aspx" />
+    <Content Include="Views\FIFinancialIndex\Index.aspx" />
     <Content Include="Views\SYSReportingPeriod\Add.aspx" />
     <Content Include="Views\SYSReportingPeriod\Index.aspx" />
     <Content Include="Web.config" />
