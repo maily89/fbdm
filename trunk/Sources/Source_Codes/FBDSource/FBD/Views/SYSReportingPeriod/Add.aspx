@@ -34,11 +34,12 @@
             </div>
             
             <div class="editor-label">
-                From Date
+                <%= Html.LabelFor(model => model.FromDate) %>
             </div>
                 
             <div class="editor-field">
-                
+                <%=Html.DisplayFor(model => model.FromDate) %>
+                <%= Html.ValidationMessageFor(model => model.FromDate) %>
             </div>
             
             <div class="editor-label">
@@ -46,7 +47,7 @@
             </div>
             
             <div class="editor-field">
-                <%= Html.LabelFor(model => model.ToDate) %>
+                <%= Html.DisplayFor(model => model.ToDate) %>
                 <%= Html.ValidationMessageFor(model => model.ToDate) %>
             </div>
             
