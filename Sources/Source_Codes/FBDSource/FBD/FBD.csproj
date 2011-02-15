@@ -76,6 +76,7 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
+    <Compile Include="Controllers\BSNTypeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
