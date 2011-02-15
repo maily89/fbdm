@@ -16,7 +16,7 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            var reportingPeriod = SystemReportingPeriodsLogic.SelectReportingPeriods();
+            var reportingPeriod = SystemReportingPeriods.SelectReportingPeriods();
             return View(reportingPeriod);
         }
 
@@ -46,7 +46,7 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    SystemReportingPeriodsLogic.AddReportingPeriod(reportingPeriod);
+                    SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
                 }
                 else throw new Exception();
                 TempData["Message"] = "Reporting period " + reportingPeriod.PeriodID + "has been added successfully";
