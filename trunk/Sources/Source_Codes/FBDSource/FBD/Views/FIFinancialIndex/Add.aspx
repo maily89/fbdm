@@ -71,7 +71,7 @@
             </div>
             
             <p>
-                <input type="submit" value="Add" />
+                <input type="submit" value="Save" />
                 <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
             </p>
             

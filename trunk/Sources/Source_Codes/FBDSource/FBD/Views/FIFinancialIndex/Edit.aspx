@@ -69,7 +69,7 @@
                 <%= Html.CheckBoxFor(model => model.LeafIndex) %>
             </div>
             
-            <input type="submit" value="Edit" />
+            <input type="submit" value="Save" />
             <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
             
         </fieldset>
