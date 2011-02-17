@@ -17,10 +17,12 @@ namespace FBD.CommonUtilities
 
         /************** ERROR MESSAGES ****************/
 
+
+        
         // FINANCIAL INDEX
 
         public const string ERR_INDEX_FI_FINANCIAL_INDEX = "Error when displaying the list of Financial Indexes";
-
+        
         public const string ERR_ADD_POST_FI_FINANCIAL_INDEX = "Error when adding new Financial Index. Plz check your "
                                                                             + "input carefully!";
 
@@ -46,6 +48,34 @@ namespace FBD.CommonUtilities
 
         public const string ERR_DELETE_FI_FINANCIAL_INDEX_LEVEL = "Error when deleting the financial index level. Try again later";
 
+        
+
+        //SYSTEM USER GROUPS
+
+        //SYSTEM BRANCHES
+
+        //SYSTEM REPORTING PERIODS
+        public const string ERR_INDEX_SYS_REPORTING_PERIODS = "ERR_INDEX_SYS_REPORTING_PERIODS";
+        public const string ERR_ADD_POST_SYS_REPORTING_PERIODS = "ERR_ADD_POST_SYS_REPORTING_PERIODS";
+        public const string ERR_EDIT_SYS_REPORTING_PERIODS = "ERR_EDIT_SYS_REPORTING_PERIODS";
+        public const string ERR_EDIT_POST_SYS_REPORTING_PERIODS = "ERR_EDIT_POST_SYS_REPORTING_PERIODS";
+        public const string ERR_DELETE_SYS_REPORTING_PERIODS = "ERR_DELETE_SYS_REPORTING_PERIODS";
+        
+        //SYSTEM RIGHTS
+        public const string ERR_INDEX_SYS_RIGHTS = "ERR_INDEX_SYS_RIGHTS";
+        public const string ERR_ADD_POST_SYS_RIGHTS = "ERR_ADD_POST_SYS_RIGHTS";
+        public const string ERR_EDIT_SYS_RIGHTS = "ERR_EDIT_SYS_RIGHTS";
+        public const string ERR_EDIT_POST_SYS_RIGHTS = "ERR_EDIT_POST_SYS_RIGHTS";
+        public const string ERR_DELETE_SYS_RIGHTS = "ERR_DELETE_SYS_RIGHTS";
+
+        //SYSTEM USERS
+
+        //SYSTEM DECENTRALIZATION
+        public const string ERR_INDEX_SYS_DECENTRALIZATION = "ERR_INDEX_SYS_DECENTRALIZATION";
+        public const string ERR_ADD_POST_SYS_DECENTRALIZATION = "ERR_ADD_POST_SYS_DECENTRALIZATION";
+        public const string ERR_EDIT_SYS_DECENTRALIZATION = "ERR_EDIT_SYS_DECENTRALIZATION";
+        public const string ERR_EDIT_POST_SYS_DECENTRALIZATION = "ERR_EDIT_POST_SYS_DECENTRALIZATION";
+        public const string ERR_DELETE_SYS_DECENTRALIZATION = "ERR_DELETE_SYS_DECENTRALIZATION";
         /************** END OF ERROR MESSAGES ****************/
 
 
@@ -72,6 +102,33 @@ namespace FBD.CommonUtilities
         public const string SCC_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL_2 = " has been editted successfully";
 
         public const string SCC_DELETE_FI_FINANCIAL_INDEX_LEVEL = "A financial index level has been deleted successfully";
+
+
+
+
+        //SYSTEM USER GROUPS
+
+        //SYSTEM BRANCHES
+
+        //SYSTEM REPORTING PERIODS
+        public const string SCC_ADD_POST_SYS_REPORTING_PERIODS = "SCC_ADD_POST_SYS_REPORTING_PERIODS";
+        public const string SCC_EDIT_POST_SYS_REPORTING_PERIODS_1 = "SCC_EDIT_POST_SYS_REPORTING_PERIODS_1";
+        public const string SCC_EDIT_POST_SYS_REPORTING_PERIODS_2 = "SCC_EDIT_POST_SYS_REPORTING_PERIODS_2";
+        public const string SCC_DELETE_SYS_REPORTING_PERIODS = "SCC_DELETE_SYS_REPORTING_PERIODS";
+        
+        //SYSTEM RIGHTS
+        public const string SCC_ADD_POST_SYS_RIGHTS = "SCC_ADD_POST_SYS_RIGHTS";
+        public const string SCC_EDIT_POST_SYS_RIGHTS_1 = "SCC_EDIT_POST_SYS_RIGHTS_1";
+        public const string SCC_EDIT_POST_SYS_RIGHTS_2 = "SCC_EDIT_POST_SYS_RIGHTS_2";
+        public const string SCC_DELETE_SYS_RIGHTS = "SCC_DELETE_SYS_RIGHTS";
+        
+        //SYSTEM USERS
+
+        //SYSTEM DECENTRALIZATION
+        public const string SCC_ADD_POST_SYS_DECENTRALIZATION = "SCC_ADD_POST_SYS_DECENTRALIZATION";
+        public const string SCC_EDIT_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_1";
+        public const string SCC_EDIT_POST_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_2";
+        public const string SCC_DELETE_SYS_DECENTRALIZATION = "SCC_DELETE_SYS_DECENTRALIZATION";
 
         /************** END OF SUCCESSFUL MESSAGES ***************/
     }

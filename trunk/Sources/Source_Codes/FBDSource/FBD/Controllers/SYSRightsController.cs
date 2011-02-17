@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FBD.Models;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -13,7 +15,18 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            List<SystemRights> rights = null;
+            try
+            {
+                rights = SystemRights.SelectRights();
+                if (rights == null) throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = Constants.ERR_ADD_POST_SYS_RIGHTS;
+                return View(rights);
+            }
+            return View(rights);
         }
 
         //
@@ -25,22 +38,29 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /SYSRights/Create
+        // GET: /SYSRights/Add
 
-        public ActionResult Create()
+        /// <summary>
+        /// Forward to Add view
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Add()
         {
             return View();
         } 
 
         //
-        // POST: /SYSRights/Create
+        // POST: /SYSRights/Add
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Add(SystemRights right)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+
+                }
 
                 return RedirectToAction("Index");
             }
