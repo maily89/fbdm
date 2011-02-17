@@ -128,6 +128,9 @@
     <Content Include="Views\SYSReportingPeriod\Add.aspx" />
     <Content Include="Views\SYSReportingPeriod\Edit.aspx" />
     <Content Include="Views\SYSReportingPeriod\Index.aspx" />
+    <Content Include="Views\SYSRights\Add.aspx" />
+    <Content Include="Views\SYSRights\Edit.aspx" />
+    <Content Include="Views\SYSRights\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />
