@@ -61,53 +61,44 @@ namespace FBD.Controllers
         //
         // GET: /SYSReportingPeriod/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var model = SystemReportingPeriods.SelectReportingPeriodByID(id);
+            return View(model);
         }
 
         //
         // POST: /SYSReportingPeriod/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, SystemReportingPeriods reportingPeriod)
         {
             try
             {
-                // TODO: Add update logic here
- 
+                if (ModelState.IsValid)
+                {
+                    SystemReportingPeriods.EditReportingPeriod(reportingPeriod);
+                }
+                else throw new Exception();
+                TempData["Message"] = "Period ID " + reportingPeriod.PeriodID + " has been updated sucessfully";
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TempData["Message"] = ex.Message;
+                return View(reportingPeriod);
             }
         }
 
         //
         // GET: /SYSReportingPeriod/Delete/5
  
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            SystemReportingPeriods.DeleteReportingPeriod(id);
+            TempData["Message"] = "Period ID " + id + "has been deleted sucessfully";
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /SYSReportingPeriod/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
