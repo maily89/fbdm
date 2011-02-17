@@ -15,10 +15,6 @@ namespace FBD.Models
             return entities.SystemRights.ToList();
         }
 
-        public static SystemRights SelectRightsByID(string id)
-        {
-
-        }
 
 
     }
