@@ -81,6 +81,7 @@
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Controllers\FILevelsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
+    <Compile Include="Controllers\SYSRightsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -95,6 +96,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FBDModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SystemReportingPeriods.cs" />
+    <Compile Include="Models\SystemRights.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
@@ -123,6 +126,7 @@
     <Content Include="Views\FILevels\Edit.aspx" />
     <Content Include="Views\FILevels\Index.aspx" />
     <Content Include="Views\SYSReportingPeriod\Add.aspx" />
+    <Content Include="Views\SYSReportingPeriod\Edit.aspx" />
     <Content Include="Views\SYSReportingPeriod\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
