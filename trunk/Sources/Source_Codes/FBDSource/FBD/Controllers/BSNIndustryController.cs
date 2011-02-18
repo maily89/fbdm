@@ -14,7 +14,10 @@ namespace FBD.Controllers
     {
         //
         // GET: /BSNIndustry/
-        
+        /// <summary>
+        /// Display list of industry
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var industries = BusinessIndustries.SelectIndustries();
@@ -23,17 +26,11 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /BSNIndustry/Details/5
-
-        public ActionResult Details(int id)
-        {
-            
-            return View();
-        }
-
-        //
         // GET: /BSNIndustry/Add
-
+        /// <summary>
+        /// Display Add view
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Add()
         {
             return View();
@@ -41,7 +38,11 @@ namespace FBD.Controllers
 
         //
         // POST: /BSNIndustry/Add
-
+        /// <summary>
+        /// Add industry and display result
+        /// </summary>
+        /// <param name="industry"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Add(BusinessIndustries industry)
         {
@@ -64,7 +65,11 @@ namespace FBD.Controllers
         
         //
         // GET: /BSNIndustry/Edit/5
- 
+         /// <summary>
+         /// Display edit form
+         /// </summary>
+         /// <param name="id"></param>
+         /// <returns></returns>
         public ActionResult Edit(string id)
         {
             var model = BusinessIndustries.SelectIndustryByID(id);
@@ -73,7 +78,12 @@ namespace FBD.Controllers
 
         //
         // POST: /BSNIndustry/Edit/5
-
+        /// <summary>
+        /// Update edit form and display result.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="industry"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(string id, BusinessIndustries industry)
         {
@@ -100,7 +110,11 @@ namespace FBD.Controllers
 
         //
         // GET: /BSNIndustry/Delete/5
- 
+         /// <summary>
+         /// Delete Industry
+         /// </summary>
+         /// <param name="id"></param>
+         /// <returns></returns>
         public ActionResult Delete(string id)
         {
             BusinessIndustries.DeleteIndustry(id);
