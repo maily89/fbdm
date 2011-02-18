@@ -19,50 +19,87 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.CriteriaID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.CriteriaID) %>
-                <%= Html.ValidationMessageFor(model => model.CriteriaID) %>
-            </div>
+            <table>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.CriteriaName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.CriteriaName) %>
-                <%= Html.ValidationMessageFor(model => model.CriteriaName) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.CriteriaID) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.CriteriaID) %>
+                        <%= Html.ValidationMessageFor(model => model.CriteriaID) %>
+                    </div>
+               </td>
+           </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Unit) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Unit) %>
-                <%= Html.ValidationMessageFor(model => model.Unit) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.CriteriaName) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.CriteriaName) %>
+                        <%= Html.ValidationMessageFor(model => model.CriteriaName) %>
+                    </div>
+               </td>
+           </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Formula) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Formula) %>
-                <%= Html.ValidationMessageFor(model => model.Formula) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Unit) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Unit) %>
+                        <%= Html.ValidationMessageFor(model => model.Unit) %>
+                    </div>
+               </td>
+           </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ValueType) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ValueType) %>
-                <%= Html.ValidationMessageFor(model => model.ValueType) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Formula) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Formula) %>
+                        <%= Html.ValidationMessageFor(model => model.Formula) %>
+                    </div>
+               </td>
+           </tr>
             
-            <p>
-                <input type="submit" value="Add" />
-                <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-            </p>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.ValueType) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.ValueType) %>
+                        <%= Html.ValidationMessageFor(model => model.ValueType) %>
+                    </div>
+               </td>
+           </tr>
+            
+            <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
+        </table>
         </fieldset>
 
     <% } %>
