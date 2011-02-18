@@ -1,13 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.SystemRights>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	Edit System Right
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
-
+    <h2>EDIT SYSTEM RIGHT</h2>
+    <% Html.EnableClientValidation(); %>
+    <p style="color:Red"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         
@@ -32,6 +34,7 @@
             
             <p>
                 <input type="submit" value="Save" />
+                <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
             </p>
         </fieldset>
 
@@ -42,7 +45,3 @@
     </div>
 
 </asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
-</asp:Content>
-
