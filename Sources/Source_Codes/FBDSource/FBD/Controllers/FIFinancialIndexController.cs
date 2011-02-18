@@ -44,14 +44,6 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /FIFinancialIndex/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
         // GET: /FIFinancialIndex/Create
 
         /// <summary>
@@ -90,13 +82,8 @@ namespace FBD.Controllers
                         TempData["Message"] = Constants.SCC_ADD_FI_FINANCIAL_INDEX;
                         return RedirectToAction("Index");
                     }
-
-                    if (result == 0)
-                    {
-                        throw new Exception();
-                    }                    
-                }
-                else throw new Exception();
+                } 
+                throw new Exception();
             }
             catch(Exception)
             {
@@ -104,8 +91,6 @@ namespace FBD.Controllers
                 TempData["Message"] = Constants.ERR_ADD_POST_FI_FINANCIAL_INDEX;
                 return View(businessFinancialIndex);
             }
-
-            return View(businessFinancialIndex);
         }
 
         //
@@ -167,13 +152,9 @@ namespace FBD.Controllers
                                               + Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_2;
                         return RedirectToAction("Index");
                     }
-
-                    if (result == 0)
-                    {
-                        throw new Exception();
-                    }
                 }
-                else throw new Exception();                
+                
+                throw new Exception();                
             }
             catch
             {
@@ -181,8 +162,6 @@ namespace FBD.Controllers
                 TempData["Message"] = Constants.ERR_EDIT_POST_FI_FINANCIAL_INDEX;
                 return View(businessFinancialIndex);
             }
-
-            return View(businessFinancialIndex);
         }
 
         //
@@ -208,10 +187,7 @@ namespace FBD.Controllers
                     return RedirectToAction("Index");
                 }
 
-                if (result == 0)
-                {
-                    throw new Exception();
-                }
+                throw new Exception();
             }
             catch (Exception)
             {
@@ -219,8 +195,6 @@ namespace FBD.Controllers
                 TempData["Message"] = Constants.ERR_DELETE_FI_FINANCIAL_INDEX;
                 return RedirectToAction("Index");
             }
-
-            return View();
         }
     }
 }
