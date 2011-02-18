@@ -17,10 +17,7 @@ namespace FBD.Models
         public static List<SystemReportingPeriods> SelectReportingPeriods()
         {
             FBDEntities entities = new FBDEntities();
-            List<SystemReportingPeriods> lstPeriod = null;
-            lstPeriod = entities.SystemReportingPeriods.ToList();
-            
-            return lstPeriod;
+            return entities.SystemReportingPeriods.ToList();
         }
 
         /// <summary>
@@ -32,8 +29,7 @@ namespace FBD.Models
         public static SystemReportingPeriods SelectReportingPeriodByID(string id)
         {
             FBDEntities entities = new FBDEntities();
-            var reportingPeriod = entities.SystemReportingPeriods.First(i => i.PeriodID == id);
-            return reportingPeriod;
+            return entities.SystemReportingPeriods.First(i => i.PeriodID == id); 
         }
 
 
@@ -45,8 +41,7 @@ namespace FBD.Models
         /// <returns>Reporting Period has ID = [id]</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id, FBDEntities entities)
         {
-            var reportingPeriod = entities.SystemReportingPeriods.First(i => i.PeriodID == id);
-            return reportingPeriod;
+            return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
         }
                 
 
@@ -62,7 +57,6 @@ namespace FBD.Models
         public static int AddReportingPeriod(SystemReportingPeriods reportingPeriod)
         {
             FBDEntities entities = new FBDEntities();
-
             entities.AddToSystemReportingPeriods(reportingPeriod);
             int result = entities.SaveChanges();
             return result <= 0 ? 0 : 1;

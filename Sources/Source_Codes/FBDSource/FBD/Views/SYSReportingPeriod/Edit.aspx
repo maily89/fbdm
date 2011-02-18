@@ -75,7 +75,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.Active) %>
+                        <%= Html.CheckBoxFor(model => model.Active) %>
                     </div>
                 </td>
             </tr>

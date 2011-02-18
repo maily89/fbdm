@@ -8,14 +8,17 @@
 
     <h2>MANAGING SYSTEM RIGHT INDEX</h2>
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
+    <p>
+        <%= Html.ActionLink("Add new System Right", "Add") %>
+    </p>
     <table>
         <tr>
             <th></th>
             <th>
-                RightID
+                Right ID
             </th>
             <th>
-                RightName
+                Right Name
             </th>
         </tr>
 
