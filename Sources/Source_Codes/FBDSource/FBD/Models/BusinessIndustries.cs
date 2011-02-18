@@ -10,12 +10,21 @@ namespace FBD.Models
     [MetadataType(typeof(BusinessIndustryMetaData))] 
     public partial class BusinessIndustries
     {
-
+        /// <summary>
+        /// list of businessIndustries
+        /// </summary>
+        /// <returns>list of businessIndustries</returns>
         public static List<BusinessIndustries> SelectIndustries()
         {
             FBDEntities entities = new FBDEntities();
             return entities.BusinessIndustries.ToList();
         }
+
+        /// <summary>
+        /// return the industry specified by id
+        /// </summary>
+        /// <param name="id">id of the industry</param>
+        /// <returns>industry</returns>
         public static BusinessIndustries SelectIndustryByID(string id)
         {
             FBDEntities entities = new FBDEntities();
@@ -23,6 +32,12 @@ namespace FBD.Models
             return industry;
         }
 
+        /// <summary>
+        /// return the industry specified by id
+        /// </summary>
+        /// <param name="id">id of the industry</param>
+        /// <param name="entities">fbd entity to select</param>
+        /// <returns>industry</returns>
         public static BusinessIndustries SelectIndustryByID(string id,FBDEntities entities)
         {
             
@@ -30,6 +45,10 @@ namespace FBD.Models
             return industry;
         }
 
+        /// <summary>
+        /// delete the industry with the specified id
+        /// </summary>
+        /// <param name="id"> the id deleted</param>
         public static void DeleteIndustry(string id)
         {
             FBDEntities entities = new FBDEntities();
@@ -38,6 +57,10 @@ namespace FBD.Models
             entities.SaveChanges();
         }
 
+        /// <summary>
+        /// edit the industry
+        /// </summary>
+        /// <param name="industry">update the industry</param>
         public static void EditIndustry(BusinessIndustries industry)
         {
             FBDEntities entities = new FBDEntities();
@@ -46,6 +69,10 @@ namespace FBD.Models
             entities.SaveChanges();
         }
 
+        /// <summary>
+        /// add new industry
+        /// </summary>
+        /// <param name="industry">the industry to add</param>
         public static void AddIndustry(BusinessIndustries industry)
         {
             FBDEntities entities = new FBDEntities();

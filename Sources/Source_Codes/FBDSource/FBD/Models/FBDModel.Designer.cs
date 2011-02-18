@@ -9,40 +9,41 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexProportion))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete", "BusinessFinancialIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessFinancialIndexLevels), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexProportion_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessFinancialIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexProportion))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessScales_Delete", "BusinessScales", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessScales), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexProportion))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete", "BusinessFinancialIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndexLevels), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexProportion_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessIndustries), "BusinessFinancialIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexProportion))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessIndustries), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessScales_Delete", "BusinessScales", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessScales), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessLines_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessLines", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessLines))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionByIndustry_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessNFIProportionByIndustry", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionByIndustry))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionCalculated_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessNFIProportionCalculated", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionCalculated))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessIndustries), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessScaleScore_BusinessIndustries_Delete", "BusinessIndustries", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessIndustries), "BusinessScaleScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessScaleScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete", "BusinessNonFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessNonFinancialIndex), "BusinessNFIProportionByIndustry", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionByIndustry))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete", "BusinessNonFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessNonFinancialIndex), "BusinessNFIProportionByType", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionByType))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionByType_BusinessTypes_Delete", "BusinessTypes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessTypes), "BusinessNFIProportionByType", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionByType))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete", "BusinessNonFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessNonFinancialIndex), "BusinessNFIProportionCalculated", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionCalculated))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNFIProportionCalculated_BusinessTypes_Delete", "BusinessTypes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessTypes), "BusinessNFIProportionCalculated", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNFIProportionCalculated))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete", "BusinessNonFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessNonFinancialIndex), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete", "BusinessNonFinancialIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessNonFinancialIndexLevels), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete", "BusinessNonFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessNonFinancialIndex), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete", "BusinessNonFinancialIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessNonFinancialIndexLevels), "BusinessNonFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessNonFinancialIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessScaleScore_BusinessScaleCriteria_Delete", "BusinessScaleCriteria", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessScaleCriteria), "BusinessScaleScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessScaleScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexProportion_IndividualBasicIndex_Delete", "IndividualBasicIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicIndex), "IndividualBasicIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexProportion))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexScore_IndividualBasicIndex_Delete", "IndividualBasicIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicIndex), "IndividualBasicIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete", "IndividualBasicIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicIndexLevels), "IndividualBasicIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete", "IndividualBorrowingPurposes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBorrowingPurposes), "IndividualBasicIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexProportion))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete", "IndividualBorrowingPurposes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBorrowingPurposes), "IndividualBasicIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualSummaryRanks_IndividualBasicRanks_Delete", "IndividualBasicRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicRanks), "IndividualSummaryRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualSummaryRanks))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualCollateralIndexScore_IndividualCollateralIndex_Delete", "IndividualCollateralIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualCollateralIndex), "IndividualCollateralIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualCollateralIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete", "IndividualCollateralIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualCollateralIndexLevels), "IndividualCollateralIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualCollateralIndexScore))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualSummaryRanks_IndividualCollateralRanks_Delete", "IndividualCollateralRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualCollateralRanks), "IndividualSummaryRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualSummaryRanks))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualSummaryRanks_IndividualBasicRanks_Delete", "IndividualBasicRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualBasicRanks), "IndividualSummaryRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualSummaryRanks))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualCollateralIndexScore_IndividualCollateralIndex_Delete", "IndividualCollateralIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualCollateralIndex), "IndividualCollateralIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualCollateralIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete", "IndividualCollateralIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualCollateralIndexLevels), "IndividualCollateralIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualCollateralIndexScore))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualSummaryRanks_IndividualCollateralRanks_Delete", "IndividualCollateralRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualCollateralRanks), "IndividualSummaryRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualSummaryRanks))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemBranches_Delete", "SystemBranches", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemBranches), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUserGroupsRights_SystemRights_Delete", "SystemRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.SystemRights), "SystemUserGroupsRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUserGroupsRights))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.SystemUserGroups), "SystemUserGroupsRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUserGroupsRights))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUserGroupsRights", "SystemRights", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemRights), "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUserGroups))]
 
 // Original file name:
-// Generation date: 2/11/2011 9:38:36 AM
+// Generation date: 2/16/2011 10:36:42 PM
 namespace FBD.Models
 {
     
@@ -587,6 +588,21 @@ namespace FBD.Models
         }
         private global::System.Data.Objects.ObjectQuery<SystemUserGroups> _SystemUserGroups;
         /// <summary>
+        /// There are no comments for SystemUserGroupsRights in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<SystemUserGroupsRights> SystemUserGroupsRights
+        {
+            get
+            {
+                if ((this._SystemUserGroupsRights == null))
+                {
+                    this._SystemUserGroupsRights = base.CreateQuery<SystemUserGroupsRights>("[SystemUserGroupsRights]");
+                }
+                return this._SystemUserGroupsRights;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<SystemUserGroupsRights> _SystemUserGroupsRights;
+        /// <summary>
         /// There are no comments for SystemUsers in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<SystemUsers> SystemUsers
@@ -838,6 +854,13 @@ namespace FBD.Models
         public void AddToSystemUserGroups(SystemUserGroups systemUserGroups)
         {
             base.AddObject("SystemUserGroups", systemUserGroups);
+        }
+        /// <summary>
+        /// There are no comments for SystemUserGroupsRights in the schema.
+        /// </summary>
+        public void AddToSystemUserGroupsRights(SystemUserGroupsRights systemUserGroupsRights)
+        {
+            base.AddObject("SystemUserGroupsRights", systemUserGroupsRights);
         }
         /// <summary>
         /// There are no comments for SystemUsers in the schema.
@@ -1148,8 +1171,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessFinancialIndexProportion in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndustryID
-    /// IndexID
+    /// ProportionID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessFinancialIndexProportion")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -1159,61 +1181,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessFinancialIndexProportion object.
         /// </summary>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        public static BusinessFinancialIndexProportion CreateBusinessFinancialIndexProportion(string industryID, string indexID)
+        /// <param name="proportionID">Initial value of ProportionID.</param>
+        public static BusinessFinancialIndexProportion CreateBusinessFinancialIndexProportion(int proportionID)
         {
             BusinessFinancialIndexProportion businessFinancialIndexProportion = new BusinessFinancialIndexProportion();
-            businessFinancialIndexProportion.IndustryID = industryID;
-            businessFinancialIndexProportion.IndexID = indexID;
+            businessFinancialIndexProportion.ProportionID = proportionID;
             return businessFinancialIndexProportion;
         }
         /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
+        /// There are no comments for Property ProportionID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
+        public int ProportionID
         {
             get
             {
-                return this._IndustryID;
+                return this._ProportionID;
             }
             set
             {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
+                this.OnProportionIDChanging(value);
+                this.ReportPropertyChanging("ProportionID");
+                this._ProportionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProportionID");
+                this.OnProportionIDChanged();
             }
         }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndexID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
-        {
-            get
-            {
-                return this._IndexID;
-            }
-            set
-            {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
-            }
-        }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
+        private int _ProportionID;
+        partial void OnProportionIDChanging(int value);
+        partial void OnProportionIDChanged();
         /// <summary>
         /// There are no comments for Property Proportion in the schema.
         /// </summary>
@@ -1316,10 +1313,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessFinancialIndexScore in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// IndustryID
-    /// ScaleID
-    /// LevelID
+    /// ScoreID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessFinancialIndexScore")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -1329,88 +1323,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessFinancialIndexScore object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        /// <param name="scaleID">Initial value of ScaleID.</param>
-        /// <param name="levelID">Initial value of LevelID.</param>
-        public static BusinessFinancialIndexScore CreateBusinessFinancialIndexScore(string indexID, string industryID, string scaleID, decimal levelID)
+        /// <param name="scoreID">Initial value of ScoreID.</param>
+        public static BusinessFinancialIndexScore CreateBusinessFinancialIndexScore(int scoreID)
         {
             BusinessFinancialIndexScore businessFinancialIndexScore = new BusinessFinancialIndexScore();
-            businessFinancialIndexScore.IndexID = indexID;
-            businessFinancialIndexScore.IndustryID = industryID;
-            businessFinancialIndexScore.ScaleID = scaleID;
-            businessFinancialIndexScore.LevelID = levelID;
+            businessFinancialIndexScore.ScoreID = scoreID;
             return businessFinancialIndexScore;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ScoreID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ScoreID
         {
             get
             {
-                return this._IndexID;
+                return this._ScoreID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnScoreIDChanging(value);
+                this.ReportPropertyChanging("ScoreID");
+                this._ScoreID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ScoreID");
+                this.OnScoreIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
-        {
-            get
-            {
-                return this._IndustryID;
-            }
-            set
-            {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
-            }
-        }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
-        /// <summary>
-        /// There are no comments for Property ScaleID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string ScaleID
-        {
-            get
-            {
-                return this._ScaleID;
-            }
-            set
-            {
-                this.OnScaleIDChanging(value);
-                this.ReportPropertyChanging("ScaleID");
-                this._ScaleID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("ScaleID");
-                this.OnScaleIDChanged();
-            }
-        }
-        private string _ScaleID;
-        partial void OnScaleIDChanging(string value);
-        partial void OnScaleIDChanged();
+        private int _ScoreID;
+        partial void OnScoreIDChanging(int value);
+        partial void OnScoreIDChanged();
         /// <summary>
         /// There are no comments for Property FromValue in the schema.
         /// </summary>
@@ -1480,29 +1422,6 @@ namespace FBD.Models
         private string _FixedValue;
         partial void OnFixedValueChanging(string value);
         partial void OnFixedValueChanged();
-        /// <summary>
-        /// There are no comments for Property LevelID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal LevelID
-        {
-            get
-            {
-                return this._LevelID;
-            }
-            set
-            {
-                this.OnLevelIDChanging(value);
-                this.ReportPropertyChanging("LevelID");
-                this._LevelID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("LevelID");
-                this.OnLevelIDChanged();
-            }
-        }
-        private decimal _LevelID;
-        partial void OnLevelIDChanging(decimal value);
-        partial void OnLevelIDChanged();
         /// <summary>
         /// There are no comments for BusinessFinancialIndex in the schema.
         /// </summary>
@@ -1976,8 +1895,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessNFIProportionByIndustry in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// IndustryID
+    /// ProportionID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessNFIProportionByIndustry")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -1987,61 +1905,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessNFIProportionByIndustry object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        public static BusinessNFIProportionByIndustry CreateBusinessNFIProportionByIndustry(string indexID, string industryID)
+        /// <param name="proportionID">Initial value of ProportionID.</param>
+        public static BusinessNFIProportionByIndustry CreateBusinessNFIProportionByIndustry(int proportionID)
         {
             BusinessNFIProportionByIndustry businessNFIProportionByIndustry = new BusinessNFIProportionByIndustry();
-            businessNFIProportionByIndustry.IndexID = indexID;
-            businessNFIProportionByIndustry.IndustryID = industryID;
+            businessNFIProportionByIndustry.ProportionID = proportionID;
             return businessNFIProportionByIndustry;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ProportionID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ProportionID
         {
             get
             {
-                return this._IndexID;
+                return this._ProportionID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnProportionIDChanging(value);
+                this.ReportPropertyChanging("ProportionID");
+                this._ProportionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProportionID");
+                this.OnProportionIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
-        {
-            get
-            {
-                return this._IndustryID;
-            }
-            set
-            {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
-            }
-        }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
+        private int _ProportionID;
+        partial void OnProportionIDChanging(int value);
+        partial void OnProportionIDChanged();
         /// <summary>
         /// There are no comments for Property Proportion in the schema.
         /// </summary>
@@ -2144,8 +2037,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessNFIProportionByType in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// TypeID
+    /// ProportionID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessNFIProportionByType")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -2155,61 +2047,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessNFIProportionByType object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="typeID">Initial value of TypeID.</param>
-        public static BusinessNFIProportionByType CreateBusinessNFIProportionByType(string indexID, string typeID)
+        /// <param name="proportionID">Initial value of ProportionID.</param>
+        public static BusinessNFIProportionByType CreateBusinessNFIProportionByType(int proportionID)
         {
             BusinessNFIProportionByType businessNFIProportionByType = new BusinessNFIProportionByType();
-            businessNFIProportionByType.IndexID = indexID;
-            businessNFIProportionByType.TypeID = typeID;
+            businessNFIProportionByType.ProportionID = proportionID;
             return businessNFIProportionByType;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ProportionID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ProportionID
         {
             get
             {
-                return this._IndexID;
+                return this._ProportionID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnProportionIDChanging(value);
+                this.ReportPropertyChanging("ProportionID");
+                this._ProportionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProportionID");
+                this.OnProportionIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property TypeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeID
-        {
-            get
-            {
-                return this._TypeID;
-            }
-            set
-            {
-                this.OnTypeIDChanging(value);
-                this.ReportPropertyChanging("TypeID");
-                this._TypeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("TypeID");
-                this.OnTypeIDChanged();
-            }
-        }
-        private string _TypeID;
-        partial void OnTypeIDChanging(string value);
-        partial void OnTypeIDChanged();
+        private int _ProportionID;
+        partial void OnProportionIDChanging(int value);
+        partial void OnProportionIDChanged();
         /// <summary>
         /// There are no comments for Property Proportion in the schema.
         /// </summary>
@@ -2312,9 +2179,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessNFIProportionCalculated in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// IndustryID
-    /// TypeID
+    /// ProportionID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessNFIProportionCalculated")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -2324,86 +2189,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessNFIProportionCalculated object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        /// <param name="typeID">Initial value of TypeID.</param>
-        public static BusinessNFIProportionCalculated CreateBusinessNFIProportionCalculated(string indexID, string industryID, string typeID)
+        /// <param name="proportionID">Initial value of ProportionID.</param>
+        public static BusinessNFIProportionCalculated CreateBusinessNFIProportionCalculated(int proportionID)
         {
             BusinessNFIProportionCalculated businessNFIProportionCalculated = new BusinessNFIProportionCalculated();
-            businessNFIProportionCalculated.IndexID = indexID;
-            businessNFIProportionCalculated.IndustryID = industryID;
-            businessNFIProportionCalculated.TypeID = typeID;
+            businessNFIProportionCalculated.ProportionID = proportionID;
             return businessNFIProportionCalculated;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ProportionID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ProportionID
         {
             get
             {
-                return this._IndexID;
+                return this._ProportionID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnProportionIDChanging(value);
+                this.ReportPropertyChanging("ProportionID");
+                this._ProportionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProportionID");
+                this.OnProportionIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
-        {
-            get
-            {
-                return this._IndustryID;
-            }
-            set
-            {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
-            }
-        }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
-        /// <summary>
-        /// There are no comments for Property TypeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeID
-        {
-            get
-            {
-                return this._TypeID;
-            }
-            set
-            {
-                this.OnTypeIDChanging(value);
-                this.ReportPropertyChanging("TypeID");
-                this._TypeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("TypeID");
-                this.OnTypeIDChanged();
-            }
-        }
-        private string _TypeID;
-        partial void OnTypeIDChanging(string value);
-        partial void OnTypeIDChanged();
+        private int _ProportionID;
+        partial void OnProportionIDChanging(int value);
+        partial void OnProportionIDChanged();
         /// <summary>
         /// There are no comments for Property Proportion in the schema.
         /// </summary>
@@ -2882,9 +2697,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessNonFinancialIndexScore in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// IndustryID
-    /// LevelID
+    /// ScoreID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessNonFinancialIndexScore")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -2894,63 +2707,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessNonFinancialIndexScore object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        /// <param name="levelID">Initial value of LevelID.</param>
-        public static BusinessNonFinancialIndexScore CreateBusinessNonFinancialIndexScore(string indexID, string industryID, decimal levelID)
+        /// <param name="scoreID">Initial value of ScoreID.</param>
+        public static BusinessNonFinancialIndexScore CreateBusinessNonFinancialIndexScore(int scoreID)
         {
             BusinessNonFinancialIndexScore businessNonFinancialIndexScore = new BusinessNonFinancialIndexScore();
-            businessNonFinancialIndexScore.IndexID = indexID;
-            businessNonFinancialIndexScore.IndustryID = industryID;
-            businessNonFinancialIndexScore.LevelID = levelID;
+            businessNonFinancialIndexScore.ScoreID = scoreID;
             return businessNonFinancialIndexScore;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ScoreID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ScoreID
         {
             get
             {
-                return this._IndexID;
+                return this._ScoreID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnScoreIDChanging(value);
+                this.ReportPropertyChanging("ScoreID");
+                this._ScoreID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ScoreID");
+                this.OnScoreIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
-        {
-            get
-            {
-                return this._IndustryID;
-            }
-            set
-            {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
-            }
-        }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
+        private int _ScoreID;
+        partial void OnScoreIDChanging(int value);
+        partial void OnScoreIDChanged();
         /// <summary>
         /// There are no comments for Property FromValue in the schema.
         /// </summary>
@@ -3020,29 +2806,6 @@ namespace FBD.Models
         private string _FixedValue;
         partial void OnFixedValueChanging(string value);
         partial void OnFixedValueChanged();
-        /// <summary>
-        /// There are no comments for Property LevelID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal LevelID
-        {
-            get
-            {
-                return this._LevelID;
-            }
-            set
-            {
-                this.OnLevelIDChanging(value);
-                this.ReportPropertyChanging("LevelID");
-                this._LevelID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("LevelID");
-                this.OnLevelIDChanged();
-            }
-        }
-        private decimal _LevelID;
-        partial void OnLevelIDChanging(decimal value);
-        partial void OnLevelIDChanged();
         /// <summary>
         /// There are no comments for BusinessIndustries in the schema.
         /// </summary>
@@ -3159,8 +2922,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.BusinessRankingStructure in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexType
-    /// AuditedStatus
+    /// ID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessRankingStructure")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -3170,19 +2932,44 @@ namespace FBD.Models
         /// <summary>
         /// Create a new BusinessRankingStructure object.
         /// </summary>
+        /// <param name="id">Initial value of ID.</param>
         /// <param name="indexType">Initial value of IndexType.</param>
         /// <param name="auditedStatus">Initial value of AuditedStatus.</param>
-        public static BusinessRankingStructure CreateBusinessRankingStructure(string indexType, string auditedStatus)
+        public static BusinessRankingStructure CreateBusinessRankingStructure(int id, string indexType, string auditedStatus)
         {
             BusinessRankingStructure businessRankingStructure = new BusinessRankingStructure();
+            businessRankingStructure.ID = id;
             businessRankingStructure.IndexType = indexType;
             businessRankingStructure.AuditedStatus = auditedStatus;
             return businessRankingStructure;
         }
         /// <summary>
-        /// There are no comments for Property IndexType in the schema.
+        /// There are no comments for Property ID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private int _ID;
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property IndexType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         public string IndexType
         {
@@ -3205,7 +2992,7 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property AuditedStatus in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         public string AuditedStatus
         {
@@ -4378,8 +4165,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.IndividualBasicIndexProportion in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// PurposeID
+    /// ProportionID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualBasicIndexProportion")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -4389,61 +4175,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new IndividualBasicIndexProportion object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="purposeID">Initial value of PurposeID.</param>
-        public static IndividualBasicIndexProportion CreateIndividualBasicIndexProportion(string indexID, string purposeID)
+        /// <param name="proportionID">Initial value of ProportionID.</param>
+        public static IndividualBasicIndexProportion CreateIndividualBasicIndexProportion(int proportionID)
         {
             IndividualBasicIndexProportion individualBasicIndexProportion = new IndividualBasicIndexProportion();
-            individualBasicIndexProportion.IndexID = indexID;
-            individualBasicIndexProportion.PurposeID = purposeID;
+            individualBasicIndexProportion.ProportionID = proportionID;
             return individualBasicIndexProportion;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ProportionID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ProportionID
         {
             get
             {
-                return this._IndexID;
+                return this._ProportionID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnProportionIDChanging(value);
+                this.ReportPropertyChanging("ProportionID");
+                this._ProportionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProportionID");
+                this.OnProportionIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property PurposeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string PurposeID
-        {
-            get
-            {
-                return this._PurposeID;
-            }
-            set
-            {
-                this.OnPurposeIDChanging(value);
-                this.ReportPropertyChanging("PurposeID");
-                this._PurposeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("PurposeID");
-                this.OnPurposeIDChanged();
-            }
-        }
-        private string _PurposeID;
-        partial void OnPurposeIDChanging(string value);
-        partial void OnPurposeIDChanged();
+        private int _ProportionID;
+        partial void OnProportionIDChanging(int value);
+        partial void OnProportionIDChanged();
         /// <summary>
         /// There are no comments for Property Proportion in the schema.
         /// </summary>
@@ -4546,9 +4307,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.IndividualBasicIndexScore in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// PurposeID
-    /// LevelID
+    /// ScoreID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualBasicIndexScore")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -4558,63 +4317,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new IndividualBasicIndexScore object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="purposeID">Initial value of PurposeID.</param>
-        /// <param name="levelID">Initial value of LevelID.</param>
-        public static IndividualBasicIndexScore CreateIndividualBasicIndexScore(string indexID, string purposeID, decimal levelID)
+        /// <param name="scoreID">Initial value of ScoreID.</param>
+        public static IndividualBasicIndexScore CreateIndividualBasicIndexScore(int scoreID)
         {
             IndividualBasicIndexScore individualBasicIndexScore = new IndividualBasicIndexScore();
-            individualBasicIndexScore.IndexID = indexID;
-            individualBasicIndexScore.PurposeID = purposeID;
-            individualBasicIndexScore.LevelID = levelID;
+            individualBasicIndexScore.ScoreID = scoreID;
             return individualBasicIndexScore;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ScoreID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ScoreID
         {
             get
             {
-                return this._IndexID;
+                return this._ScoreID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnScoreIDChanging(value);
+                this.ReportPropertyChanging("ScoreID");
+                this._ScoreID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ScoreID");
+                this.OnScoreIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
-        /// <summary>
-        /// There are no comments for Property PurposeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string PurposeID
-        {
-            get
-            {
-                return this._PurposeID;
-            }
-            set
-            {
-                this.OnPurposeIDChanging(value);
-                this.ReportPropertyChanging("PurposeID");
-                this._PurposeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("PurposeID");
-                this.OnPurposeIDChanged();
-            }
-        }
-        private string _PurposeID;
-        partial void OnPurposeIDChanging(string value);
-        partial void OnPurposeIDChanged();
+        private int _ScoreID;
+        partial void OnScoreIDChanging(int value);
+        partial void OnScoreIDChanged();
         /// <summary>
         /// There are no comments for Property FromValue in the schema.
         /// </summary>
@@ -4684,29 +4416,6 @@ namespace FBD.Models
         private string _FixedValue;
         partial void OnFixedValueChanging(string value);
         partial void OnFixedValueChanged();
-        /// <summary>
-        /// There are no comments for Property LevelID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal LevelID
-        {
-            get
-            {
-                return this._LevelID;
-            }
-            set
-            {
-                this.OnLevelIDChanging(value);
-                this.ReportPropertyChanging("LevelID");
-                this._LevelID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("LevelID");
-                this.OnLevelIDChanged();
-            }
-        }
-        private decimal _LevelID;
-        partial void OnLevelIDChanging(decimal value);
-        partial void OnLevelIDChanged();
         /// <summary>
         /// There are no comments for IndividualBasicIndex in the schema.
         /// </summary>
@@ -5369,8 +5078,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.IndividualCollateralIndexScore in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IndexID
-    /// LevelID
+    /// ScoreID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualCollateralIndexScore")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -5380,38 +5088,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new IndividualCollateralIndexScore object.
         /// </summary>
-        /// <param name="indexID">Initial value of IndexID.</param>
-        /// <param name="levelID">Initial value of LevelID.</param>
-        public static IndividualCollateralIndexScore CreateIndividualCollateralIndexScore(string indexID, decimal levelID)
+        /// <param name="scoreID">Initial value of ScoreID.</param>
+        public static IndividualCollateralIndexScore CreateIndividualCollateralIndexScore(int scoreID)
         {
             IndividualCollateralIndexScore individualCollateralIndexScore = new IndividualCollateralIndexScore();
-            individualCollateralIndexScore.IndexID = indexID;
-            individualCollateralIndexScore.LevelID = levelID;
+            individualCollateralIndexScore.ScoreID = scoreID;
             return individualCollateralIndexScore;
         }
         /// <summary>
-        /// There are no comments for Property IndexID in the schema.
+        /// There are no comments for Property ScoreID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndexID
+        public int ScoreID
         {
             get
             {
-                return this._IndexID;
+                return this._ScoreID;
             }
             set
             {
-                this.OnIndexIDChanging(value);
-                this.ReportPropertyChanging("IndexID");
-                this._IndexID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndexID");
-                this.OnIndexIDChanged();
+                this.OnScoreIDChanging(value);
+                this.ReportPropertyChanging("ScoreID");
+                this._ScoreID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ScoreID");
+                this.OnScoreIDChanged();
             }
         }
-        private string _IndexID;
-        partial void OnIndexIDChanging(string value);
-        partial void OnIndexIDChanged();
+        private int _ScoreID;
+        partial void OnScoreIDChanging(int value);
+        partial void OnScoreIDChanged();
         /// <summary>
         /// There are no comments for Property FromValue in the schema.
         /// </summary>
@@ -5481,29 +5187,6 @@ namespace FBD.Models
         private string _FixedValue;
         partial void OnFixedValueChanging(string value);
         partial void OnFixedValueChanged();
-        /// <summary>
-        /// There are no comments for Property LevelID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal LevelID
-        {
-            get
-            {
-                return this._LevelID;
-            }
-            set
-            {
-                this.OnLevelIDChanging(value);
-                this.ReportPropertyChanging("LevelID");
-                this._LevelID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("LevelID");
-                this.OnLevelIDChanged();
-            }
-        }
-        private decimal _LevelID;
-        partial void OnLevelIDChanging(decimal value);
-        partial void OnLevelIDChanged();
         /// <summary>
         /// There are no comments for IndividualCollateralIndex in the schema.
         /// </summary>
@@ -5741,8 +5424,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.IndividualSummaryRanks in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// BasicRankID
-    /// CollateralRankID
+    /// ID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualSummaryRanks")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -5752,61 +5434,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new IndividualSummaryRanks object.
         /// </summary>
-        /// <param name="basicRankID">Initial value of BasicRankID.</param>
-        /// <param name="collateralRankID">Initial value of CollateralRankID.</param>
-        public static IndividualSummaryRanks CreateIndividualSummaryRanks(string basicRankID, string collateralRankID)
+        /// <param name="id">Initial value of ID.</param>
+        public static IndividualSummaryRanks CreateIndividualSummaryRanks(int id)
         {
             IndividualSummaryRanks individualSummaryRanks = new IndividualSummaryRanks();
-            individualSummaryRanks.BasicRankID = basicRankID;
-            individualSummaryRanks.CollateralRankID = collateralRankID;
+            individualSummaryRanks.ID = id;
             return individualSummaryRanks;
         }
         /// <summary>
-        /// There are no comments for Property BasicRankID in the schema.
+        /// There are no comments for Property ID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string BasicRankID
+        public int ID
         {
             get
             {
-                return this._BasicRankID;
+                return this._ID;
             }
             set
             {
-                this.OnBasicRankIDChanging(value);
-                this.ReportPropertyChanging("BasicRankID");
-                this._BasicRankID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("BasicRankID");
-                this.OnBasicRankIDChanged();
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
             }
         }
-        private string _BasicRankID;
-        partial void OnBasicRankIDChanging(string value);
-        partial void OnBasicRankIDChanged();
-        /// <summary>
-        /// There are no comments for Property CollateralRankID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string CollateralRankID
-        {
-            get
-            {
-                return this._CollateralRankID;
-            }
-            set
-            {
-                this.OnCollateralRankIDChanging(value);
-                this.ReportPropertyChanging("CollateralRankID");
-                this._CollateralRankID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("CollateralRankID");
-                this.OnCollateralRankIDChanged();
-            }
-        }
-        private string _CollateralRankID;
-        partial void OnCollateralRankIDChanging(string value);
-        partial void OnCollateralRankIDChanged();
+        private int _ID;
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
         /// <summary>
         /// There are no comments for Property Evaluation in the schema.
         /// </summary>
@@ -6290,23 +5947,23 @@ namespace FBD.Models
         partial void OnRightNameChanging(string value);
         partial void OnRightNameChanged();
         /// <summary>
-        /// There are no comments for SystemUserGroups in the schema.
+        /// There are no comments for SystemUserGroupsRights in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights", "SystemUserGroups")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights_SystemRights_Delete", "SystemUserGroupsRights")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<SystemUserGroups> SystemUserGroups
+        public global::System.Data.Objects.DataClasses.EntityCollection<SystemUserGroupsRights> SystemUserGroupsRights
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<SystemUserGroups>("FBDModel.SystemUserGroupsRights", "SystemUserGroups");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<SystemUserGroupsRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemUserGroupsRights");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<SystemUserGroups>("FBDModel.SystemUserGroupsRights", "SystemUserGroups", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<SystemUserGroupsRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemUserGroupsRights", value);
                 }
             }
         }
@@ -6379,6 +6036,27 @@ namespace FBD.Models
         partial void OnGroupNameChanging(string value);
         partial void OnGroupNameChanged();
         /// <summary>
+        /// There are no comments for SystemUserGroupsRights in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroupsRights")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<SystemUserGroupsRights> SystemUserGroupsRights
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<SystemUserGroupsRights>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroupsRights");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<SystemUserGroupsRights>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroupsRights", value);
+                }
+            }
+        }
+        /// <summary>
         /// There are no comments for SystemUsers in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUsers")]
@@ -6399,24 +6077,122 @@ namespace FBD.Models
                 }
             }
         }
+    }
+    /// <summary>
+    /// There are no comments for FBDModel.SystemUserGroupsRights in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="SystemUserGroupsRights")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class SystemUserGroupsRights : global::System.Data.Objects.DataClasses.EntityObject
+    {
         /// <summary>
-        /// There are no comments for SystemRights in the schema.
+        /// Create a new SystemUserGroupsRights object.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights", "SystemRights")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        /// <param name="id">Initial value of ID.</param>
+        public static SystemUserGroupsRights CreateSystemUserGroupsRights(int id)
+        {
+            SystemUserGroupsRights systemUserGroupsRights = new SystemUserGroupsRights();
+            systemUserGroupsRights.ID = id;
+            return systemUserGroupsRights;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<SystemRights> SystemRights
+        public int ID
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<SystemRights>("FBDModel.SystemUserGroupsRights", "SystemRights");
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private int _ID;
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for SystemRights in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights_SystemRights_Delete", "SystemRights")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public SystemRights SystemRights
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemRights").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemRights").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for SystemRights in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<SystemRights> SystemRightsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemRights");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<SystemRights>("FBDModel.SystemUserGroupsRights", "SystemRights", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<SystemRights>("FBDModel.SystemUserGroupsRights_SystemRights_Delete", "SystemRights", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for SystemUserGroups in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public SystemUserGroups SystemUserGroups
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemUserGroups>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemUserGroups>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for SystemUserGroups in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<SystemUserGroups> SystemUserGroupsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SystemUserGroups>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<SystemUserGroups>("FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete", "SystemUserGroups", value);
                 }
             }
         }

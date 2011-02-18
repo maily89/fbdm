@@ -200,27 +200,25 @@
         </EntityType>
         <EntityType Name="BusinessFinancialIndexProportion">
           <Key>
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="IndexID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndustryID" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ProportionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IndustryID" Type="varchar" MaxLength="3" />
+          <Property Name="IndexID" Type="varchar" MaxLength="20" />
           <Property Name="Proportion" Type="decimal" Precision="5" Scale="3" />
         </EntityType>
         <EntityType Name="BusinessFinancialIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="ScaleID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="IndustryID" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="ScaleID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IndexID" Type="varchar" MaxLength="20" />
+          <Property Name="IndustryID" Type="varchar" MaxLength="3" />
+          <Property Name="ScaleID" Type="char" MaxLength="1" />
           <Property Name="FromValue" Type="decimal" Scale="3" />
           <Property Name="ToValue" Type="decimal" Scale="3" />
           <Property Name="FixedValue" Type="nvarchar" MaxLength="255" />
-          <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
+          <Property Name="LevelID" Type="decimal" Precision="10" />
         </EntityType>
         <EntityType Name="BusinessIndustries">
           <Key>
@@ -239,28 +237,27 @@
         </EntityType>
         <EntityType Name="BusinessNFIProportionByIndustry">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
+          <Property Name="ProportionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="IndustryID" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="Proportion" Type="decimal" Precision="5" Scale="3" />
         </EntityType>
         <EntityType Name="BusinessNFIProportionByType">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
+          <Property Name="ProportionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="TypeID" Type="char" Nullable="false" MaxLength="4" />
           <Property Name="Proportion" Type="decimal" Precision="5" Scale="3" />
         </EntityType>
         <EntityType Name="BusinessNFIProportionCalculated">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
+          <Property Name="ProportionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="IndustryID" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="TypeID" Type="char" Nullable="false" MaxLength="4" />
@@ -286,22 +283,21 @@
         </EntityType>
         <EntityType Name="BusinessNonFinancialIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="IndustryID" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="ScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IndexID" Type="varchar" MaxLength="20" />
+          <Property Name="IndustryID" Type="varchar" MaxLength="3" />
           <Property Name="FromValue" Type="decimal" Scale="3" />
           <Property Name="ToValue" Type="decimal" Scale="3" />
           <Property Name="FixedValue" Type="nvarchar" MaxLength="255" />
-          <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
+          <Property Name="LevelID" Type="decimal" Precision="10" />
         </EntityType>
         <EntityType Name="BusinessRankingStructure">
           <Key>
-            <PropertyRef Name="IndexType" />
-            <PropertyRef Name="AuditedStatus" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexType" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="AuditedStatus" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="Percentage" Type="numeric" Precision="3" />
@@ -380,19 +376,18 @@
         </EntityType>
         <EntityType Name="IndividualBasicIndexProportion">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="PurposeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
+          <Property Name="ProportionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="PurposeID" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="Proportion" Type="decimal" Precision="5" Scale="3" />
         </EntityType>
         <EntityType Name="IndividualBasicIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="PurposeID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
+          <Property Name="ScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="PurposeID" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="FromValue" Type="decimal" Scale="3" />
@@ -437,14 +432,14 @@
         </EntityType>
         <EntityType Name="IndividualCollateralIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IndexID" Type="varchar" MaxLength="20" />
           <Property Name="FromValue" Type="decimal" Scale="3" />
           <Property Name="ToValue" Type="decimal" Scale="3" />
           <Property Name="FixedValue" Type="nvarchar" MaxLength="255" />
-          <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
+          <Property Name="LevelID" Type="decimal" Precision="10" />
         </EntityType>
         <EntityType Name="IndividualCollateralRanks">
           <Key>
@@ -458,11 +453,11 @@
         </EntityType>
         <EntityType Name="IndividualSummaryRanks">
           <Key>
-            <PropertyRef Name="BasicRankID" />
-            <PropertyRef Name="CollateralRankID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="BasicRankID" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="CollateralRankID" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BasicRankID" Type="varchar" MaxLength="3" />
+          <Property Name="CollateralRankID" Type="varchar" MaxLength="3" />
           <Property Name="Evaluation" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SystemBranches">
@@ -506,11 +501,11 @@
         </EntityType>
         <EntityType Name="SystemUserGroupsRights">
           <Key>
-            <PropertyRef Name="GroupID" />
-            <PropertyRef Name="RightID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="GroupID" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="RightID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="varchar" MaxLength="10" />
+          <Property Name="RightID" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="SystemUsers">
           <Key>
@@ -525,7 +520,7 @@
           <Property Name="CreditDepartment" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete">
-          <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="1">
+          <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexProportion" Type="FBDModel.Store.BusinessFinancialIndexProportion" Multiplicity="*" />
@@ -539,7 +534,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexProportion_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexProportion" Type="FBDModel.Store.BusinessFinancialIndexProportion" Multiplicity="*" />
@@ -553,7 +548,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndex_Delete">
-          <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="1">
+          <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
@@ -567,7 +562,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete">
-          <End Role="BusinessFinancialIndexLevels" Type="FBDModel.Store.BusinessFinancialIndexLevels" Multiplicity="1">
+          <End Role="BusinessFinancialIndexLevels" Type="FBDModel.Store.BusinessFinancialIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
@@ -581,7 +576,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
@@ -595,7 +590,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessScales_Delete">
-          <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="1">
+          <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
@@ -721,7 +716,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
@@ -735,7 +730,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete">
-          <End Role="BusinessNonFinancialIndex" Type="FBDModel.Store.BusinessNonFinancialIndex" Multiplicity="1">
+          <End Role="BusinessNonFinancialIndex" Type="FBDModel.Store.BusinessNonFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
@@ -749,7 +744,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete">
-          <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.Store.BusinessNonFinancialIndexLevels" Multiplicity="1">
+          <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.Store.BusinessNonFinancialIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
@@ -861,7 +856,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndex_Delete">
-          <End Role="IndividualCollateralIndex" Type="FBDModel.Store.IndividualCollateralIndex" Multiplicity="1">
+          <End Role="IndividualCollateralIndex" Type="FBDModel.Store.IndividualCollateralIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualCollateralIndexScore" Type="FBDModel.Store.IndividualCollateralIndexScore" Multiplicity="*" />
@@ -875,7 +870,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete">
-          <End Role="IndividualCollateralIndexLevels" Type="FBDModel.Store.IndividualCollateralIndexLevels" Multiplicity="1">
+          <End Role="IndividualCollateralIndexLevels" Type="FBDModel.Store.IndividualCollateralIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualCollateralIndexScore" Type="FBDModel.Store.IndividualCollateralIndexScore" Multiplicity="*" />
@@ -889,7 +884,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IndividualSummaryRanks_IndividualBasicRanks_Delete">
-          <End Role="IndividualBasicRanks" Type="FBDModel.Store.IndividualBasicRanks" Multiplicity="1">
+          <End Role="IndividualBasicRanks" Type="FBDModel.Store.IndividualBasicRanks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="*" />
@@ -903,7 +898,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IndividualSummaryRanks_IndividualCollateralRanks_Delete">
-          <End Role="IndividualCollateralRanks" Type="FBDModel.Store.IndividualCollateralRanks" Multiplicity="1">
+          <End Role="IndividualCollateralRanks" Type="FBDModel.Store.IndividualCollateralRanks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="*" />
@@ -917,7 +912,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SystemUserGroupsRights_SystemRights_Delete">
-          <End Role="SystemRights" Type="FBDModel.Store.SystemRights" Multiplicity="1">
+          <End Role="SystemRights" Type="FBDModel.Store.SystemRights" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SystemUserGroupsRights" Type="FBDModel.Store.SystemUserGroupsRights" Multiplicity="*" />
@@ -931,7 +926,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SystemUserGroupsRights_SystemUserGroups_Delete">
-          <End Role="SystemUserGroups" Type="FBDModel.Store.SystemUserGroups" Multiplicity="1">
+          <End Role="SystemUserGroups" Type="FBDModel.Store.SystemUserGroups" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SystemUserGroupsRights" Type="FBDModel.Store.SystemUserGroupsRights" Multiplicity="*" />
@@ -976,7 +971,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexProportion_BusinessFinancialIndex_Update' has been omitted from the storage model. Column 'IndexID' of table 'FBDModel.Store.BusinessFinancialIndexProportion' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexProportion_BusinessFinancialIndex_Update">
-        <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="1" />
+        <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexProportion" Type="FBDModel.Store.BusinessFinancialIndexProportion" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessFinancialIndex">
@@ -991,7 +986,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexProportion_BusinessIndustries_Update' has been omitted from the storage model. Column 'IndustryID' of table 'FBDModel.Store.BusinessFinancialIndexProportion' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexProportion_BusinessIndustries_Update">
-        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1" />
+        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexProportion" Type="FBDModel.Store.BusinessFinancialIndexProportion" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessIndustries">
@@ -1006,7 +1001,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexScore_BusinessFinancialIndex_Update' has been omitted from the storage model. Column 'IndexID' of table 'FBDModel.Store.BusinessFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndex_Update">
-        <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="1" />
+        <End Role="BusinessFinancialIndex" Type="FBDModel.Store.BusinessFinancialIndex" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessFinancialIndex">
@@ -1021,7 +1016,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Update' has been omitted from the storage model. Column 'LevelID' of table 'FBDModel.Store.BusinessFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Update">
-        <End Role="BusinessFinancialIndexLevels" Type="FBDModel.Store.BusinessFinancialIndexLevels" Multiplicity="1" />
+        <End Role="BusinessFinancialIndexLevels" Type="FBDModel.Store.BusinessFinancialIndexLevels" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessFinancialIndexLevels">
@@ -1036,7 +1031,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexScore_BusinessIndustries_Update' has been omitted from the storage model. Column 'IndustryID' of table 'FBDModel.Store.BusinessFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexScore_BusinessIndustries_Update">
-        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1" />
+        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessIndustries">
@@ -1051,7 +1046,7 @@
       warning 6037: Foreign Key constraint 'BusinessFinancialIndexScore_BusinessScales_Update' has been omitted from the storage model. Column 'ScaleID' of table 'FBDModel.Store.BusinessFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessFinancialIndexScore_BusinessScales_Update">
-        <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="1" />
+        <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="0..1" />
         <End Role="BusinessFinancialIndexScore" Type="FBDModel.Store.BusinessFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessScales">
@@ -1186,7 +1181,7 @@
       warning 6037: Foreign Key constraint 'BusinessNonFinancialIndexScore_BusinessIndustries_Update' has been omitted from the storage model. Column 'IndustryID' of table 'FBDModel.Store.BusinessNonFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessNonFinancialIndexScore_BusinessIndustries_Update">
-        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="1" />
+        <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1" />
         <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessIndustries">
@@ -1201,7 +1196,7 @@
       warning 6037: Foreign Key constraint 'BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Update' has been omitted from the storage model. Column 'IndexID' of table 'FBDModel.Store.BusinessNonFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Update">
-        <End Role="BusinessNonFinancialIndex" Type="FBDModel.Store.BusinessNonFinancialIndex" Multiplicity="1" />
+        <End Role="BusinessNonFinancialIndex" Type="FBDModel.Store.BusinessNonFinancialIndex" Multiplicity="0..1" />
         <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessNonFinancialIndex">
@@ -1216,7 +1211,7 @@
       warning 6037: Foreign Key constraint 'BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Update' has been omitted from the storage model. Column 'LevelID' of table 'FBDModel.Store.BusinessNonFinancialIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Update">
-        <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.Store.BusinessNonFinancialIndexLevels" Multiplicity="1" />
+        <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.Store.BusinessNonFinancialIndexLevels" Multiplicity="0..1" />
         <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.Store.BusinessNonFinancialIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="BusinessNonFinancialIndexLevels">
@@ -1336,7 +1331,7 @@
       warning 6037: Foreign Key constraint 'IndividualCollateralIndexScore_IndividualCollateralIndex_Update' has been omitted from the storage model. Column 'IndexID' of table 'FBDModel.Store.IndividualCollateralIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndex_Update">
-        <End Role="IndividualCollateralIndex" Type="FBDModel.Store.IndividualCollateralIndex" Multiplicity="1" />
+        <End Role="IndividualCollateralIndex" Type="FBDModel.Store.IndividualCollateralIndex" Multiplicity="0..1" />
         <End Role="IndividualCollateralIndexScore" Type="FBDModel.Store.IndividualCollateralIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="IndividualCollateralIndex">
@@ -1351,7 +1346,7 @@
       warning 6037: Foreign Key constraint 'IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Update' has been omitted from the storage model. Column 'LevelID' of table 'FBDModel.Store.IndividualCollateralIndexScore' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Update">
-        <End Role="IndividualCollateralIndexLevels" Type="FBDModel.Store.IndividualCollateralIndexLevels" Multiplicity="1" />
+        <End Role="IndividualCollateralIndexLevels" Type="FBDModel.Store.IndividualCollateralIndexLevels" Multiplicity="0..1" />
         <End Role="IndividualCollateralIndexScore" Type="FBDModel.Store.IndividualCollateralIndexScore" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="IndividualCollateralIndexLevels">
@@ -1366,7 +1361,7 @@
       warning 6037: Foreign Key constraint 'IndividualSummaryRanks_IndividualBasicRanks_Update' has been omitted from the storage model. Column 'BasicRankID' of table 'FBDModel.Store.IndividualSummaryRanks' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="IndividualSummaryRanks_IndividualBasicRanks_Update">
-        <End Role="IndividualBasicRanks" Type="FBDModel.Store.IndividualBasicRanks" Multiplicity="1" />
+        <End Role="IndividualBasicRanks" Type="FBDModel.Store.IndividualBasicRanks" Multiplicity="0..1" />
         <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="IndividualBasicRanks">
@@ -1381,7 +1376,7 @@
       warning 6037: Foreign Key constraint 'IndividualSummaryRanks_IndividualCollateralRanks_Update' has been omitted from the storage model. Column 'CollateralRankID' of table 'FBDModel.Store.IndividualSummaryRanks' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="IndividualSummaryRanks_IndividualCollateralRanks_Update">
-        <End Role="IndividualCollateralRanks" Type="FBDModel.Store.IndividualCollateralRanks" Multiplicity="1" />
+        <End Role="IndividualCollateralRanks" Type="FBDModel.Store.IndividualCollateralRanks" Multiplicity="0..1" />
         <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="IndividualCollateralRanks">
@@ -1396,7 +1391,7 @@
       warning 6037: Foreign Key constraint 'SystemUserGroupsRights_SystemRights_Update' has been omitted from the storage model. Column 'RightID' of table 'FBDModel.Store.SystemUserGroupsRights' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="SystemUserGroupsRights_SystemRights_Update">
-        <End Role="SystemRights" Type="FBDModel.Store.SystemRights" Multiplicity="1" />
+        <End Role="SystemRights" Type="FBDModel.Store.SystemRights" Multiplicity="0..1" />
         <End Role="SystemUserGroupsRights" Type="FBDModel.Store.SystemUserGroupsRights" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="SystemRights">
@@ -1411,7 +1406,7 @@
       warning 6037: Foreign Key constraint 'SystemUserGroupsRights_SystemUserGroups_Update' has been omitted from the storage model. Column 'GroupID' of table 'FBDModel.Store.SystemUserGroupsRights' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
       
       <Association Name="SystemUserGroupsRights_SystemUserGroups_Update">
-        <End Role="SystemUserGroups" Type="FBDModel.Store.SystemUserGroups" Multiplicity="1" />
+        <End Role="SystemUserGroups" Type="FBDModel.Store.SystemUserGroups" Multiplicity="0..1" />
         <End Role="SystemUserGroupsRights" Type="FBDModel.Store.SystemUserGroupsRights" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="SystemUserGroups">
@@ -1492,6 +1487,7 @@
           <EntitySet Name="SystemReportingPeriods" EntityType="FBDModel.SystemReportingPeriods" />
           <EntitySet Name="SystemRights" EntityType="FBDModel.SystemRights" />
           <EntitySet Name="SystemUserGroups" EntityType="FBDModel.SystemUserGroups" />
+          <EntitySet Name="SystemUserGroupsRights" EntityType="FBDModel.SystemUserGroupsRights" />
           <EntitySet Name="SystemUsers" EntityType="FBDModel.SystemUsers" />
           <AssociationSet Name="BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete" Association="FBDModel.BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete">
             <End Role="BusinessFinancialIndex" EntitySet="BusinessFinancialIndex" />
@@ -1609,13 +1605,17 @@
             <End Role="SystemBranches" EntitySet="SystemBranches" />
             <End Role="SystemUsers" EntitySet="SystemUsers" />
           </AssociationSet>
+          <AssociationSet Name="SystemUserGroupsRights_SystemRights_Delete" Association="FBDModel.SystemUserGroupsRights_SystemRights_Delete">
+            <End Role="SystemRights" EntitySet="SystemRights" />
+            <End Role="SystemUserGroupsRights" EntitySet="SystemUserGroupsRights" />
+          </AssociationSet>
+          <AssociationSet Name="SystemUserGroupsRights_SystemUserGroups_Delete" Association="FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete">
+            <End Role="SystemUserGroups" EntitySet="SystemUserGroups" />
+            <End Role="SystemUserGroupsRights" EntitySet="SystemUserGroupsRights" />
+          </AssociationSet>
           <AssociationSet Name="SystemUsers_SystemUserGroups_Delete" Association="FBDModel.SystemUsers_SystemUserGroups_Delete">
             <End Role="SystemUserGroups" EntitySet="SystemUserGroups" />
             <End Role="SystemUsers" EntitySet="SystemUsers" />
-          </AssociationSet>
-          <AssociationSet Name="SystemUserGroupsRights" Association="FBDModel.SystemUserGroupsRights">
-            <End Role="SystemRights" EntitySet="SystemRights" />
-            <End Role="SystemUserGroups" EntitySet="SystemUserGroups" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BusinessFinancialIndex">
@@ -1641,29 +1641,21 @@
         </EntityType>
         <EntityType Name="BusinessFinancialIndexProportion">
           <Key>
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="IndexID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ProportionID" Type="Int32" Nullable="false" />
           <Property Name="Proportion" Type="Decimal" Precision="5" Scale="3" />
           <NavigationProperty Name="BusinessFinancialIndex" Relationship="FBDModel.BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete" FromRole="BusinessFinancialIndexProportion" ToRole="BusinessFinancialIndex" />
           <NavigationProperty Name="BusinessIndustries" Relationship="FBDModel.BusinessFinancialIndexProportion_BusinessIndustries_Delete" FromRole="BusinessFinancialIndexProportion" ToRole="BusinessIndustries" />
         </EntityType>
         <EntityType Name="BusinessFinancialIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="ScaleID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="ScaleID" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ScoreID" Type="Int32" Nullable="false" />
           <Property Name="FromValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ToValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="FixedValue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <NavigationProperty Name="BusinessFinancialIndex" Relationship="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndex_Delete" FromRole="BusinessFinancialIndexScore" ToRole="BusinessFinancialIndex" />
           <NavigationProperty Name="BusinessFinancialIndexLevels" Relationship="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" FromRole="BusinessFinancialIndexScore" ToRole="BusinessFinancialIndexLevels" />
           <NavigationProperty Name="BusinessIndustries" Relationship="FBDModel.BusinessFinancialIndexScore_BusinessIndustries_Delete" FromRole="BusinessFinancialIndexScore" ToRole="BusinessIndustries" />
@@ -1693,35 +1685,27 @@
         </EntityType>
         <EntityType Name="BusinessNFIProportionByIndustry">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="ProportionID" Type="Int32" Nullable="false" />
           <Property Name="Proportion" Type="Decimal" Precision="5" Scale="3" />
           <NavigationProperty Name="BusinessIndustries" Relationship="FBDModel.BusinessNFIProportionByIndustry_BusinessIndustries_Delete" FromRole="BusinessNFIProportionByIndustry" ToRole="BusinessIndustries" />
           <NavigationProperty Name="BusinessNonFinancialIndex" Relationship="FBDModel.BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete" FromRole="BusinessNFIProportionByIndustry" ToRole="BusinessNonFinancialIndex" />
         </EntityType>
         <EntityType Name="BusinessNFIProportionByType">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="TypeID" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="true" />
+          <Property Name="ProportionID" Type="Int32" Nullable="false" />
           <Property Name="Proportion" Type="Decimal" Precision="5" Scale="3" />
           <NavigationProperty Name="BusinessNonFinancialIndex" Relationship="FBDModel.BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete" FromRole="BusinessNFIProportionByType" ToRole="BusinessNonFinancialIndex" />
           <NavigationProperty Name="BusinessTypes" Relationship="FBDModel.BusinessNFIProportionByType_BusinessTypes_Delete" FromRole="BusinessNFIProportionByType" ToRole="BusinessTypes" />
         </EntityType>
         <EntityType Name="BusinessNFIProportionCalculated">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="TypeID" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="true" />
+          <Property Name="ProportionID" Type="Int32" Nullable="false" />
           <Property Name="Proportion" Type="Decimal" Precision="5" Scale="3" />
           <NavigationProperty Name="BusinessIndustries" Relationship="FBDModel.BusinessNFIProportionCalculated_BusinessIndustries_Delete" FromRole="BusinessNFIProportionCalculated" ToRole="BusinessIndustries" />
           <NavigationProperty Name="BusinessNonFinancialIndex" Relationship="FBDModel.BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" FromRole="BusinessNFIProportionCalculated" ToRole="BusinessNonFinancialIndex" />
@@ -1752,25 +1736,21 @@
         </EntityType>
         <EntityType Name="BusinessNonFinancialIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="IndustryID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="ScoreID" Type="Int32" Nullable="false" />
           <Property Name="FromValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ToValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="FixedValue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <NavigationProperty Name="BusinessIndustries" Relationship="FBDModel.BusinessNonFinancialIndexScore_BusinessIndustries_Delete" FromRole="BusinessNonFinancialIndexScore" ToRole="BusinessIndustries" />
           <NavigationProperty Name="BusinessNonFinancialIndex" Relationship="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" FromRole="BusinessNonFinancialIndexScore" ToRole="BusinessNonFinancialIndex" />
           <NavigationProperty Name="BusinessNonFinancialIndexLevels" Relationship="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" FromRole="BusinessNonFinancialIndexScore" ToRole="BusinessNonFinancialIndexLevels" />
         </EntityType>
         <EntityType Name="BusinessRankingStructure">
           <Key>
-            <PropertyRef Name="IndexType" />
-            <PropertyRef Name="AuditedStatus" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="IndexType" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="AuditedStatus" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="Percentage" Type="Decimal" Precision="3" Scale="0" />
@@ -1855,27 +1835,21 @@
         </EntityType>
         <EntityType Name="IndividualBasicIndexProportion">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="PurposeID" />
+            <PropertyRef Name="ProportionID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="PurposeID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="ProportionID" Type="Int32" Nullable="false" />
           <Property Name="Proportion" Type="Decimal" Precision="5" Scale="3" />
           <NavigationProperty Name="IndividualBasicIndex" Relationship="FBDModel.IndividualBasicIndexProportion_IndividualBasicIndex_Delete" FromRole="IndividualBasicIndexProportion" ToRole="IndividualBasicIndex" />
           <NavigationProperty Name="IndividualBorrowingPurposes" Relationship="FBDModel.IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete" FromRole="IndividualBasicIndexProportion" ToRole="IndividualBorrowingPurposes" />
         </EntityType>
         <EntityType Name="IndividualBasicIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="PurposeID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="PurposeID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="ScoreID" Type="Int32" Nullable="false" />
           <Property Name="FromValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ToValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="FixedValue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <NavigationProperty Name="IndividualBasicIndex" Relationship="FBDModel.IndividualBasicIndexScore_IndividualBasicIndex_Delete" FromRole="IndividualBasicIndexScore" ToRole="IndividualBasicIndex" />
           <NavigationProperty Name="IndividualBasicIndexLevels" Relationship="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" FromRole="IndividualBasicIndexScore" ToRole="IndividualBasicIndexLevels" />
           <NavigationProperty Name="IndividualBorrowingPurposes" Relationship="FBDModel.IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete" FromRole="IndividualBasicIndexScore" ToRole="IndividualBorrowingPurposes" />
@@ -1922,14 +1896,12 @@
         </EntityType>
         <EntityType Name="IndividualCollateralIndexScore">
           <Key>
-            <PropertyRef Name="IndexID" />
-            <PropertyRef Name="LevelID" />
+            <PropertyRef Name="ScoreID" />
           </Key>
-          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ScoreID" Type="Int32" Nullable="false" />
           <Property Name="FromValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ToValue" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="FixedValue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <NavigationProperty Name="IndividualCollateralIndex" Relationship="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndex_Delete" FromRole="IndividualCollateralIndexScore" ToRole="IndividualCollateralIndex" />
           <NavigationProperty Name="IndividualCollateralIndexLevels" Relationship="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" FromRole="IndividualCollateralIndexScore" ToRole="IndividualCollateralIndexLevels" />
         </EntityType>
@@ -1946,11 +1918,9 @@
         </EntityType>
         <EntityType Name="IndividualSummaryRanks">
           <Key>
-            <PropertyRef Name="BasicRankID" />
-            <PropertyRef Name="CollateralRankID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="BasicRankID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="CollateralRankID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Evaluation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="IndividualBasicRanks" Relationship="FBDModel.IndividualSummaryRanks_IndividualBasicRanks_Delete" FromRole="IndividualSummaryRanks" ToRole="IndividualBasicRanks" />
           <NavigationProperty Name="IndividualCollateralRanks" Relationship="FBDModel.IndividualSummaryRanks_IndividualCollateralRanks_Delete" FromRole="IndividualSummaryRanks" ToRole="IndividualCollateralRanks" />
@@ -1987,7 +1957,7 @@
           </Key>
           <Property Name="RightID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="RightName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="SystemUserGroups" Relationship="FBDModel.SystemUserGroupsRights" FromRole="SystemRights" ToRole="SystemUserGroups" />
+          <NavigationProperty Name="SystemUserGroupsRights" Relationship="FBDModel.SystemUserGroupsRights_SystemRights_Delete" FromRole="SystemRights" ToRole="SystemUserGroupsRights" />
         </EntityType>
         <EntityType Name="SystemUserGroups">
           <Key>
@@ -1995,8 +1965,16 @@
           </Key>
           <Property Name="GroupID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="GroupName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="SystemUserGroupsRights" Relationship="FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete" FromRole="SystemUserGroups" ToRole="SystemUserGroupsRights" />
           <NavigationProperty Name="SystemUsers" Relationship="FBDModel.SystemUsers_SystemUserGroups_Delete" FromRole="SystemUserGroups" ToRole="SystemUsers" />
-          <NavigationProperty Name="SystemRights" Relationship="FBDModel.SystemUserGroupsRights" FromRole="SystemUserGroups" ToRole="SystemRights" />
+        </EntityType>
+        <EntityType Name="SystemUserGroupsRights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SystemRights" Relationship="FBDModel.SystemUserGroupsRights_SystemRights_Delete" FromRole="SystemUserGroupsRights" ToRole="SystemRights" />
+          <NavigationProperty Name="SystemUserGroups" Relationship="FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete" FromRole="SystemUserGroupsRights" ToRole="SystemUserGroups" />
         </EntityType>
         <EntityType Name="SystemUsers">
           <Key>
@@ -2011,88 +1989,40 @@
           <NavigationProperty Name="SystemUserGroups" Relationship="FBDModel.SystemUsers_SystemUserGroups_Delete" FromRole="SystemUsers" ToRole="SystemUserGroups" />
         </EntityType>
         <Association Name="BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete">
-          <End Role="BusinessFinancialIndex" Type="FBDModel.BusinessFinancialIndex" Multiplicity="1">
+          <End Role="BusinessFinancialIndex" Type="FBDModel.BusinessFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexProportion" Type="FBDModel.BusinessFinancialIndexProportion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexProportion">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndex_Delete">
-          <End Role="BusinessFinancialIndex" Type="FBDModel.BusinessFinancialIndex" Multiplicity="1">
+          <End Role="BusinessFinancialIndex" Type="FBDModel.BusinessFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.BusinessFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexScore">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete">
-          <End Role="BusinessFinancialIndexLevels" Type="FBDModel.BusinessFinancialIndexLevels" Multiplicity="1">
+          <End Role="BusinessFinancialIndexLevels" Type="FBDModel.BusinessFinancialIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.BusinessFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessFinancialIndexLevels">
-              <PropertyRef Name="LevelID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexScore">
-              <PropertyRef Name="LevelID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexProportion_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexProportion" Type="FBDModel.BusinessFinancialIndexProportion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexProportion">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.BusinessFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexScore">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessFinancialIndexScore_BusinessScales_Delete">
-          <End Role="BusinessScales" Type="FBDModel.BusinessScales" Multiplicity="1">
+          <End Role="BusinessScales" Type="FBDModel.BusinessScales" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessFinancialIndexScore" Type="FBDModel.BusinessFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessScales">
-              <PropertyRef Name="ScaleID" />
-            </Principal>
-            <Dependent Role="BusinessFinancialIndexScore">
-              <PropertyRef Name="ScaleID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessLines_BusinessIndustries_Delete">
           <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
@@ -2105,42 +2035,18 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionByIndustry" Type="FBDModel.BusinessNFIProportionByIndustry" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionByIndustry">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionCalculated_BusinessIndustries_Delete">
           <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionCalculated" Type="FBDModel.BusinessNFIProportionCalculated" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionCalculated">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
+          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.BusinessNonFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessNonFinancialIndexScore">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessScaleScore_BusinessIndustries_Delete">
           <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="1">
@@ -2161,98 +2067,42 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionByIndustry" Type="FBDModel.BusinessNFIProportionByIndustry" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessNonFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionByIndustry">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete">
           <End Role="BusinessNonFinancialIndex" Type="FBDModel.BusinessNonFinancialIndex" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionByType" Type="FBDModel.BusinessNFIProportionByType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessNonFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionByType">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionByType_BusinessTypes_Delete">
           <End Role="BusinessTypes" Type="FBDModel.BusinessTypes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionByType" Type="FBDModel.BusinessNFIProportionByType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessTypes">
-              <PropertyRef Name="TypeID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionByType">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete">
           <End Role="BusinessNonFinancialIndex" Type="FBDModel.BusinessNonFinancialIndex" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionCalculated" Type="FBDModel.BusinessNFIProportionCalculated" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessNonFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionCalculated">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionCalculated_BusinessTypes_Delete">
           <End Role="BusinessTypes" Type="FBDModel.BusinessTypes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNFIProportionCalculated" Type="FBDModel.BusinessNFIProportionCalculated" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessTypes">
-              <PropertyRef Name="TypeID" />
-            </Principal>
-            <Dependent Role="BusinessNFIProportionCalculated">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete">
-          <End Role="BusinessNonFinancialIndex" Type="FBDModel.BusinessNonFinancialIndex" Multiplicity="1">
+          <End Role="BusinessNonFinancialIndex" Type="FBDModel.BusinessNonFinancialIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.BusinessNonFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessNonFinancialIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="BusinessNonFinancialIndexScore">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete">
-          <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.BusinessNonFinancialIndexLevels" Multiplicity="1">
+          <End Role="BusinessNonFinancialIndexLevels" Type="FBDModel.BusinessNonFinancialIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessNonFinancialIndexScore" Type="FBDModel.BusinessNonFinancialIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessNonFinancialIndexLevels">
-              <PropertyRef Name="LevelID" />
-            </Principal>
-            <Dependent Role="BusinessNonFinancialIndexScore">
-              <PropertyRef Name="LevelID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessScaleScore_BusinessScaleCriteria_Delete">
           <End Role="BusinessScaleCriteria" Type="FBDModel.BusinessScaleCriteria" Multiplicity="1">
@@ -2273,126 +2123,54 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualBasicIndexProportion" Type="FBDModel.IndividualBasicIndexProportion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBasicIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="IndividualBasicIndexProportion">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualBasicIndexScore_IndividualBasicIndex_Delete">
           <End Role="IndividualBasicIndex" Type="FBDModel.IndividualBasicIndex" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualBasicIndexScore" Type="FBDModel.IndividualBasicIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBasicIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="IndividualBasicIndexScore">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete">
           <End Role="IndividualBasicIndexLevels" Type="FBDModel.IndividualBasicIndexLevels" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualBasicIndexScore" Type="FBDModel.IndividualBasicIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBasicIndexLevels">
-              <PropertyRef Name="LevelID" />
-            </Principal>
-            <Dependent Role="IndividualBasicIndexScore">
-              <PropertyRef Name="LevelID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete">
           <End Role="IndividualBorrowingPurposes" Type="FBDModel.IndividualBorrowingPurposes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualBasicIndexProportion" Type="FBDModel.IndividualBasicIndexProportion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBorrowingPurposes">
-              <PropertyRef Name="PurposeID" />
-            </Principal>
-            <Dependent Role="IndividualBasicIndexProportion">
-              <PropertyRef Name="PurposeID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete">
           <End Role="IndividualBorrowingPurposes" Type="FBDModel.IndividualBorrowingPurposes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualBasicIndexScore" Type="FBDModel.IndividualBasicIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBorrowingPurposes">
-              <PropertyRef Name="PurposeID" />
-            </Principal>
-            <Dependent Role="IndividualBasicIndexScore">
-              <PropertyRef Name="PurposeID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualSummaryRanks_IndividualBasicRanks_Delete">
-          <End Role="IndividualBasicRanks" Type="FBDModel.IndividualBasicRanks" Multiplicity="1">
+          <End Role="IndividualBasicRanks" Type="FBDModel.IndividualBasicRanks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualSummaryRanks" Type="FBDModel.IndividualSummaryRanks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualBasicRanks">
-              <PropertyRef Name="RankID" />
-            </Principal>
-            <Dependent Role="IndividualSummaryRanks">
-              <PropertyRef Name="BasicRankID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndex_Delete">
-          <End Role="IndividualCollateralIndex" Type="FBDModel.IndividualCollateralIndex" Multiplicity="1">
+          <End Role="IndividualCollateralIndex" Type="FBDModel.IndividualCollateralIndex" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualCollateralIndexScore" Type="FBDModel.IndividualCollateralIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualCollateralIndex">
-              <PropertyRef Name="IndexID" />
-            </Principal>
-            <Dependent Role="IndividualCollateralIndexScore">
-              <PropertyRef Name="IndexID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete">
-          <End Role="IndividualCollateralIndexLevels" Type="FBDModel.IndividualCollateralIndexLevels" Multiplicity="1">
+          <End Role="IndividualCollateralIndexLevels" Type="FBDModel.IndividualCollateralIndexLevels" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualCollateralIndexScore" Type="FBDModel.IndividualCollateralIndexScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualCollateralIndexLevels">
-              <PropertyRef Name="LevelID" />
-            </Principal>
-            <Dependent Role="IndividualCollateralIndexScore">
-              <PropertyRef Name="LevelID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualSummaryRanks_IndividualCollateralRanks_Delete">
-          <End Role="IndividualCollateralRanks" Type="FBDModel.IndividualCollateralRanks" Multiplicity="1">
+          <End Role="IndividualCollateralRanks" Type="FBDModel.IndividualCollateralRanks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="IndividualSummaryRanks" Type="FBDModel.IndividualSummaryRanks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IndividualCollateralRanks">
-              <PropertyRef Name="RankID" />
-            </Principal>
-            <Dependent Role="IndividualSummaryRanks">
-              <PropertyRef Name="CollateralRankID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="SystemUsers_SystemBranches_Delete">
           <End Role="SystemBranches" Type="FBDModel.SystemBranches" Multiplicity="1">
@@ -2400,15 +2178,23 @@
           </End>
           <End Role="SystemUsers" Type="FBDModel.SystemUsers" Multiplicity="*" />
         </Association>
+        <Association Name="SystemUserGroupsRights_SystemRights_Delete">
+          <End Role="SystemRights" Type="FBDModel.SystemRights" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SystemUserGroupsRights" Type="FBDModel.SystemUserGroupsRights" Multiplicity="*" />
+        </Association>
+        <Association Name="SystemUserGroupsRights_SystemUserGroups_Delete">
+          <End Role="SystemUserGroups" Type="FBDModel.SystemUserGroups" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SystemUserGroupsRights" Type="FBDModel.SystemUserGroupsRights" Multiplicity="*" />
+        </Association>
         <Association Name="SystemUsers_SystemUserGroups_Delete">
           <End Role="SystemUserGroups" Type="FBDModel.SystemUserGroups" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SystemUsers" Type="FBDModel.SystemUsers" Multiplicity="*" />
-        </Association>
-        <Association Name="SystemUserGroupsRights">
-          <End Role="SystemRights" Type="FBDModel.SystemRights" Multiplicity="*" />
-          <End Role="SystemUserGroups" Type="FBDModel.SystemUserGroups" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2439,8 +2225,7 @@
           <EntitySetMapping Name="BusinessFinancialIndexProportion">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessFinancialIndexProportion)">
               <MappingFragment StoreEntitySet="BusinessFinancialIndexProportion">
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
                 <ScalarProperty Name="Proportion" ColumnName="Proportion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2448,13 +2233,10 @@
           <EntitySetMapping Name="BusinessFinancialIndexScore">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessFinancialIndexScore)">
               <MappingFragment StoreEntitySet="BusinessFinancialIndexScore">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-                <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
+                <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
                 <ScalarProperty Name="FromValue" ColumnName="FromValue" />
                 <ScalarProperty Name="ToValue" ColumnName="ToValue" />
                 <ScalarProperty Name="FixedValue" ColumnName="FixedValue" />
-                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2477,8 +2259,7 @@
           <EntitySetMapping Name="BusinessNFIProportionByIndustry">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessNFIProportionByIndustry)">
               <MappingFragment StoreEntitySet="BusinessNFIProportionByIndustry">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
                 <ScalarProperty Name="Proportion" ColumnName="Proportion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2486,8 +2267,7 @@
           <EntitySetMapping Name="BusinessNFIProportionByType">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessNFIProportionByType)">
               <MappingFragment StoreEntitySet="BusinessNFIProportionByType">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
                 <ScalarProperty Name="Proportion" ColumnName="Proportion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2495,9 +2275,7 @@
           <EntitySetMapping Name="BusinessNFIProportionCalculated">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessNFIProportionCalculated)">
               <MappingFragment StoreEntitySet="BusinessNFIProportionCalculated">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
                 <ScalarProperty Name="Proportion" ColumnName="Proportion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2525,18 +2303,17 @@
           <EntitySetMapping Name="BusinessNonFinancialIndexScore">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessNonFinancialIndexScore)">
               <MappingFragment StoreEntitySet="BusinessNonFinancialIndexScore">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
                 <ScalarProperty Name="FromValue" ColumnName="FromValue" />
                 <ScalarProperty Name="ToValue" ColumnName="ToValue" />
                 <ScalarProperty Name="FixedValue" ColumnName="FixedValue" />
-                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BusinessRankingStructure">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessRankingStructure)">
               <MappingFragment StoreEntitySet="BusinessRankingStructure">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IndexType" ColumnName="IndexType" />
                 <ScalarProperty Name="AuditedStatus" ColumnName="AuditedStatus" />
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
@@ -2620,8 +2397,7 @@
           <EntitySetMapping Name="IndividualBasicIndexProportion">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.IndividualBasicIndexProportion)">
               <MappingFragment StoreEntitySet="IndividualBasicIndexProportion">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
+                <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
                 <ScalarProperty Name="Proportion" ColumnName="Proportion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2629,12 +2405,10 @@
           <EntitySetMapping Name="IndividualBasicIndexScore">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.IndividualBasicIndexScore)">
               <MappingFragment StoreEntitySet="IndividualBasicIndexScore">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-                <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
+                <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
                 <ScalarProperty Name="FromValue" ColumnName="FromValue" />
                 <ScalarProperty Name="ToValue" ColumnName="ToValue" />
                 <ScalarProperty Name="FixedValue" ColumnName="FixedValue" />
-                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2680,11 +2454,10 @@
           <EntitySetMapping Name="IndividualCollateralIndexScore">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.IndividualCollateralIndexScore)">
               <MappingFragment StoreEntitySet="IndividualCollateralIndexScore">
-                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
                 <ScalarProperty Name="FromValue" ColumnName="FromValue" />
                 <ScalarProperty Name="ToValue" ColumnName="ToValue" />
                 <ScalarProperty Name="FixedValue" ColumnName="FixedValue" />
-                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2702,8 +2475,7 @@
           <EntitySetMapping Name="IndividualSummaryRanks">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.IndividualSummaryRanks)">
               <MappingFragment StoreEntitySet="IndividualSummaryRanks">
-                <ScalarProperty Name="BasicRankID" ColumnName="BasicRankID" />
-                <ScalarProperty Name="CollateralRankID" ColumnName="CollateralRankID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2752,6 +2524,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserGroupsRights">
+            <EntityTypeMapping TypeName="IsTypeOf(FBDModel.SystemUserGroupsRights)">
+              <MappingFragment StoreEntitySet="SystemUserGroupsRights">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SystemUsers">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.SystemUsers)">
               <MappingFragment StoreEntitySet="SystemUsers">
@@ -2768,62 +2547,54 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexProportion">
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
+            <Condition ColumnName="IndexID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessFinancialIndexScore_BusinessFinancialIndex_Delete" TypeName="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndex_Delete" StoreEntitySet="BusinessFinancialIndexScore">
             <EndProperty Name="BusinessFinancialIndex">
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="IndexID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" TypeName="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" StoreEntitySet="BusinessFinancialIndexScore">
             <EndProperty Name="BusinessFinancialIndexLevels">
               <ScalarProperty Name="LevelID" ColumnName="LevelID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="LevelID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessFinancialIndexProportion_BusinessIndustries_Delete" TypeName="FBDModel.BusinessFinancialIndexProportion_BusinessIndustries_Delete" StoreEntitySet="BusinessFinancialIndexProportion">
             <EndProperty Name="BusinessIndustries">
               <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexProportion">
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
+            <Condition ColumnName="IndustryID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessFinancialIndexScore_BusinessIndustries_Delete" TypeName="FBDModel.BusinessFinancialIndexScore_BusinessIndustries_Delete" StoreEntitySet="BusinessFinancialIndexScore">
             <EndProperty Name="BusinessIndustries">
               <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="IndustryID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessFinancialIndexScore_BusinessScales_Delete" TypeName="FBDModel.BusinessFinancialIndexScore_BusinessScales_Delete" StoreEntitySet="BusinessFinancialIndexScore">
             <EndProperty Name="BusinessScales">
               <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
             </EndProperty>
             <EndProperty Name="BusinessFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="ScaleID" ColumnName="ScaleID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="ScaleID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessLines_BusinessIndustries_Delete" TypeName="FBDModel.BusinessLines_BusinessIndustries_Delete" StoreEntitySet="BusinessLines">
             <EndProperty Name="BusinessIndustries">
@@ -2838,8 +2609,7 @@
               <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionByIndustry">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionCalculated_BusinessIndustries_Delete" TypeName="FBDModel.BusinessNFIProportionCalculated_BusinessIndustries_Delete" StoreEntitySet="BusinessNFIProportionCalculated">
@@ -2847,9 +2617,7 @@
               <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionCalculated">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNonFinancialIndexScore_BusinessIndustries_Delete" TypeName="FBDModel.BusinessNonFinancialIndexScore_BusinessIndustries_Delete" StoreEntitySet="BusinessNonFinancialIndexScore">
@@ -2857,10 +2625,9 @@
               <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
             <EndProperty Name="BusinessNonFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="IndustryID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessScaleScore_BusinessIndustries_Delete" TypeName="FBDModel.BusinessScaleScore_BusinessIndustries_Delete" StoreEntitySet="BusinessScaleScore">
             <EndProperty Name="BusinessIndustries">
@@ -2877,8 +2644,7 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionByIndustry">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete" TypeName="FBDModel.BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete" StoreEntitySet="BusinessNFIProportionByType">
@@ -2886,8 +2652,7 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionByType">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionByType_BusinessTypes_Delete" TypeName="FBDModel.BusinessNFIProportionByType_BusinessTypes_Delete" StoreEntitySet="BusinessNFIProportionByType">
@@ -2895,8 +2660,7 @@
               <ScalarProperty Name="TypeID" ColumnName="TypeID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionByType">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" TypeName="FBDModel.BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" StoreEntitySet="BusinessNFIProportionCalculated">
@@ -2904,9 +2668,7 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionCalculated">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionCalculated_BusinessTypes_Delete" TypeName="FBDModel.BusinessNFIProportionCalculated_BusinessTypes_Delete" StoreEntitySet="BusinessNFIProportionCalculated">
@@ -2914,9 +2676,7 @@
               <ScalarProperty Name="TypeID" ColumnName="TypeID" />
             </EndProperty>
             <EndProperty Name="BusinessNFIProportionCalculated">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" TypeName="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" StoreEntitySet="BusinessNonFinancialIndexScore">
@@ -2924,20 +2684,18 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="BusinessNonFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="IndexID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" TypeName="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" StoreEntitySet="BusinessNonFinancialIndexScore">
             <EndProperty Name="BusinessNonFinancialIndexLevels">
               <ScalarProperty Name="LevelID" ColumnName="LevelID" />
             </EndProperty>
             <EndProperty Name="BusinessNonFinancialIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="LevelID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessScaleScore_BusinessScaleCriteria_Delete" TypeName="FBDModel.BusinessScaleScore_BusinessScaleCriteria_Delete" StoreEntitySet="BusinessScaleScore">
             <EndProperty Name="BusinessScaleCriteria">
@@ -2954,8 +2712,7 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="IndividualBasicIndexProportion">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualBasicIndexScore_IndividualBasicIndex_Delete" TypeName="FBDModel.IndividualBasicIndexScore_IndividualBasicIndex_Delete" StoreEntitySet="IndividualBasicIndexScore">
@@ -2963,9 +2720,7 @@
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="IndividualBasicIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" TypeName="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" StoreEntitySet="IndividualBasicIndexScore">
@@ -2973,9 +2728,7 @@
               <ScalarProperty Name="LevelID" ColumnName="LevelID" />
             </EndProperty>
             <EndProperty Name="IndividualBasicIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete" TypeName="FBDModel.IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete" StoreEntitySet="IndividualBasicIndexProportion">
@@ -2983,8 +2736,7 @@
               <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
             </EndProperty>
             <EndProperty Name="IndividualBasicIndexProportion">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
+              <ScalarProperty Name="ProportionID" ColumnName="ProportionID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete" TypeName="FBDModel.IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete" StoreEntitySet="IndividualBasicIndexScore">
@@ -2992,9 +2744,7 @@
               <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
             </EndProperty>
             <EndProperty Name="IndividualBasicIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="PurposeID" ColumnName="PurposeID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualSummaryRanks_IndividualBasicRanks_Delete" TypeName="FBDModel.IndividualSummaryRanks_IndividualBasicRanks_Delete" StoreEntitySet="IndividualSummaryRanks">
@@ -3002,36 +2752,36 @@
               <ScalarProperty Name="RankID" ColumnName="BasicRankID" />
             </EndProperty>
             <EndProperty Name="IndividualSummaryRanks">
-              <ScalarProperty Name="BasicRankID" ColumnName="BasicRankID" />
-              <ScalarProperty Name="CollateralRankID" ColumnName="CollateralRankID" />
+              <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
+            <Condition ColumnName="BasicRankID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualCollateralIndexScore_IndividualCollateralIndex_Delete" TypeName="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndex_Delete" StoreEntitySet="IndividualCollateralIndexScore">
             <EndProperty Name="IndividualCollateralIndex">
               <ScalarProperty Name="IndexID" ColumnName="IndexID" />
             </EndProperty>
             <EndProperty Name="IndividualCollateralIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="IndexID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" TypeName="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" StoreEntitySet="IndividualCollateralIndexScore">
             <EndProperty Name="IndividualCollateralIndexLevels">
               <ScalarProperty Name="LevelID" ColumnName="LevelID" />
             </EndProperty>
             <EndProperty Name="IndividualCollateralIndexScore">
-              <ScalarProperty Name="IndexID" ColumnName="IndexID" />
-              <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
             </EndProperty>
+            <Condition ColumnName="LevelID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualSummaryRanks_IndividualCollateralRanks_Delete" TypeName="FBDModel.IndividualSummaryRanks_IndividualCollateralRanks_Delete" StoreEntitySet="IndividualSummaryRanks">
             <EndProperty Name="IndividualCollateralRanks">
               <ScalarProperty Name="RankID" ColumnName="CollateralRankID" />
             </EndProperty>
             <EndProperty Name="IndividualSummaryRanks">
-              <ScalarProperty Name="BasicRankID" ColumnName="BasicRankID" />
-              <ScalarProperty Name="CollateralRankID" ColumnName="CollateralRankID" />
+              <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
+            <Condition ColumnName="CollateralRankID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="SystemUsers_SystemBranches_Delete" TypeName="FBDModel.SystemUsers_SystemBranches_Delete" StoreEntitySet="SystemUsers">
             <EndProperty Name="SystemBranches">
@@ -3041,20 +2791,30 @@
               <ScalarProperty Name="UserID" ColumnName="UserID" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="SystemUserGroupsRights_SystemRights_Delete" TypeName="FBDModel.SystemUserGroupsRights_SystemRights_Delete" StoreEntitySet="SystemUserGroupsRights">
+            <EndProperty Name="SystemRights">
+              <ScalarProperty Name="RightID" ColumnName="RightID" />
+            </EndProperty>
+            <EndProperty Name="SystemUserGroupsRights">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition ColumnName="RightID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SystemUserGroupsRights_SystemUserGroups_Delete" TypeName="FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete" StoreEntitySet="SystemUserGroupsRights">
+            <EndProperty Name="SystemUserGroups">
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="SystemUserGroupsRights">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition ColumnName="GroupID" IsNull="false" />
+          </AssociationSetMapping>
           <AssociationSetMapping Name="SystemUsers_SystemUserGroups_Delete" TypeName="FBDModel.SystemUsers_SystemUserGroups_Delete" StoreEntitySet="SystemUsers">
             <EndProperty Name="SystemUserGroups">
               <ScalarProperty Name="GroupID" ColumnName="GroupID" />
             </EndProperty>
             <EndProperty Name="SystemUsers">
               <ScalarProperty Name="UserID" ColumnName="UserID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SystemUserGroupsRights" TypeName="FBDModel.SystemUserGroupsRights" StoreEntitySet="SystemUserGroupsRights">
-            <EndProperty Name="SystemRights">
-              <ScalarProperty Name="RightID" ColumnName="RightID" />
-            </EndProperty>
-            <EndProperty Name="SystemUserGroups">
-              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
@@ -3076,213 +2836,243 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="FBDModel">
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.75" PointY="8.25" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="6.75" PointY="5.375" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="9.5" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexScore" Width="1.5" PointX="9" PointY="11.875" Height="3.1340950520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessIndustries" Width="1.5" PointX="0.75" PointY="12.125" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessLines" Width="1.5" PointX="3" PointY="12.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByIndustry" Width="1.5" PointX="3" PointY="15.5" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByType" Width="1.5" PointX="9" PointY="19.5" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionCalculated" Width="1.5" PointX="6" PointY="12.25" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndex" Width="1.5" PointX="3.75" PointY="18.25" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="22.75" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexScore" Width="1.5" PointX="6" PointY="16.125" Height="2.7494921875000031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessRankingStructure" Width="1.5" PointX="0.75" PointY="2" Height="1.5956835937499998" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessRanks" Width="1.5" PointX="0.75" PointY="5" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScaleCriteria" Width="1.5" PointX="3.75" PointY="6.375" Height="2.1725878906249987" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScales" Width="1.5" PointX="6.75" PointY="19.625" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScaleScore" Width="1.5" PointX="6" PointY="8.25" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessTypes" Width="1.5" PointX="3.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndex" Width="1.5" PointX="8.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexLevels" Width="1.5" PointX="11.75" PointY="1.25" Height="1.59568359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexProportion" Width="1.5" PointX="11" PointY="4" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexScore" Width="1.5" PointX="14" PointY="3.625" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicRanks" Width="1.5" PointX="11.75" PointY="12.125" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBorrowingPurposes" Width="1.5" PointX="8.75" PointY="4.125" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndex" Width="1.5" PointX="13.75" PointY="22.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndexLevels" Width="1.5" PointX="13.75" PointY="16.5" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndexScore" Width="1.5" PointX="16" PointY="16.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualCollateralRanks" Width="1.5" PointX="11.75" PointY="19.125" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualSummaryRanks" Width="1.5" PointX="14" PointY="12.25" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemBranches" Width="1.5" PointX="11" PointY="16.375" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemCustomerTypes" Width="1.5" PointX="5.75" PointY="2" Height="1.4033821614583335" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemReportingPeriods" Width="1.5" PointX="15.75" PointY="8" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemRights" Width="1.5" PointX="8.75" PointY="8.5" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemUserGroups" Width="1.5" PointX="11" PointY="8.375" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.SystemUsers" Width="1.5" PointX="13.25" PointY="8.125" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.75" PointY="1.5" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="24.625" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="8.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexScore" Width="1.5" PointX="6" PointY="14.5" Height="2.55719075520833" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessIndustries" Width="1.5" PointX="0.75" PointY="11.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessLines" Width="1.5" PointX="3" PointY="12" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByIndustry" Width="1.5" PointX="3" PointY="14.875" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByType" Width="1.5" PointX="6" PointY="19.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionCalculated" Width="1.5" PointX="6" PointY="11.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndex" Width="1.5" PointX="3.75" PointY="17.5" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="3.125" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexScore" Width="1.5" PointX="6" PointY="8.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessRankingStructure" Width="1.5" PointX="13.75" PointY="5.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessRanks" Width="1.5" PointX="13.75" PointY="8.125" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScaleCriteria" Width="1.5" PointX="0.75" PointY="5.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScales" Width="1.5" PointX="3.75" PointY="27" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScaleScore" Width="1.5" PointX="3" PointY="5.5" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessTypes" Width="1.5" PointX="3.75" PointY="21.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndex" Width="1.5" PointX="5.75" PointY="32.625" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexLevels" Width="1.5" PointX="5.75" PointY="30.25" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexProportion" Width="1.5" PointX="8" PointY="4" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexScore" Width="1.5" PointX="8" PointY="0.75" Height="2.364889322916667" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicRanks" Width="1.5" PointX="10.75" PointY="2.375" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBorrowingPurposes" Width="1.5" PointX="5.75" PointY="4" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndex" Width="1.5" PointX="10.75" PointY="23.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndexLevels" Width="1.5" PointX="10.75" PointY="12.625" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualCollateralIndexScore" Width="1.5" PointX="13" PointY="12.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualCollateralRanks" Width="1.5" PointX="10.75" PointY="19.375" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualSummaryRanks" Width="1.5" PointX="13" PointY="2.5" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemBranches" Width="1.5" PointX="8.75" PointY="12.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemCustomerTypes" Width="1.5" PointX="10.75" PointY="16.125" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemReportingPeriods" Width="1.5" PointX="12.75" PointY="16.125" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemRights" Width="1.5" PointX="8.75" PointY="16" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemUserGroups" Width="1.5" PointX="8.75" PointY="8.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemUserGroupsRights" Width="1.5" PointX="11" PointY="9" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.SystemUsers" Width="1.5" PointX="11" PointY="5.625" Height="2.3648893229166648" IsExpanded="true" />
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="10.153595377604166" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="10.153595377604166" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="10.153595377604166" />
-          <ConnectorPoint PointX="3" PointY="10.153595377604166" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="2.7785953776041667" />
+          <ConnectorPoint PointX="2.625" PointY="2.7785953776041667" />
+          <ConnectorPoint PointX="2.625" PointY="9.7689925130208337" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="9.7689925130208337" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="9.7689925130208337" />
+          <ConnectorPoint PointX="3" PointY="9.7689925130208337" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="9.1705456888020827" />
-          <ConnectorPoint PointX="2.75" PointY="9.1705456888020827" />
-          <ConnectorPoint PointX="2.75" PointY="11.625" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="11.625" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="11.625" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="11.624999999999998" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="11.625" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="11.625" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="11.625" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="11.625" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="11.625" />
-          <ConnectorPoint PointX="9.75" PointY="11.625" />
-          <ConnectorPoint PointX="9.75" PointY="11.875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="3.44914506640625" />
+          <ConnectorPoint PointX="2.5" PointY="3.44914506640625" />
+          <ConnectorPoint PointX="2.5" PointY="14.125" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="14.125" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="14.125" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="14.125" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="14.125" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="14.125" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="14.125" />
+          <ConnectorPoint PointX="6.75" PointY="14.125" />
+          <ConnectorPoint PointX="6.75" PointY="14.5" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.90625" PointY="6.97068359375" />
-          <ConnectorPoint PointX="7.90625" PointY="14.8432421875" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="14.8432421875" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="14.8432421875" />
-          <ConnectorPoint PointX="9" PointY="14.8432421875" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="25.422841796875" />
+          <ConnectorPoint PointX="5.625" PointY="25.422841796875" />
+          <ConnectorPoint PointX="5.625" PointY="15.778595377604166" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="15.778595377604164" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="15.778595377604166" />
+          <ConnectorPoint PointX="6" PointY="15.778595377604166" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexProportion_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="12.125" />
-          <ConnectorPoint PointX="1.5" PointY="11.75" />
-          <ConnectorPoint PointX="3.75" PointY="11.75" />
-          <ConnectorPoint PointX="3.75" PointY="11.480286458333332" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="11.375" />
+          <ConnectorPoint PointX="1.5" PointY="10.247241269531251" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.247241269531251" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="10.247241269531251" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="10.247241269531251" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.247241269531251" />
+          <ConnectorPoint PointX="3" PointY="10.247241269531251" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="12.15625" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="12.156249999999998" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="12.15625" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="12.15625" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="12.15625" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="12.15625" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="12.15625" />
-          <ConnectorPoint PointX="9" PointY="12.15625" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="14.1244921875" />
+          <ConnectorPoint PointX="1.5" PointY="16.891337890625" />
+          <ConnectorPoint PointX="4.041666666666667" PointY="16.891337890625" />
+          <ConnectorPoint PointX="4.208333333333333" PointY="16.891337890625" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="16.891337890625" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="16.891337890625" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="16.891337890625" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="16.891337890625" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="16.891337890625" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="16.891337890625" />
+          <ConnectorPoint PointX="6" PointY="16.891337890625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessScales_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.078125" PointY="19.625" />
-          <ConnectorPoint PointX="8.078125" PointY="11.9843725" />
-          <ConnectorPoint PointX="9" PointY="11.9843725" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="27.990143229166666" />
+          <ConnectorPoint PointX="5.75" PointY="27.990143229166666" />
+          <ConnectorPoint PointX="5.75" PointY="15.108045688802083" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="15.108045688802083" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="15.108045688802083" />
+          <ConnectorPoint PointX="6" PointY="15.108045688802083" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessLines_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="13.547841796875" />
-          <ConnectorPoint PointX="3" PointY="13.547841796875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="12.797841796875" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="12.797841796875" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="12.797841796875" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="12.797841796875" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="12.797841796875" />
+          <ConnectorPoint PointX="3" PointY="12.797841796875" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByIndustry_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="14.8744921875" />
-          <ConnectorPoint PointX="1.5" PointY="16.490143229166666" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="16.490143229166666" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="16.490143229166666" />
-          <ConnectorPoint PointX="3" PointY="16.490143229166666" /></AssociationConnector>
+          <ConnectorPoint PointX="1.9062525" PointY="14.1244921875" />
+          <ConnectorPoint PointX="1.9062525" PointY="15.768992513020834" />
+          <ConnectorPoint PointX="3" PointY="15.768992513020834" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="12.46875" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="12.468749999999998" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="12.46875" />
-          <ConnectorPoint PointX="6" PointY="12.46875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="11.84375" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="11.84375" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="11.84375" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="11.84375" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="11.84375" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="11.84375" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="11.84375" />
+          <ConnectorPoint PointX="6" PointY="11.84375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="14.8744921875" />
-          <ConnectorPoint PointX="1.9062525" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="4.041666666666667" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="4.208333333333333" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="17.865143229166666" />
-          <ConnectorPoint PointX="6" PointY="17.865143229166666" /></AssociationConnector>
+          <ConnectorPoint PointX="1.9062525" PointY="11.375" />
+          <ConnectorPoint PointX="1.9062525" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="10.857687174479167" />
+          <ConnectorPoint PointX="6" PointY="10.857687174479167" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessScaleScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062519999999998" PointY="12.125" />
-          <ConnectorPoint PointX="1.9062519999999998" PointY="11.875" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="11.874999999999998" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="11.875" />
-          <ConnectorPoint PointX="6.75" PointY="11.875" />
-          <ConnectorPoint PointX="6.75" PointY="10.807190755208332" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="13.492418992187499" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="13.492418992187499" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="13.492418992187499" />
+          <ConnectorPoint PointX="2.75" PointY="13.492418992187499" />
+          <ConnectorPoint PointX="2.75" PointY="6.7785953776041659" />
+          <ConnectorPoint PointX="3" PointY="6.7785953776041659" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.125" PointY="18.25" />
-          <ConnectorPoint PointX="4.125" PointY="17.480286458333332" /></AssociationConnector>
+          <ConnectorPoint PointX="4.125" PointY="17.5" />
+          <ConnectorPoint PointX="4.125" PointY="16.662985026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="19.53125" />
-          <ConnectorPoint PointX="6.260416666666667" PointY="19.53125" />
-          <ConnectorPoint PointX="6.427083333333333" PointY="19.53125" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="19.53125" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="19.53125" />
-          <ConnectorPoint PointX="9" PointY="19.53125" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="20.033396809895834" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="20.033396809895834" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="20.033396809895834" />
+          <ConnectorPoint PointX="6" PointY="20.033396809895834" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByType_BusinessTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="4.6439925130208337" />
-          <ConnectorPoint PointX="5.625" PointY="4.6439925130208337" />
-          <ConnectorPoint PointX="5.625" PointY="19.125" />
-          <ConnectorPoint PointX="6.260416666666667" PointY="19.125" />
-          <ConnectorPoint PointX="6.427083333333333" PointY="19.125" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="19.125" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="19.125" />
-          <ConnectorPoint PointX="9.75" PointY="19.125" />
-          <ConnectorPoint PointX="9.75" PointY="19.5" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="22.768992513020834" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="22.768992513020834" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="22.768992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="22.768992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="21.412985026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.90625" PointY="18.25" />
-          <ConnectorPoint PointX="4.90625" PointY="14.511536458333334" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="14.511536458333334" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="14.511536458333334" />
-          <ConnectorPoint PointX="6" PointY="14.511536458333334" /></AssociationConnector>
+          <ConnectorPoint PointX="4.90625" PointY="17.5" />
+          <ConnectorPoint PointX="4.90625" PointY="13.694235026041666" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="13.694235026041666" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="13.694235026041666" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="13.694235026041666" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="13.694235026041666" />
+          <ConnectorPoint PointX="6" PointY="13.694235026041666" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="5.1222407695312508" />
-          <ConnectorPoint PointX="5.5" PointY="5.1222407695312508" />
-          <ConnectorPoint PointX="5.5" PointY="13.490143229166666" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="13.490143229166666" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="13.490143229166666" />
-          <ConnectorPoint PointX="6" PointY="13.490143229166666" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="22.290744256510415" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="22.290744256510415" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="22.290744256510415" />
+          <ConnectorPoint PointX="5.875" PointY="22.290744256510415" />
+          <ConnectorPoint PointX="5.875" PointY="12.768992513020834" />
+          <ConnectorPoint PointX="6" PointY="12.768992513020834" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="18.56224609375" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="18.56224609375" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="18.56224609375" />
-          <ConnectorPoint PointX="6" PointY="18.56224609375" /></AssociationConnector>
+          <ConnectorPoint PointX="5.1093775" PointY="17.5" />
+          <ConnectorPoint PointX="5.1093775" PointY="8.71875" />
+          <ConnectorPoint PointX="6" PointY="8.71875" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="23.547841796875" />
-          <ConnectorPoint PointX="6.34375" PointY="23.547841796875" />
-          <ConnectorPoint PointX="6.34375" PointY="18.874492187500003" /></AssociationConnector>
+          <ConnectorPoint PointX="4.83593875" PointY="4.72068359375" />
+          <ConnectorPoint PointX="4.83593875" PointY="10.760333600260417" />
+          <ConnectorPoint PointX="5.0260441666666669" PointY="10.760333600260417" />
+          <ConnectorPoint PointX="5.1927108333333329" PointY="10.760333600260417" />
+          <ConnectorPoint PointX="6" PointY="10.760333600260417" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessScaleScore_BusinessScaleCriteria_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="7.641591296875" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="7.6415912968749993" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="7.641591296875" />
-          <ConnectorPoint PointX="6.34375" PointY="7.641591296875" />
-          <ConnectorPoint PointX="6.34375" PointY="8.25" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="6.1392976888020829" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="6.139297688802082" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.1392976888020829" />
+          <ConnectorPoint PointX="3" PointY="6.1392976888020829" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexProportion_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="0.96875" />
-          <ConnectorPoint PointX="11.34375" PointY="0.96875" />
-          <ConnectorPoint PointX="11.34375" PointY="4" /></AssociationConnector>
+          <ConnectorPoint PointX="7.25" PointY="33.903595377604162" />
+          <ConnectorPoint PointX="8.34375" PointY="33.903595377604162" />
+          <ConnectorPoint PointX="8.34375" PointY="5.7879850260416674" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="3.1076871744791665" />
-          <ConnectorPoint PointX="11.260416666666666" PointY="3.1076871744791661" />
-          <ConnectorPoint PointX="11.427083333333334" PointY="3.1076871744791665" />
-          <ConnectorPoint PointX="12.822916666666666" PointY="3.1076871744791661" />
-          <ConnectorPoint PointX="12.989583333333334" PointY="3.1076871744791665" />
-          <ConnectorPoint PointX="14.75" PointY="3.1076871744791665" />
-          <ConnectorPoint PointX="14.75" PointY="3.625" /></AssociationConnector>
+          <ConnectorPoint PointX="6.5" PointY="32.625" />
+          <ConnectorPoint PointX="6.5" PointY="32.09568359375" />
+          <ConnectorPoint PointX="7.75" PointY="32.09568359375" />
+          <ConnectorPoint PointX="7.75" PointY="1.9324446614583333" />
+          <ConnectorPoint PointX="8" PointY="1.9324446614583333" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="12.90625" PointY="2.84568359375" />
-          <ConnectorPoint PointX="12.90625" PointY="6.2086393229166665" />
-          <ConnectorPoint PointX="14" PointY="6.2086393229166665" /></AssociationConnector>
+          <ConnectorPoint PointX="7.25" PointY="31.047841796875" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="31.047841796875" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="31.047841796875" />
+          <ConnectorPoint PointX="7.875" PointY="31.047841796875" />
+          <ConnectorPoint PointX="7.875" PointY="3.489889322916667" />
+          <ConnectorPoint PointX="8.75" PointY="3.489889322916667" />
+          <ConnectorPoint PointX="8.75" PointY="3.114889322916667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="5.0189925130208337" />
-          <ConnectorPoint PointX="11" PointY="5.0189925130208337" /></AssociationConnector>
+          <ConnectorPoint PointX="7.25" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="4.8939925130208328" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="8" PointY="4.8939925130208337" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.5" PointY="5.9129850260416674" />
-          <ConnectorPoint PointX="9.5" PointY="6.3228182552083325" />
-          <ConnectorPoint PointX="14" PointY="6.3228182552083325" /></AssociationConnector>
+          <ConnectorPoint PointX="6.5" PointY="4" />
+          <ConnectorPoint PointX="6.5" PointY="2.5549194921875" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="2.5549194921874996" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="2.5549194921875" />
+          <ConnectorPoint PointX="8" PointY="2.5549194921875" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualSummaryRanks_IndividualBasicRanks_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.25" PointY="13.240143229166666" />
-          <ConnectorPoint PointX="13.416666666666666" PointY="13.240143229166666" />
-          <ConnectorPoint PointX="13.583333333333334" PointY="13.240143229166666" />
-          <ConnectorPoint PointX="14" PointY="13.240143229166666" /></AssociationConnector>
+          <ConnectorPoint PointX="12.25" PointY="3.3939925130208333" />
+          <ConnectorPoint PointX="13" PointY="3.3939925130208333" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="15.25" PointY="23.307444661458334" />
-          <ConnectorPoint PointX="16.75" PointY="23.307444661458334" />
-          <ConnectorPoint PointX="16.75" PointY="18.489889322916667" /></AssociationConnector>
+          <ConnectorPoint PointX="12.25" PointY="24.432444661458334" />
+          <ConnectorPoint PointX="14.40625" PointY="24.432444661458334" />
+          <ConnectorPoint PointX="14.40625" PointY="14.547587890625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="15.25" PointY="17.297841796875" />
-          <ConnectorPoint PointX="15.322916666666666" PointY="17.297841796875" />
-          <ConnectorPoint PointX="15.489583333333334" PointY="17.297841796875" />
-          <ConnectorPoint PointX="16" PointY="17.297841796875" /></AssociationConnector>
+          <ConnectorPoint PointX="12.25" PointY="13.422841796875" />
+          <ConnectorPoint PointX="12.322916666666666" PointY="13.422841796874998" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="13.422841796875" />
+          <ConnectorPoint PointX="13" PointY="13.422841796875" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualSummaryRanks_IndividualCollateralRanks_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.25" PointY="20.2112939453125" />
-          <ConnectorPoint PointX="15.40625" PointY="20.2112939453125" />
-          <ConnectorPoint PointX="15.40625" PointY="14.230286458333332" /></AssociationConnector>
+          <ConnectorPoint PointX="11.5" PointY="19.375" />
+          <ConnectorPoint PointX="11.5" PointY="17.778382161458332" />
+          <ConnectorPoint PointX="12.5" PointY="17.778382161458332" />
+          <ConnectorPoint PointX="12.5" PointY="10.84568359375" />
+          <ConnectorPoint PointX="12.75" PointY="10.84568359375" />
+          <ConnectorPoint PointX="12.75" PointY="3.87224076953125" />
+          <ConnectorPoint PointX="13" PointY="3.87224076953125" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.SystemUsers_SystemBranches_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="12.5" PointY="16.40625" />
-          <ConnectorPoint PointX="13.5" PointY="16.40625" />
-          <ConnectorPoint PointX="13.5" PointY="10.489889322916666" /></AssociationConnector>
+          <ConnectorPoint PointX="10.25" PointY="13.768992513020834" />
+          <ConnectorPoint PointX="10.5" PointY="13.768992513020834" />
+          <ConnectorPoint PointX="10.5" PointY="8.3648893229166639" />
+          <ConnectorPoint PointX="11.75" PointY="8.3648893229166639" />
+          <ConnectorPoint PointX="11.75" PointY="7.9898893229166648" /></AssociationConnector>
+        <AssociationConnector Association="FBDModel.SystemUserGroupsRights_SystemRights_Delete" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.25" PointY="16.03125" />
+          <ConnectorPoint PointX="12.40625" PointY="16.03125" />
+          <ConnectorPoint PointX="12.40625" PointY="10.59568359375" /></AssociationConnector>
+        <AssociationConnector Association="FBDModel.SystemUserGroupsRights_SystemUserGroups_Delete" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.25" PointY="9.797841796875" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="9.797841796875" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="9.797841796875" />
+          <ConnectorPoint PointX="11" PointY="9.797841796875" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.SystemUsers_SystemUserGroups_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="12.5" PointY="9.2689925130208337" />
-          <ConnectorPoint PointX="13.25" PointY="9.2689925130208337" /></AssociationConnector>
-        <AssociationConnector Association="FBDModel.SystemUserGroupsRights" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="9.297841796875" />
-          <ConnectorPoint PointX="11" PointY="9.297841796875" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="9.90625" PointY="8.875" />
+          <ConnectorPoint PointX="9.90625" PointY="6.9201871744791656" />
+          <ConnectorPoint PointX="11" PointY="6.9201871744791656" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
