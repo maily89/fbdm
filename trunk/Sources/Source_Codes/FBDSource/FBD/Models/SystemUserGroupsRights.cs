@@ -8,7 +8,8 @@ using System.Web.Mvc;
 
 namespace FBD.Models
 {
-    public class SystemUserGroupsRights
+    [MetadataType(typeof(SystemUserGroupRightMetadata))]
+    public partial class SystemUserGroupsRights
     {
         public static List<SystemUserGroupsRights> SelectUserGroupRights()
         {
@@ -19,15 +20,17 @@ namespace FBD.Models
         public static SystemUserGroupsRights SelectUserGroupRightByID(int id)
         {
             FBDEntities entities = new FBDEntities();
-            return entities.SystemUserGroupsRights.First(i => i.ID == id);
+            var temp = entities.SystemUserGroupsRights.First(i => i.ID == id);
+            return temp;
         }
 
         public static SystemUserGroupsRights SelectUserGroupRightByID(int id, FBDEntities entities)
         {
-            return entities.SystemUserGroupsRights.First(i => i.ID == id);
+            var temp = entities.SystemUserGroupsRights.First(i => i.ID == id);
+            return temp;
         }
-
-        public static int AddUserGroupRight(SystemUserGroupsRights userGroupRight, FBDEntities entities)
+        
+        public static int AddUserGroupsRight(SystemUserGroupsRights userGroupRight, FBDEntities entities)
         {
             entities.AddToSystemUserGroupsRights(userGroupRight);
             int result = entities.SaveChanges();
@@ -35,23 +38,26 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
-        public static int EditUserGroupRight(SystemUserGroupsRights userGroupRight)
-        {
-            FBDEntities entities = new FBDEntities();
-            var temp = SystemUserGroupsRights.SelectUserGroupRightByID(userGroupRight.ID, entities);
+        //public static int EditUserGroupsRight(SystemUserGroupsRights userGroupRight)
+        //{
+        //    FBDEntities entities = new FBDEntities();
+        //    var temp = SystemUserGroupsRights.SelectUserGroupRightByID(userGroupRight.ID, entities);
             
-        }
+        //}
 
         [Bind (Exclude="ID")]
         public class SystemUserGroupRightMetadata
         {
             [ScaffoldColumn(false)]
             public int ID { get; set; }
-            
+
             [DisplayName("Group ID")]
-            [Required(ErrorMessage="Group ID is required")]
-            [StringLength()]
-            public s
+            [Required(ErrorMessage = "Group ID is required")]
+            public string GroupID { get; set; }
+
+            [DisplayName("Right ID")]
+            [Required(ErrorMessage = "Right ID is required")]
+            public string RightID { get; set; }
         }
     }
 }

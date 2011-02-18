@@ -6,7 +6,7 @@ using FBD.Models;
 
 namespace FBD.ViewModels
 {
-    public class SYSDecentralizationViewModel
+    public class SYSUserGroupsRightsViewModel
     {
         public List<SystemRights> ListRights { get; set; }
         public List<SystemUserGroups> ListUserGroups { get; set; }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FBD.Controllers
 {
-    public class SYSDecentralizationController : Controller
+    public class SYSUserGroupsRightsController : Controller
     {
         //
         // GET: /SYSDecentralization/
