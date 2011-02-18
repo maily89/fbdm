@@ -3,11 +3,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A7D20EC1-746B-4D39-8D72-3E60C7D3CD9B}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion> 
+    <ProjectGuid>{A7D20EC1-746B-4D39-8D72-3E60C7D3CD9B}</ProjectGuid> 
     <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AppDesignerFolder>Properties</AppDesignerFolder>  
     <RootNamespace>FBD</RootNamespace>
     <AssemblyName>FBD</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
