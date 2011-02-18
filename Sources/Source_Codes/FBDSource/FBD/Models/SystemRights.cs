@@ -17,16 +17,7 @@ namespace FBD.Models
         public static List<SystemRights> SelectRights()
         {
             FBDEntities entities = new FBDEntities();
-            List<SystemRights> lstRights = null;
-            try
-            {
-                lstRights = entities.SystemRights.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            return lstRights;
+            return entities.SystemRights.ToList(); 
         }
 
         /// <summary>
@@ -38,17 +29,7 @@ namespace FBD.Models
         public static SystemRights SelectRightsByID(string id)
         {
             FBDEntities entities = new FBDEntities();
-            SystemRights right = null;
-            try
-            {
-                //select 1 Right by [id] param
-                right = entities.SystemRights.First(i => i.RightID.Equals(id));
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            return right;
+            return entities.SystemRights.First(i => i.RightID.Equals(id));
         }
         
         /// <summary>
@@ -57,21 +38,16 @@ namespace FBD.Models
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
         /// <param name="right">contains information of the new right</param>
-        /// <returns>If successful, return 1
-        /// otherwise return 0</returns>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int AddRight(SystemRights right)
         {
             FBDEntities entities = new FBDEntities();
-            try
-            {
-                entities.AddToSystemRights(right);
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            entities.AddToSystemRights(right);
+            int result = entities.SaveChanges();
+
+            return result <= 0 ? 1 : 0;
         }
 
         /// <summary>
@@ -81,22 +57,17 @@ namespace FBD.Models
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
         /// <param name="right">contain new information of the right</param>
-        /// <returns>success: return 1 
-        /// otherwise return 0</returns>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int EditRight(SystemRights right)
         {
             FBDEntities entities = new FBDEntities();
-            try
-            {
-                var temp = entities.SystemRights.First(i => i.RightID.Equals(right.RightID));
-                temp.RightName = right.RightName;
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var temp = entities.SystemRights.First(i => i.RightID.Equals(right.RightID));
+            temp.RightName = right.RightName;
+            int result = entities.SaveChanges();
+
+            return result <= 0 ? 1 : 0;
         }
 
         /// <summary>
@@ -105,22 +76,17 @@ namespace FBD.Models
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>success: return 1 
-        /// otherwise return 0</returns>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int DeleteRight(string id)
         {
             FBDEntities entities = new FBDEntities();
-            try
-            {
-                var temp = entities.SystemRights.First(i => i.RightID.Equals(id));
-                entities.DeleteObject(temp);
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var temp = entities.SystemRights.First(i => i.RightID.Equals(id));
+            entities.DeleteObject(temp);
+            int result = entities.SaveChanges();
+
+            return result <= 0 ? 1 : 0;
         }
 
         public class SystemRightsMetadata

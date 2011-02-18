@@ -76,13 +76,9 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
-    <Compile Include="Controllers\BSNRankController.cs" />
-    <Compile Include="Controllers\BSNScaleController.cs" />
-    <Compile Include="Controllers\BSNScaleCriteriaController.cs" />
     <Compile Include="Controllers\BSNTypeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
-    <Compile Include="Controllers\BSNScaleScoreController.cs" />
     <Compile Include="Controllers\FILevelsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
     <Compile Include="Controllers\SYSUserGroupsController.cs" />
@@ -94,13 +90,8 @@
     <Compile Include="Models\BusinessFinancialIndexLevels.cs" />
     <Compile Include="Models\BusinessIndustries.cs" />
     <Compile Include="Models\BusinessLines.cs" />
-    <Compile Include="Models\BusinessRankingStructure.cs" />
-    <Compile Include="Models\BusinessRanks.cs" />
-    <Compile Include="Models\BusinessScales.cs" />
-    <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
     <Compile Include="Models\Error.cs" />
-    <Compile Include="Models\BusinessScaleCriteria.cs" />
     <Compile Include="Models\FBDModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,15 +117,6 @@
     <Content Include="Views\BSNLine\Add.aspx" />
     <Content Include="Views\BSNLine\Edit.aspx" />
     <Content Include="Views\BSNLine\Index.aspx" />
-    <Content Include="Views\BSNRank\Add.aspx" />
-    <Content Include="Views\BSNRank\Edit.aspx" />
-    <Content Include="Views\BSNRank\Index.aspx" />
-    <Content Include="Views\BSNScaleCriteria\Add.aspx" />
-    <Content Include="Views\BSNScaleCriteria\Edit.aspx" />
-    <Content Include="Views\BSNScaleCriteria\Index.aspx" />
-    <Content Include="Views\BSNScale\Add.aspx" />
-    <Content Include="Views\BSNScale\Edit.aspx" />
-    <Content Include="Views\BSNScale\Index.aspx" />
     <Content Include="Views\BSNType\Add.aspx" />
     <Content Include="Views\BSNType\Edit.aspx" />
     <Content Include="Views\BSNType\Index.aspx" />
@@ -178,9 +160,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

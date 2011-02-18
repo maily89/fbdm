@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -14,23 +15,40 @@ namespace FBD.Controllers
         //
         // GET: /SYSReportingPeriod/
 
+
+        /// <summary>
+        /// Use SYSReportingPeriodsLogic class to select all the periods 
+        /// (periodID, periodName, fromDate, toDate, active) 
+        /// in the table [System.ReportingPeriods] 
+        /// then display to the [Index] View
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            var reportingPeriod = SystemReportingPeriods.SelectReportingPeriods();
-            return View(reportingPeriod);
+            List<SystemReportingPeriods> lstPeriod = null;
+            try
+            {
+                lstPeriod = SystemReportingPeriods.SelectReportingPeriods();
+                if (lstPeriod == null) throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = Constants.ERR_INDEX_SYS_REPORTING_PERIODS;
+                return View(lstPeriod);
+            }
+            return View(lstPeriod);
         }
-
-        //
-        // GET: /SYSReportingPeriod/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+        
+                
         //
         // GET: /SYSReportingPeriod/Add
 
+
+        /// <summary>
+        /// Forward to [Add] view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Add()
         {
             return View();
@@ -39,6 +57,15 @@ namespace FBD.Controllers
         //
         // POST: /SYSReportingPeriod/Add
 
+
+        /// <summary>
+        /// 1. Receive information from parameter
+        /// 2. Use Logic class to insert new period
+        /// 3. Redirect to [Index] View with label displaying: 
+        /// "A new period has been added successfully"
+        /// </summary>
+        /// <param name="reportingPeriod"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Add(SystemReportingPeriods reportingPeriod)
         {
@@ -46,30 +73,71 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
+                    int result = SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
+                    if (result == 1)
+                    {
+                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_REPORTING_PERIODS;
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "Reporting period " + reportingPeriod.PeriodID + "has been added successfully";
-                return RedirectToAction("Index");
+                throw new Exception();
             }
             catch
             {
-                return View();
+                TempData["Message"] = Constants.ERR_ADD_POST_SYS_REPORTING_PERIODS;
+                return View(reportingPeriod);
             }
         }
         
         //
         // GET: /SYSReportingPeriod/Edit/5
  
+
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to select appropriate period 
+        /// (periodID, periodName, fromDate, toDate, Active) 
+        /// from [System.ReportingPeriods] table
+        /// 3. Display in [Edit] view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var model = SystemReportingPeriods.SelectReportingPeriodByID(id);
-            return View(model);
+            SystemReportingPeriods reportingPeriod = null;
+
+            try
+            {
+                reportingPeriod = SystemReportingPeriods.SelectReportingPeriodByID(id);
+                if (reportingPeriod == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_REPORTING_PERIODS;
+                return View(reportingPeriod);
+            }
+            return View(reportingPeriod);
         }
+
 
         //
         // POST: /SYSReportingPeriod/Edit/5
 
+
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to update appropriate period 
+        /// (periodID, periodName, fromDate, toDate, Active) 
+        /// with ID selected in [System.ReportingPeriods] table in DB
+        /// 3. Display in [Index] view with label displaying: 
+        /// "PeriodID xyz has been editted successfully"
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="reportingPeriod"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(string id, SystemReportingPeriods reportingPeriod)
         {
@@ -77,15 +145,18 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    SystemReportingPeriods.EditReportingPeriod(reportingPeriod);
+                    int result = SystemReportingPeriods.EditReportingPeriod(reportingPeriod);
+                    if (result == 1)
+                    {
+                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_REPORTING_PERIODS_1;
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "Period ID " + reportingPeriod.PeriodID + " has been updated sucessfully";
-                return RedirectToAction("Index");
+                throw new Exception();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = "Period ID " + reportingPeriod.PeriodID + " has been updated sucessfully";
                 return View(reportingPeriod);
             }
         }
@@ -95,10 +166,21 @@ namespace FBD.Controllers
  
         public ActionResult Delete(string id)
         {
-            SystemReportingPeriods.DeleteReportingPeriod(id);
-            TempData["Message"] = "Period ID " + id + "has been deleted sucessfully";
-            return RedirectToAction("Index");
+            try
+            {
+                int result = SystemReportingPeriods.DeleteReportingPeriod(id);
+                if (result == 1)
+                {
+                    TempData["Message"] = Constants.SCC_DELETE_SYS_REPORTING_PERIODS;
+                    return RedirectToAction("Index");
+                }
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = Constants.ERR_DELETE_SYS_REPORTING_PERIODS;
+                return RedirectToAction("Index");
+            }
         }
-
     }
 }

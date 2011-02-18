@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.SystemRights>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Right Index
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
-
+    <h2>MANAGING SYSTEM RIGHT INDEX</h2>
+    <%= TempData["Message"]!=null?TempData["Message"]:"" %>
     <table>
         <tr>
             <th></th>
@@ -24,8 +24,7 @@
         <tr>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.RightID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.RightID })%> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.RightID })%>
+                <%= Html.ActionLink("Delete", "Delete", new { id = item.RightID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete the right name " + item.RightName + "?');" })%>
             </td>
             <td>
                 <%= Html.Encode(item.RightID) %>
@@ -40,11 +39,8 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Add new System Right", "Add") %>
     </p>
 
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>
 
