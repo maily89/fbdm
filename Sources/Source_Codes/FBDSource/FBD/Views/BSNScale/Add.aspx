@@ -19,42 +19,73 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ScaleID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ScaleID) %>
-                <%= Html.ValidationMessageFor(model => model.ScaleID) %>
-            </div>
+            <table>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.FromValue) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.FromValue) %>
-                <%= Html.ValidationMessageFor(model => model.FromValue) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.ScaleID) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.ScaleID) %>
+                        <%= Html.ValidationMessageFor(model => model.ScaleID) %>
+                    </div>
+               </td>
+           </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ToValue) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ToValue) %>
-                <%= Html.ValidationMessageFor(model => model.ToValue) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.FromValue) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.FromValue) %>
+                        <%= Html.ValidationMessageFor(model => model.FromValue) %>
+                    </div>
+               </td>
+           </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Scale) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Scale) %>
-                <%= Html.ValidationMessageFor(model => model.Scale) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.ToValue) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.ToValue) %>
+                        <%= Html.ValidationMessageFor(model => model.ToValue) %>
+                    </div>
+               </td>
+           </tr>
             
-            <p>
-                <input type="submit" value="Add" />
-                <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-            </p>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Scale) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Scale) %>
+                        <%= Html.ValidationMessageFor(model => model.Scale) %>
+                    </div>
+               </td>
+           </tr>
+            
+            <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
+        </table>
         </fieldset>
 
     <% } %>

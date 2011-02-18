@@ -19,26 +19,45 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndustryID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.IndustryID) %>
-                <%= Html.ValidationMessageFor(model => model.IndustryID) %>
-            </div>
+            <table>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndustryName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.IndustryName) %>
-                <%= Html.ValidationMessageFor(model => model.IndustryName) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.IndustryID) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.IndustryID) %>
+                        <%= Html.ValidationMessageFor(model => model.IndustryID) %>
+                    </div>
+               </td>
+           </tr>
             
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.IndustryName) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.IndustryName) %>
+                        <%= Html.ValidationMessageFor(model => model.IndustryName) %>
+                    </div>
+               </td>
+           </tr>
             
-            <input type="submit" value="Add" />
-            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-            
+            <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
+        </table>
         </fieldset>
 
     <% } %>

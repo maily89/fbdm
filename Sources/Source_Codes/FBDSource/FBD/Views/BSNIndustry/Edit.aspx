@@ -20,28 +20,43 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndustryID) %>
-            </div>
-            
-            <div class="editor-field">
-                <%= Html.TextBox("id",Model.IndustryID,new {@readonly="true", @disabled="true"}) %>
-                <%= Html.HiddenFor(model => model.IndustryID)%>
+            <table>
+               <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.IndustryID) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.IndustryID, new { @readonly = "true", @disabled = "true" }) %>
+                            <%= Html.HiddenFor(model => model.IndustryID) %>
+                        </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.IndustryName) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.IndustryName) %>
+                            <%= Html.ValidationMessageFor(model => model.IndustryName) %>
+                        </div>
+                   </td>
+               </tr>
                 
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndustryName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.IndustryName) %>
-                <%= Html.ValidationMessageFor(model => model.IndustryName) %>
-            </div>
-            
-            
-            <input type="submit" value="Edit" />
-            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-            
+             <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
+        </table>
         </fieldset>
 
     <% } %>
