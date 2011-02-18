@@ -20,15 +20,9 @@ namespace FBD.Models
 
             List<BusinessFinancialIndex> lstFinancialIndex = null;
 
-            try
-            {
-                // Get the business financial index from entities model
-                lstFinancialIndex = FBDModel.BusinessFinancialIndex.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            // Get the business financial index from entities model
+            lstFinancialIndex = FBDModel.BusinessFinancialIndex.ToList();
+            
             return lstFinancialIndex;
         }
 
@@ -43,15 +37,9 @@ namespace FBD.Models
 
             BusinessFinancialIndex businessFinancialIndex = null;
 
-            try
-            {
-                // Get the business financial index from the entities model with the inputted ID
-                businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            // Get the business financial index from the entities model with the inputted ID
+            businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
+
             return businessFinancialIndex;
         }
 
@@ -65,20 +53,15 @@ namespace FBD.Models
         public static int AddFinancialIndex(BusinessFinancialIndex businessFinancialIndex)
         {
             FBDEntities FBDModel = new FBDEntities();
+            
+            // Add new business financial index with the inputted information to the entities
+            FBDModel.AddToBusinessFinancialIndex(businessFinancialIndex);
 
-            try
-            {
-                // Add new business financial index with the inputted information to the entities
-                FBDModel.AddToBusinessFinancialIndex(businessFinancialIndex);
+            // Save changes to the Database
+            int temp = FBDModel.SaveChanges();
 
-                // Save changes to the Database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            return temp <= 0 ? 0 : 1;
+            
         }
 
         /// <summary>
@@ -92,27 +75,20 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            try
-            {
-                // Select the financial index to be updated from database
-                var temp = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(businessFinancialIndex.IndexID));
+            // Select the financial index to be updated from database
+            var temp = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(businessFinancialIndex.IndexID));
 
-                // Update the financial index to the entities
-                temp.IndexName = businessFinancialIndex.IndexName;
-                temp.Unit = businessFinancialIndex.Unit;
-                temp.Formula = businessFinancialIndex.Formula;
-                temp.ValueType = businessFinancialIndex.ValueType;
-                temp.LeafIndex = businessFinancialIndex.LeafIndex;
+            // Update the financial index to the entities
+            temp.IndexName = businessFinancialIndex.IndexName;
+            temp.Unit = businessFinancialIndex.Unit;
+            temp.Formula = businessFinancialIndex.Formula;
+            temp.ValueType = businessFinancialIndex.ValueType;
+            temp.LeafIndex = businessFinancialIndex.LeafIndex;
 
-                // Save changes to the database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            // Save changes to the database
+            int result = FBDModel.SaveChanges();
 
-            return 1;
+            return result <=0 ? 0 : 1;
         }
 
         /// <summary>
@@ -125,21 +101,16 @@ namespace FBD.Models
         public static int DeleteFinancialIndex(string id)
         {
             FBDEntities FBDModel = new FBDEntities();
-            try
-            {
-                var financialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
 
-                // Delete business financial index from entities
-                FBDModel.DeleteObject(financialIndex);
+            var financialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
 
-                // Save changes to the database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            // Delete business financial index from entities
+            FBDModel.DeleteObject(financialIndex);
+
+            // Save changes to the database
+            int temp = FBDModel.SaveChanges();
+
+            return temp <= 0 ? 0 : 1;
         }
 
         public class BusinessFinancialIndexMetaData
@@ -153,6 +124,14 @@ namespace FBD.Models
             [Required(ErrorMessage = "Index Name is required")]
             [StringLength(255)]
             public string IndexName { get; set; }
+
+            [DisplayName("Unit")]
+            [StringLength(50)]
+            public string Unit { get; set; }
+
+            [DisplayName("Formula")]
+            [StringLength(255)]
+            public string Formula { get; set; }
         }
     }
 }

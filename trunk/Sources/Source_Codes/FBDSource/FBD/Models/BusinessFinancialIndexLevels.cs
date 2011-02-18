@@ -20,15 +20,9 @@ namespace FBD.Models
 
             List<BusinessFinancialIndexLevels> lstFinancialIndexLevels = null;
 
-            try
-            {
-                // Get the business financial index levels from entities model
-                lstFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            // Get the business financial index levels from entities model
+            lstFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.ToList();
+
             return lstFinancialIndexLevels;
         }
 
@@ -37,7 +31,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">string ID</param>
         /// <returns>BusinessFinancialIndexLevels</returns>
-        public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(decimal id)
+        public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(Decimal id)
         {
             FBDEntities FBDModel = new FBDEntities();
 
@@ -119,7 +113,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">ID of the Financial Index Level selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int DeleteFinancialIndexLevels(decimal id)
+        public static int DeleteFinancialIndexLevels(Decimal id)
         {
             FBDEntities FBDModel = new FBDEntities();
             try
@@ -143,13 +137,11 @@ namespace FBD.Models
         {
             [DisplayName("Level ID")]
             [Required(ErrorMessage = "Level ID is required")]
-            [RegularExpression("##.###.###")]
-            public decimal LevelID { get; set; }
+            public Decimal LevelID { get; set; }
 
             [DisplayName("Score")]
             [Required(ErrorMessage = "Score is required")]
-            [RegularExpression("##.###.###")]
-            public decimal Score { get; set; }
+            public Decimal Score { get; set; }
         }
     }
 }

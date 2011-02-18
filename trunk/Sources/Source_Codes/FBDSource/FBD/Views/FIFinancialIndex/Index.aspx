@@ -8,7 +8,7 @@
 
     <h2>MANAGING FINANCIAL INDEX</h2>
     
-    <p style="color:Red"><%= TempData["Message"]!=null?TempData["Message"]:"" %></p>
+    <p class="message"><%= TempData["Message"]!=null?TempData["Message"]:"" %></p>
     
     <h3>
         <%= Html.ActionLink("Add New Index", "Add") %>
@@ -68,5 +68,9 @@
     <% } %>
 
     </table>
+   
+    <h3>
+        <%= Html.ActionLink("Add New Index", "Add") %>
+    </h3>
    
 </asp:Content>
