@@ -23,54 +23,98 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndexID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBox("id",Model.IndexID,new {@readonly="true", @disabled="true"}) %>
-                <%= Html.HiddenFor(model => model.IndexID)%>
-            </div>
+            <table>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.IndexID) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBox("id", Model.IndexID, new { @readonly = "true", @disabled = "true" })%>
+                        <%= Html.HiddenFor(model => model.IndexID) %>
+                    </div>
+                </td>
+            </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.IndexName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.IndexName) %>
-                <%= Html.ValidationMessageFor(model => model.IndexName) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.IndexName) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.IndexName) %>
+                        <%= Html.ValidationMessageFor(model => model.IndexName) %>
+                    </div>
+                </td>
+            </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Unit) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Unit) %>
-                <%= Html.ValidationMessageFor(model => model.Unit) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Unit) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Unit) %>
+                        <%= Html.ValidationMessageFor(model => model.Unit) %>
+                    </div>
+                </td>
+            </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Formula) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Formula) %>
-                <%= Html.ValidationMessageFor(model => model.Formula) %>
-            </div>
+            <tr>            
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Formula) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Formula) %>
+                        <%= Html.ValidationMessageFor(model => model.Formula) %>
+                    </div>
+                </td>
+            </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ValueType) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.DropDownListFor(model => model.ValueType, new SelectList(new List<String>{"N", "C"}, "N")) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.ValueType) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.DropDownListFor(model => model.ValueType, new SelectList(new List<String>{"N", "C"}, "N")) %>
+                    </div>
+                </td>
+            </tr>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.LeafIndex) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.CheckBoxFor(model => model.LeafIndex) %>
-            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.LeafIndex) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.CheckBoxFor(model => model.LeafIndex) %>
+                    </div>
+                </td>
+            </tr>
             
-            <input type="submit" value="Save" />
-            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+            <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
+        </table>
             
         </fieldset>
 
