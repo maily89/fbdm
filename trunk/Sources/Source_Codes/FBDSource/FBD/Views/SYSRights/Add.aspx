@@ -14,22 +14,34 @@
 
         <fieldset>
             <legend>Fields</legend>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.RightID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.RightID) %>
-                <%= Html.ValidationMessageFor(model => model.RightID) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.RightName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.RightName) %>
-                <%= Html.ValidationMessageFor(model => model.RightName) %>
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.RightID) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.RightID) %>
+                            <%= Html.ValidationMessageFor(model => model.RightID) %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.RightName) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.RightName) %>
+                            <%= Html.ValidationMessageFor(model => model.RightName) %>
+                        </div>
+                    </td>
+                </tr>
+            </table>      
             
             <p>
                 <input type="submit" value="Save" />

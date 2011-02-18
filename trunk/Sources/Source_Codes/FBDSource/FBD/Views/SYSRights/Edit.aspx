@@ -8,29 +8,41 @@
 
     <h2>EDIT SYSTEM RIGHT</h2>
     <% Html.EnableClientValidation(); %>
-    <p style="color:Red"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         
         <fieldset>
             <legend>Fields</legend>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.RightID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.RightID) %>
-                <%= Html.ValidationMessageFor(model => model.RightID) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.RightName) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.RightName) %>
-                <%= Html.ValidationMessageFor(model => model.RightName) %>
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.RightID) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.RightID) %>
+                            <%= Html.ValidationMessageFor(model => model.RightID) %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.RightName) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.RightName) %>
+                            <%= Html.ValidationMessageFor(model => model.RightName) %>
+                        </div>
+                    </td>
+                </tr>
+            </table>  
             
             <p>
                 <input type="submit" value="Save" />

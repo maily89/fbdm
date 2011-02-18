@@ -73,15 +73,14 @@ namespace FBD.Controllers
                         TempData["Message"] = Constants.SCC_ADD_POST_SYS_RIGHTS;
                         return RedirectToAction("Index");
                     }
-                    else throw new Exception();
                 }
+                throw new Exception();
             }
             catch (Exception)
             {
                 TempData["Message"] = Constants.ERR_ADD_POST_SYS_RIGHTS;
                 return View(right);
             }
-            return View(right);
         }
         
         //
@@ -144,14 +143,13 @@ namespace FBD.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                else throw new Exception();
+                throw new Exception();
             }
             catch
             {
                 TempData["Message"] = Constants.ERR_EDIT_POST_SYS_RIGHTS;
                 return View(right);
             }
-            return View(right);
         }
 
         //
@@ -167,7 +165,7 @@ namespace FBD.Controllers
                     TempData["Message"] = Constants.SCC_DELETE_SYS_RIGHTS;
                     return RedirectToAction("Index");
                 }
-                else throw new Exception();
+                throw new Exception();
             }
             catch (Exception)
             {

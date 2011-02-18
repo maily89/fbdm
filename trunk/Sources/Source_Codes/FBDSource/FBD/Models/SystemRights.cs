@@ -47,7 +47,7 @@ namespace FBD.Models
             entities.AddToSystemRights(right);
             int result = entities.SaveChanges();
 
-            return result <= 0 ? 1 : 0;
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace FBD.Models
             temp.RightName = right.RightName;
             int result = entities.SaveChanges();
 
-            return result <= 0 ? 1 : 0;
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
@@ -86,12 +86,12 @@ namespace FBD.Models
             entities.DeleteObject(temp);
             int result = entities.SaveChanges();
 
-            return result <= 0 ? 1 : 0;
+            return result <= 0 ? 0 : 1;
         }
 
         public class SystemRightsMetadata
         {
-            [DisplayName("RightID")]
+            [DisplayName("Right ID")]
             [Required(ErrorMessage = "Right ID is required")]
             [StringLength(20)]
             public string IndexID { get; set; }
