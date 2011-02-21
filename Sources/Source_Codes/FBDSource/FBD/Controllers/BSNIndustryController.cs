@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -20,7 +21,20 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var industries = BusinessIndustries.SelectIndustries();
+            List<BusinessIndustries> industries=null;
+            try
+            {
+                industries= BusinessIndustries.SelectIndustries();
+
+                if (industries == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch(Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_INDUSTRY);
+            }
             
             return View(industries);
         }
@@ -50,15 +64,20 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BusinessIndustries.AddIndustry(industry);
+                    int result=BusinessIndustries.AddIndustry(industry);
+
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_INDUSTRY);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "Industry ID "+industry.IndustryID+ " have been added sucessfully";
-                return RedirectToAction("Index");
+                throw new Exception();
+                
             }
-            catch(Exception ex)
+            catch(Exception )
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_INDUSTRY);
                 return View(industry);
             }
         }
@@ -72,7 +91,19 @@ namespace FBD.Controllers
          /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var model = BusinessIndustries.SelectIndustryByID(id);
+            BusinessIndustries model = null;
+            try
+            {
+                model = BusinessIndustries.SelectIndustryByID(id);
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_INDUSTRY);
+            }
             return View(model);
         }
 
@@ -92,18 +123,22 @@ namespace FBD.Controllers
                 
                 if (ModelState.IsValid)
                 {
-                    BusinessIndustries.EditIndustry(industry);
-                    
+                    int result=BusinessIndustries.EditIndustry(industry);
+
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_INDUSTRY, industry.IndustryID);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new ArgumentException();
-                TempData["Message"] = "IndustryID "+ industry.IndustryID + " have been updated sucessfully";
-                return RedirectToAction("Index");
+
+                throw new Exception();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Temporary error handle.
-                
-                TempData["Message"] = ex.Message;
+
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_INDUSTRY);
                 return View(industry);
             }
         }
@@ -117,9 +152,24 @@ namespace FBD.Controllers
          /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            BusinessIndustries.DeleteIndustry(id);
-            TempData["Message"] = "Industry ID "+ id+" have been deleted sucessfully";
-            return RedirectToAction("Index");
+            try
+            {
+                int result=BusinessIndustries.DeleteIndustry(id);
+
+                if (result == 1)
+                {
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_INDUSTRY);
+                    return RedirectToAction("Index");
+                }
+
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_INDUSTRY);
+                return RedirectToAction("Index");
+            }
+            
         }
 
         

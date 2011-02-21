@@ -72,11 +72,17 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeTemplates\AddController\Controller.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommonUtilities\Constants.cs" />
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
     <Compile Include="Controllers\BSNRankController.cs" />
+    <Compile Include="Controllers\BSNRankingStructureController.cs" />
     <Compile Include="Controllers\BSNScaleController.cs" />
     <Compile Include="Controllers\BSNScaleCriteriaController.cs" />
     <Compile Include="Controllers\BSNTypeController.cs" />
@@ -116,6 +122,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
+    <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,19 +131,25 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\QuickMenu.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\QuickMenu.js" />
     <Content Include="Views\BSNIndustry\Add.aspx" />
     <Content Include="Views\BSNIndustry\Edit.aspx" />
     <Content Include="Views\BSNIndustry\Index.aspx" />
     <Content Include="Views\BSNLine\Add.aspx" />
     <Content Include="Views\BSNLine\Edit.aspx" />
     <Content Include="Views\BSNLine\Index.aspx" />
+    <Content Include="Views\BSNRankingStructure\Add.aspx" />
+    <Content Include="Views\BSNRankingStructure\Edit.aspx" />
+    <Content Include="Views\BSNRankingStructure\Index.aspx" />
     <Content Include="Views\BSNRank\Add.aspx" />
     <Content Include="Views\BSNRank\Edit.aspx" />
     <Content Include="Views\BSNRank\Index.aspx" />
     <Content Include="Views\BSNScaleCriteria\Add.aspx" />
     <Content Include="Views\BSNScaleCriteria\Edit.aspx" />
     <Content Include="Views\BSNScaleCriteria\Index.aspx" />
+    <Content Include="Views\BSNScaleScore\Index.aspx" />
     <Content Include="Views\BSNScale\Add.aspx" />
     <Content Include="Views\BSNScale\Edit.aspx" />
     <Content Include="Views\BSNScale\Index.aspx" />
@@ -182,13 +195,23 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Models\FBDModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+    <None Include="CodeTemplates\AddController\Controller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Controller.cs</LastGenOutput>
+    </None>
+    <None Include="CodeTemplates\AddView\Create.tt">
+    </None>
+    <None Include="CodeTemplates\AddView\Edit.tt">
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />

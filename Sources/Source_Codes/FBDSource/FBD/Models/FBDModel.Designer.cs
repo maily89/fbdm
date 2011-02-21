@@ -43,7 +43,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
 
 // Original file name:
-// Generation date: 2/16/2011 10:36:42 PM
+// Generation date: 2/19/2011 8:22:48 PM
 namespace FBD.Models
 {
     
