@@ -1,62 +1,47 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.BusinessScales>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.BusinessRankingStructure>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit Business Scale
+	Edit
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit Business Scale</h2>
-    
+    <h2>Edit</h2>
     <% Html.EnableClientValidation(); %>
-    <p style="color:Red"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
-    <br />
     
+    <p class="message"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    
+
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         
         <fieldset>
             <legend>Fields</legend>
-            
             <table>
             
                <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.ScaleID) %>
+                            <%= Html.LabelFor(model => model.ID) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.ScaleID, new { @readonly = "true", @disabled = "true" }) %>
-                            <%= Html.HiddenFor(model => model.ScaleID) %>
+                            <%= Html.TextBoxFor(model => model.ID, new { @readonly = "true", @disabled = "true" }) %>
+                            <%= Html.HiddenFor(model => model.ID) %>
                         </div>
                    </td>
                </tr>
                 <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.FromValue) %>
+                            <%= Html.LabelFor(model => model.IndexType) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.FromValue) %>
-                            <%= Html.ValidationMessageFor(model => model.FromValue) %>
-                        </div>
-                   </td>
-               </tr>
-            
-                <tr>
-                    <td>
-                        <div class="editor-label">
-                            <%= Html.LabelFor(model => model.ToValue) %>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.ToValue) %>
-                            <%= Html.ValidationMessageFor(model => model.ToValue) %>
+                            <%= Html.TextBoxFor(model => model.IndexType) %>
+                            <%= Html.ValidationMessageFor(model => model.IndexType) %>
                         </div>
                    </td>
                </tr>
@@ -64,13 +49,27 @@
                 <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.Scale) %>
+                            <%= Html.LabelFor(model => model.AuditedStatus) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.Scale) %>
-                            <%= Html.ValidationMessageFor(model => model.Scale) %>
+                            <%= Html.TextBoxFor(model => model.AuditedStatus) %>
+                            <%= Html.ValidationMessageFor(model => model.AuditedStatus) %>
+                        </div>
+                   </td>
+               </tr>
+            
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.Percentage) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.Percentage) %>
+                            <%= Html.ValidationMessageFor(model => model.Percentage) %>
                         </div>
                    </td>
                </tr>

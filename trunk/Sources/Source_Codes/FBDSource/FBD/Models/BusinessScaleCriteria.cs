@@ -85,6 +85,7 @@ namespace FBD.Models
             entities.AddToBusinessScaleCriteria(scaleCriteria);
             entities.SaveChanges();
         }
+        
         public class BusinessScaleCriteriaMetadata
         {
             [DisplayName("Criteria ID")]

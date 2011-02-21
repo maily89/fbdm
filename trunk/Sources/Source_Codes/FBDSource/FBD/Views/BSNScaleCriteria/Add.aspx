@@ -85,7 +85,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.ValueType) %>
+                        <%= Html.DropDownListFor(m => m.ValueType, new SelectList(new[] { new SelectListItem() { Value = "0", Text = "Character Type", Selected = true }, new SelectListItem() { Value = "1", Text = "Number Type", Selected = false } }))%>
                         <%= Html.ValidationMessageFor(model => model.ValueType) %>
                     </div>
                </td>
@@ -110,6 +110,9 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+<asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
 </asp:Content>
 

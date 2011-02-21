@@ -49,35 +49,42 @@ namespace FBD.Models
         /// delete the industry with the specified id
         /// </summary>
         /// <param name="id"> the id deleted</param>
-        public static void DeleteIndustry(string id)
+        public static int DeleteIndustry(string id)
         {
             FBDEntities entities = new FBDEntities();
             var industry = BusinessIndustries.SelectIndustryByID(id,entities);
             entities.DeleteObject(industry);
-            entities.SaveChanges();
+            int temp=entities.SaveChanges();
+
+            return temp<=0?0:1;
         }
 
         /// <summary>
         /// edit the industry
         /// </summary>
         /// <param name="industry">update the industry</param>
-        public static void EditIndustry(BusinessIndustries industry)
+        public static int EditIndustry(BusinessIndustries industry)
         {
             FBDEntities entities = new FBDEntities();
             var temp = BusinessIndustries.SelectIndustryByID(industry.IndustryID,entities);
             temp.IndustryName = industry.IndustryName;
-            entities.SaveChanges();
+            int result=entities.SaveChanges();
+            return result<=0?0:1;
         }
 
         /// <summary>
         /// add new industry
         /// </summary>
         /// <param name="industry">the industry to add</param>
-        public static void AddIndustry(BusinessIndustries industry)
+        public static int AddIndustry(BusinessIndustries industry)
         {
             FBDEntities entities = new FBDEntities();
+
             entities.AddToBusinessIndustries(industry);
-            entities.SaveChanges();
+
+            int temp= entities.SaveChanges();
+            // return 0 if there is error, 1 otherwise
+            return temp <= 0 ? 0 : 1;
         }
         public class BusinessIndustryMetaData
         {

@@ -1,13 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.BusinessTypes>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Business Type
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Business Type</h2>
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
+    <h3>
+        <%= Html.ActionLink("Create New", "Add") %>
+    </h3>
     <table>
         <tr>
             <th></th>
@@ -38,9 +41,9 @@
 
     </table>
 
-    <p>
+    <h3>
         <%= Html.ActionLink("Create New", "Add") %>
-    </p>
+    </h3>
 
 </asp:Content>
 

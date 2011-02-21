@@ -21,7 +21,10 @@ namespace FBD.Controllers
         public ActionResult Index()
         {
             var scaleScores = BusinessScaleScore.SelectScaleScore();
-
+            BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
+            model.ScaleScore = scaleScores;
+            model.Industry = BusinessIndustries.SelectIndustries();
+            model.Criteria = BusinessScaleCriteria.SelectScaleCriteria();
             return View(scaleScores);
         }
 

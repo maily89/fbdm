@@ -13,11 +13,25 @@ namespace FBD.CommonUtilities
 
         /************** END OF PAGES NAMES ***************/
 
+        /*****************CLASS NAMES *******************/
+        //BUSINESS
+        public const string BUSINESS_INDUSTRY = "Business Industry";
+        public const string BUSINESS_RANKING = "Business Ranking";
+        public const string BUSINESS_RANKING_STRUCTURE = "Business Ranking Structure";
 
+
+        /******************END OF CLASS NAMES
 
         /************** ERROR MESSAGES ****************/
 
+        //ERROR
+        public const string ERR_INDEX = "Error when displaying the list of {0}";
+        public const string ERR_ADD_POST = "Error when adding new {0}. Please recheck your input ";
+        public const string ERR_EDIT = "Error when select the {0}. Please try again";
+        public const string ERR_EDIT_POST = "Error when editting {0}. Please recheck your input ";
+        public const string ERR_DELETE = "Error when deleting the {0}. Try again later";
 
+        
         
         // FINANCIAL INDEX
 
@@ -91,6 +105,14 @@ namespace FBD.CommonUtilities
 
 
         /************** SUCCESSFUL MESSAGES ****************/
+
+        public const string SCC_ADD = "A new {0} has been added successfully";
+
+        public const string SCC_EDIT_POST = "The {0} with ID {1} has been editted successfully";
+
+        public const string SCC_DELETE = "A {0} has been deleted successfully";
+
+
 
         // FINANCIAL INDEX
 
