@@ -23,7 +23,7 @@ namespace FBD.Models
             return group;
         }
 
-        public static SystemUserGroups SelecUserGroupByID(string id, FBDEntities entities)
+        public static SystemUserGroups SelectUserGroupByID(string id, FBDEntities entities)
         {
             var group = entities.SystemUserGroups.First(i => i.GroupID == id);
             return group;
@@ -32,17 +32,12 @@ namespace FBD.Models
         public static int AddUserGroup(SystemUserGroups group)
         {
             FBDEntities entities = new FBDEntities();
-
-            try
-            {
-                entities.AddToSystemUserGroups(group);
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            
+            entities.AddToSystemUserGroups(group);
+            
+            int result = entities.SaveChanges();
+            
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
@@ -54,40 +49,29 @@ namespace FBD.Models
         {
             FBDEntities entities = new FBDEntities();
 
-            try
-            {
-                var temp = SystemUserGroups.SelecUserGroupByID(group.GroupID, entities);
-                temp.GroupName = group.GroupName;
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var temp = SystemUserGroups.SelectUserGroupByID(group.GroupID, entities);
+            temp.GroupName = group.GroupName;
+            
+            int result = entities.SaveChanges();
+            
+            return result <= 0 ? 0 : 1;
         }
 
         public static int DeleteUserGroup(string id)
         {
             FBDEntities entities = new FBDEntities();
 
-            try
-            {
-                var group = SystemUserGroups.SelecUserGroupByID(id, entities);
-                entities.DeleteObject(group);
-                entities.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var group = SystemUserGroups.SelectUserGroupByID(id, entities);
+            entities.DeleteObject(group);
+            int result = entities.SaveChanges();
+            
+            return result <= 0 ? 0 : 1;
         }
 
         public class SystemUserGroupsMetaData
         {
             [DisplayName("Group ID")]
-            [Required(ErrorMessage = "Industry ID is required")]
+            [Required(ErrorMessage = "Group ID is required")]
             [StringLength(10)]
             public string GroupID { get; set; }
 

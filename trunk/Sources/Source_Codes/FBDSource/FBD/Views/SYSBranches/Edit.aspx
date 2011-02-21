@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.SystemUserGroups>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.SystemBranches>" %>
 <asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
 <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
@@ -6,19 +6,19 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit user group
+	Edit branch
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>EDIT THE USER GROUP</h2>
+    <h2>EDIT THE BRANCH</h2>
     
     <% Html.EnableClientValidation(); %>
     <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
-
+        
         <fieldset>
             <legend>Fields</legend>
             
@@ -26,29 +26,45 @@
             <tr>
                 <td>
                     <div class="editor-label">
-                        <%= Html.LabelFor(model => model.GroupID) %>
+                        <%= Html.LabelFor(model => model.BranchID) %>
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBox("id",Model.GroupID,new {@readonly="true", @disabled="true"}) %>
-                        <%= Html.HiddenFor(model => model.GroupID)%>                
+                        <%= Html.TextBoxFor(model => model.BranchID) %>
+                        <%= Html.ValidationMessageFor(model => model.BranchID) %>
                     </div>
                 </td>
             </tr>
+            
             <tr>
                 <td>
                     <div class="editor-label">
-                        <%= Html.LabelFor(model => model.GroupName) %>
+                        <%= Html.LabelFor(model => model.BranchName) %>
                     </div>
                 </td>
-                <td>                
+                <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.GroupName) %>
-                        <%= Html.ValidationMessageFor(model => model.GroupName) %>
+                        <%= Html.TextBoxFor(model => model.BranchName) %>
+                        <%= Html.ValidationMessageFor(model => model.BranchName) %>
                     </div>
                 </td>
             </tr>
+            
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.Active) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.Active) %>
+                        <%= Html.ValidationMessageFor(model => model.Active) %>
+                    </div>
+                </td>
+            </tr>
+            
             <tr>
                 <td>
                     <input type="submit" value="Edit" />
@@ -65,5 +81,7 @@
     <div>
         <%= Html.ActionLink("Back to List", "Index") %>
     </div>
+
 </asp:Content>
+
 
