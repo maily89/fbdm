@@ -84,6 +84,7 @@
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Controllers\BSNScaleScoreController.cs" />
     <Compile Include="Controllers\FILevelsController.cs" />
+    <Compile Include="Controllers\SYSBranchesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
     <Compile Include="Controllers\SYSUserGroupsController.cs" />
@@ -107,6 +108,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FBDModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SystemBranches.cs" />
     <Compile Include="Models\SystemReportingPeriods.cs" />
     <Compile Include="Models\SystemRights.cs" />
     <Compile Include="Models\SystemUserGroups.cs" />
@@ -148,6 +150,9 @@
     <Content Include="Views\FILevels\Add.aspx" />
     <Content Include="Views\FILevels\Edit.aspx" />
     <Content Include="Views\FILevels\Index.aspx" />
+    <Content Include="Views\SYSBranches\Add.aspx" />
+    <Content Include="Views\SYSBranches\Edit.aspx" />
+    <Content Include="Views\SYSBranches\Index.aspx" />
     <Content Include="Views\SYSReportingPeriod\Add.aspx" />
     <Content Include="Views\SYSReportingPeriod\Edit.aspx" />
     <Content Include="Views\SYSReportingPeriod\Index.aspx" />

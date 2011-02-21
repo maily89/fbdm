@@ -1,41 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    public class SYSUserGroupsController : Controller
+    public class SYSBranchesController : Controller
     {
         //
-        // GET: /SYSUserGroups/
+        // GET: /SYSBranches/
 
         public ActionResult Index()
         {
-            List<SystemUserGroups> groups = null;
+            List<SystemBranches> branches = null;
 
             try
             {
-                groups = SystemUserGroups.SelectUserGroups();
-                if (groups == null)
+                branches = SystemBranches.SelectBranches();
+                if (branches == null)
                 {
                     throw new Exception();
                 }
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_INDEX_SYS_USER_GROUPS;
-                return View(groups);
+                TempData["Message"] = Constants.ERR_INDEX_SYS_BRANCHES;
+                return View(branches);
             }
-            return View(groups);
+            return View(branches);
         }
 
 
         //
-        // GET: /SYSUserGroups/Add
+        // GET: /SYSBranches/Add
 
         public ActionResult Add()
         {
@@ -43,16 +42,16 @@ namespace FBD.Controllers
         }
 
         //
-        // POST: /SYSUserGroups/Create
+        // POST: /SYSBranches/Create
 
         [HttpPost]
-        public ActionResult Add(SystemUserGroups group)
+        public ActionResult Add(SystemBranches branch)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    int result = SystemUserGroups.AddUserGroup(group);
+                    int result = SystemBranches.AddBranch(branch);
 
                     if (result == 1)
                     { 
@@ -63,52 +62,52 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_USER_GROUPS;
-                return View(group);
+                TempData["Message"] = Constants.ERR_EDIT_SYS_BRANCHES;
+                return View(branch);
             }
         }
 
         //
-        // GET: /SYSUserGroups/Edit/5
+        // GET: /SYSBranches/Edit/5
 
         public ActionResult Edit(string id)
         {
-            SystemUserGroups group = null;
+            SystemBranches branch = null;
 
             try
             {
-                group = SystemUserGroups.SelectUserGroupByID(id);
+                branch = SystemBranches.SelectBranchByID(id);
 
-                if (group == null)
+                if (branch == null)
                 {
                     throw new Exception();
                 }
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_USER_GROUPS;
-                return View(group);
+                TempData["Message"] = Constants.ERR_EDIT_SYS_BRANCHES;
+                return View(branch);
             }
 
-            return View(group);
+            return View(branch);
         }
 
         //
-        // POST: /SYSUserGroups/Edit/5
+        // POST: /SYSBranches/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(string id, SystemUserGroups group)
+        public ActionResult Edit(string id, SystemBranches branch)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    int result = SystemUserGroups.EditUserGroup(group);
+                    int result = SystemBranches.EditBranch(branch);
 
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_USER_GROUPS_1 + id 
-                                              + Constants.SCC_EDIT_POST_SYS_USER_GROUPS_2;
+                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_BRANCHES_1 + id 
+                                              + Constants.SCC_EDIT_POST_SYS_BRANCHES_2;
                         return RedirectToAction("Index");
                     }
                 }
@@ -118,29 +117,29 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_USER_GROUPS;
-                return View(group);
+                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_BRANCHES;
+                return View(branch);
             }
         }
 
         //
-        // GET: /SYSUserGroups/Delete/5
+        // GET: /SYSBranches/Delete/5
 
         public ActionResult Delete(string id)
         {
             try
             {
-                int result = SystemUserGroups.DeleteUserGroup(id);
+                int result = SystemBranches.DeleteBranch(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = Constants.SCC_DELETE_SYS_USER_GROUPS;
+                    TempData["Message"] = Constants.SCC_DELETE_SYS_BRANCHES;
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_DELETE_SYS_USER_GROUPS;
+                TempData["Message"] = Constants.ERR_DELETE_SYS_BRANCHES;
                 return RedirectToAction("Index");
             }
         }
