@@ -85,7 +85,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.DropDownListFor(m => m.ValueType, new SelectList(new[] { new SelectListItem() { Value = "0", Text = "Character Type", Selected = true }, new SelectListItem() { Value = "1", Text = "Number Type", Selected = false } }))%>
+                        <%= Html.DropDownListFor(m => m.ValueType, FBD.CommonUtilities.DropDownHelper.ValueType)%>
                         <%= Html.ValidationMessageFor(model => model.ValueType) %>
                     </div>
                </td>

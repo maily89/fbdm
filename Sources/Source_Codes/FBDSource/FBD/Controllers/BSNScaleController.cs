@@ -45,7 +45,7 @@ namespace FBD.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scale"></param>
+        /// <param name="scaleScore"></param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult Add(BusinessScales scale)
@@ -86,7 +86,7 @@ namespace FBD.Controllers
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="scale"></param>
+        /// <param name="scaleScore"></param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(string id, BusinessScales scale)
