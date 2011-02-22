@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using Telerik.Web.Mvc;
 
 namespace FBD.Controllers
 {
@@ -12,6 +13,92 @@ namespace FBD.Controllers
     //TODO: check scaleScore name and id unique
     public class BSNScaleScoreController : Controller
     {
+        #region AjaxHandler
+
+        [GridAction]
+        public ActionResult IndexAjax(string IndustryID,string CriteriaID)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(IndustryID) 
+                || string.IsNullOrEmpty(CriteriaID)) 
+                return View(new GridModel());
+
+                //var model = new BSNScaleScoreViewModel();
+                var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
+                //model.ScaleScore = scaleScores;
+
+                return View(new GridModel(scaleScores));
+            }
+            catch (Exception ex)
+            {
+                return View(new GridModel());
+            }
+        }
+
+        [HttpPost]
+        [GridAction]
+        public ActionResult Insert(string IndustryID, string CriteriaID)
+        {
+            if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
+
+            //Create a new instance of the EditableCustomer class.
+            BusinessScaleScore scaleScore = new BusinessScaleScore();
+
+            //Perform model binding (fill the customer properties and validate it).
+            if (TryUpdateModel(scaleScore,"Model.ScaleScore"))
+            {
+                scaleScore.CriteriaID = CriteriaID;
+                scaleScore.IndustryID = IndustryID;
+                BusinessScaleScore.AddScaleScore(scaleScore);
+
+            }
+            var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
+            
+            //Rebind the grid
+            return View(new GridModel(scaleScores));
+        }
+
+        [HttpPost]
+        [GridAction]
+        public ActionResult Update(string IndustryID, string CriteriaID,int id)
+        {
+            if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
+            var entity =new FBDEntities();
+            var scaleScore = BusinessScaleScore.SelectScaleScoreByID(id, entity);
+
+            if (scaleScore != null)
+            {
+                //Perform model binding (fill the customer properties and validate it).
+                if (TryUpdateModel(scaleScore))
+                {
+                    //The model is valid - update the customer and redisplay the grid.
+                    BusinessScaleScore.EditScaleScore(scaleScore);
+                }
+            }
+
+            var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
+
+            //Rebind the grid
+            return View(new GridModel(scaleScores));
+        }
+
+        [HttpPost]
+        [GridAction]
+        public ActionResult Delete(string IndustryID, string CriteriaID,int id)
+        {
+
+            if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
+            //Delete the customer
+            BusinessScaleScore.DeleteScaleScore(id);
+
+
+            var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
+
+            //Rebind the grid
+            return View(new GridModel(scaleScores));
+        }
+        #endregion
         //
         // GET: /BSNScaleScore/
         /// <summary>
@@ -20,123 +107,34 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var scaleScores = BusinessScaleScore.SelectScaleScore();
+            //var scaleScores = BusinessScaleScore.SelectScaleScore();
             BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
-            model.ScaleScore = scaleScores;
+            model.ScaleScore = null;
             model.Industry = BusinessIndustries.SelectIndustries();
             model.Criteria = BusinessScaleCriteria.SelectScaleCriteria();
-            return View(scaleScores);
-        }
-
-        //
-        // GET: /BSNScaleScore/Details/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Details(int id)
-        {
-
-            return View();
-        }
-
-        //
-        // GET: /BSNScaleScore/Add
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Add()
-        {
-            return View();
-        }
-
-        //
-        // POST: /BSNScaleScore/Add
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scaleScore"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult Add(BusinessScaleScore scaleScore)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    BusinessScaleScore.AddScaleScore(scaleScore);
-                }
-                else throw new Exception();
-                TempData["Message"] = "ScaleScore ID " + scaleScore.ScoreID + " have been added sucessfully";
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                TempData["Message"] = ex.Message;
-                return View(scaleScore);
-            }
-        }
-
-        //
-        // GET: /BSNScaleScore/Edit/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Edit(int id)
-        {
-            var model = BusinessScaleScore.SelectScaleScoreByID(id);
             return View(model);
         }
 
         //
-        // POST: /BSNScaleScore/Edit/5
+        // GET: /BSNScaleScore/
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="scaleScore"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(string id, BusinessScaleScore scaleScore)
+        public ActionResult Index(string IndustryID,string CriteriaID)
         {
-            try
-            {
-
-                if (ModelState.IsValid)
-                {
-                    BusinessScaleScore.EditScaleScore(scaleScore);
-
-                }
-                else throw new ArgumentException();
-                TempData["Message"] = "ScaleScoreID " + scaleScore.ScoreID + " have been updated sucessfully";
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                //TODO: Temporary error handle.
-
-                TempData["Message"] = ex.Message;
-                return View(scaleScore);
-            }
+            var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID,CriteriaID);
+            BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
+            model.ScaleScore = null;
+            model.Industry = BusinessIndustries.SelectIndustries();
+            model.Criteria = BusinessScaleCriteria.SelectScaleCriteria();
+            model.IndustryID = IndustryID;
+            model.CriteriaID = CriteriaID;
+            return View(model);
         }
 
-        //
-        // GET: /BSNScaleScore/Delete/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Delete(int id)
-        {
-            BusinessScaleScore.DeleteScaleScore(id);
-            TempData["Message"] = "ScaleScore ID " + id + " have been deleted sucessfully";
-            return RedirectToAction("Index");
-        }
+        
 
 
     }

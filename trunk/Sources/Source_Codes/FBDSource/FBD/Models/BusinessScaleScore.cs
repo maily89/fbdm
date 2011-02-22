@@ -20,6 +20,19 @@ namespace FBD.Models
             return entities.BusinessScaleScore.ToList();
         }
 
+        public static List<BusinessScaleScore> SelectScaleScore(string industryID, string criteriaID)
+        {
+            if (industryID == null || criteriaID == null) return null;
+
+            FBDEntities entities = new FBDEntities();
+            var scores = from score in entities.BusinessScaleScore
+                        where score.IndustryID == industryID && score.CriteriaID == criteriaID
+                        select score;
+
+            return scores.ToList();
+            
+        }
+
         /// <summary>
         /// return the scaleScore specified by id
         /// </summary>
@@ -40,7 +53,7 @@ namespace FBD.Models
         /// <returns>scaleScore</returns>
         public static BusinessScaleScore SelectScaleScoreByID(int id, FBDEntities entities)
         {
-
+            if (entities == null) return null;
             var scaleScore = entities.BusinessScaleScore.First(i => i.ScoreID == id);
             return scaleScore;
         }
@@ -49,20 +62,21 @@ namespace FBD.Models
         /// delete the scaleScore with the specified id
         /// </summary>
         /// <param name="id"> the id deleted</param>
-        public static void DeleteScaleScore(int id)
+        public static int DeleteScaleScore(int id)
         {
             FBDEntities entities = new FBDEntities();
             var scaleScore = BusinessScaleScore.SelectScaleScoreByID(id, entities);
             entities.DeleteObject(scaleScore);
-            entities.SaveChanges();
+            return entities.SaveChanges() <= 0 ? 0 : 1;
         }
 
         /// <summary>
         /// edit the scaleScore
         /// </summary>
         /// <param name="scaleScore">update the scaleScore</param>
-        public static void EditScaleScore(BusinessScaleScore scaleScore)
+        public static int EditScaleScore(BusinessScaleScore scaleScore)
         {
+            if (scaleScore == null) return 0;
             FBDEntities entities = new FBDEntities();
             var temp = BusinessScaleScore.SelectScaleScoreByID(scaleScore.ScoreID, entities);
 
@@ -72,18 +86,23 @@ namespace FBD.Models
             temp.ToValue = scaleScore.ToValue;
             temp.Score = scaleScore.Score;
 
-            entities.SaveChanges();
+            return entities.SaveChanges() <= 0 ? 0 : 1;
         }
 
         /// <summary>
         /// add new scaleScore
         /// </summary>
         /// <param name="scaleScore">the scaleScore to add</param>
-        public static void AddScaleScore(BusinessScaleScore scaleScore)
+        public static int AddScaleScore(BusinessScaleScore scaleScore)
         {
+            if (scaleScore == null) return 0;
+            if (scaleScore.IndustryID == null || scaleScore.CriteriaID == null) return 0;
             FBDEntities entities = new FBDEntities();
+            scaleScore.BusinessIndustries = BusinessIndustries.SelectIndustryByID(scaleScore.IndustryID,entities);
+            scaleScore.BusinessScaleCriteria = BusinessScaleCriteria.SelectScaleCriteriaByID(scaleScore.CriteriaID,entities);
             entities.AddToBusinessScaleScore(scaleScore);
-            entities.SaveChanges();
+            int result=entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         public class BusinessScaleScoreMetaData
         {

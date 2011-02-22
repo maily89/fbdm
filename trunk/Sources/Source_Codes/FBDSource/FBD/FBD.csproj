@@ -70,6 +70,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="Telerik.Web.Mvc, Version=2010.3.1318.235, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Telerik.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeTemplates\AddController\Controller.cs">
@@ -79,6 +83,7 @@
     </Compile>
     <Compile Include="CommonUtilities\Constants.cs" />
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
+    <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
     <Compile Include="Controllers\BSNRankController.cs" />
@@ -131,8 +136,126 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\2010.3.1318\Black\editor.png" />
+    <Content Include="Content\2010.3.1318\Black\loading.gif" />
+    <Content Include="Content\2010.3.1318\Black\sprite.png" />
+    <Content Include="Content\2010.3.1318\Black\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Black\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Black\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Default\editor.png" />
+    <Content Include="Content\2010.3.1318\Default\loading.gif" />
+    <Content Include="Content\2010.3.1318\Default\sprite.png" />
+    <Content Include="Content\2010.3.1318\Default\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Default\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Default\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Forest\editor.png" />
+    <Content Include="Content\2010.3.1318\Forest\loading.gif" />
+    <Content Include="Content\2010.3.1318\Forest\sprite.png" />
+    <Content Include="Content\2010.3.1318\Forest\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Forest\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Forest\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Hay\editor.png" />
+    <Content Include="Content\2010.3.1318\Hay\loading.gif" />
+    <Content Include="Content\2010.3.1318\Hay\sprite.png" />
+    <Content Include="Content\2010.3.1318\Hay\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Hay\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Hay\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Office2007\editor.png" />
+    <Content Include="Content\2010.3.1318\Office2007\loading.gif" />
+    <Content Include="Content\2010.3.1318\Office2007\sprite.png" />
+    <Content Include="Content\2010.3.1318\Office2007\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Office2007\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Office2007\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Outlook\editor.png" />
+    <Content Include="Content\2010.3.1318\Outlook\loading.gif" />
+    <Content Include="Content\2010.3.1318\Outlook\sprite.png" />
+    <Content Include="Content\2010.3.1318\Outlook\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Outlook\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Outlook\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Simple\editor.png" />
+    <Content Include="Content\2010.3.1318\Simple\loading.gif" />
+    <Content Include="Content\2010.3.1318\Simple\sprite.png" />
+    <Content Include="Content\2010.3.1318\Simple\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Simple\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Simple\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Sitefinity\editor.png" />
+    <Content Include="Content\2010.3.1318\Sitefinity\loading.gif" />
+    <Content Include="Content\2010.3.1318\Sitefinity\sprite.png" />
+    <Content Include="Content\2010.3.1318\Sitefinity\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Sitefinity\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Sitefinity\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Sunset\editor.png" />
+    <Content Include="Content\2010.3.1318\Sunset\loading.gif" />
+    <Content Include="Content\2010.3.1318\Sunset\sprite.png" />
+    <Content Include="Content\2010.3.1318\Sunset\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Sunset\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Sunset\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\telerik.black.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.common.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.default.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.forest.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.hay.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.office2007.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.outlook.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.rtl.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.simple.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.sitefinity.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.sunset.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.telerik.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.vista.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.web20.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.webblue.min.css" />
+    <Content Include="Content\2010.3.1318\telerik.windows7.min.css" />
+    <Content Include="Content\2010.3.1318\Telerik\editor.png" />
+    <Content Include="Content\2010.3.1318\Telerik\loading.gif" />
+    <Content Include="Content\2010.3.1318\Telerik\sprite.png" />
+    <Content Include="Content\2010.3.1318\Telerik\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Telerik\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Telerik\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Vista\editor.png" />
+    <Content Include="Content\2010.3.1318\Vista\loading.gif" />
+    <Content Include="Content\2010.3.1318\Vista\sprite.png" />
+    <Content Include="Content\2010.3.1318\Web20\editor.png" />
+    <Content Include="Content\2010.3.1318\Web20\loading.gif" />
+    <Content Include="Content\2010.3.1318\Web20\sprite.png" />
+    <Content Include="Content\2010.3.1318\Web20\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\Web20\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\Web20\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\WebBlue\editor.png" />
+    <Content Include="Content\2010.3.1318\WebBlue\loading.gif" />
+    <Content Include="Content\2010.3.1318\WebBlue\sprite.png" />
+    <Content Include="Content\2010.3.1318\WebBlue\treeview-line.png" />
+    <Content Include="Content\2010.3.1318\WebBlue\treeview-nodes-rtl.png" />
+    <Content Include="Content\2010.3.1318\WebBlue\treeview-nodes.png" />
+    <Content Include="Content\2010.3.1318\Windows7\editor.png" />
+    <Content Include="Content\2010.3.1318\Windows7\loading.gif" />
+    <Content Include="Content\2010.3.1318\Windows7\sprite.png" />
     <Content Include="Content\QuickMenu.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\2010.3.1318\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\2010.3.1318\jquery.validate.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.autocomplete.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.calendar.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.combobox.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.common.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.datepicker.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.datetimepicker.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.draganddrop.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.editor.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.editing.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.filtering.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.grouping.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.reordering.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.grid.resizing.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.list.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.menu.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.panelbar.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.tabstrip.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.textbox.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.timepicker.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.treeview.min.js" />
+    <Content Include="Scripts\2010.3.1318\telerik.window.min.js" />
     <Content Include="Scripts\QuickMenu.js" />
     <Content Include="Views\BSNIndustry\Add.aspx" />
     <Content Include="Views\BSNIndustry\Edit.aspx" />
@@ -198,12 +321,6 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\FBDModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="CodeTemplates\AddController\Controller.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>
@@ -212,6 +329,10 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <EntityDeploy Include="Models\FBDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />
