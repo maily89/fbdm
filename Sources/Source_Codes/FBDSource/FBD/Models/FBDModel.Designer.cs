@@ -43,7 +43,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
 
 // Original file name:
-// Generation date: 2/19/2011 8:22:48 PM
+// Generation date: 2/22/2011 11:07:29 PM
 namespace FBD.Models
 {
     
@@ -1093,10 +1093,12 @@ namespace FBD.Models
         /// Create a new BusinessFinancialIndexLevels object.
         /// </summary>
         /// <param name="levelID">Initial value of LevelID.</param>
-        public static BusinessFinancialIndexLevels CreateBusinessFinancialIndexLevels(decimal levelID)
+        /// <param name="score">Initial value of Score.</param>
+        public static BusinessFinancialIndexLevels CreateBusinessFinancialIndexLevels(decimal levelID, decimal score)
         {
             BusinessFinancialIndexLevels businessFinancialIndexLevels = new BusinessFinancialIndexLevels();
             businessFinancialIndexLevels.LevelID = levelID;
+            businessFinancialIndexLevels.Score = score;
             return businessFinancialIndexLevels;
         }
         /// <summary>
@@ -1125,9 +1127,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Score in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> Score
+        public decimal Score
         {
             get
             {
@@ -1142,8 +1144,8 @@ namespace FBD.Models
                 this.OnScoreChanged();
             }
         }
-        private global::System.Nullable<decimal> _Score;
-        partial void OnScoreChanging(global::System.Nullable<decimal> value);
+        private decimal _Score;
+        partial void OnScoreChanging(decimal value);
         partial void OnScoreChanged();
         /// <summary>
         /// There are no comments for BusinessFinancialIndexScore in the schema.
@@ -2619,10 +2621,12 @@ namespace FBD.Models
         /// Create a new BusinessNonFinancialIndexLevels object.
         /// </summary>
         /// <param name="levelID">Initial value of LevelID.</param>
-        public static BusinessNonFinancialIndexLevels CreateBusinessNonFinancialIndexLevels(decimal levelID)
+        /// <param name="score">Initial value of Score.</param>
+        public static BusinessNonFinancialIndexLevels CreateBusinessNonFinancialIndexLevels(decimal levelID, decimal score)
         {
             BusinessNonFinancialIndexLevels businessNonFinancialIndexLevels = new BusinessNonFinancialIndexLevels();
             businessNonFinancialIndexLevels.LevelID = levelID;
+            businessNonFinancialIndexLevels.Score = score;
             return businessNonFinancialIndexLevels;
         }
         /// <summary>
@@ -2651,9 +2655,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Score in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> Score
+        public decimal Score
         {
             get
             {
@@ -2668,8 +2672,8 @@ namespace FBD.Models
                 this.OnScoreChanged();
             }
         }
-        private global::System.Nullable<decimal> _Score;
-        partial void OnScoreChanging(global::System.Nullable<decimal> value);
+        private decimal _Score;
+        partial void OnScoreChanging(decimal value);
         partial void OnScoreChanged();
         /// <summary>
         /// There are no comments for BusinessNonFinancialIndexScore in the schema.
@@ -3519,8 +3523,6 @@ namespace FBD.Models
     /// </summary>
     /// <KeyProperties>
     /// ScoreID
-    /// CriteriaID
-    /// IndustryID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessScaleScore")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -3531,14 +3533,10 @@ namespace FBD.Models
         /// Create a new BusinessScaleScore object.
         /// </summary>
         /// <param name="scoreID">Initial value of ScoreID.</param>
-        /// <param name="criteriaID">Initial value of CriteriaID.</param>
-        /// <param name="industryID">Initial value of IndustryID.</param>
-        public static BusinessScaleScore CreateBusinessScaleScore(int scoreID, string criteriaID, string industryID)
+        public static BusinessScaleScore CreateBusinessScaleScore(int scoreID)
         {
             BusinessScaleScore businessScaleScore = new BusinessScaleScore();
             businessScaleScore.ScoreID = scoreID;
-            businessScaleScore.CriteriaID = criteriaID;
-            businessScaleScore.IndustryID = industryID;
             return businessScaleScore;
         }
         /// <summary>
@@ -3564,52 +3562,6 @@ namespace FBD.Models
         private int _ScoreID;
         partial void OnScoreIDChanging(int value);
         partial void OnScoreIDChanged();
-        /// <summary>
-        /// There are no comments for Property CriteriaID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string CriteriaID
-        {
-            get
-            {
-                return this._CriteriaID;
-            }
-            set
-            {
-                this.OnCriteriaIDChanging(value);
-                this.ReportPropertyChanging("CriteriaID");
-                this._CriteriaID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("CriteriaID");
-                this.OnCriteriaIDChanged();
-            }
-        }
-        private string _CriteriaID;
-        partial void OnCriteriaIDChanging(string value);
-        partial void OnCriteriaIDChanged();
-        /// <summary>
-        /// There are no comments for Property IndustryID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string IndustryID
-        {
-            get
-            {
-                return this._IndustryID;
-            }
-            set
-            {
-                this.OnIndustryIDChanging(value);
-                this.ReportPropertyChanging("IndustryID");
-                this._IndustryID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("IndustryID");
-                this.OnIndustryIDChanged();
-            }
-        }
-        private string _IndustryID;
-        partial void OnIndustryIDChanging(string value);
-        partial void OnIndustryIDChanged();
         /// <summary>
         /// There are no comments for Property FromValue in the schema.
         /// </summary>
@@ -4087,10 +4039,12 @@ namespace FBD.Models
         /// Create a new IndividualBasicIndexLevels object.
         /// </summary>
         /// <param name="levelID">Initial value of LevelID.</param>
-        public static IndividualBasicIndexLevels CreateIndividualBasicIndexLevels(decimal levelID)
+        /// <param name="score">Initial value of Score.</param>
+        public static IndividualBasicIndexLevels CreateIndividualBasicIndexLevels(decimal levelID, decimal score)
         {
             IndividualBasicIndexLevels individualBasicIndexLevels = new IndividualBasicIndexLevels();
             individualBasicIndexLevels.LevelID = levelID;
+            individualBasicIndexLevels.Score = score;
             return individualBasicIndexLevels;
         }
         /// <summary>
@@ -4119,9 +4073,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Score in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> Score
+        public decimal Score
         {
             get
             {
@@ -4136,8 +4090,8 @@ namespace FBD.Models
                 this.OnScoreChanged();
             }
         }
-        private global::System.Nullable<decimal> _Score;
-        partial void OnScoreChanging(global::System.Nullable<decimal> value);
+        private decimal _Score;
+        partial void OnScoreChanging(decimal value);
         partial void OnScoreChanged();
         /// <summary>
         /// There are no comments for IndividualBasicIndexScore in the schema.
@@ -5000,10 +4954,12 @@ namespace FBD.Models
         /// Create a new IndividualCollateralIndexLevels object.
         /// </summary>
         /// <param name="levelID">Initial value of LevelID.</param>
-        public static IndividualCollateralIndexLevels CreateIndividualCollateralIndexLevels(decimal levelID)
+        /// <param name="score">Initial value of Score.</param>
+        public static IndividualCollateralIndexLevels CreateIndividualCollateralIndexLevels(decimal levelID, decimal score)
         {
             IndividualCollateralIndexLevels individualCollateralIndexLevels = new IndividualCollateralIndexLevels();
             individualCollateralIndexLevels.LevelID = levelID;
+            individualCollateralIndexLevels.Score = score;
             return individualCollateralIndexLevels;
         }
         /// <summary>
@@ -5032,9 +4988,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Score in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> Score
+        public decimal Score
         {
             get
             {
@@ -5049,8 +5005,8 @@ namespace FBD.Models
                 this.OnScoreChanged();
             }
         }
-        private global::System.Nullable<decimal> _Score;
-        partial void OnScoreChanging(global::System.Nullable<decimal> value);
+        private decimal _Score;
+        partial void OnScoreChanging(decimal value);
         partial void OnScoreChanged();
         /// <summary>
         /// There are no comments for IndividualCollateralIndexScore in the schema.
@@ -5577,10 +5533,12 @@ namespace FBD.Models
         /// Create a new SystemBranches object.
         /// </summary>
         /// <param name="branchID">Initial value of BranchID.</param>
-        public static SystemBranches CreateSystemBranches(string branchID)
+        /// <param name="active">Initial value of Active.</param>
+        public static SystemBranches CreateSystemBranches(string branchID, bool active)
         {
             SystemBranches systemBranches = new SystemBranches();
             systemBranches.BranchID = branchID;
+            systemBranches.Active = active;
             return systemBranches;
         }
         /// <summary>
@@ -5632,9 +5590,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Active in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Active
+        public bool Active
         {
             get
             {
@@ -5644,13 +5602,13 @@ namespace FBD.Models
             {
                 this.OnActiveChanging(value);
                 this.ReportPropertyChanging("Active");
-                this._Active = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._Active = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("Active");
                 this.OnActiveChanged();
             }
         }
-        private string _Active;
-        partial void OnActiveChanging(string value);
+        private bool _Active;
+        partial void OnActiveChanging(bool value);
         partial void OnActiveChanged();
         /// <summary>
         /// There are no comments for SystemUsers in the schema.
@@ -5757,10 +5715,12 @@ namespace FBD.Models
         /// Create a new SystemReportingPeriods object.
         /// </summary>
         /// <param name="periodID">Initial value of PeriodID.</param>
-        public static SystemReportingPeriods CreateSystemReportingPeriods(string periodID)
+        /// <param name="active">Initial value of Active.</param>
+        public static SystemReportingPeriods CreateSystemReportingPeriods(string periodID, bool active)
         {
             SystemReportingPeriods systemReportingPeriods = new SystemReportingPeriods();
             systemReportingPeriods.PeriodID = periodID;
+            systemReportingPeriods.Active = active;
             return systemReportingPeriods;
         }
         /// <summary>
@@ -5858,9 +5818,9 @@ namespace FBD.Models
         /// <summary>
         /// There are no comments for Property Active in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Active
+        public bool Active
         {
             get
             {
@@ -5870,13 +5830,13 @@ namespace FBD.Models
             {
                 this.OnActiveChanging(value);
                 this.ReportPropertyChanging("Active");
-                this._Active = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._Active = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("Active");
                 this.OnActiveChanged();
             }
         }
-        private string _Active;
-        partial void OnActiveChanging(string value);
+        private bool _Active;
+        partial void OnActiveChanging(bool value);
         partial void OnActiveChanged();
     }
     /// <summary>

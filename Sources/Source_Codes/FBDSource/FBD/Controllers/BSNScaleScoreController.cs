@@ -46,10 +46,13 @@ namespace FBD.Controllers
             BusinessScaleScore scaleScore = new BusinessScaleScore();
 
             //Perform model binding (fill the customer properties and validate it).
-            if (TryUpdateModel(scaleScore,"Model.ScaleScore"))
+            if (TryUpdateModel(scaleScore))
             {
-                scaleScore.CriteriaID = CriteriaID;
-                scaleScore.IndustryID = IndustryID;
+                //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
+                scaleScore.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", IndustryID);
+                scaleScore.BusinessScaleCriteriaReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessScaleScore", "CriteriaID", CriteriaID);
+                //scaleScore.CriteriaID = CriteriaID;
+                //scaleScore.IndustryID = IndustryID;
                 BusinessScaleScore.AddScaleScore(scaleScore);
 
             }
@@ -73,6 +76,9 @@ namespace FBD.Controllers
                 if (TryUpdateModel(scaleScore))
                 {
                     //The model is valid - update the customer and redisplay the grid.
+                    scaleScore.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", IndustryID);
+                    scaleScore.BusinessScaleCriteriaReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessScaleScore", "CriteriaID", CriteriaID);
+                
                     BusinessScaleScore.EditScaleScore(scaleScore);
                 }
             }
