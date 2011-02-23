@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FBD.Models;
+using FBD.ViewModels;
+
 
 namespace FBD.Controllers
 {
@@ -11,95 +14,25 @@ namespace FBD.Controllers
         //
         // GET: /SYSDecentralization/
 
-        public ActionResult Index()
+        public ActionResult Index( string GroupID)
         {
-            return View();
-        }
+            var userGroup = SystemUserGroups.SelectUserGroups();
+            var model = new SYSUserGroupsRightsViewModel();
+            model.UserGroups = userGroup;
 
-        //
-        // GET: /SYSDecentralization/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /SYSDecentralization/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /SYSDecentralization/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            if (GroupID != null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var group = SystemUserGroups.SelectUserGroupByID(GroupID);
+                model.GroupID = group.GroupID;
+                model.GroupName = group.GroupName;
+                group.SystemUserGroupsRights.Load();
+                //model.Rights = group.SystemUserGroupsRights;
             }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /SYSDecentralization/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        //
-        // POST: /SYSDecentralization/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /SYSDecentralization/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /SYSDecentralization/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var temp = SystemRights.SelectRights();
+            model.Rights = temp;
+            
+            return View(model);
+        }        
     }
 }

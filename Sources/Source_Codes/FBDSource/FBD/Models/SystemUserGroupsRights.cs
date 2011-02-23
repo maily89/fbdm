@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace FBD.Models
 {
     [MetadataType(typeof(SystemUserGroupRightMetadata))]
-    public partial class SystemUserGroupsRights
+    public partial class SystemUserGroupsRights 
     {
         public static List<SystemUserGroupsRights> SelectUserGroupRights()
         {
@@ -24,28 +24,29 @@ namespace FBD.Models
             return temp;
         }
 
+        public static bool CheckUserGroupRight()
+        {
+            FBDEntities entities = new FBDEntities();
+            var temp = entities.SystemUserGroupsRights.First(m => (m.SystemRights.RightID == "1") && (m.SystemUserGroups.GroupID == "2"));
+            if (temp == null) return false;
+            return true;
+        }
+
         public static SystemUserGroupsRights SelectUserGroupRightByID(int id, FBDEntities entities)
         {
             var temp = entities.SystemUserGroupsRights.First(i => i.ID == id);
             return temp;
         }
-        
-        public static int AddUserGroupsRight(SystemUserGroupsRights userGroupRight, FBDEntities entities)
-        {
-            entities.AddToSystemUserGroupsRights(userGroupRight);
-            int result = entities.SaveChanges();
 
-            return result <= 0 ? 0 : 1;
+
+        public static void EditUserGroupsRight(SystemUserGroupsRights userGroupRight)
+        {
+            FBDEntities entities = new FBDEntities();
+            
+            
         }
 
-        //public static int EditUserGroupsRight(SystemUserGroupsRights userGroupRight)
-        //{
-        //    FBDEntities entities = new FBDEntities();
-        //    var temp = SystemUserGroupsRights.SelectUserGroupRightByID(userGroupRight.ID, entities);
-            
-        //}
-
-        [Bind (Exclude="ID")]
+        [Bind (Exclude="RightID")]
         public class SystemUserGroupRightMetadata
         {
             [ScaffoldColumn(false)]

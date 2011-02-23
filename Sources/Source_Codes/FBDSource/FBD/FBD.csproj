@@ -295,6 +295,7 @@
     <Content Include="Views\SYSRights\Add.aspx" />
     <Content Include="Views\SYSRights\Edit.aspx" />
     <Content Include="Views\SYSRights\Index.aspx" />
+    <Content Include="Views\SYSUserGroupsRights\Index.aspx" />
     <Content Include="Views\SYSUserGroups\Add.aspx" />
     <Content Include="Views\SYSUserGroups\Edit.aspx" />
     <Content Include="Views\SYSUserGroups\Index.aspx" />
