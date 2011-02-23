@@ -26,7 +26,7 @@ namespace FBD.Models
 
             FBDEntities entities = new FBDEntities();
             var scores = from score in entities.BusinessScaleScore
-                        where score.IndustryID == industryID && score.CriteriaID == criteriaID
+                        where score.BusinessIndustries.IndustryID == industryID && score.BusinessScaleCriteria.CriteriaID == criteriaID
                         select score;
 
             return scores.ToList();
@@ -80,9 +80,11 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var temp = BusinessScaleScore.SelectScaleScoreByID(scaleScore.ScoreID, entities);
 
-            temp.CriteriaID = scaleScore.CriteriaID;
+            temp.BusinessScaleCriteriaReference.EntityKey = scaleScore.BusinessScaleCriteriaReference.EntityKey;
+            temp.BusinessIndustriesReference.EntityKey = scaleScore.BusinessIndustriesReference.EntityKey;
+            //temp.CriteriaID = scaleScore.CriteriaID;
             temp.FromValue = scaleScore.FromValue;
-            temp.IndustryID = scaleScore.IndustryID;
+            //temp.IndustryID = scaleScore.IndustryID;
             temp.ToValue = scaleScore.ToValue;
             temp.Score = scaleScore.Score;
 
@@ -96,10 +98,8 @@ namespace FBD.Models
         public static int AddScaleScore(BusinessScaleScore scaleScore)
         {
             if (scaleScore == null) return 0;
-            if (scaleScore.IndustryID == null || scaleScore.CriteriaID == null) return 0;
+            //if (scaleScore. == null || scaleScore.CriteriaID == null) return 0;
             FBDEntities entities = new FBDEntities();
-            scaleScore.BusinessIndustries = BusinessIndustries.SelectIndustryByID(scaleScore.IndustryID,entities);
-            scaleScore.BusinessScaleCriteria = BusinessScaleCriteria.SelectScaleCriteriaByID(scaleScore.CriteriaID,entities);
             entities.AddToBusinessScaleScore(scaleScore);
             int result=entities.SaveChanges();
             return result <= 0 ? 0 : 1;
@@ -110,16 +110,6 @@ namespace FBD.Models
         	[DisplayName("Score ID")]
         	[Required]
             public int ScoreID { get; set; }
-        		
-        	[DisplayName("Criteria ID")]
-        	[Required]
-        	[StringLength(2)]
-            public string CriteriaID { get; set; }
-        		
-        	[DisplayName("Industry ID")]
-        	[Required]
-        	[StringLength(3)]
-            public string IndustryID { get; set; }
         		
         	[DisplayName("From Value")]
             public Nullable<decimal> FromValue { get; set; }

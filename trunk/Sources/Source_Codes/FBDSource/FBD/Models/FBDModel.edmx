@@ -22,16 +22,7 @@
           <EntitySet Name="BusinessRanks" EntityType="FBDModel.Store.BusinessRanks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BusinessScaleCriteria" EntityType="FBDModel.Store.BusinessScaleCriteria" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BusinessScales" EntityType="FBDModel.Store.BusinessScales" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BusinessScaleScore" EntityType="FBDModel.Store.BusinessScaleScore" store:Type="Tables" store:Schema="dbo" store:Name="BusinessScaleScore">
-            <DefiningQuery>SELECT 
-      [BusinessScaleScore].[ScoreID] AS [ScoreID], 
-      [BusinessScaleScore].[CriteriaID] AS [CriteriaID], 
-      [BusinessScaleScore].[IndustryID] AS [IndustryID], 
-      [BusinessScaleScore].[FromValue] AS [FromValue], 
-      [BusinessScaleScore].[ToValue] AS [ToValue], 
-      [BusinessScaleScore].[Score] AS [Score]
-      FROM [dbo].[BusinessScaleScore] AS [BusinessScaleScore]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="BusinessScaleScore" EntityType="FBDModel.Store.BusinessScaleScore" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BusinessTypes" EntityType="FBDModel.Store.BusinessTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="IndividualBasicIndex" EntityType="FBDModel.Store.IndividualBasicIndex" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="IndividualBasicIndexLevels" EntityType="FBDModel.Store.IndividualBasicIndexLevels" store:Type="Tables" Schema="dbo" />
@@ -196,7 +187,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
-          <Property Name="Score" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="decimal" Nullable="false" Precision="10" Scale="3" />
         </EntityType>
         <EntityType Name="BusinessFinancialIndexProportion">
           <Key>
@@ -279,7 +270,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
-          <Property Name="Score" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="decimal" Nullable="false" Precision="10" Scale="3" />
         </EntityType>
         <EntityType Name="BusinessNonFinancialIndexScore">
           <Key>
@@ -333,14 +324,9 @@
           <Property Name="ToValue" Type="decimal" Precision="10" Scale="3" />
           <Property Name="Scale" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'D:\LEARNING\DOAN_DATAMINING\SVN\SOURCES\SOURCE_CODES\FBDSOURCE\FBD\APP_DATA\FBD.MDF.dbo.BusinessScaleScore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="BusinessScaleScore">
           <Key>
             <PropertyRef Name="ScoreID" />
-            <PropertyRef Name="CriteriaID" />
-            <PropertyRef Name="IndustryID" />
           </Key>
           <Property Name="ScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CriteriaID" Type="char" Nullable="false" MaxLength="2" />
@@ -372,7 +358,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
-          <Property Name="Score" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="decimal" Nullable="false" Precision="10" Scale="3" />
         </EntityType>
         <EntityType Name="IndividualBasicIndexProportion">
           <Key>
@@ -428,7 +414,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="decimal" Nullable="false" Precision="10" />
-          <Property Name="Score" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="decimal" Nullable="false" Precision="10" Scale="3" />
         </EntityType>
         <EntityType Name="IndividualCollateralIndexScore">
           <Key>
@@ -466,7 +452,7 @@
           </Key>
           <Property Name="BranchID" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="BranchName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Active" Type="varchar" MaxLength="1" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemCustomerTypes">
           <Key>
@@ -483,7 +469,7 @@
           <Property Name="PeriodName" Type="nvarchar" MaxLength="50" />
           <Property Name="FromDate" Type="datetime" />
           <Property Name="ToDate" Type="datetime" />
-          <Property Name="Active" Type="varchar" MaxLength="1" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemRights">
           <Key>
@@ -1636,7 +1622,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Score" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
           <NavigationProperty Name="BusinessFinancialIndexScore" Relationship="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" FromRole="BusinessFinancialIndexLevels" ToRole="BusinessFinancialIndexScore" />
         </EntityType>
         <EntityType Name="BusinessFinancialIndexProportion">
@@ -1731,7 +1717,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Score" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
           <NavigationProperty Name="BusinessNonFinancialIndexScore" Relationship="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" FromRole="BusinessNonFinancialIndexLevels" ToRole="BusinessNonFinancialIndexScore" />
         </EntityType>
         <EntityType Name="BusinessNonFinancialIndexScore">
@@ -1791,12 +1777,8 @@
         <EntityType Name="BusinessScaleScore">
           <Key>
             <PropertyRef Name="ScoreID" />
-            <PropertyRef Name="CriteriaID" />
-            <PropertyRef Name="IndustryID" />
           </Key>
           <Property Name="ScoreID" Type="Int32" Nullable="false" />
-          <Property Name="CriteriaID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
-          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
           <Property Name="FromValue" Type="Decimal" Precision="30" Scale="3" />
           <Property Name="ToValue" Type="Decimal" Precision="30" Scale="3" />
           <Property Name="Score" Type="Decimal" Precision="10" Scale="3" />
@@ -1830,7 +1812,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Score" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
           <NavigationProperty Name="IndividualBasicIndexScore" Relationship="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" FromRole="IndividualBasicIndexLevels" ToRole="IndividualBasicIndexScore" />
         </EntityType>
         <EntityType Name="IndividualBasicIndexProportion">
@@ -1891,7 +1873,7 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Score" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Score" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
           <NavigationProperty Name="IndividualCollateralIndexScore" Relationship="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" FromRole="IndividualCollateralIndexLevels" ToRole="IndividualCollateralIndexScore" />
         </EntityType>
         <EntityType Name="IndividualCollateralIndexScore">
@@ -1931,7 +1913,7 @@
           </Key>
           <Property Name="BranchID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="BranchName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="SystemUsers" Relationship="FBDModel.SystemUsers_SystemBranches_Delete" FromRole="SystemBranches" ToRole="SystemUsers" />
         </EntityType>
         <EntityType Name="SystemCustomerTypes">
@@ -1949,7 +1931,7 @@
           <Property Name="PeriodName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="FromDate" Type="DateTime" />
           <Property Name="ToDate" Type="DateTime" />
-          <Property Name="Active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemRights">
           <Key>
@@ -2053,14 +2035,6 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessScaleScore" Type="FBDModel.BusinessScaleScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustries">
-              <PropertyRef Name="IndustryID" />
-            </Principal>
-            <Dependent Role="BusinessScaleScore">
-              <PropertyRef Name="IndustryID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete">
           <End Role="BusinessNonFinancialIndex" Type="FBDModel.BusinessNonFinancialIndex" Multiplicity="1">
@@ -2109,14 +2083,6 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Role="BusinessScaleScore" Type="FBDModel.BusinessScaleScore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessScaleCriteria">
-              <PropertyRef Name="CriteriaID" />
-            </Principal>
-            <Dependent Role="BusinessScaleScore">
-              <PropertyRef Name="CriteriaID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="IndividualBasicIndexProportion_IndividualBasicIndex_Delete">
           <End Role="IndividualBasicIndex" Type="FBDModel.IndividualBasicIndex" Multiplicity="1">
@@ -2358,8 +2324,6 @@
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.BusinessScaleScore)">
               <MappingFragment StoreEntitySet="BusinessScaleScore">
                 <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
-                <ScalarProperty Name="CriteriaID" ColumnName="CriteriaID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
                 <ScalarProperty Name="FromValue" ColumnName="FromValue" />
                 <ScalarProperty Name="ToValue" ColumnName="ToValue" />
                 <ScalarProperty Name="Score" ColumnName="Score" />
@@ -2635,8 +2599,6 @@
             </EndProperty>
             <EndProperty Name="BusinessScaleScore">
               <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
-              <ScalarProperty Name="CriteriaID" ColumnName="CriteriaID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete" TypeName="FBDModel.BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete" StoreEntitySet="BusinessNFIProportionByIndustry">
@@ -2703,8 +2665,6 @@
             </EndProperty>
             <EndProperty Name="BusinessScaleScore">
               <ScalarProperty Name="ScoreID" ColumnName="ScoreID" />
-              <ScalarProperty Name="CriteriaID" ColumnName="CriteriaID" />
-              <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="IndividualBasicIndexProportion_IndividualBasicIndex_Delete" TypeName="FBDModel.IndividualBasicIndexProportion_IndividualBasicIndex_Delete" StoreEntitySet="IndividualBasicIndexProportion">
@@ -2836,26 +2796,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="FBDModel">
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.5" PointY="0.5" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="24.625" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="8.875" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexScore" Width="1.5" PointX="6" PointY="14.5" Height="2.55719075520833" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessIndustries" Width="1.5" PointX="0.75" PointY="11.375" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessLines" Width="1.5" PointX="3" PointY="12" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByIndustry" Width="1.5" PointX="3" PointY="14.875" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.75" PointY="7.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="0.75" PointY="2.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="8.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexScore" Width="1.5" PointX="3" PointY="5.25" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessIndustries" Width="1.5" PointX="0.75" PointY="11.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessLines" Width="1.5" PointX="3" PointY="11.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByIndustry" Width="1.5" PointX="3" PointY="14.625" Height="1.7879850260416657" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionByType" Width="1.5" PointX="6" PointY="19.625" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionCalculated" Width="1.5" PointX="6" PointY="11.75" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndex" Width="1.5" PointX="3.75" PointY="17.5" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="3.125" Height="1.59568359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexScore" Width="1.5" PointX="6" PointY="8.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNFIProportionCalculated" Width="1.5" PointX="6" PointY="11.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndex" Width="1.5" PointX="3.75" PointY="20.375" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexLevels" Width="1.5" PointX="3.75" PointY="24.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessNonFinancialIndexScore" Width="1.5" PointX="6" PointY="14.375" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessRankingStructure" Width="1.5" PointX="13.75" PointY="5.125" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessRanks" Width="1.5" PointX="13.75" PointY="8.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScaleCriteria" Width="1.5" PointX="0.75" PointY="5.625" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScales" Width="1.5" PointX="3.75" PointY="27" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessScaleScore" Width="1.5" PointX="3" PointY="5.5" Height="2.5571907552083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.BusinessTypes" Width="1.5" PointX="3.75" PointY="21.875" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndex" Width="1.5" PointX="5.75" PointY="32.625" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexLevels" Width="1.5" PointX="5.75" PointY="30.25" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScaleCriteria" Width="1.5" PointX="3.75" PointY="1.5" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScales" Width="1.5" PointX="0.75" PointY="5.125" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessScaleScore" Width="1.5" PointX="6" PointY="8.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessTypes" Width="1.5" PointX="3.75" PointY="17.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndex" Width="1.5" PointX="5.75" PointY="29.625" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexLevels" Width="1.5" PointX="5.75" PointY="27.25" Height="1.5956835937500031" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexProportion" Width="1.5" PointX="8" PointY="4" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.IndividualBasicIndexScore" Width="1.5" PointX="8" PointY="0.75" Height="2.364889322916667" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.IndividualBasicRanks" Width="1.5" PointX="10.75" PointY="2.375" Height="2.172587890625" IsExpanded="true" />
@@ -2873,141 +2833,128 @@
         <EntityTypeShape EntityType="FBDModel.SystemUserGroupsRights" Width="1.5" PointX="11" PointY="9" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.SystemUsers" Width="1.5" PointX="11" PointY="5.625" Height="2.3648893229166648" IsExpanded="true" />
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="0.59375" PointY="3.0571907552083335" />
-          <ConnectorPoint PointX="0.59375" PointY="9.7689925130208337" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="9.7689925130208337" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="9.7689925130208337" />
-          <ConnectorPoint PointX="3" PointY="9.7689925130208337" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="9.4660953776041659" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="9.4660953776041659" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="9.4660953776041659" />
+          <ConnectorPoint PointX="3" PointY="9.4660953776041659" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="0.6250025" PointY="3.0571907552083335" />
-          <ConnectorPoint PointX="0.6250025" PointY="16.891337890625" />
-          <ConnectorPoint PointX="4.041666666666667" PointY="16.891337890625" />
-          <ConnectorPoint PointX="4.208333333333333" PointY="16.891337890625" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="16.891337890625" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="16.891337890625" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="16.891337890625" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="16.891337890625" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="16.891337890625" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="16.891337890625" />
-          <ConnectorPoint PointX="6" PointY="16.891337890625" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="7.75" />
+          <ConnectorPoint PointX="1.5" PointY="7.3552864583333335" />
+          <ConnectorPoint PointX="2.5" PointY="7.3552864583333335" />
+          <ConnectorPoint PointX="2.5" PointY="6.5285953776041667" />
+          <ConnectorPoint PointX="3" PointY="6.5285953776041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessFinancialIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="25.422841796875" />
-          <ConnectorPoint PointX="5.625" PointY="25.422841796875" />
-          <ConnectorPoint PointX="5.625" PointY="15.6644169453125" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="15.6644169453125" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="15.6644169453125" />
-          <ConnectorPoint PointX="6" PointY="15.6644169453125" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="4.0403857421875" />
+          <ConnectorPoint PointX="3.34375" PointY="4.0403857421875" />
+          <ConnectorPoint PointX="3.34375" PointY="5.25" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexProportion_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="11.375" />
-          <ConnectorPoint PointX="1.5" PointY="10.247241269531251" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="10.247241269531251" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="10.247241269531251" />
-          <ConnectorPoint PointX="3" PointY="10.247241269531251" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="12.49974609375" />
+          <ConnectorPoint PointX="2.625" PointY="12.49974609375" />
+          <ConnectorPoint PointX="2.625" PointY="9.9707922018229169" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="9.9707922018229169" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="9.9707922018229169" />
+          <ConnectorPoint PointX="3" PointY="9.9707922018229169" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="14.1244921875" />
-          <ConnectorPoint PointX="1.5" PointY="14.65625" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="14.65625" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="14.65625" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="14.65625" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="14.65625" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="14.65625" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="14.65625" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="14.65625" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="14.65625" />
-          <ConnectorPoint PointX="6" PointY="14.65625" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="11.781121046875" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="11.781121046875" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="11.781121046875" />
+          <ConnectorPoint PointX="2.75" PointY="11.781121046875" />
+          <ConnectorPoint PointX="2.75" PointY="7.19914506640625" />
+          <ConnectorPoint PointX="3" PointY="7.19914506640625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessFinancialIndexScore_BusinessScales_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="27.990143229166666" />
-          <ConnectorPoint PointX="5.75" PointY="27.990143229166666" />
-          <ConnectorPoint PointX="5.75" PointY="16.27787741796875" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="16.27787741796875" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="16.27787741796875" />
-          <ConnectorPoint PointX="6" PointY="16.27787741796875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="5.8267976888020829" />
+          <ConnectorPoint PointX="3" PointY="5.8267976888020829" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessLines_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="12.797841796875" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="12.797841796875" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="12.797841796875" />
-          <ConnectorPoint PointX="3" PointY="12.797841796875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="12.98521484375" />
+          <ConnectorPoint PointX="3" PointY="12.98521484375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByIndustry_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="14.1244921875" />
-          <ConnectorPoint PointX="1.9062525" PointY="15.768992513020834" />
-          <ConnectorPoint PointX="3" PointY="15.768992513020834" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="13.8744921875" />
+          <ConnectorPoint PointX="1.5" PointY="15.518992513020834" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="15.518992513020834" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="15.518992513020834" />
+          <ConnectorPoint PointX="3" PointY="15.518992513020834" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="11.84375" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="11.84375" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="11.84375" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="11.84375" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="11.84375" />
-          <ConnectorPoint PointX="6" PointY="11.84375" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="11.5780605234375" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="11.578060523437499" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="11.5780605234375" />
+          <ConnectorPoint PointX="6" PointY="11.5780605234375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="11.375" />
-          <ConnectorPoint PointX="1.9062525" PointY="10.857687174479167" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="10.857687174479167" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="10.857687174479167" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="10.857687174479167" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="10.857687174479167" />
-          <ConnectorPoint PointX="6" PointY="10.857687174479167" /></AssociationConnector>
+          <ConnectorPoint PointX="1.9062525" PointY="13.8744921875" />
+          <ConnectorPoint PointX="1.9062525" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="3.2916661666666664" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="3.4583328333333334" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="16.607687174479167" />
+          <ConnectorPoint PointX="6" PointY="16.607687174479167" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessScaleScore_BusinessIndustries_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="13.492418992187499" />
-          <ConnectorPoint PointX="2.625" PointY="13.492418992187499" />
-          <ConnectorPoint PointX="2.625" PointY="6.7785953776041659" />
-          <ConnectorPoint PointX="3" PointY="6.7785953776041659" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="11.125" />
+          <ConnectorPoint PointX="1.5" PointY="10.662985026041667" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.662985026041666" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.662985026041667" />
+          <ConnectorPoint PointX="5.625" PointY="10.662985026041667" />
+          <ConnectorPoint PointX="5.625" PointY="9.5862939453125" />
+          <ConnectorPoint PointX="6" PointY="9.5862939453125" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.125" PointY="17.5" />
-          <ConnectorPoint PointX="4.125" PointY="16.662985026041667" /></AssociationConnector>
+          <ConnectorPoint PointX="3.75" PointY="21.845896809895834" />
+          <ConnectorPoint PointX="3.3749995" PointY="21.845896809895834" />
+          <ConnectorPoint PointX="3.3749995" PointY="16.412985026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByType_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="20.033396809895834" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="20.033396809895834" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="20.033396809895834" />
-          <ConnectorPoint PointX="6" PointY="20.033396809895834" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="20.893992513020834" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="20.893992513020834" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="20.893992513020834" />
+          <ConnectorPoint PointX="6" PointY="20.893992513020834" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByType_BusinessTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="22.768992513020834" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="22.768992513020834" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="22.768992513020834" />
-          <ConnectorPoint PointX="6.75" PointY="22.768992513020834" />
-          <ConnectorPoint PointX="6.75" PointY="21.412985026041667" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="18.643992513020834" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="18.643992513020834" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="18.643992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="18.643992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="19.625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.90625" PointY="17.5" />
-          <ConnectorPoint PointX="4.90625" PointY="13.694235026041666" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="13.694235026041666" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="13.694235026041666" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="13.694235026041666" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="13.694235026041666" />
-          <ConnectorPoint PointX="6" PointY="13.694235026041666" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="22.136645066406253" />
+          <ConnectorPoint PointX="5.625" PointY="22.136645066406253" />
+          <ConnectorPoint PointX="5.625" PointY="12.560425490885416" />
+          <ConnectorPoint PointX="6" PointY="12.560425490885416" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="22.290744256510415" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="22.290744256510415" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="22.290744256510415" />
-          <ConnectorPoint PointX="5.875" PointY="22.290744256510415" />
-          <ConnectorPoint PointX="5.875" PointY="12.768992513020834" />
-          <ConnectorPoint PointX="6" PointY="12.768992513020834" /></AssociationConnector>
+          <ConnectorPoint PointX="4.90625" PointY="17.75" />
+          <ConnectorPoint PointX="4.90625" PointY="13.444235026041666" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="13.444235026041666" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="13.444235026041666" />
+          <ConnectorPoint PointX="6" PointY="13.444235026041666" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.1093775" PointY="17.5" />
-          <ConnectorPoint PointX="5.1093775" PointY="8.71875" />
-          <ConnectorPoint PointX="6" PointY="8.71875" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="21.515318789713543" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="21.515318789713543" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="21.515318789713543" />
+          <ConnectorPoint PointX="5.75" PointY="21.515318789713543" />
+          <ConnectorPoint PointX="5.75" PointY="15.460091587239582" />
+          <ConnectorPoint PointX="6" PointY="15.460091587239582" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.83593875" PointY="4.72068359375" />
-          <ConnectorPoint PointX="4.83593875" PointY="10.760333600260417" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="10.760333600260417" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="10.760333600260417" />
-          <ConnectorPoint PointX="6" PointY="10.760333600260417" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="25.547841796875" />
+          <ConnectorPoint PointX="5.875" PointY="25.547841796875" />
+          <ConnectorPoint PointX="5.875" PointY="16.033889380859375" />
+          <ConnectorPoint PointX="6" PointY="16.033889380859375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessScaleScore_BusinessScaleCriteria_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.1392976888020829" />
-          <ConnectorPoint PointX="3" PointY="6.1392976888020829" /></AssociationConnector>
+          <ConnectorPoint PointX="4.90625" PointY="3.672587890625" />
+          <ConnectorPoint PointX="4.90625" PointY="10.569235026041667" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="10.569235026041667" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="10.569235026041667" />
+          <ConnectorPoint PointX="6" PointY="10.569235026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexProportion_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="33.903595377604162" />
-          <ConnectorPoint PointX="8.34375" PointY="33.903595377604162" />
+          <ConnectorPoint PointX="7.25" PointY="30.903595377604166" />
+          <ConnectorPoint PointX="8.34375" PointY="30.903595377604166" />
           <ConnectorPoint PointX="8.34375" PointY="5.7879850260416674" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.5" PointY="32.625" />
-          <ConnectorPoint PointX="6.5" PointY="32.09568359375" />
-          <ConnectorPoint PointX="7.75" PointY="32.09568359375" />
+          <ConnectorPoint PointX="6.5" PointY="29.625" />
+          <ConnectorPoint PointX="6.5" PointY="29.095683593750003" />
+          <ConnectorPoint PointX="7.75" PointY="29.095683593750003" />
           <ConnectorPoint PointX="7.75" PointY="1.9324446614583333" />
           <ConnectorPoint PointX="8" PointY="1.9324446614583333" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="31.047841796875" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="31.047841796875" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="31.047841796875" />
-          <ConnectorPoint PointX="7.875" PointY="31.047841796875" />
+          <ConnectorPoint PointX="7.25" PointY="28.047841796875" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="28.047841796875" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="28.047841796875" />
+          <ConnectorPoint PointX="7.875" PointY="28.047841796875" />
           <ConnectorPoint PointX="7.875" PointY="3.489889322916667" />
           <ConnectorPoint PointX="8.75" PointY="3.489889322916667" />
           <ConnectorPoint PointX="8.75" PointY="3.114889322916667" /></AssociationConnector>
