@@ -7,5 +7,9 @@ namespace FBD.CommonUtilities
 {
     public class DateTimeHandler
     {
+        public static bool IsToDateLaterThanFromDate(DateTime? toDate, DateTime? fromDate)
+        {
+            return toDate > fromDate ? true : false;
+        }
     }
 }

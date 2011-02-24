@@ -45,10 +45,10 @@
                 <%= Html.Encode(item.PeriodName) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.FromDate)) %>
+                <%= Html.Encode(String.Format("{0:dd-MMM-yyyy}", item.FromDate)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ToDate)) %>
+                <%= Html.Encode(String.Format("{0:dd-MMM-yyyy}", item.ToDate)) %>
             </td>
             <td>
                 <%= Html.Encode(item.Active) %>

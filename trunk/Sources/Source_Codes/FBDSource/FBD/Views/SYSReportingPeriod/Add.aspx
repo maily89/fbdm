@@ -55,7 +55,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.DisplayFor(model => model.FromDate) %>
+                        <%= Html.Telerik().DatePickerFor(model => model.FromDate).Format("dd-MMM-yyyy")%>
                     </div>
                 </td>
             </tr>
@@ -67,7 +67,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.EditorFor(model => model.ToDate) %>
+                        <%= Html.Telerik().DatePickerFor(model => model.ToDate).Format("dd-MMM-yyyy")%>
                     </div>
                 </td>
             </tr>
