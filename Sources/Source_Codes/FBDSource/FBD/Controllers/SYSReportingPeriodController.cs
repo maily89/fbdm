@@ -74,6 +74,11 @@ namespace FBD.Controllers
                 if (ModelState.IsValid)
                 {
                     int result = SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
+                    if (result == 2)
+                    {
+                        TempData["Message"] = Constants.ERR_TO_DATE_LESS_THAN_FROM_DATE;
+                        return View(reportingPeriod);
+                    }
                     if (result == 1)
                     {
                         TempData["Message"] = Constants.SCC_ADD_POST_SYS_REPORTING_PERIODS;

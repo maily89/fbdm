@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -53,10 +54,14 @@ namespace FBD.Models
         /// <param name="reportingPeriod">Contains information for new Period</param>
         /// <returns>
         /// 1: if OK
-        /// 0: if ERROR</returns>
+        /// 0: if ERROR
+        /// 2: DateTime error
+        /// </returns>
         public static int AddReportingPeriod(SystemReportingPeriods reportingPeriod)
         {
             FBDEntities entities = new FBDEntities();
+            if (DateTimeHandler.IsToDateLaterThanFromDate(reportingPeriod.FromDate, reportingPeriod.ToDate))
+                return 2;
             entities.AddToSystemReportingPeriods(reportingPeriod);
             int result = entities.SaveChanges();
             return result <= 0 ? 0 : 1;
