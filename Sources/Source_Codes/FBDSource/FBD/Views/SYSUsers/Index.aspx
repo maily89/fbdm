@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.SYSUsersViewModel>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.SYSUsersIndexViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	User
@@ -9,6 +9,9 @@
     <h2>MANAGING USERS</h2>
     
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
+    <h3>
+        <%= Html.ActionLink("Add New User", "Add") %>
+    </h3>
     <br />
         User Groups List 
     <br />
