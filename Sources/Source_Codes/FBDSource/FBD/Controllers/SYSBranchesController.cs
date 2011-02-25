@@ -54,8 +54,9 @@ namespace FBD.Controllers
                     int result = SystemBranches.AddBranch(branch);
 
                     if (result == 1)
-                    { 
-                       //TempData["Message"] = Constants.
+                    {
+                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_BRANCHES;
+                        return RedirectToAction("Index");
                     }
                 }
                 throw new Exception();
