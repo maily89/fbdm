@@ -94,6 +94,11 @@ namespace FBD.CommonUtilities
         public const string ERR_DELETE_SYS_RIGHTS = "ERR_DELETE_SYS_RIGHTS";
 
         //SYSTEM USERS
+        public const string ERR_INDEX_SYS_USERS = "ERR_INDEX_SYS_USERS";
+        public const string ERR_ADD_POST_SYS_USERS = "ERR_ADD_POST_SYS_USERS";
+        public const string ERR_EDIT_SYS_USERS = "ERR_EDIT_SYS_RIGHTS";
+        public const string ERR_EDIT_POST_SYS_USERS = "ERR_EDIT_POST_SYS_USERS";
+        public const string ERR_DELETE_SYS_USERS = "ERR_DELETE_SYS_USERS";
 
         //SYSTEM DECENTRALIZATION
         public const string ERR_INDEX_SYS_DECENTRALIZATION = "ERR_INDEX_SYS_DECENTRALIZATION";
@@ -164,7 +169,11 @@ namespace FBD.CommonUtilities
         public const string SCC_DELETE_SYS_RIGHTS = "SCC_DELETE_SYS_RIGHTS";
         
         //SYSTEM USERS
-
+        public const string SCC_ADD_POST_SYS_USERS = "SCC_ADD_POST_SYS_USERS";
+        public const string SCC_EDIT_POST_SYS_USERS_1 = "SCC_EDIT_POST_SYS_USERS_1";
+        public const string SCC_EDIT_POST_SYS_USERS_2 = "SCC_EDIT_POST_SYS_USERS_2";
+        public const string SCC_DELETE_SYS_USERS = "SCC_DELETE_SYS_USERS";
+        
         //SYSTEM DECENTRALIZATION
         public const string SCC_ADD_POST_SYS_DECENTRALIZATION = "SCC_ADD_POST_SYS_DECENTRALIZATION";
         public const string SCC_EDIT_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_1";

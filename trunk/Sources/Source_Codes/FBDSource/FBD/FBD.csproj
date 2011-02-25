@@ -100,6 +100,7 @@
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
     <Compile Include="Controllers\SYSUserGroupsController.cs" />
     <Compile Include="Controllers\SYSRightsController.cs" />
+    <Compile Include="Controllers\SYSUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,11 +125,13 @@
     <Compile Include="Models\SystemRights.cs" />
     <Compile Include="Models\SystemUserGroups.cs" />
     <Compile Include="Models\SystemUserGroupsRights.cs" />
+    <Compile Include="Models\SystemUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
+    <Compile Include="ViewModels\SYSUsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\FBD.mdf">
@@ -299,6 +302,7 @@
     <Content Include="Views\SYSUserGroups\Add.aspx" />
     <Content Include="Views\SYSUserGroups\Edit.aspx" />
     <Content Include="Views\SYSUserGroups\Index.aspx" />
+    <Content Include="Views\SYSUsers\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />
