@@ -10,7 +10,7 @@
     
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
     <h3>
-        <%= Html.ActionLink("Add New User Group", "Add") %>
+        <%= Html.ActionLink("Add New Branch", "Add") %>
     </h3>
     <table>
         <tr>
