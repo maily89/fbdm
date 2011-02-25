@@ -131,6 +131,7 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
+    <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +303,8 @@
     <Content Include="Views\SYSUserGroups\Add.aspx" />
     <Content Include="Views\SYSUserGroups\Edit.aspx" />
     <Content Include="Views\SYSUserGroups\Index.aspx" />
+    <Content Include="Views\SYSUsers\Add.aspx" />
+    <Content Include="Views\SYSUsers\Edit.aspx" />
     <Content Include="Views\SYSUsers\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />

@@ -49,9 +49,9 @@
             </th>
         </tr>
 
-    <% if (Model.SystemUsers != null)
+    <% if (Model.Users != null)
        {    
-            foreach (var item in Model) { %>
+            foreach (var item in Model.Users) { %>
     
         <tr>
             <td>
