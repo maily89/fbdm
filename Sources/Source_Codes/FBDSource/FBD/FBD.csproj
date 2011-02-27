@@ -95,6 +95,7 @@
     <Compile Include="Controllers\FIFinancialIndexController.cs" />
     <Compile Include="Controllers\BSNScaleScoreController.cs" />
     <Compile Include="Controllers\FILevelsController.cs" />
+    <Compile Include="Controllers\FIProportionController.cs" />
     <Compile Include="Controllers\SYSBranchesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
@@ -106,6 +107,7 @@
     </Compile>
     <Compile Include="Models\BusinessFinancialIndex.cs" />
     <Compile Include="Models\BusinessFinancialIndexLevels.cs" />
+    <Compile Include="Models\BusinessFinancialIndexProportion.cs" />
     <Compile Include="Models\BusinessIndustries.cs" />
     <Compile Include="Models\BusinessLines.cs" />
     <Compile Include="Models\BusinessRankingStructure.cs" />
@@ -130,16 +132,13 @@
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\FIProportionRowViewModel.cs" />
+    <Compile Include="ViewModels\FIProportionViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FBD.mdf">
-    </Content>
-    <Content Include="App_Data\FBD_log.ldf">
-      <DependentUpon>FBD.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\2010.3.1318\Black\editor.png" />
     <Content Include="Content\2010.3.1318\Black\loading.gif" />
     <Content Include="Content\2010.3.1318\Black\sprite.png" />
@@ -290,6 +289,7 @@
     <Content Include="Views\FILevels\Add.aspx" />
     <Content Include="Views\FILevels\Edit.aspx" />
     <Content Include="Views\FILevels\Index.aspx" />
+    <Content Include="Views\FIProportion\Index.aspx" />
     <Content Include="Views\SYSBranches\Add.aspx" />
     <Content Include="Views\SYSBranches\Edit.aspx" />
     <Content Include="Views\SYSBranches\Index.aspx" />
@@ -343,6 +343,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\props\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\text-base\" />
