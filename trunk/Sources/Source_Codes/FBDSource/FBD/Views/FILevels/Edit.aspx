@@ -23,24 +23,44 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.LevelID) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBox("id", Model.LevelID, new { @readonly = "true", @disabled = "true" })%>
-                <%= Html.HiddenFor(model => model.LevelID)%>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Score) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Score)%>
-                <%= Html.ValidationMessageFor(model => model.Score)%>
-            </div>
-            
-            <input type="submit" value="Save" />
-            <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+            <table>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.LevelID) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBox("id", Model.LevelID, new { @readonly = "true", @disabled = "true" })%>
+                            <%= Html.HiddenFor(model => model.LevelID)%>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.Score) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.Score)%>
+                            <%= Html.ValidationMessageFor(model => model.Score)%>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <input type="submit" value="Save" />
+                    </td>
+                    <td>
+                        <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                    </td>
+                </tr>
+            </table>
             
         </fieldset>
 

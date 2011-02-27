@@ -37,15 +37,9 @@ namespace FBD.Models
 
             BusinessFinancialIndexLevels businessFinancialIndexLevels = null;
 
-            try
-            {
-                // Get the business financial index from the entities model with the inputted ID
-                businessFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            // Get the business financial index from the entities model with the inputted ID
+            businessFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
+           
             return businessFinancialIndexLevels;
         }
 
@@ -60,19 +54,13 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            try
-            {
-                // Add new business financial index level with the inputted information to the entities
-                FBDModel.AddToBusinessFinancialIndexLevels(businessFinancialIndexLevels);
+            // Add new business financial index level with the inputted information to the entities
+            FBDModel.AddToBusinessFinancialIndexLevels(businessFinancialIndexLevels);
 
-                // Save changes to the Database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            // Save changes to the Database
+            int temp = FBDModel.SaveChanges();
+
+            return temp <= 0 ? 0 : 1;    
         }
 
         /// <summary>
@@ -86,24 +74,18 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            try
-            {
-                // Select the financial index to be updated from database
-                var temp = FBDModel.BusinessFinancialIndexLevels.First(level => 
-                                                level.LevelID == businessFinancialIndexLevels.LevelID);
+            // Select the financial index to be updated from database
+            var temp = FBDModel.BusinessFinancialIndexLevels.First(level => 
+                                            level.LevelID == businessFinancialIndexLevels.LevelID);
 
-                // Update the financial index to the entities
-                temp.Score = businessFinancialIndexLevels.Score;
+            // Update the financial index to the entities
+            temp.Score = businessFinancialIndexLevels.Score;
 
-                // Save changes to the database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            // Save changes to the database
+            int result = FBDModel.SaveChanges();
 
-            return 1;
+            return result <= 0 ? 0 : 1;
+
         }
 
         /// <summary>
@@ -116,21 +98,15 @@ namespace FBD.Models
         public static int DeleteFinancialIndexLevels(Decimal id)
         {
             FBDEntities FBDModel = new FBDEntities();
-            try
-            {
-                var financialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
+            var financialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
 
-                // Delete business financial index from entities
-                FBDModel.DeleteObject(financialIndexLevels);
+            // Delete business financial index from entities
+            FBDModel.DeleteObject(financialIndexLevels);
 
-                // Save changes to the database
-                FBDModel.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            // Save changes to the database
+            int temp = FBDModel.SaveChanges();
+
+            return temp <= 0 ? 0 : 1;
         }
 
         public class BusinessFinancialIndexLevelsMetaData
