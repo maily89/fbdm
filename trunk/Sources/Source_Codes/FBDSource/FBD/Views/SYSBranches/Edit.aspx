@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>EDIT THE BRANCH</h2>
+    <h2>EDIT SYSTEM BRANCH</h2>
     
     <% Html.EnableClientValidation(); %>
     <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
@@ -59,8 +59,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.Active) %>
-                        <%= Html.ValidationMessageFor(model => model.Active) %>
+                        <%= Html.CheckBoxFor(model => model.Active) %>
                     </div>
                 </td>
             </tr>

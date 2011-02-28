@@ -16,22 +16,29 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            List<SystemUsers> users = null;
+            var branch = SystemBranches.SelectBranches();
+            var model = new SYSUsersIndexViewModel();
+            model.Branches = branch;
+            var temp = SystemUsers.SelectUsers();
+            model.Users = temp;
 
-            try
-            {
-                users = SystemUsers.SelectUsers();
-                if (users == null)
-                {
-                    throw new Exception();
-                }
-            }
-            catch (Exception)
-            {
-                TempData["Message"] = Constants.ERR_INDEX_SYS_USERS;
-                return View(users);
-            }
-            return View(users);
+            return View(model);
+            //List<SystemUsers> users = null;
+
+            //try
+            //{
+            //    users = SystemUsers.SelectUsers();
+            //    if (users == null)
+            //    {
+            //        throw new Exception();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    TempData["Message"] = Constants.ERR_INDEX_SYS_USERS;
+            //    return View(users);
+            //}
+            //return View(users);
         }
 
         //
@@ -121,14 +128,12 @@ namespace FBD.Controllers
                     user.SystemUserGroups = SystemUserGroups.SelectUserGroupByID(data.GroupID, entity);
                     user.SystemBranches = SystemBranches.SelectBranchByID(data.BranchID, entity);
 
-                    int result = SystemUsers.EditUser(user);
-                    if (result == 1)
-                    {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_USERS_1 + id + Constants.SCC_EDIT_POST_SYS_USERS_2;
-                        return RedirectToAction("Index");
-                    }
+                    SystemUsers.EditUser(user);
+                    
                 }
-                throw new Exception();
+                else throw new Exception();
+                TempData["Message"] = Constants.SCC_EDIT_POST_SYS_USERS_1 + id + Constants.SCC_EDIT_POST_SYS_USERS_2;
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {

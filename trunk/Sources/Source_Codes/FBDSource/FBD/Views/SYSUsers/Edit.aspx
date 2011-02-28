@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.Models.SystemUsers>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.SYSUsersViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit user
+	Edit system user
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -22,26 +22,55 @@
                <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.UserID) %>
+                            <%= Html.LabelFor(model => model.SystemUsers.UserID) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.UserID, new { @readonly = "true", @disabled = "true" }) %>
-                            <%= Html.HiddenFor(model => model.UserID) %>
+                            <%= Html.TextBoxFor(model => model.SystemUsers.UserID, new { @readonly = "true", @disabled = "true" }) %>
+                            <%= Html.HiddenFor(model => model.SystemUsers.UserID) %>
                         </div>
                    </td>
                </tr>
-                <tr>
+               
+               <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.FullName) %>
+                            <%= Html.LabelFor(model => model.GroupID) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.FullName) %>
-                            <%= Html.ValidationMessageFor(model => model.FullName) %>
+                            <%= Html.DropDownList("Group", new SelectList(Model.SystemUserGroups as IEnumerable,
+                            "GroupID", "GroupName", Model != null ? Model.GroupID : null))%>
+                        </div>
+                   </td>
+               </tr>
+               
+               <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.BranchID) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.DropDownList("Branch", new SelectList(Model.SystemBranches as IEnumerable,
+                            "BranchID", "BranchName", Model != null ? Model.BranchID : null))%>
+                        </div>
+                   </td>
+               </tr>
+               
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <%= Html.LabelFor(model => model.SystemUsers.FullName) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <%= Html.TextBoxFor(model => model.SystemUsers.FullName) %>
+                            <%= Html.ValidationMessageFor(model => model.SystemUsers.FullName) %>
                         </div>
                    </td>
                </tr>
@@ -49,13 +78,13 @@
                 <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.Password) %>
+                            <%= Html.LabelFor(model => model.SystemUsers.Password) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.Password) %>
-                            <%= Html.ValidationMessageFor(model => model.Password) %>
+                            <%= Html.TextBoxFor(model => model.SystemUsers.Password) %>
+                            <%= Html.ValidationMessageFor(model => model.SystemUsers.Password) %>
                         </div>
                    </td>
                </tr>
@@ -63,13 +92,13 @@
                 <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.Status) %>
+                            <%= Html.LabelFor(model => model.SystemUsers.Status) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.Status) %>
-                            <%= Html.ValidationMessageFor(model => model.Status) %>
+                            <%= Html.TextBoxFor(model => model.SystemUsers.Status) %>
+                            <%= Html.ValidationMessageFor(model => model.SystemUsers.Status) %>
                         </div>
                    </td>
                </tr>
@@ -77,13 +106,13 @@
                 <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.CreditDepartment) %>
+                            <%= Html.LabelFor(model => model.SystemUsers.CreditDepartment) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.CreditDepartment) %>
-                            <%= Html.ValidationMessageFor(model => model.CreditDepartment) %>
+                            <%= Html.TextBoxFor(model => model.SystemUsers.CreditDepartment) %>
+                            <%= Html.ValidationMessageFor(model => model.SystemUsers.CreditDepartment) %>
                         </div>
                    </td>
                </tr>
