@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.SystemBranches>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Branch
+	System branch
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -9,9 +9,9 @@
     <h2>MANAGING BRANCHES</h2>
     
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
-    <h3>
+    <p>
         <%= Html.ActionLink("Add New Branch", "Add") %>
-    </h3>
+    </p>
     <table>
         <tr>
             <th></th>
@@ -25,7 +25,6 @@
         <tr>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.BranchID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.BranchID })%> |
                 <%= Html.ActionLink("Delete", "Delete", new { id=item.BranchID })%>
             </td>
             <td>

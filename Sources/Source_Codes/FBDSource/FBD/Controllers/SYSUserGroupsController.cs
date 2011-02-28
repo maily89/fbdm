@@ -55,8 +55,9 @@ namespace FBD.Controllers
                     int result = SystemUserGroups.AddUserGroup(group);
 
                     if (result == 1)
-                    { 
-                       //TempData["Message"] = Constants.
+                    {
+                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_USER_GROUPS;
+                        return RedirectToAction("Index");
                     }
                 }
                 throw new Exception();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,8 +26,8 @@ namespace FBD.Models
 
         public static SystemUsers SelectUserByID(string id, FBDEntities entities)
         {
-            var User = entities.SystemUsers.First(i => i.UserID == id);
-            return User;
+            var user = entities.SystemUsers.First(i => i.UserID == id);
+            return user;
         }
 
         public static int AddUser(SystemUsers user)
@@ -40,10 +41,11 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
-        public static void AddUser(SystemUsers user, FBDEntities entity)
+        public static int AddUser(SystemUsers user, FBDEntities entity)
         { 
             entity.AddToSystemUsers(user);
-            entity.SaveChanges();
+            int result = entity.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
@@ -100,7 +102,7 @@ namespace FBD.Models
 
             [DisplayName("Credit Department")]
             [StringLength(50)]
-            public string CreditDepartmeent { get; set; }
+            public string CreditDepartment { get; set; }
         }
     }
 }

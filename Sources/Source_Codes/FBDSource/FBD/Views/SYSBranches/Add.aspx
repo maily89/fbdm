@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>ADD NEW A BRANCH</h2>
+    <h2>ADD NEW BRANCH</h2>
 
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
@@ -55,8 +55,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.Active) %>
-                        <%= Html.ValidationMessageFor(model => model.Active) %>
+                        <%= Html.CheckBoxFor(model => model.Active) %>
                     </div>
                 </td>
             </tr>

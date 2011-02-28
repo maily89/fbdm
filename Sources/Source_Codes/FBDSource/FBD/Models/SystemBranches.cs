@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -76,12 +77,13 @@ namespace FBD.Models
             public string BranchID { get; set; }
 
             [DisplayName("Branch Name")]
+            [Required(ErrorMessage = "Branch Name is required")]
             [StringLength(50)]
             public string BranchName { get; set; }
 
-            [DisplayName("Active")]
-            [StringLength(1)]
-            public string Active { get; set; }
+            //[DisplayName("Active")]
+            //[StringLength(1)]
+            //public string Active { get; set; }
         }
     }
 }
