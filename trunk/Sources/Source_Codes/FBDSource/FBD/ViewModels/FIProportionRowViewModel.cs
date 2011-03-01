@@ -9,6 +9,8 @@ namespace FBD.ViewModels
     {
         public bool Checked = false;
 
+        public int ProportionID = -1;
+
         public string IndexID;
 
         public string IndexName;

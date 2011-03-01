@@ -12,20 +12,24 @@
 
     <table>
         <tr>
+            <% using (Html.BeginForm())
+                { %>
             <td>
                 <%= Html.Label("Choose an industry") %>
             </td>
         
-            <td>
-                <% using (Html.BeginForm())
-                   { %>
-                <%= Html.DropDownList("IndustryID", new SelectList(Model.Industries as IEnumerable,
-                            "IndustryID", "IndustryName", Model.IndustryID))%>
+            <td>                
+                <%= Html.DropDownList("Industry", new SelectList(Model.Industries as IEnumerable, "IndustryID", "IndustryName", 
+                                                            Model.IndustryID), new { onchange = "this.form.submit();" })%>
             </td>
-                
+            <% } %>    
         </tr>
         
-        <tr>
+        <% using (Html.BeginForm())
+            { %>
+        <tr>            
+            <%= Html.HiddenFor(model => model.IndustryID) %>
+            <%= Html.Hidden("NumberOfProportionRows", Model.ProportionRows.Count) %>
             <td>
                 <%= Html.Label("Financial Index Proportion") %>
             </td>
@@ -42,7 +46,9 @@
                     <% for (int i = 0; i < Model.ProportionRows.Count(); i++ )
                        { %>
                     <tr>
-                        <td>
+                        <%= Html.Hidden("Model.ProportionRows.Index",i) %>
+                        <%= Html.HiddenFor(model => model.ProportionRows[i].ProportionID) %>
+                        <td>                            
                             <% if (Model.ProportionRows[i].LeafIndex == true)
                                { %>
                             <%= Html.CheckBoxFor(model => model.ProportionRows[i].Checked)%>
@@ -55,28 +61,37 @@
                         
                         <td>
                             <%= Model.ProportionRows[i].IndexID %>
+                            <%= Html.HiddenFor(model => model.ProportionRows[i].IndexID) %>
                         </td>
                         
                         <td>
                             <%= Model.ProportionRows[i].IndexName %>
+                            <%= Html.HiddenFor(model => model.ProportionRows[i].IndexName) %>
                         </td>
                         
                         <td>
-                            <%= Html.TextBoxFor(model => model.ProportionRows[i].Proportion) %>
+                            <% if (Model.ProportionRows[i].LeafIndex == false)
+                               { %>
+                                100%
+                            <% }
+                               else
+                               {%>
+                                <%= Html.TextBoxFor(model => model.ProportionRows[i].Proportion) %> %
+                            <% } %>
                         </td>
                     </tr>
                     <% } %>
                 </table>
-            </td>
+            </td>            
         </tr>
         
         <tr>
             <td></td>
             
             <td>
-                <input type="submit" value="Save Changes" />
+                <input type="submit" name="Save" value="Save" />
             </td>
         </tr>
-        <%} %>
+        <% } %>    
     </table>
 </asp:Content>
