@@ -30,7 +30,7 @@ namespace FBD.Controllers
 
                 return View(new GridModel(scaleScores));
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return View(new GridModel());
             }

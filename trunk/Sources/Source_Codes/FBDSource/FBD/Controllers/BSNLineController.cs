@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 namespace FBD.Controllers
 {
     public class BSNLineController : Controller
@@ -14,24 +15,38 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            var industry = BusinessIndustries.SelectIndustries();
-            var model = new BSNLineIndexViewModel();
-            model.Industries = industry;
-            var temp = BusinessLines.SelectLines();
+            
+            BSNLineIndexViewModel model = new BSNLineIndexViewModel();
+            try
+            {
+                var temp = BusinessLines.SelectLines();
+                List<BusinessIndustries> industry = BusinessIndustries.SelectIndustries();
+                model.Industries = industry;
+                #region Commented
+                //int temp = 0;
+                //if (industryID!= null && industryID > 0 && industryID < industry.Count) 
+                //{
+                //    temp = industryID.Value;
 
-            //int temp = 0;
-            //if (industryID!= null && industryID > 0 && industryID < industry.Count) 
-            //{
-            //    temp = industryID.Value;
-                
-            //}
-            //if (industry.Count > 0)
-            //{
-            //    model.IndustryID = temp;
-            //    model.IndustryName = industry[temp].IndustryName;
-            //    model.Lines = industry[temp].BusinessLines.ToList();
-            //}
-            model.Lines = temp;
+                //}
+                //if (industry.Count > 0)
+                //{
+                //    model.IndustryID = temp;
+                //    model.IndustryName = industry[temp].IndustryName;
+                //    model.Lines = industry[temp].BusinessLines.ToList();
+                //}
+                #endregion
+                model.Lines = temp;
+
+                if (industry == null || temp == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
+            }
             return View(model);
         }
 
@@ -39,22 +54,29 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(string IndustryID)
         {
-            var industries = BusinessIndustries.SelectIndustries();
-            var model = new BSNLineIndexViewModel();
-            model.Industries = industries;
-            int temp = 0;
-
-            if (IndustryID != null)
-            {
-                var industry = BusinessIndustries.SelectIndustryByID(IndustryID);
-                model.IndustryName = industry.IndustryName;
-                model.IndustryID = IndustryID;
-                industry.BusinessLines.Load();
-                model.Lines = industry.BusinessLines.ToList();
-
-            }
-            else model.Lines = BusinessLines.SelectLines();
             
+            var model = new BSNLineIndexViewModel();
+            try
+            {
+                var industries = BusinessIndustries.SelectIndustries();
+                model.Industries = industries;
+
+
+                if (IndustryID != null)
+                {
+                    var industry = BusinessIndustries.SelectIndustryByID(IndustryID);
+                    model.IndustryName = industry.IndustryName;
+                    model.IndustryID = IndustryID;
+                    industry.BusinessLines.Load();
+                    model.Lines = industry.BusinessLines.ToList();
+
+                }
+                else model.Lines = BusinessLines.SelectLines();
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
+            }
             return View(model);
         }
 
@@ -85,12 +107,12 @@ namespace FBD.Controllers
                     BusinessLines.AddLine(line,entity);
                 }
                 else throw new Exception();
-                TempData["Message"] = "New Line has been added successfully";
+                TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_LINE); 
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_LINE);
                 data.BusinessIndustries = BusinessIndustries.SelectIndustries();
                 return View(data);
             }
@@ -102,10 +124,17 @@ namespace FBD.Controllers
         public ActionResult Edit(int id)
         {
             var model = new BSNLineViewModel();
-            model.BusinessIndustries = BusinessIndustries.SelectIndustries();
-            model.BusinessLines = BusinessLines.SelectLineByID(id);
-            model.BusinessLines.BusinessIndustriesReference.Load();
-            model.IndustryID = model.BusinessLines.BusinessIndustries.IndustryID;
+            try
+            {
+                model.BusinessIndustries = BusinessIndustries.SelectIndustries();
+                model.BusinessLines = BusinessLines.SelectLineByID(id);
+                model.BusinessLines.BusinessIndustriesReference.Load();
+                model.IndustryID = model.BusinessLines.BusinessIndustries.IndustryID;
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_LINE);
+            }
             return View(model);
             
         }
@@ -143,27 +172,19 @@ namespace FBD.Controllers
  
         public ActionResult Delete(int id)
         {
-            BusinessLines.DeleteLine(id);
-            TempData["Message"] = "Line ID " + id + " have been deleted sucessfully";
-            return RedirectToAction("Index");
-        }
-
-        //
-        // POST: /BSNLine/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
- 
+                if (BusinessLines.DeleteLine(id) != 1) throw new Exception();
+                TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_LINE);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_LINE);
+                return RedirectToAction("Index");
             }
         }
+
+        
     }
 }

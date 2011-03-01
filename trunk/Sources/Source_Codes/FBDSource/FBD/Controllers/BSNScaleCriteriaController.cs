@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -20,23 +21,22 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var scaleCriteria = BusinessScaleCriteria.SelectScaleCriteria();
-
+            List<BusinessScaleCriteria> scaleCriteria = null;
+            try
+            {
+                 scaleCriteria= BusinessScaleCriteria.SelectScaleCriteria();
+                 if (scaleCriteria == null)
+                 {
+                     throw new Exception();
+                 }
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_SCALECRITERIA);
+            }
             return View(scaleCriteria);
         }
 
-        //
-        // GET: /BSNScaleCriteria/Details/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Details(int id)
-        {
-
-            return View();
-        }
 
         //
         // GET: /BSNScaleCriteria/Add
@@ -63,15 +63,19 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BusinessScaleCriteria.AddScaleCriteria(scaleCriteria);
+                    int result=BusinessScaleCriteria.AddScaleCriteria(scaleCriteria);
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_SCALECRITERIA);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "ScaleCriteria ID " + scaleCriteria.CriteriaID + " have been added sucessfully";
-                return RedirectToAction("Index");
+                throw new Exception();
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_SCALECRITERIA);
                 return View(scaleCriteria);
             }
         }
@@ -85,7 +89,19 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var model = BusinessScaleCriteria.SelectScaleCriteriaByID(id);
+            BusinessScaleCriteria model = null;
+            try
+            {
+                model = BusinessScaleCriteria.SelectScaleCriteriaByID(id);
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_SCALECRITERIA);
+            }
             return View(model);
         }
 
@@ -105,18 +121,22 @@ namespace FBD.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    BusinessScaleCriteria.EditScaleCriteria(scaleCriteria);
+                    int result=BusinessScaleCriteria.EditScaleCriteria(scaleCriteria);
 
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALECRITERIA, id);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new ArgumentException();
-                TempData["Message"] = "ScaleCriteriaID " + scaleCriteria.CriteriaID + " have been updated sucessfully";
-                return RedirectToAction("Index");
+
+                throw new Exception();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALECRITERIA);
                 return View(scaleCriteria);
             }
         }
@@ -130,9 +150,22 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            BusinessScaleCriteria.DeleteScaleCriteria(id);
-            TempData["Message"] = "ScaleCriteria ID " + id + " have been deleted sucessfully";
-            return RedirectToAction("Index");
+            try
+            {
+                int result= BusinessScaleCriteria.DeleteScaleCriteria(id);
+                if (result == 1)
+                {
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_SCALECRITERIA);
+                    return RedirectToAction("Index");
+                }
+
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_SCALECRITERIA);
+                return RedirectToAction("Index");
+            }
         }
 
 

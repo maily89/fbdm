@@ -25,32 +25,38 @@ namespace FBD.Models
 
         public static BusinessTypes SelectTypeByID(string id,FBDEntities entities)
         {
-            
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             var type = entities.BusinessTypes.First(i => i.TypeID == id);
             return type;
         }
 
-        public static void DeleteType(string id)
+        public static int DeleteType(string id)
         {
+            if (string.IsNullOrEmpty(id)) return 0;
             FBDEntities entities = new FBDEntities();
             var type = BusinessTypes.SelectTypeByID(id,entities);
             entities.DeleteObject(type);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
-        public static void EditType(BusinessTypes type)
+        public static int EditType(BusinessTypes type)
         {
+            if (type == null) return 0;
             FBDEntities entities = new FBDEntities();
             var temp = BusinessTypes.SelectTypeByID(type.TypeID,entities);
             temp.TypeName = type.TypeName;
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
-        public static void AddType(BusinessTypes type)
+        public static int AddType(BusinessTypes type)
         {
+            if (type == null) return 0;
             FBDEntities entities = new FBDEntities();
             entities.AddToBusinessTypes(type);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         public class BusinessTypeMetaData
         {

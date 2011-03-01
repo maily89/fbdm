@@ -16,6 +16,7 @@ namespace FBD.Models
         }
         public static BusinessScales SelectScaleByID(string id)
         {
+            if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
             var scale = entities.BusinessScales.First(i => i.ScaleID == id);
             return scale;
@@ -23,34 +24,45 @@ namespace FBD.Models
 
         public static BusinessScales SelectScaleByID(string id, FBDEntities entities)
         {
-
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             var scale = entities.BusinessScales.First(i => i.ScaleID == id);
             return scale;
         }
 
-        public static void DeleteScale(string id)
+        public static int DeleteScale(string id)
         {
+            if (string.IsNullOrEmpty(id)) return 0;
+
             FBDEntities entities = new FBDEntities();
             var scale = BusinessScales.SelectScaleByID(id, entities);
             entities.DeleteObject(scale);
-            entities.SaveChanges();
+
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
-        public static void EditScale(BusinessScales scale)
+        public static int EditScale(BusinessScales scale)
         {
+            if (scale == null) return 0;
+
             FBDEntities entities = new FBDEntities();
             var temp = BusinessScales.SelectScaleByID(scale.ScaleID, entities);
             temp.Scale = scale.Scale;
             temp.FromValue = scale.FromValue;
             temp.ToValue = scale.ToValue;
-            entities.SaveChanges();
+
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
-        public static void AddScale(BusinessScales scale)
+        public static int AddScale(BusinessScales scale)
         {
+            if (scale == null) return 0;
+
             FBDEntities entities = new FBDEntities();
             entities.AddToBusinessScales(scale);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         public class BusinessScalesMetaData
         {

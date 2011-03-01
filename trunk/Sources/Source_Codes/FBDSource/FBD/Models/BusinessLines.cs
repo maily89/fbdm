@@ -26,32 +26,36 @@ namespace FBD.Models
 
         public static BusinessLines SelectLineByID(int id, FBDEntities entities)
         {
-
+            if (entities == null) return null;
             var line = entities.BusinessLines.First(i => i.LineID == id);
             return line;
         }
 
-        public static void DeleteLine(int id)
+        public static int DeleteLine(int id)
         {
             FBDEntities entities = new FBDEntities();
             var line = BusinessLines.SelectLineByID(id, entities);
             entities.DeleteObject(line);
-            entities.SaveChanges();
+            int result=entities.SaveChanges();
+            return result<=0?0:1;
         }
 
-        public static void EditLine(BusinessLines line)
+        public static int EditLine(BusinessLines line)
         {
             FBDEntities entities = new FBDEntities();
             var temp = BusinessLines.SelectLineByID(line.LineID, entities);
             temp.LineName = line.LineName;
             temp.BusinessIndustries = BusinessIndustries.SelectIndustryByID(line.BusinessIndustries.IndustryID, entities);
-            entities.SaveChanges();
+            int result=entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
-        public static void AddLine(BusinessLines line,FBDEntities entities)
+        public static int AddLine(BusinessLines line,FBDEntities entities)
         {
+            if (line == null || entities == null) return 0;
             entities.AddToBusinessLines(line);
-            entities.SaveChanges();
+            int result=entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         [Bind(Exclude="LineID")]
         public class BusinessLinesMetaData
