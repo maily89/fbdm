@@ -55,6 +55,7 @@ namespace FBD.Models
                     {
                         row.Checked = true;
                         row.Proportion = (decimal)item.Proportion;
+                        row.ProportionID = item.ProportionID;
 
                         break;
                     }
@@ -66,6 +67,74 @@ namespace FBD.Models
             viewModelResult.IndustryID = prmIndustry;
 
             return viewModelResult;
-        }      
+        }
+
+        public static string EditFinancialIndexProportion(FIProportionViewModel viewModel)
+        {
+            FBDEntities FBDModel = new FBDEntities();
+
+            string errorIndex = "";
+
+            try
+            {
+                foreach (var row in viewModel.ProportionRows)
+                {
+                    errorIndex = row.IndexID;
+
+                    if (row.Checked == true)
+                    {
+                        BusinessFinancialIndexProportion financialIndexProportion = null;
+                        if (row.ProportionID < 0)
+                        {
+                            financialIndexProportion = new BusinessFinancialIndexProportion();
+
+                            BusinessIndustries businessIndustry = BusinessIndustries
+                                                                    .SelectIndustryByID(viewModel.IndustryID, FBDModel);
+                            if (businessIndustry == null)
+                            {
+                                throw new Exception();
+                            }
+                            BusinessFinancialIndex financialIndex = BusinessFinancialIndex
+                                                                        .SelectFinancialIndexByID(row.IndexID, FBDModel);
+                            if (financialIndex == null)
+                            {
+                                throw new Exception();
+                            }
+
+                            financialIndexProportion.BusinessIndustries = businessIndustry;
+                            financialIndexProportion.BusinessFinancialIndex = financialIndex;
+                            financialIndexProportion.Proportion = row.Proportion;
+
+                            FBDModel.AddToBusinessFinancialIndexProportion(financialIndexProportion);
+                            FBDModel.SaveChanges();
+                        }
+                        else
+                        {
+                            financialIndexProportion = FBDModel.BusinessFinancialIndexProportion
+                                                        .First(p => p.ProportionID == row.ProportionID);
+                            financialIndexProportion.Proportion = row.Proportion;
+                            FBDModel.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        if (row.ProportionID >= 0)
+                        {
+                            BusinessFinancialIndexProportion deletedFinancialIndexProportion = new BusinessFinancialIndexProportion();
+                            deletedFinancialIndexProportion = FBDModel.BusinessFinancialIndexProportion
+                                                                .First(p => p.ProportionID == row.ProportionID);
+                            FBDModel.DeleteObject(deletedFinancialIndexProportion);
+                            FBDModel.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return errorIndex;
+            }
+
+            return null;
+        }
     }
 }

@@ -30,8 +30,9 @@ namespace FBD.CommonUtilities
         public const string ERR_EDIT = "Error when select the {0}. Please try again";
         public const string ERR_EDIT_POST = "Error when editting {0}. Please recheck your input ";
         public const string ERR_DELETE = "Error when deleting the {0}. Try again later";
-
-        
+        public const string ERR_UPDATE_FIPROPORTION = "Error when updating to the financial index {0}. Try again later";
+        public const string ERR_DISPLAY_FIPROPORTION = "Error when displaying the selected business industry";
+        public const string ERR_POST_FIPROPORTION = "Error when posting information to server. Try again later";
         
         // FINANCIAL INDEX
 
@@ -113,11 +114,9 @@ namespace FBD.CommonUtilities
         /************** SUCCESSFUL MESSAGES ****************/
 
         public const string SCC_ADD = "A new {0} has been added successfully";
-
         public const string SCC_EDIT_POST = "The {0} with ID {1} has been editted successfully";
-
         public const string SCC_DELETE = "A {0} has been deleted successfully";
-
+        public const string SCC_UPDATE_FIPROPORTION = "Update financial proportion successfully";
 
 
         // FINANCIAL INDEX

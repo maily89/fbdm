@@ -43,6 +43,16 @@ namespace FBD.Models
             return businessFinancialIndex;
         }
 
+        public static BusinessFinancialIndex SelectFinancialIndexByID(string id, FBDEntities FBDModel)
+        {
+            BusinessFinancialIndex businessFinancialIndex = null;
+
+            // Get the business financial index from the entities model with the inputted ID
+            businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
+
+            return businessFinancialIndex;
+        }
+
         /// <summary>
         /// 1. Receive information from parameter
         /// 2. Insert new index into the Database
