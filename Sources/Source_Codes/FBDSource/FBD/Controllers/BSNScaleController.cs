@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
+using FBD.CommonUtilities;
 namespace FBD.Controllers
 {
     public class BSNScaleController : Controller
@@ -21,9 +22,9 @@ namespace FBD.Controllers
             {
                 scales = BusinessScales.SelectScales();
             }
-            catch (Exception ex)
+            catch
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_SCALE);
             }
             return View(scales);
         }
@@ -54,15 +55,18 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BusinessScales.AddScale(scale);
+                    int result=BusinessScales.AddScale(scale);
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_SCALE);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "Scale ID " + scale.ScaleID + " have been added sucessfully";
-                return RedirectToAction("Index");
+                throw new Exception();
             }
-            catch (Exception ex)
+            catch
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_SCALE);
                 return View(scale);
             }
         }
@@ -76,8 +80,22 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var model = BusinessScales.SelectScaleByID(id);
+            BusinessScales model = null;
+            try
+            {
+                model = BusinessScales.SelectScaleByID(id);
+
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_SCALE);
+            }
             return View(model);
+            
         }
 
         //
@@ -96,18 +114,22 @@ namespace FBD.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    BusinessScales.EditScale(scale);
+                    int result=BusinessScales.EditScale(scale);
 
+                    if (result == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALE, scale.ScaleID);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new ArgumentException();
-                TempData["Message"] = "ScaleID " + scale.ScaleID + " have been updated sucessfully";
-                return RedirectToAction("Index");
+
+                throw new Exception();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALE);
                 return View(scale);
             }
         }
@@ -121,9 +143,24 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            BusinessScales.DeleteScale(id);
-            TempData["Message"] = "Scale ID " + id + " have been deleted sucessfully";
-            return RedirectToAction("Index");
+            
+            try
+            {
+                int result = BusinessScales.DeleteScale(id);
+
+                if (result == 1)
+                {
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_SCALE);
+                    return RedirectToAction("Index");
+                }
+
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_SCALE);
+                return RedirectToAction("Index");
+            }
         }
     }
 }

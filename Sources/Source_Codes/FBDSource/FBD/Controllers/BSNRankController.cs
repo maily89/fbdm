@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -20,22 +21,18 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var ranks = BusinessRanks.SelectRanks();
+            List<BusinessRanks> ranks=null;
+            try
+            {
+                ranks= BusinessRanks.SelectRanks();
+                if (ranks == null) throw new Exception();
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_RANK);
+            }
 
             return View(ranks);
-        }
-
-        //
-        // GET: /BSNRank/Details/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Details(int id)
-        {
-
-            return View();
         }
 
         //
@@ -63,15 +60,18 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BusinessRanks.AddRank(rank);
+                    if (BusinessRanks.AddRank(rank) == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_RANK);
+                        return RedirectToAction("Index");
+                    }
                 }
-                else throw new Exception();
-                TempData["Message"] = "Rank ID " + rank.RankID + " have been added sucessfully";
-                return RedirectToAction("Index");
+                throw new Exception();
+                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_RANK);
                 return View(rank);
             }
         }
@@ -85,7 +85,20 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var model = BusinessRanks.SelectRankByID(id);
+            BusinessRanks model=null;
+            try
+            {
+                model = BusinessRanks.SelectRankByID(id);
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_RANK);
+            }
+            
             return View(model);
         }
 
@@ -105,18 +118,21 @@ namespace FBD.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    BusinessRanks.EditRank(rank);
+                    if (BusinessRanks.EditRank(rank) == 1)
+                    {
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANK, id);
+                        return RedirectToAction("Index");
+                    }
 
                 }
-                else throw new ArgumentException();
-                TempData["Message"] = "RankID " + rank.RankID + " have been updated sucessfully";
-                return RedirectToAction("Index");
+                throw new ArgumentException();
+                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = ex.Message;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANK);
                 return View(rank);
             }
         }
@@ -130,9 +146,22 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            BusinessRanks.DeleteRank(id);
-            TempData["Message"] = "Rank ID " + id + " have been deleted sucessfully";
-            return RedirectToAction("Index");
+            try
+            {
+                int result=BusinessRanks.DeleteRank(id);
+                if (result == 1)
+                {
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_RANK);
+                    return RedirectToAction("Index");
+                }
+                throw new Exception();
+            }
+            catch
+            {
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_RANK);
+                return RedirectToAction("Index");
+            
+            }
         }
 
 

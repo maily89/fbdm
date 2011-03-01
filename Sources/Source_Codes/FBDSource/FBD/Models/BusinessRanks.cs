@@ -26,6 +26,7 @@ namespace FBD.Models
         /// <returns>rank</returns>
         public static BusinessRanks SelectRankByID(string id)
         {
+            if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
             var rank = entities.BusinessRanks.First(i => i.RankID == id);
             return rank;
@@ -39,7 +40,7 @@ namespace FBD.Models
         /// <returns>rank</returns>
         public static BusinessRanks SelectRankByID(string id, FBDEntities entities)
         {
-
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             var rank = entities.BusinessRanks.First(i => i.RankID == id);
             return rank;
         }
@@ -48,20 +49,25 @@ namespace FBD.Models
         /// delete the rank with the specified id
         /// </summary>
         /// <param name="id"> the id deleted</param>
-        public static void DeleteRank(string id)
+        public static int DeleteRank(string id)
         {
+            if (string.IsNullOrEmpty(id)) return 0;
+
             FBDEntities entities = new FBDEntities();
             var rank = BusinessRanks.SelectRankByID(id, entities);
             entities.DeleteObject(rank);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
         /// edit the rank
         /// </summary>
         /// <param name="rank">update the rank</param>
-        public static void EditRank(BusinessRanks rank)
+        public static int EditRank(BusinessRanks rank)
         {
+            if (rank == null) return 0;
+            
             FBDEntities entities = new FBDEntities();
 
             var temp = SelectRankByID(rank.RankID, entities);
@@ -72,18 +78,22 @@ namespace FBD.Models
             temp.RiskGroup = rank.RiskGroup;
             temp.Evaluation = rank.Evaluation;
 
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
         /// add new rank
         /// </summary>
         /// <param name="rank">the rank to add</param>
-        public static void AddRank(BusinessRanks rank)
+        public static int AddRank(BusinessRanks rank)
         {
+            if (rank == null) return 0;
+
             FBDEntities entities = new FBDEntities();
             entities.AddToBusinessRanks(rank);
-            entities.SaveChanges();
+            var result=entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         public class BusinessRanksMetaData
         {

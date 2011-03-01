@@ -16,8 +16,12 @@ namespace FBD.CommonUtilities
         /*****************CLASS NAMES *******************/
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "Business Industry";
-        public const string BUSINESS_RANKING = "Business Ranking";
+        public const string BUSINESS_LINE = "Business Line";
+        public const string BUSINESS_RANK = "Business Rank";
         public const string BUSINESS_RANKING_STRUCTURE = "Business Ranking Structure";
+        public const string BUSINESS_TYPE = "Business Type";
+        public const string BUSINESS_SCALE = "Business Scale";
+        public const string BUSINESS_SCALECRITERIA = "Business Scale Criteria";
 
 
         /******************END OF CLASS NAMES

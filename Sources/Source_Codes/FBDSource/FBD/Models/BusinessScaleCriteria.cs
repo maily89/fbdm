@@ -28,6 +28,7 @@ namespace FBD.Models
         /// <returns>scaleCriteria</returns>
         public static BusinessScaleCriteria SelectScaleCriteriaByID(string id)
         {
+            if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
             var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
             return scaleCriteria;
@@ -41,7 +42,7 @@ namespace FBD.Models
         /// <returns>scaleCriteria</returns>
         public static BusinessScaleCriteria SelectScaleCriteriaByID(string id, FBDEntities entities)
         {
-
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
             return scaleCriteria;
         }
@@ -50,20 +51,23 @@ namespace FBD.Models
         /// delete the scaleCriteria with the specified id
         /// </summary>
         /// <param name="id"> the id deleted</param>
-        public static void DeleteScaleCriteria(string id)
+        public static int DeleteScaleCriteria(string id)
         {
+            if (string.IsNullOrEmpty(id)) return 0;
             FBDEntities entities = new FBDEntities();
             var scaleCriteria = BusinessScaleCriteria.SelectScaleCriteriaByID(id, entities);
             entities.DeleteObject(scaleCriteria);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
 
         /// <summary>
         /// edit the scaleCriteria
         /// </summary>
         /// <param name="scaleCriteria">update the scaleCriteria</param>
-        public static void EditScaleCriteria(BusinessScaleCriteria scaleCriteria)
+        public static int EditScaleCriteria(BusinessScaleCriteria scaleCriteria)
         {
+            if (scaleCriteria == null) return 0;
             FBDEntities entities = new FBDEntities();
             var temp = BusinessScaleCriteria.SelectScaleCriteriaByID(scaleCriteria.CriteriaID, entities);
 
@@ -72,18 +76,21 @@ namespace FBD.Models
             temp.Unit = scaleCriteria.Unit;
             temp.ValueType = scaleCriteria.ValueType;
 
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1; ;
         }
 
         /// <summary>
         /// add new scaleCriteria
         /// </summary>
         /// <param name="scaleCriteria">the scaleCriteria to add</param>
-        public static void AddScaleCriteria(BusinessScaleCriteria scaleCriteria)
+        public static int AddScaleCriteria(BusinessScaleCriteria scaleCriteria)
         {
+            if (scaleCriteria == null) return 0;
             FBDEntities entities = new FBDEntities();
             entities.AddToBusinessScaleCriteria(scaleCriteria);
-            entities.SaveChanges();
+            var result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
         }
         
         public class BusinessScaleCriteriaMetadata

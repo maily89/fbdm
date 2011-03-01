@@ -27,6 +27,7 @@ namespace FBD.Models
         /// <returns>industry</returns>
         public static BusinessIndustries SelectIndustryByID(string id)
         {
+            if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
             var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
             return industry;
@@ -40,7 +41,7 @@ namespace FBD.Models
         /// <returns>industry</returns>
         public static BusinessIndustries SelectIndustryByID(string id,FBDEntities entities)
         {
-            
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
             return industry;
         }
@@ -51,6 +52,7 @@ namespace FBD.Models
         /// <param name="id"> the id deleted</param>
         public static int DeleteIndustry(string id)
         {
+            if (string.IsNullOrEmpty(id)) return 0;
             FBDEntities entities = new FBDEntities();
             var industry = BusinessIndustries.SelectIndustryByID(id,entities);
             entities.DeleteObject(industry);
@@ -65,6 +67,7 @@ namespace FBD.Models
         /// <param name="industry">update the industry</param>
         public static int EditIndustry(BusinessIndustries industry)
         {
+            if (industry == null) return 0;
             FBDEntities entities = new FBDEntities();
             var temp = BusinessIndustries.SelectIndustryByID(industry.IndustryID,entities);
             temp.IndustryName = industry.IndustryName;
@@ -78,6 +81,7 @@ namespace FBD.Models
         /// <param name="industry">the industry to add</param>
         public static int AddIndustry(BusinessIndustries industry)
         {
+            if (industry == null) return 0;
             FBDEntities entities = new FBDEntities();
 
             entities.AddToBusinessIndustries(industry);
