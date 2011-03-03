@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -12,9 +13,14 @@ namespace FBD.Controllers
     {
         //
         // GET: /FIProportion/
-
+        /// <summary>
+        /// Display the list of business industries and corresponding financial index proportion
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             // The view model to be exchanged
             FIProportionViewModel viewModel = new FIProportionViewModel();
             try
@@ -30,21 +36,31 @@ namespace FBD.Controllers
                     return View(viewModel);
 
                 // Create View model with the drop down list displays the first industry of the list
-                viewModel = BusinessFinancialIndexProportion.CreateViewModelByIndustry(lstIndustries[0].IndustryID);
+                viewModel = BusinessFinancialIndexProportion.CreateViewModelByIndustry(FBDModel, lstIndustries[0].IndustryID);
             }
             catch (Exception)
             {
                 // Display error message
-                TempData["Message"] = CommonUtilities.Constants.ERR_DISPLAY_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_FIPROPORTION;
                 return View(viewModel);
             }
 
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Perform actions posted from View
+        /// There are two actions available:
+        /// 1. Choose an industry to display information
+        /// 2. Saving information
+        /// </summary>
+        /// <param name="formCollection"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             // If the action posted to Controller is done by selecting drop down list of industries
             try
             {
@@ -52,7 +68,9 @@ namespace FBD.Controllers
                 {
                     // Create View model with input industry selected from drop down list
                     FIProportionViewModel viewModelForSelectingIndustries = BusinessFinancialIndexProportion
-                                                            .CreateViewModelByIndustry(formCollection["Industry"].ToString());
+                                                                            .CreateViewModelByIndustry(
+                                                                                    FBDModel, 
+                                                                                    formCollection["Industry"].ToString());
 
                     return View(viewModelForSelectingIndustries);
                 }
@@ -60,7 +78,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when displaying information
-                TempData["Message"] = CommonUtilities.Constants.ERR_DISPLAY_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = CommonUtilities.Constants.ERR_DISPLAY_FIPROPORTION;
                 return RedirectToAction("Index");
             }
 
@@ -126,32 +144,35 @@ namespace FBD.Controllers
                     // Saving the information with input is View Model created above
                     // then return the error index
                     string errorIndex = BusinessFinancialIndexProportion
-                                                    .EditFinancialIndexProportion(viewModelForSavingProportion);
+                                                    .EditMultipleFinancialIndexProportion(FBDModel, 
+                                                                                          viewModelForSavingProportion);
+
+                    FIProportionViewModel viewModelAfterEditing = BusinessFinancialIndexProportion
+                                                                            .CreateViewModelByIndustry(
+                                                                            FBDModel,
+                                                                            formCollection["IndustryID"].ToString());
 
                     // If some errors occur
                     if (errorIndex != null)
                     {
                         // Display error message when updating
-                        TempData["Message"] = string.Format(CommonUtilities.Constants.ERR_UPDATE_FIPROPORTION, errorIndex);
-                        FIProportionViewModel viewModelAfterError = BusinessFinancialIndexProportion
-                                                            .CreateViewModelByIndustry(formCollection["IndustryID"].ToString());
-                        return View(viewModelAfterError);
+                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_FIPROPORTION, errorIndex);
+                        
+                        return View(viewModelAfterEditing);
                     }
                     // If no error occurs
                     else
                     {
                         // Display successful message
-                        TempData["Message"] = CommonUtilities.Constants.SCC_UPDATE_FIPROPORTION;
-                        FIProportionViewModel viewModelAfterSuccess = BusinessFinancialIndexProportion
-                                                            .CreateViewModelByIndustry(formCollection["IndustryID"].ToString());
-                        return View(viewModelAfterSuccess);
+                        TempData[Constants.SCC_MESSAGE] = Constants.SCC_UPDATE_FIPROPORTION;
+                        return View(viewModelAfterEditing);
                     }
                 }
             }
             catch (Exception)
             {
                 // Error message when handling in Controller
-                TempData["Message"] = CommonUtilities.Constants.ERR_POST_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_FIPROPORTION;
                 return RedirectToAction("Index");
             }
 

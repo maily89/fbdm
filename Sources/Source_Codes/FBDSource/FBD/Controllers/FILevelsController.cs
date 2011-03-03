@@ -20,12 +20,14 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             List<BusinessFinancialIndexLevels> lstFinancialIndexLevels = null;
 
             try
             {
                 // Select the list of financial index levels
-                lstFinancialIndexLevels = BusinessFinancialIndexLevels.SelectFinancialIndexLevels();
+                lstFinancialIndexLevels = BusinessFinancialIndexLevels.SelectFinancialIndexLevels(FBDModel);
 
                 // If error occurs
                 if (lstFinancialIndexLevels == null)
@@ -36,7 +38,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when displaying financial index levels
-                TempData["Message"] = Constants.ERR_INDEX_FI_FINANCIAL_INDEX_LEVEL;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                 return View(lstFinancialIndexLevels);
             }
             // If there is no error, displaying the list of financial index levels
@@ -68,18 +70,21 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(BusinessFinancialIndexLevels businessFinancialIndexLevels)
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             try
             {
                 // If there is no error from client
                 if (ModelState.IsValid)
                 {
                     // Add new business financial index level that has been inputted
-                    int result = BusinessFinancialIndexLevels.AddFinancialIndexLevels(businessFinancialIndexLevels);
+                    int result = BusinessFinancialIndexLevels.AddFinancialIndexLevels(FBDModel, businessFinancialIndexLevels);
 
                     if (result == 1)
                     {
                         // Display successful message when adding new financial index level
-                        TempData["Message"] = Constants.SCC_ADD_FI_FINANCIAL_INDEX_LEVEL;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD,
+                                                                        Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                         return RedirectToAction("Index");
                     }
                 }
@@ -89,7 +94,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when adding new financial index level
-                TempData["Message"] = Constants.ERR_ADD_POST_FI_FINANCIAL_INDEX_LEVEL;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                 return View(businessFinancialIndexLevels);
             }
         }
@@ -105,12 +110,14 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(decimal id)
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             BusinessFinancialIndexLevels financialIndexLevels = null;
 
             try
             {
                 // Select the financial index level to be editted
-                financialIndexLevels = BusinessFinancialIndexLevels.SelectFinancialIndexLevelsByID(id);
+                financialIndexLevels = BusinessFinancialIndexLevels.SelectFinancialIndexLevelsByID(id, FBDModel);
 
                 if (financialIndexLevels == null)
                 {
@@ -120,7 +127,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when selecting financial index level
-                TempData["Message"] = Constants.ERR_EDIT_FI_FINANCIAL_INDEX_LEVEL;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                 return View(financialIndexLevels);
             }
 
@@ -138,19 +145,22 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(decimal id, BusinessFinancialIndexLevels businessFinancialIndexLevels)
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             try
             {
                 // If there is no error from client
                 if (ModelState.IsValid)
                 {
                     // Edit financial index level that has been inputted
-                    int result = BusinessFinancialIndexLevels.EditFinancialIndexLevels(businessFinancialIndexLevels);
+                    int result = BusinessFinancialIndexLevels.EditFinancialIndexLevels(FBDModel, businessFinancialIndexLevels);
 
                     if (result == 1)
                     {
                         // Display successful message after editting the financial index level
-                        TempData["Message"] = Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL_1 + id
-                                              + Constants.SCC_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL_2;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST,
+                                                                        Constants.BUSINESS_FINANCIAL_INDEX_LEVEL,
+                                                                        id.ToString());
                         return RedirectToAction("Index");
                     }
                 }
@@ -160,7 +170,7 @@ namespace FBD.Controllers
             catch
             {
                 // Display error message after editting the financial index level
-                TempData["Message"] = Constants.ERR_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                 return View(businessFinancialIndexLevels);
             }
         }
@@ -176,15 +186,17 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(decimal id)
         {
+            FBDEntities FBDModel = new FBDEntities();
+
             try
             {
                 // Delete the selected financial index level
-                int result = BusinessFinancialIndexLevels.DeleteFinancialIndexLevels(id);
+                int result = BusinessFinancialIndexLevels.DeleteFinancialIndexLevels(FBDModel, id);
 
                 if (result == 1)
                 {
                     // Display successful message after deleting the financial index level
-                    TempData["Message"] = Constants.SCC_DELETE_FI_FINANCIAL_INDEX_LEVEL;
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                     return RedirectToAction("Index");
                 }
 
@@ -193,7 +205,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message after deleting the financial index level
-                TempData["Message"] = Constants.ERR_DELETE_FI_FINANCIAL_INDEX_LEVEL;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
                 return RedirectToAction("Index");
             }
         }

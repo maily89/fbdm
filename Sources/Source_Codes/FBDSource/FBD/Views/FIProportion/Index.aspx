@@ -8,7 +8,8 @@
 
     <h2>MANAGING FINANCIAL INDEX PROPORTION</h2>
     
-    <%= TempData["Message"]!=null?TempData["Message"]:"" %><br />
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%><br /></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
 
     <table>
         <tr>

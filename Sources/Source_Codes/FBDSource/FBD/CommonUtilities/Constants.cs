@@ -13,6 +13,7 @@ namespace FBD.CommonUtilities
 
         /************** END OF PAGES NAMES ***************/
 
+
         /*****************CLASS NAMES *******************/
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "Business Industry";
@@ -23,21 +24,41 @@ namespace FBD.CommonUtilities
         public const string BUSINESS_SCALE = "Business Scale";
         public const string BUSINESS_SCALECRITERIA = "Business Scale Criteria";
 
+        public const string BUSINESS_FINANCIAL_INDEX = "Business Financial Index";
+        public const string BUSINESS_FINANCIAL_INDEX_LEVEL = "Business Financial Index Level";
+        public const string BUSINESS_FINANCIAL_INDEX_PROPORTION = "Business Financial Index Proportion";
+        public const string BUSINESS_FINANCIAL_INDEX_SCORE = "Business Financial Index Score";
 
-        /******************END OF CLASS NAMES
+        /***************** END OF CLASS NAMES **************/
+
+
+        /***************** MESSAGE TYPES *****************/
+
+        public const string SCC_MESSAGE = "SuccessfulMessage";
+        public const string ERR_MESSAGE = "ErrorMessage";
+
+        /***************** END OF MESSAGE TYPES ***************/
+
 
         /************** ERROR MESSAGES ****************/
 
-        //ERROR
+        // COMMON ERRORS
         public const string ERR_INDEX = "Error when displaying the list of {0}";
         public const string ERR_ADD_POST = "Error when adding new {0}. Please recheck your input ";
         public const string ERR_EDIT = "Error when select the {0}. Please try again";
         public const string ERR_EDIT_POST = "Error when editting {0}. Please recheck your input ";
         public const string ERR_DELETE = "Error when deleting the {0}. Try again later";
+        
+        // FI PROPORTION ERRORS
         public const string ERR_UPDATE_FIPROPORTION = "Error when updating to the financial index {0}. Try again later";
         public const string ERR_DISPLAY_FIPROPORTION = "Error when displaying the selected business industry";
-        public const string ERR_POST_FIPROPORTION = "Error when posting information to server. Try again later";
-        
+        public const string ERR_POST_FIPROPORTION = "Error when parsing information at server. Try again later";
+
+        // FI SCORE ERRORS
+        public const string ERR_UPDATE_FISCORE = "Error when updating to the level {0}. Try again later";
+        public const string ERR_DISPLAY_FISCORE = "Error when displaying the selected information";
+        public const string ERR_POST_FISCORE = "Error when parsing information at server. Try again later";
+
         // FINANCIAL INDEX
 
         public const string ERR_INDEX_FI_FINANCIAL_INDEX = "Error when displaying the list of Financial Indexes";
@@ -121,7 +142,7 @@ namespace FBD.CommonUtilities
         public const string SCC_EDIT_POST = "The {0} with ID {1} has been editted successfully";
         public const string SCC_DELETE = "A {0} has been deleted successfully";
         public const string SCC_UPDATE_FIPROPORTION = "Update financial proportion successfully";
-
+        public const string SCC_UPDATE_FISCORE = "Update financial score successfully";
 
         // FINANCIAL INDEX
 
