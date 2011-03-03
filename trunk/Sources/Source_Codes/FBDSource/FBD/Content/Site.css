@@ -342,7 +342,11 @@ div#title
 {
     width: 6em;
 }
-.message
+.err-message
 {
 	color:Red;
+}
+.scc-message
+{
+	color:Blue;
 }

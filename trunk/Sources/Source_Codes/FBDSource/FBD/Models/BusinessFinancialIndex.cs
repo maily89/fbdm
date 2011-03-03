@@ -14,10 +14,8 @@ namespace FBD.Models
         /// Select all the Financial Index in the table Business.FinancialIndex
         /// </summary>
         /// <returns>List of Financial Index</returns>
-        public static List<BusinessFinancialIndex> SelectFinancialIndex()
+        public static List<BusinessFinancialIndex> SelectFinancialIndex(FBDEntities FBDModel)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             List<BusinessFinancialIndex> lstFinancialIndex = null;
 
             // Get the business financial index from entities model
@@ -31,19 +29,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">string ID</param>
         /// <returns>BusinessFinancialIndex</returns>
-        public static BusinessFinancialIndex SelectFinancialIndexByID(string id)
-        {
-            FBDEntities FBDModel = new FBDEntities();
-
-            BusinessFinancialIndex businessFinancialIndex = null;
-
-            // Get the business financial index from the entities model with the inputted ID
-            businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
-
-            return businessFinancialIndex;
-        }
-
-        public static BusinessFinancialIndex SelectFinancialIndexByID(string id, FBDEntities FBDModel)
+        public static BusinessFinancialIndex SelectFinancialIndexByID(FBDEntities FBDModel, string id)
         {
             BusinessFinancialIndex businessFinancialIndex = null;
 
@@ -60,10 +46,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="businessFinancialIndex">A new FinancialIndex information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int AddFinancialIndex(BusinessFinancialIndex businessFinancialIndex)
+        public static int AddFinancialIndex(FBDEntities FBDModel, BusinessFinancialIndex businessFinancialIndex)
         {
-            FBDEntities FBDModel = new FBDEntities();
-            
             // Add new business financial index with the inputted information to the entities
             FBDModel.AddToBusinessFinancialIndex(businessFinancialIndex);
 
@@ -81,10 +65,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="businessFinancialIndex">The financial index to be updated</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int EditFinancialIndex(BusinessFinancialIndex businessFinancialIndex)
+        public static int EditFinancialIndex(FBDEntities FBDModel, BusinessFinancialIndex businessFinancialIndex)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             // Select the financial index to be updated from database
             var temp = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(businessFinancialIndex.IndexID));
 
@@ -108,10 +90,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">ID of the Financial Index selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int DeleteFinancialIndex(string id)
+        public static int DeleteFinancialIndex(FBDEntities FBDModel, string id)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             var financialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
 
             // Delete business financial index from entities

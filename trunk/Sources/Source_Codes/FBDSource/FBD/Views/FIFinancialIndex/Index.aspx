@@ -8,7 +8,8 @@
 
     <h2>MANAGING FINANCIAL INDEX</h2>
     
-    <p class="message"><%= TempData["Message"]!=null?TempData["Message"]:"" %></p>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%><br /></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
     <h3>
         <%= Html.ActionLink("Add New Index", "Add") %>

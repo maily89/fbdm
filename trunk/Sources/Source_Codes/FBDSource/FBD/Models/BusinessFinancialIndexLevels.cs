@@ -14,10 +14,8 @@ namespace FBD.Models
         /// Select all the Levels in the table Business.FinancialIndexLevels
         /// </summary>
         /// <returns>List of Financial Index Levels</returns>
-        public static List<BusinessFinancialIndexLevels> SelectFinancialIndexLevels()
+        public static List<BusinessFinancialIndexLevels> SelectFinancialIndexLevels(FBDEntities FBDModel)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             List<BusinessFinancialIndexLevels> lstFinancialIndexLevels = null;
 
             // Get the business financial index levels from entities model
@@ -31,10 +29,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">string ID</param>
         /// <returns>BusinessFinancialIndexLevels</returns>
-        public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(Decimal id)
+        public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(Decimal id, FBDEntities FBDModel)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             BusinessFinancialIndexLevels businessFinancialIndexLevels = null;
 
             // Get the business financial index from the entities model with the inputted ID
@@ -50,10 +46,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="businessFinancialIndexLevels">A new FinancialIndexLevels information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int AddFinancialIndexLevels(BusinessFinancialIndexLevels businessFinancialIndexLevels)
+        public static int AddFinancialIndexLevels(FBDEntities FBDModel, BusinessFinancialIndexLevels businessFinancialIndexLevels)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             // Add new business financial index level with the inputted information to the entities
             FBDModel.AddToBusinessFinancialIndexLevels(businessFinancialIndexLevels);
 
@@ -70,10 +64,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="businessFinancialIndexLevels">The financial index level to be updated</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int EditFinancialIndexLevels(BusinessFinancialIndexLevels businessFinancialIndexLevels)
+        public static int EditFinancialIndexLevels(FBDEntities FBDModel, BusinessFinancialIndexLevels businessFinancialIndexLevels)
         {
-            FBDEntities FBDModel = new FBDEntities();
-
             // Select the financial index to be updated from database
             var temp = FBDModel.BusinessFinancialIndexLevels.First(level => 
                                             level.LevelID == businessFinancialIndexLevels.LevelID);
@@ -95,9 +87,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">ID of the Financial Index Level selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
-        public static int DeleteFinancialIndexLevels(Decimal id)
+        public static int DeleteFinancialIndexLevels(FBDEntities FBDModel, Decimal id)
         {
-            FBDEntities FBDModel = new FBDEntities();
             var financialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
 
             // Delete business financial index from entities
