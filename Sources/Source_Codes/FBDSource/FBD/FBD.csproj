@@ -138,6 +138,7 @@
     <Compile Include="ViewModels\FIProportionViewModel.cs" />
     <Compile Include="ViewModels\FIScoreRowViewModel.cs" />
     <Compile Include="ViewModels\FIScoreViewModel.cs" />
+    <Compile Include="ViewModels\SYSUserGroupsRightsRowViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />

@@ -31,6 +31,17 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             return entities.SystemRights.First(i => i.RightID.Equals(id));
         }
+
+        /// <summary>
+        /// Select the Right (RightID, Right) 
+        /// in the table [System.Rights] with input ID, entities
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static SystemRights SelectRightsByID(string id, FBDEntities entities)
+        {
+            return entities.SystemRights.First(i => i.RightID.Equals(id));
+        }
         
         /// <summary>
         /// 1. Receive information from parameter

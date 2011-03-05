@@ -7,52 +7,65 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>MANAGING USER GROUP RIGHTS</h2>
-    <%= TempData["Message"]!=null?TempData["Message"]:"" %><br />
-    User Group list <br />
-    <% using (Html.BeginForm())
-       { %>
-    <%= Html.DropDownList("GroupID", new SelectList(Model.UserGroups as IEnumerable,
-                "GroupID", "GroupName", Model != null ? Model.GroupID : null), "Select User Group", new { onchange = "this.form.submit();" })%>
-    <br /><br />
-    <%} %>
-    List Rights of <%=Model.GroupName %>>
     
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%><br /></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
+        
     <table>
         <tr>
-            <th>Enable</th>
-            <th>Right ID</th>
-            <th>Right Name</th>
+        <%using (Html.BeginForm())
+          {%>
+           <td> <%= Html.Label("Choose a Group")%></td>
+           <td> <%= Html.DropDownList("UserGroup", new SelectList(Model.LstUserGroups as IEnumerable, "GroupID", "GroupName", Model.GroupID), new { onchange = "this.form.submit();" })%></td>
+       <%} %>
+       </tr>
+       
+       <% using (Html.BeginForm())
+            { %>
+        <tr>            
+            <%= Html.HiddenFor(model => model.GroupID) %>
+            <%= Html.Hidden("NumberOfRightRows", Model.LstGroupRightRows.Count) %>
+            <td>
+                <%= Html.Label("System Deauthentication") %>
+            </td>
+           <td>
+                <table>
+                    <tr>
+                        <th>Enable</th>
+                        <th>Right ID</th>
+                        <th>Right Name</th>
+                    </tr>
+                    
+                    <% for (int i = 0; i< Model.LstGroupRightRows.Count(); i++){ %>
+                    <tr>
+                        <%= Html.Hidden("Model.LstGroupRightRows.Index", i) %>
+                        <%= Html.HiddenFor(model => model.LstGroupRightRows[i].GroupRightID) %>
+                        
+                        <td>
+                            <%= Html.CheckBoxFor(model => model.LstGroupRightRows[i].Checked)%>
+                        </td>
+                        <td>
+                            <%= Model.LstGroupRightRows[i].RightID %>
+                            <%= Html.HiddenFor(model => model.LstGroupRightRows[i].RightID) %>
+                        </td>
+                        <td>
+                            <%= Model.LstGroupRightRows[i].RightName %>
+                            <%= Html.HiddenFor(model => model.LstGroupRightRows[i].RightName) %>
+                        </td>
+                    </tr>
+                    <%} %>
+                </table>
+            </td>
         </tr>
-
-    <% if (Model.Rights != null)
-       {
-          foreach (var item in Model.Rights)
-          { %>
-                <tr>
-                    <td>
-                    <%
-                      //  if () %>
-                        <%//= Html.CheckBox() %>
-                    </td>
-                    <td>
-                        <%= Html.Encode(item.RightID) %>
-                    </td>
-                    <td>
-                        <%= Html.Encode(item.RightName) %>
-                    </td>
-                </tr>
+        <tr>
+            <td></td>
             
-            <%} %>
-    <% } %>
-
+            <td>
+                <input type="submit" name="Save" value="Save" />
+            </td>
+        </tr>
+        <%} %>        
     </table>
 
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>
 

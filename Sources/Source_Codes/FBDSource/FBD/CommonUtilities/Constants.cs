@@ -29,6 +29,14 @@ namespace FBD.CommonUtilities
         public const string BUSINESS_FINANCIAL_INDEX_PROPORTION = "Business Financial Index Proportion";
         public const string BUSINESS_FINANCIAL_INDEX_SCORE = "Business Financial Index Score";
 
+
+        //SYSTEM
+        public const string SYSTEM_USER_GROUP = "System User Group";
+        public const string SYSTEM_RIGHT = "System Right";
+        public const string SYSTEM_USER_GROUP_RIGHT = "System User Group Right";
+        public const string SYSTEM_REPORTING_PERIOD = "System Reporting Period";
+        public const string SYSTEM_USER = "System User";
+        public const string SYSTEM_BRANCH = "System Branch";
         /***************** END OF CLASS NAMES **************/
 
 
@@ -127,11 +135,10 @@ namespace FBD.CommonUtilities
         public const string ERR_DELETE_SYS_USERS = "ERR_DELETE_SYS_USERS";
 
         //SYSTEM DECENTRALIZATION
-        public const string ERR_INDEX_SYS_DECENTRALIZATION = "ERR_INDEX_SYS_DECENTRALIZATION";
-        public const string ERR_ADD_POST_SYS_DECENTRALIZATION = "ERR_ADD_POST_SYS_DECENTRALIZATION";
-        public const string ERR_EDIT_SYS_DECENTRALIZATION = "ERR_EDIT_SYS_DECENTRALIZATION";
-        public const string ERR_EDIT_POST_SYS_DECENTRALIZATION = "ERR_EDIT_POST_SYS_DECENTRALIZATION";
-        public const string ERR_DELETE_SYS_DECENTRALIZATION = "ERR_DELETE_SYS_DECENTRALIZATION";
+        public const string ERR_DISPLAY_SYS_GROUP_RIGHT = "Error when displaying the selected information";
+        public const string ERR_UPDATE_SYS_GROUP_RIGHT = "Error when updating to the user group right {0}. Try again later";
+        public const string ERR_DELETE_SYS_GROUP_RIGHT = "ERR_DELETE_SYS_DECENTRALIZATION";
+        public const string ERR_POST_SYS_GROUP_RIGHT = "Error when parsing information at server. Try again later";
         /************** END OF ERROR MESSAGES ****************/
 
 
@@ -199,6 +206,7 @@ namespace FBD.CommonUtilities
         public const string SCC_DELETE_SYS_USERS = "SCC_DELETE_SYS_USERS";
         
         //SYSTEM DECENTRALIZATION
+        public const string SCC_UPDATE_SYS_GROUP_RIGHT = "Update user group right successfully";
         public const string SCC_ADD_POST_SYS_DECENTRALIZATION = "SCC_ADD_POST_SYS_DECENTRALIZATION";
         public const string SCC_EDIT_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_1";
         public const string SCC_EDIT_POST_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_2";
