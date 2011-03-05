@@ -110,6 +110,7 @@ namespace FBD.Models
             SYSUserGroupsRightsViewModel viewModelResult = new SYSUserGroupsRightsViewModel();
 
             lstGroupRightsByGroup = SelectSysGroupsRightsByGroup(entities, groupID);
+            lstRights = entities.SystemRights.OrderBy(i => i.RightID).ToList();
 
             foreach(var index in lstRights)
             {

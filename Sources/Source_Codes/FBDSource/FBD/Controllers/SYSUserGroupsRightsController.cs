@@ -56,8 +56,8 @@ namespace FBD.Controllers
                 return RedirectToAction("Index");
             }
 
-            try
-            {
+            //try
+            //{
                 if (formCollection["Save"] != null)
                 {
                     SYSUserGroupsRightsViewModel viewModelForSaving = new SYSUserGroupsRightsViewModel();
@@ -67,8 +67,9 @@ namespace FBD.Controllers
                         if (formCollection["RightRows[" + i + "].Checked"] != null)
                         {
                             if (formCollection["RightRows[" + i + "].Checked"].ToString().Equals("true,false")
-                             || formCollection["RightRows[" + i + "].Checked"].ToString().Equals("True,False")
-                             || formCollection["RightRows[" + i + "].Checked"].ToString().Equals("TRUE,FALSE"))
+                                )
+                             //|| formCollection["RightRows[" + i + "].Checked"].ToString().Equals("True,False")
+                             //|| formCollection["RightRows[" + i + "].Checked"].ToString().Equals("TRUE,FALSE"))
                             {
                                 rowModelForSaving.Checked = true;
                             }
@@ -97,12 +98,12 @@ namespace FBD.Controllers
                     }
 
                 }
-            }
-            catch (Exception)
-            {
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_SYS_GROUP_RIGHT;
-                return RedirectToAction("Index");
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_SYS_GROUP_RIGHT;
+            //    return RedirectToAction("Index");
+            //}
 
             return View(new SYSUserGroupsRightsViewModel());
         }
