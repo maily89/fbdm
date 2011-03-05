@@ -56,29 +56,31 @@ namespace FBD.Controllers
                 return RedirectToAction("Index");
             }
 
-            //try
-            //{
+            try
+            {
                 if (formCollection["Save"] != null)
                 {
                     SYSUserGroupsRightsViewModel viewModelForSaving = new SYSUserGroupsRightsViewModel();
+                    viewModelForSaving.GroupID = formCollection["GroupID"].ToString();
                     for (int i = 0; i < int.Parse(formCollection["NumberOfRightRows"].ToString()); i++)
                     {
                         SYSUserGroupsRightsRowViewModel rowModelForSaving = new SYSUserGroupsRightsRowViewModel();
-                        if (formCollection["RightRows[" + i + "].Checked"] != null)
+                        if (formCollection["LstGroupRightRows[" + i + "].Checked"] != null)
                         {
-                            if (formCollection["RightRows[" + i + "].Checked"].ToString().Equals("true,false")
-                                )
-                             //|| formCollection["RightRows[" + i + "].Checked"].ToString().Equals("True,False")
-                             //|| formCollection["RightRows[" + i + "].Checked"].ToString().Equals("TRUE,FALSE"))
+                            if (formCollection["LstGroupRightRows[" + i + "].Checked"].ToString().Equals("true,false")
+
+                             || formCollection["LstGroupRightRows[" + i + "].Checked"].ToString().Equals("True,False")
+
+                             || formCollection["LstGroupRightRows[" + i + "].Checked"].ToString().Equals("TRUE,FALSE"))
                             {
                                 rowModelForSaving.Checked = true;
                             }
                         }
 
-                        rowModelForSaving.RightID = formCollection["RightRows[" + i + "].RightID"].ToString();
-                        rowModelForSaving.RightName = formCollection["RightRows[" + i + "].Right"].ToString();
+                        rowModelForSaving.RightID = formCollection["LstGroupRightRows[" + i + "].RightID"].ToString();
+                        rowModelForSaving.RightName = formCollection["LstGroupRightRows[" + i + "].RightName"].ToString();
 
-                        rowModelForSaving.GroupRightID = int.Parse(formCollection["RightRows" + i + "RightID"].ToString());
+                        rowModelForSaving.GroupRightID = int.Parse(formCollection["LstGroupRightRows[" + i + "].GroupRightID"].ToString());
                         viewModelForSaving.LstGroupRightRows.Add(rowModelForSaving);
                     }
                     viewModelForSaving.GroupID = formCollection["GroupID"].ToString();
@@ -98,14 +100,14 @@ namespace FBD.Controllers
                     }
 
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_SYS_GROUP_RIGHT;
-            //    return RedirectToAction("Index");
-            //}
-
-            return View(new SYSUserGroupsRightsViewModel());
+                }
+                catch (Exception)
+                {
+                    TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_SYS_GROUP_RIGHT;
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+           // return View(new SYSUserGroupsRightsViewModel());
         }
     }
 }
