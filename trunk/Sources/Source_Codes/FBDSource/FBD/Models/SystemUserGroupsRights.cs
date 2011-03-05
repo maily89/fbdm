@@ -2,63 +2,142 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Web.Mvc;
+using FBD.ViewModels;
 
 namespace FBD.Models
 {
-    [MetadataType(typeof(SystemUserGroupRightMetadata))]
+    
     public partial class SystemUserGroupsRights 
     {
-        public static List<SystemUserGroupsRights> SelectUserGroupRights()
+        
+        public static List<SystemUserGroupsRights> SelectSysGroupsRightsByGroup(FBDEntities entities, string groupID)
         {
-            FBDEntities entities = new FBDEntities();
-            return entities.SystemUserGroupsRights.ToList();
-        }
-
-        public static SystemUserGroupsRights SelectUserGroupRightByID(int id)
-        {
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.SystemUserGroupsRights.First(i => i.ID == id);
-            return temp;
-        }
-
-        public static bool CheckUserGroupRight()
-        {
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.SystemUserGroupsRights.First(m => (m.SystemRights.RightID == "1") && (m.SystemUserGroups.GroupID == "2"));
-            if (temp == null) return false;
-            return true;
-        }
-
-        public static SystemUserGroupsRights SelectUserGroupRightByID(int id, FBDEntities entities)
-        {
-            var temp = entities.SystemUserGroupsRights.First(i => i.ID == id);
-            return temp;
-        }
-
-
-        public static void EditUserGroupsRight(SystemUserGroupsRights userGroupRight)
-        {
-            FBDEntities entities = new FBDEntities();
             
-            
+            List<SystemUserGroupsRights> lstRightsByGroup = entities.SystemUserGroupsRights
+                                                                    .Include("SystemRights")
+                                                                    .Where(i => i.SystemUserGroups
+                                                                                 .GroupID.Equals(groupID))
+                                                                    .ToList();
+            return lstRightsByGroup;
         }
 
-        [Bind (Exclude="RightID")]
-        public class SystemUserGroupRightMetadata
+        /// <summary>
+        /// Select single record in SystemUserGroupsRights with specified id
+        /// </summary>
+        /// <param name="entities">The Model of Entities Framework</param>
+        /// <param name="id">The id as primary key in SystemUserGroupsRights</param>
+        /// <returns>a record in SystemUserGroupsRights, has ID = id parameter</returns>
+        public static SystemUserGroupsRights SelectSysGroupRightByID(FBDEntities entities, int id)
         {
-            [ScaffoldColumn(false)]
-            public int ID { get; set; }
+            SystemUserGroupsRights rightbyID = entities.SystemUserGroupsRights
+                                                       .First(i => i.ID == id);
+            return rightbyID;
+        }
 
-            [DisplayName("Group ID")]
-            [Required(ErrorMessage = "Group ID is required")]
-            public string GroupID { get; set; }
+        public static int AddGroupRight(FBDEntities entities, SYSUserGroupsRightsViewModel viewModel, SYSUserGroupsRightsRowViewModel row)
+        {
+            SystemUserGroupsRights groupRight = new SystemUserGroupsRights();
 
-            [DisplayName("Right ID")]
-            [Required(ErrorMessage = "Right ID is required")]
-            public string RightID { get; set; }
+            SystemUserGroups group = SystemUserGroups.SelectUserGroupByID(viewModel.GroupID, entities);
+            if (group == null) 
+            { 
+                throw new Exception(); 
+            }
+
+            SystemRights right = SystemRights.SelectRightsByID(row.RightID, entities);
+            if (right == null)
+            {
+                throw new Exception();
+            }
+
+            groupRight.SystemUserGroups = group;
+            groupRight.SystemRights = right;
+
+            entities.AddToSystemUserGroupsRights(groupRight);
+            int result = entities.SaveChanges();
+            
+            return result <= 0 ? 0 : 1;
+        }
+
+        public static int DeleteGroupRight(FBDEntities entities, int id)
+        {
+            SystemUserGroupsRights groupRight = new SystemUserGroupsRights();
+            groupRight = entities.SystemUserGroupsRights
+                                 .First(i => i.ID == id);
+            entities.DeleteObject(groupRight);
+            int result = entities.SaveChanges();
+
+            return result <= 0 ? 0 : 1;
+        }
+
+        public static string EditMultiGroupRights(FBDEntities entities, SYSUserGroupsRightsViewModel viewModel)
+        {
+            string errorIndex = "";
+            try
+            {
+                foreach (var row in viewModel.LstGroupRightRows)
+                {
+                    errorIndex = row.RightID;
+
+                    if (row.Checked == true)
+                    {
+                        if (row.GroupRightID < 0)
+                        {
+                            AddGroupRight(entities, viewModel, row);
+                        }
+                    }
+                    else
+                    {
+                        if (row.GroupRightID >= 0)
+                            DeleteGroupRight(entities, row.GroupRightID);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                return errorIndex;
+            }
+            return null;
+        }
+
+        public static SYSUserGroupsRightsViewModel CreateViewModelbyGroup(FBDEntities entities, string groupID)
+        {
+            List<SystemUserGroupsRights> lstGroupRightsByGroup = new List<SystemUserGroupsRights>();
+
+            List<SystemRights> lstRights = new List<SystemRights>();
+
+            SYSUserGroupsRightsViewModel viewModelResult = new SYSUserGroupsRightsViewModel();
+
+            lstGroupRightsByGroup = SelectSysGroupsRightsByGroup(entities, groupID);
+
+            foreach(var index in lstRights)
+            {
+                SYSUserGroupsRightsRowViewModel viewModelRow = new SYSUserGroupsRightsRowViewModel();
+
+                viewModelRow.RightID = index.RightID;
+                viewModelRow.RightName = index.RightName;
+
+                viewModelResult.LstGroupRightRows.Add(viewModelRow);
+            }
+
+            foreach(var item in lstGroupRightsByGroup)
+            {
+                foreach(var row in viewModelResult.LstGroupRightRows)
+                {
+                    if(item.SystemRights.RightID.Equals(row.RightID))
+                    {
+                        row.Checked = true;
+                        row.GroupRightID = item.ID;
+                        break;
+                    }
+                }
+            }
+
+            viewModelResult.LstUserGroups = entities.SystemUserGroups.ToList();
+            viewModelResult.GroupID = groupID;
+
+            return viewModelResult;
         }
     }
 }

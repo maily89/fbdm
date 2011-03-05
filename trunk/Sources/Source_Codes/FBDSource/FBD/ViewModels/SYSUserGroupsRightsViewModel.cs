@@ -8,12 +8,22 @@ namespace FBD.ViewModels
 {
     public class SYSUserGroupsRightsViewModel
     {
-        public List<SystemRights> Rights { get; set; }
-        public List<SystemUserGroups> UserGroups { get; set; }
-        public string GroupID { get; set; }
-        public string GroupName { get; set; }
-        public string RightID { get; set; }
-        public string Right { get; set; }
+        /// <summary>
+        /// List of User Group, will be displayed in Drop Down List
+        /// </summary>
+        public List<SystemUserGroups> LstUserGroups = new List<SystemUserGroups>();
+        
+        /// <summary>
+        /// List of User Right, will be filterd by User Group and displayed in the below table
+        /// </summary>
+        public List<SystemRights> LstRights = new List<SystemRights>();
 
+        public List<SYSUserGroupsRightsRowViewModel> LstGroupRightRows = new List<SYSUserGroupsRightsRowViewModel>();
+        
+        /// <summary>
+        /// ID of the selected Group from the Drop Down List
+        /// </summary>
+        /// 
+        public string GroupID;
     }
 }
