@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Index</h2>
-    <p><%= Html.ActionLink("Borrowing purpose", "../INVBorrowingPurpose")%></p>
+    <h4>WELCOME TO FBD</h4>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
