@@ -29,6 +29,10 @@ namespace FBD.CommonUtilities
         public const string BUSINESS_FINANCIAL_INDEX_PROPORTION = "Business Financial Index Proportion";
         public const string BUSINESS_FINANCIAL_INDEX_SCORE = "Business Financial Index Score";
 
+        public const string BUSINESS_NON_FINANCIAL_INDEX = "Business Non-Financial Index";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_LEVEL = "Business Non-Financial Index Level";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_PROPORTION = "Business Non-Financial Index Proportion";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_SCORE = "Business Non-Financial Index Score";
 
         //SYSTEM
         public const string SYSTEM_USER_GROUP = "System User Group";
