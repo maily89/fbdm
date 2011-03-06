@@ -73,7 +73,7 @@
                         <td>
                             <% if (Model.ProportionRows[i].LeafIndex == false)
                                { %>
-                                100%
+                                
                             <% }
                                else
                                {%>
