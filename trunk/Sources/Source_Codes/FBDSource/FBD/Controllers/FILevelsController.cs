@@ -22,7 +22,7 @@ namespace FBD.Controllers
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            List<BusinessFinancialIndexLevels> lstFinancialIndexLevels = null;
+            List<BusinessFinancialIndexLevels> lstFinancialIndexLevels = new List<BusinessFinancialIndexLevels>();
 
             try
             {
@@ -128,7 +128,7 @@ namespace FBD.Controllers
             {
                 // Display error message when selecting financial index level
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_FINANCIAL_INDEX_LEVEL);
-                return View(financialIndexLevels);
+                return View(new BusinessFinancialIndexLevels());
             }
 
             // Display financial index level to be editted
