@@ -37,7 +37,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                // Dispay error message when displaying financial indexes
+                // Display error message when displaying financial indexes
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_FINANCIAL_INDEX);
                 return View(lstFinancialIndex);
             }
