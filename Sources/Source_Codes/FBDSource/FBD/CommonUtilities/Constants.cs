@@ -143,6 +143,14 @@ namespace FBD.CommonUtilities
         public const string ERR_UPDATE_SYS_GROUP_RIGHT = "Error when updating to the user group right {0}. Try again later";
         public const string ERR_DELETE_SYS_GROUP_RIGHT = "ERR_DELETE_SYS_DECENTRALIZATION";
         public const string ERR_POST_SYS_GROUP_RIGHT = "Error when parsing information at server. Try again later";
+       
+        //INV
+        /// <summary>
+        /// Borrowing purpose
+        /// </summary>
+        public const string BORROWING_PURPOSE = "Borrowing purpose";
+        public const string INV_BASIC_INDEX = "Individual Basic Index";
+        public const string INV_BASIC_LEVEL_INDEX = "Individual Basic level Index";
         /************** END OF ERROR MESSAGES ****************/
 
 
@@ -216,6 +224,7 @@ namespace FBD.CommonUtilities
         public const string SCC_EDIT_POST_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_2";
         public const string SCC_DELETE_SYS_DECENTRALIZATION = "SCC_DELETE_SYS_DECENTRALIZATION";
 
+        
         /************** END OF SUCCESSFUL MESSAGES ***************/
     }
 }
