@@ -34,7 +34,17 @@
 		            </ul>
 		        </li>
 
-	            
+	             <li><a class="qmparent" href="javascript:void(0)">individual</a>
+                    <ul>
+		                <li><a href="INVBorrowingPurpose">INV Borrowing Purpose</a></li> 
+		                <li><a href="INVBasicIndexScore">INV Basic Index Score</a></li> 
+		                <li><a href="INVBasicLevels">INV Basic Levels</a></li> 
+		                <li><a href="INVBasicIndexScore">INV Basic Index Score</a></li> 
+		                <li><a href="INVProportion">INV Proportion</a></li> 
+		            </ul>
+		            
+		            
+		        </li>
 
             <li class="qmclear">&nbsp;</li></ul>
 
@@ -55,5 +65,4 @@
     <%= Html.Telerik().ScriptRegistrar() %>
   </body>
 </html>
-</body>
-</html>
+
