@@ -71,6 +71,11 @@ namespace FBD.CommonUtilities
         public const string ERR_DISPLAY_FISCORE = "Error when displaying the selected information";
         public const string ERR_POST_FISCORE = "Error when parsing information at server. Try again later";
 
+        // NFI SCORE ERRORS
+        public const string ERR_UPDATE_NFISCORE = "Error when updating to the level {0}. Try again later";
+        public const string ERR_DISPLAY_NFISCORE = "Error when displaying the selected information";
+        public const string ERR_POST_NFISCORE = "Error when parsing information at server. Try again later";
+
         // FINANCIAL INDEX
 
         public const string ERR_INDEX_FI_FINANCIAL_INDEX = "Error when displaying the list of Financial Indexes";
@@ -162,6 +167,7 @@ namespace FBD.CommonUtilities
         public const string SCC_DELETE = "A {0} has been deleted successfully";
         public const string SCC_UPDATE_FIPROPORTION = "Update financial proportion successfully";
         public const string SCC_UPDATE_FISCORE = "Update financial score successfully";
+        public const string SCC_UPDATE_NFISCORE = "Update non-financial score successfully";
 
         // FINANCIAL INDEX
 
