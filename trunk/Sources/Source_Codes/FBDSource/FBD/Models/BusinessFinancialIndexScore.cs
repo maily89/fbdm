@@ -218,7 +218,7 @@ namespace FBD.Models
 
             viewModelResult.Industries = FBDModel.BusinessIndustries.ToList();
             viewModelResult.Scales = FBDModel.BusinessScales.ToList();
-            viewModelResult.FinancialIndexes = FBDModel.BusinessFinancialIndex.ToList();
+            viewModelResult.FinancialIndexes = BusinessFinancialIndex.SelectFinancialLeafIndex(FBDModel);
 
             viewModelResult.IndustryID = prmIndustryID;
             viewModelResult.ScaleID = prmScaleID;

@@ -44,7 +44,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel"></param>
         /// <returns></returns>
-        public static List<BusinessNonFinancialIndex> SelectFinancialLeafIndex(FBDEntities FBDModel)
+        public static List<BusinessNonFinancialIndex> SelectNonFinancialLeafIndex(FBDEntities FBDModel)
         {
             List<BusinessNonFinancialIndex> lstBusinessNonFinancialLeafIndexes = FBDModel
                                                                            .BusinessNonFinancialIndex
