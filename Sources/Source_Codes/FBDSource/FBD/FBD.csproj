@@ -99,6 +99,7 @@
     <Compile Include="Controllers\FIScoreController.cs" />
     <Compile Include="Controllers\NFILevelsController.cs" />
     <Compile Include="Controllers\NFINonFinancialIndexController.cs" />
+    <Compile Include="Controllers\NFIScoreController.cs" />
     <Compile Include="Controllers\SYSBranchesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Models\BusinessLines.cs" />
     <Compile Include="Models\BusinessNonFinancialIndex.cs" />
     <Compile Include="Models\BusinessNonFinancialIndexLevels.cs" />
+    <Compile Include="Models\BusinessNonFinancialIndexScore.cs" />
     <Compile Include="Models\BusinessRankingStructure.cs" />
     <Compile Include="Models\BusinessRanks.cs" />
     <Compile Include="Models\BusinessScales.cs" />
@@ -142,6 +144,8 @@
     <Compile Include="ViewModels\FIProportionViewModel.cs" />
     <Compile Include="ViewModels\FIScoreRowViewModel.cs" />
     <Compile Include="ViewModels\FIScoreViewModel.cs" />
+    <Compile Include="ViewModels\NFIScoreRowViewModel.cs" />
+    <Compile Include="ViewModels\NFIScoreViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsRowViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
@@ -306,6 +310,7 @@
     <Content Include="Views\NFINonFinancialIndex\Add.aspx" />
     <Content Include="Views\NFINonFinancialIndex\Edit.aspx" />
     <Content Include="Views\NFINonFinancialIndex\Index.aspx" />
+    <Content Include="Views\NFIScore\Index.aspx" />
     <Content Include="Views\SYSBranches\Add.aspx" />
     <Content Include="Views\SYSBranches\Edit.aspx" />
     <Content Include="Views\SYSBranches\Index.aspx" />
