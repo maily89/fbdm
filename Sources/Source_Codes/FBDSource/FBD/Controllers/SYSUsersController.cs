@@ -56,17 +56,31 @@ namespace FBD.Controllers
         // POST: /SYSUsers/Create
 
         [HttpPost]
-        public ActionResult Add(SYSUsersViewModel data)
+        public ActionResult Add(FormCollection form)
         {
+            
             try
             {
                 if (ModelState.IsValid)
                 {
+                    string UserID = form["SystemUsers.UserID"];
+                    string GroupID = form["Group"];
+                    string BranchID = form["Branch"];
+                    string FullName = form["SystemUsers.FullName"];
+                    string Password = form["SystemUsers.Password"];
+                    string Status = form["SystemUsers.Status"];
+                    string CreditDepartment = form["SystemUsers.CreditDepartment"];
+
                     var entity = new FBDEntities();
-                    var user = data.SystemUsers;
-                    user.SystemUserGroups = SystemUserGroups.SelectUserGroupByID(data.GroupID, entity);
-                    user.SystemBranches = SystemBranches.SelectBranchByID(data.BranchID, entity);
-                    int result = SystemUsers.AddUser(user);
+                    var user = new SystemUsers();
+                    user.UserID = UserID;
+                    user.SystemUserGroups = SystemUserGroups.SelectUserGroupByID(GroupID, entity);
+                    user.SystemBranches = SystemBranches.SelectBranchByID(BranchID, entity);
+                    user.FullName = FullName;
+                    user.Password = Password;
+                    user.Status = Status;
+                    user.CreditDepartment = CreditDepartment;
+                    int result = SystemUsers.AddUser(user,entity);
 
                     if (result == 1)
                     {
@@ -79,8 +93,9 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 TempData["Message"] = Constants.ERR_ADD_POST_SYS_USERS;
-                data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
-                return View(data);
+                //data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
+                //data.SystemBranches = SystemBranches.SelectBranches();4
+                return View();
             }
         }
 
@@ -105,7 +120,7 @@ namespace FBD.Controllers
                     throw new Exception();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 TempData["Message"] = Constants.ERR_EDIT_SYS_USERS;
                 return View(model);

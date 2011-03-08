@@ -14,7 +14,7 @@ namespace FBD.Models
         public static List<SystemUsers> SelectUsers()
         {
             FBDEntities entities = new FBDEntities();
-            return entities.SystemUsers.ToList();
+            return entities.SystemUsers.Include("SystemBranches").Include("SystemUserGroups").ToList();
         }
 
         public static SystemUsers SelectUserByID(string id)
