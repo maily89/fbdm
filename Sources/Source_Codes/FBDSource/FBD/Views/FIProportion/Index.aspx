@@ -97,7 +97,7 @@
             
             <td>
                 <input type="submit" name="Save" value="Save" />
-                <input type="button" value="Check" onclick="javascript:alert(CheckNull());" />
+                <input type="button" value="Check" onclick="javascript:alert(Check());" />
             </td>
         </tr>
         <% } %>    
