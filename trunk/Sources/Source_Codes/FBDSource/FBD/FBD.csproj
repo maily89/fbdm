@@ -272,6 +272,7 @@
     <Content Include="Scripts\2010.3.1318\telerik.timepicker.min.js" />
     <Content Include="Scripts\2010.3.1318\telerik.treeview.min.js" />
     <Content Include="Scripts\2010.3.1318\telerik.window.min.js" />
+    <Content Include="Scripts\CheckNull.js" />
     <Content Include="Scripts\QuickMenu.js" />
     <Content Include="Views\BSNIndustry\Add.aspx" />
     <Content Include="Views\BSNIndustry\Edit.aspx" />

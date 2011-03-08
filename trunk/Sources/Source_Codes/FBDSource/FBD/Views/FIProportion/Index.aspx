@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Financial Index Proportion
 </asp:Content>
-
+<asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
+<script src="/Scripts/CheckNull.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>MANAGING FINANCIAL INDEX PROPORTION</h2>
@@ -28,6 +33,7 @@
         
         <% using (Html.BeginForm())
             { %>
+        
         <tr>            
             <%= Html.HiddenFor(model => model.IndustryID) %>
             <%= Html.Hidden("NumberOfProportionRows", Model.ProportionRows.Count) %>
@@ -91,6 +97,7 @@
             
             <td>
                 <input type="submit" name="Save" value="Save" />
+                <input type="button" value="Check" onclick="javascript:alert(CheckNull());" />
             </td>
         </tr>
         <% } %>    
