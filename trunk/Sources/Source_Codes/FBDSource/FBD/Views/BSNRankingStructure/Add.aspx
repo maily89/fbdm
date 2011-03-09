@@ -17,20 +17,7 @@
         <fieldset>
             <legend>Fields</legend>
             <table>
-            
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        <%= Html.LabelFor(model => model.ID) %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.ID) %>
-                        <%= Html.ValidationMessageFor(model => model.ID) %>
-                    </div>
-               </td>
-           </tr>
+
             
             <tr>
                 <td>

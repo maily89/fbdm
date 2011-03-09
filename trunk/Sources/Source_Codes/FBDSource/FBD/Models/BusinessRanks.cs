@@ -110,7 +110,7 @@ namespace FBD.Models
             public Nullable<decimal> ToValue { get; set; }
         		
         	[DisplayName("Rank")]
-        	[StringLength(10,ErrorMessage="Rank must be under 10 characters")]
+        	//[StringLength(10,ErrorMessage="Rank must be under 10 characters")]
             public string Rank { get; set; }
         		
         	[DisplayName("Evaluation")]

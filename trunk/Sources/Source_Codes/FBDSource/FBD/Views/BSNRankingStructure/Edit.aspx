@@ -18,24 +18,11 @@
         <fieldset>
             <legend>Fields</legend>
             <table>
-            
-               <tr>
-                    <td>
-                        <div class="editor-label">
-                            <%= Html.LabelFor(model => model.ID) %>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.ID, new { @readonly = "true", @disabled = "true" }) %>
-                            <%= Html.HiddenFor(model => model.ID) %>
-                        </div>
-                   </td>
-               </tr>
                 <tr>
                     <td>
                         <div class="editor-label">
                             <%= Html.LabelFor(model => model.IndexType) %>
+                            <%= Html.HiddenFor(model => model.ID) %>
                         </div>
                     </td>
                     <td>

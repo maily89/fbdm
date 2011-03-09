@@ -62,7 +62,7 @@ namespace FBD.Controllers
                 throw new Exception();
                 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_TYPE);
                 return View(type);

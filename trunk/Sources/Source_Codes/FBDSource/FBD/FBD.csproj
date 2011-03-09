@@ -152,6 +152,8 @@
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FBD.mdf">
+    </Content>
     <Content Include="Content\2010.3.1318\Black\editor.png" />
     <Content Include="Content\2010.3.1318\Black\loading.gif" />
     <Content Include="Content\2010.3.1318\Black\sprite.png" />
@@ -246,7 +248,18 @@
     <Content Include="Content\2010.3.1318\Windows7\editor.png" />
     <Content Include="Content\2010.3.1318\Windows7\loading.gif" />
     <Content Include="Content\2010.3.1318\Windows7\sprite.png" />
+    <Content Include="Content\images\image01.png" />
+    <Content Include="Content\images\image02.png" />
+    <Content Include="Content\images\img.jpg" />
+    <Content Include="Content\images\img01.jpg" />
+    <Content Include="Content\images\img02.jpg" />
+    <Content Include="Content\images\img03.jpg" />
+    <Content Include="Content\images\img04.gif" />
+    <Content Include="Content\images\img06.gif" />
+    <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\images\Stage_BG_btm.png" />
     <Content Include="Content\QuickMenu.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\2010.3.1318\jquery-1.4.4.min.js" />
     <Content Include="Scripts\2010.3.1318\jquery.validate.min.js" />
@@ -365,7 +378,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\props\" />
     <Folder Include="Views\SYSReportingPeriod\.svn\text-base\" />
@@ -394,7 +406,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52453</DevelopmentServerPort>
+          <DevelopmentServerPort>61428</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
