@@ -60,6 +60,7 @@ namespace FBD.CommonUtilities
         public const string ERR_EDIT = "Error when select the {0}. Please try again";
         public const string ERR_EDIT_POST = "Error when editting {0}. Please recheck your input ";
         public const string ERR_DELETE = "Error when deleting the {0}. Try again later";
+        public const string ERR_KEY_EXIST = "ID exists. Please try again!";
         
         // FI PROPORTION ERRORS
         public const string ERR_UPDATE_FIPROPORTION = "Error when updating to the financial index {0}. Try again later";

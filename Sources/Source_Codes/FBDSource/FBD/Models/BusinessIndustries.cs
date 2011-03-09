@@ -17,7 +17,7 @@ namespace FBD.Models
         public static List<BusinessIndustries> SelectIndustries()
         {
             FBDEntities entities = new FBDEntities();
-            return entities.BusinessIndustries.ToList();
+            return entities.BusinessIndustries.OrderBy(m => m.IndustryID).ToList();
         }
 
         /// <summary>
@@ -30,7 +30,15 @@ namespace FBD.Models
             if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
             var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
+            
             return industry;
+        }
+
+        public static bool IsIDExist(string id)
+        {
+            FBDEntities entities = new FBDEntities();
+
+            return entities.BusinessIndustries.Where(i => i.IndustryID == id).Any();
         }
 
         /// <summary>

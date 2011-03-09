@@ -152,6 +152,7 @@ namespace FBD.Controllers
                     var entity = new FBDEntities();
                     var line = BusinessLines.SelectLineByID(id, entity);
                     line.BusinessIndustries = BusinessIndustries.SelectIndustryByID(data.IndustryID, entity);
+                    line.LineName = data.BusinessLines.LineName;
                     //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
                     BusinessLines.EditLine(line);
                 }

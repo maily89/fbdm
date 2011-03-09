@@ -64,6 +64,11 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (BusinessIndustries.IsIDExist(industry.IndustryID))
+                    {
+                        TempData["Message"] = Constants.ERR_KEY_EXIST;
+                        return View(industry);
+                    }
                     int result=BusinessIndustries.AddIndustry(industry);
 
                     if (result == 1)

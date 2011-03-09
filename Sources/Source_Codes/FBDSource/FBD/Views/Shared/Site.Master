@@ -6,60 +6,57 @@
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="../../Content/QuickMenu.css" rel="stylesheet" type="text/css" />
     <script src="../../Scripts/QuickMenu.js" type="text/javascript"></script> 
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/site.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../Content/style.css" rel="stylesheet" type="text/css" media="screen" />
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
     <%= Html.Telerik().StyleSheetRegistrar()
         .DefaultGroup(group => group.Add("telerik.common.css")
-                                    .Add("telerik.vista.css"))
+                                    .Add("telerik.webblue.css"))
     %>
 </head>
 
 <body>
-    <div class="page">
-
+    <div id="wrapper">
         <div id="header">
             <div id="title">
                 <h1>Banking Ranking System</h1>
             </div>
             <br />
-            <div id="menucontainer" >
-            
-                <ul id="qm0" class="qmmc">
+        
+        </div>
+        <div id="menu" >
+             <% 
+                Html.Telerik().Menu()
+                    .Name("Menu")
+                    .Items(items =>
+                    {
+                        items.Add()
+                             .Text("Parameter Management")
+                             .Items(item =>
+                             {
+                                 item.Add().Text("Business Industry").Url("./BSNIndustry");
 
-	            <li><a class="qmparent" href="javascript:void(0)">Business</a>
+                             });
+                        })
+                    .Render(); 
+            %>
 
-		            <ul>
-		            <li><a href="..\BSNIndustry">Industry</a></li>
-		            
-		            </ul>
-		        </li>
 
-	             <li><a class="qmparent" href="javascript:void(0)">individual</a>
-                    <ul>
-		                <li><a href="INVBorrowingPurpose">INV Borrowing Purpose</a></li> 
-		                <li><a href="INVBasicIndexScore">INV Basic Index Score</a></li> 
-		                <li><a href="INVBasicLevels">INV Basic Levels</a></li> 
-		                <li><a href="INVBasicIndexScore">INV Basic Index Score</a></li> 
-		                <li><a href="INVProportion">INV Proportion</a></li> 
-		            </ul>
-		            
-		            
-		        </li>
-
-            <li class="qmclear">&nbsp;</li></ul>
-
-            <!-- Create Menu Settings: (Menu ID, Is Vertical, Show Timer, Hide Timer, On Click, Right to Left, Horizontal Subs, Flush Left) -->
-            <script type="text/javascript">    qm_create(0, false, 0, 250, false, false, false, false);</script>
-                        
-            </div>
+                                
         </div>
 
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
+        <div id="Content">
+            <div id="left">
+                <div class='post'>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
             </div>
         </div>
+        
+        <div id="footer">
+		<p class="copyright">Copyright &copy; 2011 FBD. Template Designed by <a href="http://www.thewebhub.com/">TheWebHub.com</a>&nbsp;&nbsp;&nbsp;Free Icons by <a href="http://famfamfam.com/">FAMFAMFAM</a></p>
+		<p class="links"><a href="http://validator.w3.org/check/referer" class="xhtml">Valid XHTML</a>&nbsp;&nbsp;&nbsp;<a href="http://jigsaw.w3.org/css-validator/check/referer" class="css">Valid CSS</a> </p>
+	    </div>
     </div>
         <!-- other content -->
     <%= Html.Telerik().ScriptRegistrar() %>
