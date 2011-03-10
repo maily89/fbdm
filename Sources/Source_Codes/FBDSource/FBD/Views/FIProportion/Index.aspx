@@ -4,7 +4,7 @@
 	Financial Index Proportion
 </asp:Content>
 <asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
-<script src="/Scripts/CheckNull.js" type="text/javascript"></script> 
+<script src="/Scripts/CheckProportion.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
@@ -12,9 +12,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>MANAGING FINANCIAL INDEX PROPORTION</h2>
-    
-    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%><br /></p>
-    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
+
+    <% Html.EnableClientValidation(); %>    
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
     <table>
         <tr>
@@ -91,13 +92,13 @@
                 </table>
             </td>            
         </tr>
-        
+         
         <tr>
             <td></td>
             
             <td>
                 <input type="submit" name="Save" value="Save" />
-                <input type="button" value="Check" onclick="javascript:alert(Check());" />
+                <input type="button" value="Check Total Proportion" onclick="javascript:alert(CheckTotalFIProportion());" />
             </td>
         </tr>
         <% } %>    

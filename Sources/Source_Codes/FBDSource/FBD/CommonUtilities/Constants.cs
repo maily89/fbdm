@@ -56,7 +56,7 @@ namespace FBD.CommonUtilities
 
         // COMMON ERRORS
         public const string ERR_INDEX = "Error when displaying the list of {0}";
-        public const string ERR_ADD_POST = "Error when adding new {0}. Please recheck your input ";
+        public const string ERR_ADD_POST = "Error when adding new {0} due to duplicated ID or invalid data input. Please check again";
         public const string ERR_EDIT = "Error when select the {0}. Please try again";
         public const string ERR_EDIT_POST = "Error when editting {0}. Please recheck your input ";
         public const string ERR_DELETE = "Error when deleting the {0}. Try again later";

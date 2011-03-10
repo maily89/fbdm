@@ -40,7 +40,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Select all the financial indexes where leaf index is true
+        /// Select all the financial indexes where leaf index is true, used for business handling proportion
         /// </summary>
         /// <param name="FBDModel"></param>
         /// <returns></returns>
