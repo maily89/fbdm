@@ -33,7 +33,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_INDEX_SYS_REPORTING_PERIODS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX,Constants.SYSTEM_REPORTING_PERIOD);
                 return View(lstPeriod);
             }
             return View(lstPeriod);
@@ -73,15 +73,26 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (SystemRights.IsIDExist(reportingPeriod.PeriodID) == 1) //If dupplicated
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
+                        return View(reportingPeriod);
+                    }
+                    if (SystemRights.IsIDExist(reportingPeriod.PeriodID) == 2) //If there is any exception
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
+                        return View(reportingPeriod);
+                    }
+                    //else IsIDExist(reportingPeriod.PeriodID) == 0 //Means the ID is available
                     int result = SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
                     if (result == 2)
                     {
-                        TempData["Message"] = Constants.ERR_TO_DATE_LESS_THAN_FROM_DATE;
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_TO_DATE_LESS_THAN_FROM_DATE;
                         return View(reportingPeriod);
                     }
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_REPORTING_PERIODS;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_REPORTING_PERIOD);
                         return RedirectToAction("Index");
                     }
                 }
@@ -89,7 +100,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = Constants.ERR_ADD_POST_SYS_REPORTING_PERIODS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.SYSTEM_REPORTING_PERIOD);
                 return View(reportingPeriod);
             }
         }
@@ -121,7 +132,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_REPORTING_PERIODS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_REPORTING_PERIOD);
                 return View(reportingPeriod);
             }
             return View(reportingPeriod);
@@ -153,7 +164,7 @@ namespace FBD.Controllers
                     int result = SystemReportingPeriods.EditReportingPeriod(reportingPeriod);
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_REPORTING_PERIODS_1;
+                        TempData[Constants.SCC_MESSAGE] = string.Format( Constants.SCC_EDIT_POST, Constants.SYSTEM_REPORTING_PERIOD,reportingPeriod.PeriodID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -161,7 +172,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = "Period ID " + reportingPeriod.PeriodID + " has been updated sucessfully";
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_REPORTING_PERIOD);
                 return View(reportingPeriod);
             }
         }
@@ -176,14 +187,14 @@ namespace FBD.Controllers
                 int result = SystemReportingPeriods.DeleteReportingPeriod(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = Constants.SCC_DELETE_SYS_REPORTING_PERIODS;
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_REPORTING_PERIOD);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_DELETE_SYS_REPORTING_PERIODS;
+                TempData[Constants.SCC_MESSAGE] = string.Format( Constants.ERR_DELETE, Constants.SYSTEM_REPORTING_PERIOD);
                 return RedirectToAction("Index");
             }
         }

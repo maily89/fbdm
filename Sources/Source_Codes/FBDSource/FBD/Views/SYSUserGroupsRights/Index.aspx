@@ -26,7 +26,7 @@
             <%= Html.HiddenFor(model => model.GroupID) %>
             <%= Html.Hidden("NumberOfRightRows", Model.LstGroupRightRows.Count) %>
             <td>
-                <%= Html.Label("System Deauthentication") %>
+                <%= Html.Label("List of rights") %>
             </td>
            <td>
                 <table>

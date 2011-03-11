@@ -100,6 +100,29 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
+        /// <summary>
+        /// Check ID dupplication
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1: if true (dupplication is occuring)
+        /// 0: if false (no dupplication, the ID is available
+        /// 2: if there is any exception
+        /// </returns>
+        public static int IsIDExist(string id)
+        {
+            FBDEntities entities = new FBDEntities();
+            try
+            {
+                bool check = entities.SystemRights.Where(i => i.RightID == id).Any();
+                return check ? 1 : 0;
+            }
+            catch (Exception)
+            {
+                return 2;
+            }
+        }
+
         public class SystemRightsMetadata
         {
             [DisplayName("Right ID")]

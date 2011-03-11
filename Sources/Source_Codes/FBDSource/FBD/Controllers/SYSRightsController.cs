@@ -30,7 +30,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_ADD_POST_SYS_RIGHTS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_RIGHT);
                 return View(rights);
             }
             return View(rights);
@@ -67,10 +67,21 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (SystemRights.IsIDExist(right.RightID)==1) //If dupplicated
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
+                        return View(right);
+                    }
+                    if (SystemRights.IsIDExist(right.RightID) == 2) //If there is any exception
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
+                        return View(right);
+                    }
+                    //else IsIDExist(right.RightID) == 0 //Means the ID is available
                     int result = SystemRights.AddRight(right);
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_RIGHTS;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_RIGHT);
                         return RedirectToAction("Index");
                     }
                 }
@@ -78,7 +89,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_ADD_POST_SYS_RIGHTS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST,Constants.SYSTEM_RIGHT);
                 return View(right);
             }
         }
@@ -106,7 +117,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_RIGHTS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT,Constants.SYSTEM_RIGHT);
                 return View(right);
             }
             return View(right);
@@ -137,17 +148,14 @@ namespace FBD.Controllers
                     int result = SystemRights.EditRight(right);
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_RIGHTS_1
-                                              + id +
-                                              Constants.SCC_EDIT_POST_SYS_RIGHTS_2;
-                        return RedirectToAction("Index");
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_RIGHT, right.RightID);
                     }
                 }
                 throw new Exception();
             }
             catch
             {
-                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_RIGHTS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_RIGHT);
                 return View(right);
             }
         }
@@ -162,14 +170,14 @@ namespace FBD.Controllers
                 int result = SystemRights.DeleteRight(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = Constants.SCC_DELETE_SYS_RIGHTS;
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_RIGHT);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_DELETE_SYS_RIGHTS;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_RIGHT);
                 return RedirectToAction("Index");
             }
         }
