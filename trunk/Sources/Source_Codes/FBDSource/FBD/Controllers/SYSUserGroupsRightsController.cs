@@ -14,6 +14,14 @@ namespace FBD.Controllers
         //
         // GET: /SYSDecentralization/
 
+        /// <summary>
+        /// Use Logic class to create ViewModel combine data from two data groups: 
+        ///     - List of Groups (from SystemUserGroups table) and 
+        ///     - List of Rights (from SystemUserGroupsRights table)
+        /// Display list of User Groups in Drop down list
+        /// Display list of Rights in the table
+        /// </summary>
+        /// <returns>Return View with the newly created View Model</returns>
         public ActionResult Index ()
         {
             FBDEntities entities = new FBDEntities();
@@ -28,13 +36,20 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_SYS_GROUP_RIGHT;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_USER_GROUP_RIGHT);
                 return View(viewModel);
             }
             return View(viewModel);
         }
 
 
+        /// <summary>
+        /// There are two kinds of action:
+        ///     - Action from formCollection["UserGroup"] : Select User Group with GroupID from Drop down list
+        ///     - Action from formCollection["Save"] : Click Save button and list of rights for the GroupID will be updated
+        /// </summary>
+        /// <param name="formCollection"></param>
+        /// <returns>View("Index")</returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
@@ -52,7 +67,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_SYS_GROUP_RIGHT;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, "User Groups");
                 return RedirectToAction("Index");
             }
 
@@ -89,21 +104,21 @@ namespace FBD.Controllers
 
                     SYSUserGroupsRightsViewModel viewModelAfterEditing = SystemUserGroupsRights.CreateViewModelbyGroup(entities, formCollection["GroupID"].ToString());
 
-                    if (errorIndex != null)
+                    if (errorIndex != null) //If there is some error 
                     {
-                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_SYS_GROUP_RIGHT, errorIndex);
+                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_LIST_RIGHTS);
                         return View(viewModelAfterEditing);
                     }
-                    else
+                    else //If OK
                     {
-                        TempData[Constants.ERR_MESSAGE] = Constants.SCC_UPDATE_SYS_GROUP_RIGHT;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_LIST_RIGHTS, viewModelForSaving.GroupID);
                     }
 
                 }
                 }
                 catch (Exception)
                 {
-                    TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_SYS_GROUP_RIGHT;
+                    TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_LIST_RIGHTS);
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Index");
