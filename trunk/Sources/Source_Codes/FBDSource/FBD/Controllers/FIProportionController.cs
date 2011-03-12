@@ -41,7 +41,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_INDUSTRY);
                 return View(viewModel);
             }
 
@@ -78,7 +78,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when displaying information
-                TempData[Constants.ERR_MESSAGE] = CommonUtilities.Constants.ERR_DISPLAY_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_INDUSTRY);
                 return RedirectToAction("Index");
             }
 
@@ -156,7 +156,7 @@ namespace FBD.Controllers
                     if (errorIndex != null)
                     {
                         // Display error message when updating
-                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_FIPROPORTION, errorIndex);
+                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_PROPORTION, errorIndex);
                         
                         return View(viewModelAfterEditing);
                     }
@@ -164,7 +164,7 @@ namespace FBD.Controllers
                     else
                     {
                         // Display successful message
-                        TempData[Constants.SCC_MESSAGE] = Constants.SCC_UPDATE_FIPROPORTION;
+                        TempData[Constants.SCC_MESSAGE] = Constants.SCC_UPDATE_PROPORTION;
                         return View(viewModelAfterEditing);
                     }
                 }
@@ -172,7 +172,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Error message when handling in Controller
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_POST_FIPROPORTION;
+                TempData[Constants.ERR_MESSAGE] = Constants.ERR_CONTROLLER_PARSING;
                 return RedirectToAction("Index");
             }
 

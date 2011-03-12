@@ -55,6 +55,22 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// Select all the non financial indexes where leaf index is false
+        /// </summary>
+        /// <param name="FBDModel"></param>
+        /// <returns></returns>
+        public static List<BusinessNonFinancialIndex> SelectNonFinancialParentIndex(FBDEntities FBDModel)
+        {
+            List<BusinessNonFinancialIndex> lstBusinessNonFinancialParentIndexes = FBDModel
+                                                                           .BusinessNonFinancialIndex
+                                                                           .Where(index => index.LeafIndex == false)
+                                                                           .OrderBy(index => index.IndexID)
+                                                                           .ToList();
+
+            return lstBusinessNonFinancialParentIndexes;
+        }
+
+        /// <summary>
         /// 1. Receive information from parameter
         /// 2. Insert new index into the Database
         /// 3. If successful, return 1 otherwise return 0
