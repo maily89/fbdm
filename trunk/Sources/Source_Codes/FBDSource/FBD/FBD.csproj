@@ -261,7 +261,6 @@
     <Content Include="Content\images\img06.gif" />
     <Content Include="Content\images\spacer.gif" />
     <Content Include="Content\images\Stage_BG_btm.png" />
-    <Content Include="Content\QuickMenu.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\2010.3.1318\jquery-1.4.4.min.js" />
@@ -289,7 +288,6 @@
     <Content Include="Scripts\2010.3.1318\telerik.treeview.min.js" />
     <Content Include="Scripts\2010.3.1318\telerik.window.min.js" />
     <Content Include="Scripts\CheckProportion.js" />
-    <Content Include="Scripts\QuickMenu.js" />
     <Content Include="Views\BSNIndustry\Add.aspx" />
     <Content Include="Views\BSNIndustry\Edit.aspx" />
     <Content Include="Views\BSNIndustry\Index.aspx" />
@@ -367,6 +365,11 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FBD_log.ldf">
+      <DependentUpon>FBD.mdf</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\BSNSideMenu.ascx" />
+    <Content Include="Views\Shared\SYSSideMenu.ascx" />
     <None Include="CodeTemplates\AddController\Controller.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>

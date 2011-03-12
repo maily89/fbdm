@@ -49,13 +49,13 @@ namespace FBD.Controllers
         /// <param name="scaleScore"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(BusinessScales scale)
+        public ActionResult Add(BusinessScales businessScales)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    int result=BusinessScales.AddScale(scale);
+                    int result=BusinessScales.AddScale(businessScales);
                     if (result == 1)
                     {
                         TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_SCALE);
@@ -67,7 +67,7 @@ namespace FBD.Controllers
             catch
             {
                 TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_SCALE);
-                return View(scale);
+                return View(businessScales);
             }
         }
 
@@ -107,18 +107,18 @@ namespace FBD.Controllers
         /// <param name="scaleScore"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(string id, BusinessScales scale)
+        public ActionResult Edit(string id, BusinessScales businessScales)
         {
             try
             {
 
                 if (ModelState.IsValid)
                 {
-                    int result=BusinessScales.EditScale(scale);
+                    int result=BusinessScales.EditScale(businessScales);
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALE, scale.ScaleID);
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALE, businessScales.ScaleID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -130,7 +130,7 @@ namespace FBD.Controllers
                 //TODO: Temporary error handle.
 
                 TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALE);
-                return View(scale);
+                return View(businessScales);
             }
         }
 
