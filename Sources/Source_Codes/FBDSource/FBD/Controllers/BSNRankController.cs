@@ -54,13 +54,13 @@ namespace FBD.Controllers
         /// <param name="rank"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(BusinessRanks rank)
+        public ActionResult Add(BusinessRanks businessRanks)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (BusinessRanks.AddRank(rank) == 1)
+                    if (BusinessRanks.AddRank(businessRanks) == 1)
                     {
                         TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_RANK);
                         return RedirectToAction("Index");
@@ -72,7 +72,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_RANK);
-                return View(rank);
+                return View(businessRanks);
             }
         }
 
@@ -111,14 +111,14 @@ namespace FBD.Controllers
         /// <param name="rank"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(string id, BusinessRanks rank)
+        public ActionResult Edit(string id, BusinessRanks businessRanks)
         {
             try
             {
 
                 if (ModelState.IsValid)
                 {
-                    if (BusinessRanks.EditRank(rank) == 1)
+                    if (BusinessRanks.EditRank(businessRanks) == 1)
                     {
                         TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANK, id);
                         return RedirectToAction("Index");
@@ -133,7 +133,7 @@ namespace FBD.Controllers
                 //TODO: Temporary error handle.
 
                 TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANK);
-                return View(rank);
+                return View(businessRanks);
             }
         }
 

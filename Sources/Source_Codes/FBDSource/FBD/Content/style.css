@@ -109,7 +109,7 @@ a:hover {
 #menu a:hover {
 	color: #D7D7BD;
 }
-**/
+**
 /** Style for wrapper starts here */
 
 #wrapper {
@@ -117,7 +117,7 @@ a:hover {
 	min-height:100%;
 	margin: 0px auto;
 	background: #FFFFFF;
-	padding: 20px;
+	padding: 0px;
 }
 
 /** Style for content starts here */
@@ -140,7 +140,7 @@ a:hover {
 
 #left {
 	float: left;
-	width: 480px;
+	width: 500px;
 	padding-left: 20px;
 	margin-bottom: 20px;
 	margin-top:20px;
@@ -165,9 +165,10 @@ a:hover {
 
 #right {
 	float: right;
-	width: 240px;
+	width: 220px;
 	margin-bottom: 20px;
 	padding-right: 20px;
+	margin-top:20px;
 }
 
 
@@ -188,7 +189,7 @@ a:hover {
 #footer {
 	clear: both;
 	width: 800px;
-	height: 42px;
+	height: 38px;
 	margin: 0px auto 0px auto;
 	padding-top: 13px;
 	border-top: 1px solid #444444;
