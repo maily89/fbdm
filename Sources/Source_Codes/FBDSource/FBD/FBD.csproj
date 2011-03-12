@@ -84,6 +84,7 @@
     <Compile Include="CommonUtilities\Constants.cs" />
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
+    <Compile Include="CommonUtilities\StringHelper.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
     <Compile Include="Controllers\BSNRankController.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Controllers\FIScoreController.cs" />
     <Compile Include="Controllers\NFILevelsController.cs" />
     <Compile Include="Controllers\NFINonFinancialIndexController.cs" />
+    <Compile Include="Controllers\NFIProportionController.cs" />
     <Compile Include="Controllers\NFIScoreController.cs" />
     <Compile Include="Controllers\SYSBranchesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
@@ -115,6 +117,9 @@
     <Compile Include="Models\BusinessFinancialIndexScore.cs" />
     <Compile Include="Models\BusinessIndustries.cs" />
     <Compile Include="Models\BusinessLines.cs" />
+    <Compile Include="Models\BusinessNFIProportionByIndustry.cs" />
+    <Compile Include="Models\BusinessNFIProportionByType.cs" />
+    <Compile Include="Models\BusinessNFIProportionCalculated.cs" />
     <Compile Include="Models\BusinessNonFinancialIndex.cs" />
     <Compile Include="Models\BusinessNonFinancialIndexLevels.cs" />
     <Compile Include="Models\BusinessNonFinancialIndexScore.cs" />
@@ -144,6 +149,8 @@
     <Compile Include="ViewModels\FIProportionViewModel.cs" />
     <Compile Include="ViewModels\FIScoreRowViewModel.cs" />
     <Compile Include="ViewModels\FIScoreViewModel.cs" />
+    <Compile Include="ViewModels\NFIProportionRowViewModel.cs" />
+    <Compile Include="ViewModels\NFIProportionViewModel.cs" />
     <Compile Include="ViewModels\NFIScoreRowViewModel.cs" />
     <Compile Include="ViewModels\NFIScoreViewModel.cs" />
     <Compile Include="ViewModels\SYSUserGroupsRightsRowViewModel.cs" />
@@ -325,6 +332,8 @@
     <Content Include="Views\NFINonFinancialIndex\Add.aspx" />
     <Content Include="Views\NFINonFinancialIndex\Edit.aspx" />
     <Content Include="Views\NFINonFinancialIndex\Index.aspx" />
+    <Content Include="Views\NFIProportion\IndexByIndustry.aspx" />
+    <Content Include="Views\NFIProportion\IndexByType.aspx" />
     <Content Include="Views\NFIScore\Index.aspx" />
     <Content Include="Views\SYSBranches\Add.aspx" />
     <Content Include="Views\SYSBranches\Edit.aspx" />

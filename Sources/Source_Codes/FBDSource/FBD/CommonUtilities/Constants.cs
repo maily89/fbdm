@@ -63,21 +63,15 @@ namespace FBD.CommonUtilities
         public const string ERR_DELETE = "Error when deleting the {0}. Try again later";
         public const string ERR_KEY_EXIST = "The ID already exists. Please try again!";
         public const string ERR_UNABLE_CHECK = "Error when checking ID dupplication. Please try again!";
-        
-        // FI PROPORTION ERRORS
-        public const string ERR_UPDATE_FIPROPORTION = "Error when updating to the financial index {0}. Try again later";
-        public const string ERR_DISPLAY_FIPROPORTION = "Error when displaying the selected business industry";
-        public const string ERR_POST_FIPROPORTION = "Error when parsing information at server. Try again later";
+        public const string ERR_CONTROLLER_PARSING = "Error when parsing information at server. Try again later";
 
-        // FI SCORE ERRORS
-        public const string ERR_UPDATE_FISCORE = "Error when updating to the level {0}. Try again later";
-        public const string ERR_DISPLAY_FISCORE = "Error when displaying the selected information";
-        public const string ERR_POST_FISCORE = "Error when parsing information at server. Try again later";
-
-        // NFI SCORE ERRORS
-        public const string ERR_UPDATE_NFISCORE = "Error when updating to the level {0}. Try again later";
-        public const string ERR_DISPLAY_NFISCORE = "Error when displaying the selected information";
-        public const string ERR_POST_NFISCORE = "Error when parsing information at server. Try again later";
+        // PROPORTION ERRORS
+        public const string ERR_UPDATE_PROPORTION = "Error when updating to the index {0}. Try again later";
+        public const string ERR_UPDATE_PROPORTION_CALCULATED = "Proportion changes were updated successfully but "
+                                                                + "the summary proportion got errors. Please check "
+                                                                + "the logic of proportion again";
+        // SCORE ERRORS
+        public const string ERR_UPDATE_SCORE = "Error when updating to the level {0}. Try again later";
 
         // FINANCIAL INDEX
 
@@ -170,9 +164,8 @@ namespace FBD.CommonUtilities
         public const string SCC_DELETE = "A {0} has been deleted successfully";
 
 
-        public const string SCC_UPDATE_FIPROPORTION = "Update financial proportion successfully";
-        public const string SCC_UPDATE_FISCORE = "Update financial score successfully";
-        public const string SCC_UPDATE_NFISCORE = "Update non-financial score successfully";
+        public const string SCC_UPDATE_PROPORTION = "Update proportion successfully";
+        public const string SCC_UPDATE_SCORE = "Update score successfully";
 
         // FINANCIAL INDEX
 
