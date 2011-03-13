@@ -51,7 +51,7 @@
                 <%= Html.Encode(item.Formula) %>
             </td>
             <td>
-                <%= Html.Encode(item.ValueType) %>
+                <%= Html.Encode(item.ValueType)=="0"?"Character":"Number" %>
             </td>
         </tr>
     

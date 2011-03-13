@@ -301,7 +301,6 @@
     <Content Include="Views\BSNLine\Add.aspx" />
     <Content Include="Views\BSNLine\Edit.aspx" />
     <Content Include="Views\BSNLine\Index.aspx" />
-    <Content Include="Views\BSNRankingStructure\Add.aspx" />
     <Content Include="Views\BSNRankingStructure\Edit.aspx" />
     <Content Include="Views\BSNRankingStructure\Index.aspx" />
     <Content Include="Views\BSNRank\Add.aspx" />

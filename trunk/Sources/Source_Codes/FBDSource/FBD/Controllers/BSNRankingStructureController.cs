@@ -25,7 +25,11 @@ namespace FBD.Controllers
             try
             {
                 rankingStructure = BusinessRankingStructure.SelectRankingStructures();
-
+                if (rankingStructure.Count!= 4)
+                {
+                    BusinessRankingStructure.Reset();
+                    rankingStructure = BusinessRankingStructure.SelectRankingStructures();
+                }
                 if (rankingStructure == null)
                 {
                     throw new Exception();
@@ -39,48 +43,6 @@ namespace FBD.Controllers
             return View(rankingStructure);
         }
 
-        //
-        // GET: /BSNRankingStructure/Add
-        /// <summary>
-        /// Display Add view
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Add()
-        {
-            return View();
-        }
-
-        //
-        // POST: /BSNRankingStructure/Add
-        /// <summary>
-        /// Add rankingStructure and display result
-        /// </summary>
-        /// <param name="rankingStructure"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult Add(BusinessRankingStructure rankingStructure)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    int result = BusinessRankingStructure.AddRankingStructure(rankingStructure);
-
-                    if (result == 1)
-                    {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_RANKING_STRUCTURE);
-                        return RedirectToAction("Index");
-                    }
-                }
-                throw new Exception();
-
-            }
-            catch (Exception )
-            {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_RANKING_STRUCTURE);
-                return View(rankingStructure);
-            }
-        }
 
         //
         // GET: /BSNRankingStructure/Edit/5
@@ -143,34 +105,7 @@ namespace FBD.Controllers
             }
         }
 
-        //
-        // GET: /BSNRankingStructure/Delete/5
-        /// <summary>
-        /// Delete RankingStructure
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                int result = BusinessRankingStructure.DeleteRankingStructure(id);
 
-                if (result == 1)
-                {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_RANKING_STRUCTURE);
-                    return RedirectToAction("Index");
-                }
-
-                throw new Exception();
-            }
-            catch (Exception)
-            {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_RANKING_STRUCTURE);
-                return RedirectToAction("Index");
-            }
-
-        }
 
 
     }

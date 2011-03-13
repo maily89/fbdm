@@ -7,6 +7,9 @@ namespace FBD.CommonUtilities
 {
     public class Constants
     {
+        /** NUMERIC VALUE */
+        public const int NUMBER_OF_RANKING_STRUCTURE = 4;
+        /** END OF NUMERIC VALUE */
         /************** PAGES NAMES *************/
 
 
