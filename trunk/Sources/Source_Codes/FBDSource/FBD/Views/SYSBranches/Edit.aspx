@@ -31,8 +31,8 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.BranchID) %>
-                        <%= Html.ValidationMessageFor(model => model.BranchID) %>
+                        <%= Html.TextBoxFor(model => model.BranchID, new { @readonly = "true", @disabled = "true" })%>
+                        <%= Html.HiddenFor(model => model.BranchID)%> 
                     </div>
                 </td>
             </tr>

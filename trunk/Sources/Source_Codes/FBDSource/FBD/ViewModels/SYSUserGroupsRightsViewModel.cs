@@ -14,7 +14,7 @@ namespace FBD.ViewModels
         public List<SystemUserGroups> LstUserGroups = new List<SystemUserGroups>();
         
         /// <summary>
-        /// List of User Right, will be filterd by User Group and displayed in the below table
+        /// List of User Right, will be filtered by User Group and displayed in the below table
         /// </summary>
         public List<SystemRights> LstRights = new List<SystemRights>();
 

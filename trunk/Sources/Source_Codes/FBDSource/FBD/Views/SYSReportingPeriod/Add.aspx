@@ -84,10 +84,14 @@
                 </td>
             </tr>
             </table>
-            <p>
-                <input type="submit" value="Add" />
-                <input type="button" onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-            </p>
+            <tr>
+                <td>
+                    <input type="submit" value="Add" />
+                </td>
+                <td>
+                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                </td>
+            </tr>
         </fieldset>
 
     <% } %>

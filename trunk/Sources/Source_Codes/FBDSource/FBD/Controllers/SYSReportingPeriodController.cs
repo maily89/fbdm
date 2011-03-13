@@ -73,12 +73,12 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (SystemRights.IsIDExist(reportingPeriod.PeriodID) == 1) //If dupplicated
+                    if (SystemReportingPeriods.IsIDExist(reportingPeriod.PeriodID) == 1) //If dupplicated
                     {
                         TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
                         return View(reportingPeriod);
                     }
-                    if (SystemRights.IsIDExist(reportingPeriod.PeriodID) == 2) //If there is any exception
+                    if (SystemReportingPeriods.IsIDExist(reportingPeriod.PeriodID) == 2) //If there is any exception
                     {
                         TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
                         return View(reportingPeriod);

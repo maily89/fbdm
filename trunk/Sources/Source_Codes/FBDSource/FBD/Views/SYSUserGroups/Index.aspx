@@ -28,7 +28,7 @@
                 </td>
                 <td>
                     <%= Html.Encode(item.GroupID) %>
-                </td>z
+                </td>
                 <td>
                     <%= Html.Encode(item.GroupName) %>
                 </td>

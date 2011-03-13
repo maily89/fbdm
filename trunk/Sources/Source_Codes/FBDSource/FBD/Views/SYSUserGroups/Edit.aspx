@@ -31,7 +31,8 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.GroupID, new { @readonly = "true", @disabled = "true" }) %>                        <%= Html.HiddenFor(model => model.GroupID)%>                
+                        <%= Html.TextBoxFor(model => model.GroupID, new { @readonly = "true", @disabled = "true" }) %>                        
+                        <%= Html.HiddenFor(model => model.GroupID)%>                
                         <%= Html.HiddenFor(model => model.GroupID) %>
                     </div>
                 </td>
@@ -51,7 +52,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Edit" />
+                    <input type="submit" value="Save" />
                 </td>
                 <td>
                     <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
