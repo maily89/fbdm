@@ -10,7 +10,6 @@
     
     <%= TempData["Message"]!=null?TempData["Message"]:"" %>
     
-    <br />
         Branches List 
     <br />
     <% using (Html.BeginForm())%>
@@ -20,7 +19,7 @@
             <br /><br />--%>
             <%= Html.DropDownList("BranchID", new SelectList(Model.Branches as IEnumerable, "BranchID", "BranchName", 
                             Model != null ? Model.BranchID : null), "Select Branch", new { onchange = "this.form.submit();" })%>                
-            <br /><br />
+            <br />
     <% } %>
     
     Lines for <%= Model.BranchName %>

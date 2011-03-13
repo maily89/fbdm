@@ -24,8 +24,8 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.RightID) %>
-                            <%= Html.ValidationMessageFor(model => model.RightID) %>
+                            <%= Html.TextBoxFor(model => model.RightID, new { @readonly = "true", @disabled = "true" }) %>
+                            <%= Html.HiddenFor(model => model.RightID)%>
                         </div>
                     </td>
                 </tr>
