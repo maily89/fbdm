@@ -79,7 +79,7 @@
             
             <tr>
                 <td>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Add" />
                 </td>
                 <td>
                     <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />

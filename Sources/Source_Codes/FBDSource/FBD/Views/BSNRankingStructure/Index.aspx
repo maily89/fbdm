@@ -7,9 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Index</h2>
-    <h3>
-        <%= Html.ActionLink("Add New", "Add") %>
-    </h3>
+
     <table>
         <tr>
             <th></th>
@@ -27,12 +25,12 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% if (Model!=null)
+        foreach (var item in Model) { %>
     
         <tr>
             <td>
                <%= Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete "+item.ID+"?');" })%>
             </td>
             <td>
                 <%= Html.Encode(item.ID) %>
@@ -52,9 +50,6 @@
 
     </table>
 
-    <h3>
-        <%= Html.ActionLink("Add New", "Add") %>
-    </h3>
 
 </asp:Content>
 

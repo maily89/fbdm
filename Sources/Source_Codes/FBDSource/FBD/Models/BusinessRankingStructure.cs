@@ -3,6 +3,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -44,17 +45,6 @@ namespace FBD.Models
             return rankingStructure;
         }
 
-        /// <summary>
-        /// delete the rankingStructure with the specified id
-        /// </summary>
-        /// <param name="id"> the id deleted</param>
-        public static int DeleteRankingStructure(int id)
-        {
-            FBDEntities entities = new FBDEntities();
-            var rankingStructure = BusinessRankingStructure.SelectRankingStructureByID(id, entities);
-            entities.DeleteObject(rankingStructure);
-            return entities.SaveChanges()<=0?0:1;
-        }
 
         /// <summary>
         /// edit the rankingStructure
@@ -70,20 +60,6 @@ namespace FBD.Models
             return entities.SaveChanges()<=0?0:1;
         }
 
-        /// <summary>
-        /// add new rankingStructure
-        /// </summary>
-        /// <param name="rankingStructure">the rankingStructure to add</param>
-        public static int AddRankingStructure(BusinessRankingStructure rankingStructure)
-        {
-            FBDEntities entities = new FBDEntities();
-
-            entities.AddToBusinessRankingStructure(rankingStructure);
-
-            int temp = entities.SaveChanges();
-            // return 0 if there is error, 1 otherwise
-            return temp <= 0 ? 0 : 1;
-        }
         public class BusinessRankingStructureMetaData
         {
 
@@ -103,5 +79,30 @@ namespace FBD.Models
         	[DisplayName("Percentage")]
             public Nullable<decimal> Percentage { get; set; }
         }
-    }
+
+        internal static int Reset()
+        {
+            FBDEntities entities = new FBDEntities();
+            var structures = entities.BusinessRankingStructure.ToList();
+            int rankingTotal=Constants.NUMBER_OF_RANKING_STRUCTURE;
+
+            if (structures.Count() > rankingTotal)
+            {
+                for (int i = rankingTotal; i < structures.Count-1; i++)
+                {
+                    entities.DeleteObject(structures[i]);
+                }
+                return entities.SaveChanges();
+            }
+            if (structures.Count() < rankingTotal)
+            {
+                for (int i = structures.Count + 1; i <= rankingTotal; i++)
+                {
+                    entities.AddToBusinessRankingStructure(new BusinessRankingStructure());
+                }
+                return entities.SaveChanges();
+            }
+            return 0;
+        }
+    } 
 }
