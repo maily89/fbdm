@@ -53,6 +53,8 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    type.TypeID = type.TypeID.Trim();
+                    
                     if (BusinessTypes.AddType(type) == 1)
                     {
                         TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_TYPE);

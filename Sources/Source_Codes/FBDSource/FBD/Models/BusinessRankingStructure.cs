@@ -96,11 +96,20 @@ namespace FBD.Models
             }
             if (structures.Count() < rankingTotal)
             {
+                int sum = 0;
                 for (int i = structures.Count + 1; i <= rankingTotal; i++)
                 {
-                    entities.AddToBusinessRankingStructure(new BusinessRankingStructure());
+                    BusinessRankingStructure temp = new BusinessRankingStructure();
+                    temp.IndexType = "Index " + (i+1) / 2 ;
+                    temp.AuditedStatus = "Status " + (i+1) % 2;
+                    using (var tempo=new FBDEntities())
+                    {
+                        tempo.AddToBusinessRankingStructure(temp);
+                        sum+=tempo.SaveChanges();
+                    }
+                 
                 }
-                return entities.SaveChanges();
+                return sum;
             }
             return 0;
         }
