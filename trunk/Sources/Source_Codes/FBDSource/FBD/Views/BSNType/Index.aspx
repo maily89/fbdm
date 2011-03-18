@@ -22,7 +22,8 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% if (Model!=null)
+        foreach (var item in Model) { %>
     
         <tr>
             <td>

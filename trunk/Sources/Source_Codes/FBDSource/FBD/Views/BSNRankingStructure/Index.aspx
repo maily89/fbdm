@@ -11,9 +11,7 @@
     <table>
         <tr>
             <th></th>
-            <th>
-                ID
-            </th>
+
             <th>
                 IndexType
             </th>
@@ -31,9 +29,6 @@
         <tr>
             <td>
                <%= Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
-            </td>
-            <td>
-                <%= Html.Encode(item.ID) %>
             </td>
             <td>
                 <%= Html.Encode(item.IndexType) %>
