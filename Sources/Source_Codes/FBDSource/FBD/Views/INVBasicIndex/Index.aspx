@@ -6,9 +6,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>INDIVIDUAL BASIC INDEX</h2>
+    <h2>INDIVIDUAL BASIC INDEX LIST</h2>
 
-   <p class="message"><%= TempData["Message"]!=null?TempData["Message"]:"" %></p>
+   <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+    
     <h3>
         <%= Html.ActionLink("Create New", "Create") %>
     </h3>    

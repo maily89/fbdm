@@ -40,7 +40,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Return View with error message
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_FISCORE;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_BASIC_INDEX_SCORE); ;
                 return View(viewModel);
             }
 
@@ -76,7 +76,7 @@ namespace FBD.Controllers
             }
             catch(Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = Constants.ERR_DISPLAY_FISCORE;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_BASIC_INDEX_SCORE); ;;
                 return RedirectToAction("Index");
             }
 
@@ -145,13 +145,13 @@ namespace FBD.Controllers
                     // If saving gets error
                     if (errorLevel != null)
                     {
-                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_FISCORE, errorLevel);
+                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_SCORE, errorLevel);
                         return View(viewModelAfterUpdating);
                     }
                     // If saving gets success
                     else
                     {
-                        TempData[Constants.SCC_MESSAGE] = Constants.SCC_UPDATE_FISCORE;
+                        TempData[Constants.SCC_MESSAGE] = Constants.SCC_UPDATE_SCORE;
                         return View(viewModelAfterUpdating);
                     }
                 }
@@ -159,7 +159,7 @@ namespace FBD.Controllers
             catch(Exception e)
             {
 
-                TempData[Constants.ERR_MESSAGE] = e.ToString();//Constants.ERR_POST_FISCORE;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_SCORE_COMMON);
                 return RedirectToAction("Index");
             }
 

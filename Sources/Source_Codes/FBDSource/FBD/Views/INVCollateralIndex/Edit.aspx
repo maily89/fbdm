@@ -8,8 +8,9 @@
 
     <h2>Edit</h2>
     <% Html.EnableClientValidation(); %>
+   <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     
-    <p class="message"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
     
 
     <% using (Html.BeginForm()) {%>

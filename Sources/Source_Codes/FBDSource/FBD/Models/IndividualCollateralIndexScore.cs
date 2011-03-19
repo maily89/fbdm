@@ -157,7 +157,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Create a view model used to exchange data between Controller and View of FIProportion business
+        /// Create a view model used to exchange data between Controller and View of INVCollateralIndex
         /// </summary>
         /// <param name="prmIndustryID">industry selected from drop down list</param>
         /// <param name="prmScaleID">scale selected from drop down list</param>

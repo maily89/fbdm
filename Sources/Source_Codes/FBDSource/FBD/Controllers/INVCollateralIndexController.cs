@@ -29,7 +29,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_COLLATERAL_INDEX);
                 return View(lstCollateralIndex);
             }
             // If there is no error, displaying the list of financial index
@@ -61,7 +61,7 @@ namespace FBD.Controllers
                     if (result == 1)
                     {
                         // Display successful message when adding new financial index
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.INV_BASIC_INDEX);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.INV_COLLATERAL_INDEX);
                         return RedirectToAction("Index");
                     }
                 }
@@ -70,7 +70,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when adding new financial index
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.INV_COLLATERAL_INDEX);
                 return View(individualCollateralIndex);
             }
         }
@@ -91,7 +91,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_COLLATERAL_INDEX);
             }
             return View(model);
         }
@@ -110,7 +110,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_BASIC_INDEX, individualCollateralIndex.IndexID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_COLLATERAL_INDEX, individualCollateralIndex.IndexID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -120,7 +120,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_COLLATERAL_INDEX);
                 return View(individualCollateralIndex);
             }
         }
@@ -137,7 +137,7 @@ namespace FBD.Controllers
 
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.INV_BASIC_INDEX);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.INV_COLLATERAL_INDEX);
                     return RedirectToAction("Index");
                 }
 
@@ -145,7 +145,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.INV_COLLATERAL_INDEX);
                 return RedirectToAction("Index");
             }
 

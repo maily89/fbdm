@@ -31,7 +31,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.INV_BASIC_LEVEL_INDEX); ;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_COLL_LEVEL_INDEX); ;
                 return View(lstCollateralIndexLevels);
             }
             return View(lstCollateralIndexLevels);
@@ -46,7 +46,8 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            TempData["Message"] = null;
+            TempData[Constants.ERR_MESSAGE] = null;
+            TempData[Constants.SCC_MESSAGE] = null;
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace FBD.Controllers
                     if (result == 1)
                     {
                         // Display successful message when adding new Collateral Index level
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.INV_BASIC_LEVEL_INDEX); ;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.INV_COLL_LEVEL_INDEX); ;
                         return RedirectToAction("Index");
                     }
                 }
@@ -84,7 +85,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when adding new Collateral Index level
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.INV_BASIC_LEVEL_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.INV_COLL_LEVEL_INDEX);
                 return View(individualCollateralIndexLevels);
             }
         }
@@ -115,7 +116,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when selecting Collateral Index level
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.INV_BASIC_LEVEL_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_COLL_LEVEL_INDEX);
                 return View(CollateralIndexLevels);
             }
 
@@ -144,7 +145,7 @@ namespace FBD.Controllers
                     if (result == 1)
                     {
                         // Display successful message after editting the Collateral Index level
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_BASIC_LEVEL_INDEX, individualCollateralIndexLevels.LevelID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_COLL_LEVEL_INDEX, individualCollateralIndexLevels.LevelID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -154,7 +155,7 @@ namespace FBD.Controllers
             catch
             {
                 // Display error message after editting the Collateral Index level
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_BASIC_LEVEL_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_COLL_LEVEL_INDEX);
                 return View(individualCollateralIndexLevels);
             }
         }
@@ -178,7 +179,7 @@ namespace FBD.Controllers
                 if (result == 1)
                 {
                     // Display successful message after deleting the Collateral Index level
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.INV_BASIC_LEVEL_INDEX);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.INV_COLL_LEVEL_INDEX);
                     return RedirectToAction("Index");
                 }
 
@@ -187,7 +188,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message after deleting the Collateral Index level
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.INV_BASIC_LEVEL_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.INV_COLL_LEVEL_INDEX);
                 return RedirectToAction("Index");
             }
         }
