@@ -9,7 +9,7 @@ namespace FBD.Models
     public partial class IndividualBasicIndexScore
     {
         /// <summary>
-        /// Select all the Basic index score filtered by specified score id
+        /// Select all the Basic index score filtered by specified score id 
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="prmScoreID">The Score id as primary key</param>
@@ -23,13 +23,14 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Select all the Basic index proportion filtered by specified industry, scale and Basic index
+        /// 
+        /// Select all the Basic index filtered by specified Borrowing purpose and Basic index
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="prmIndustryID">industry ID selected from drop down list</param>
         /// <param name="prmScaleID">scale id selected from drop down list</param>
         /// <param name="prmIndexID">Basic index id selected from drop down list</param>
-        /// <returns></returns>
+        /// <returns>List<IndividualBasicIndexScore> </returns>
         public static List<IndividualBasicIndexScore> SelectScoreByBasicAndPurposeIndex(FBDEntities FBDModel,
                                                     string prmBasicIndex, string prmPurposeIndex)
         {
@@ -162,7 +163,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Create a view model used to exchange data between Controller and View of FIProportion business
+        /// Create a view model used to exchange data between Controller and View of BasicIndexScore 
         /// </summary>
         /// <param name="prmIndustryID">industry selected from drop down list</param>
         /// <param name="prmScaleID">scale selected from drop down list</param>

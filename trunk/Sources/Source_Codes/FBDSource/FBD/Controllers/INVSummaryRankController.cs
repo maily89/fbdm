@@ -32,7 +32,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_SUMMARY_RANK);
             }
 
             return View(ranks);
@@ -76,7 +76,7 @@ namespace FBD.Controllers
                 {
                     if (IndividualSummaryRanks.AddRank(summaryRank,FBDmodel) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_RANK);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.INV_SUMMARY_RANK);
                         return RedirectToAction("Index");
                     }
                 }
@@ -84,9 +84,9 @@ namespace FBD.Controllers
                 throw new Exception();
 
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.INV_SUMMARY_RANK);
                 data.basicRanks = IndividualBasicRanks.SelectRanks();
                 data.collateralRanks = IndividualCollateralRanks.SelectRanks();
                 return View(data);
@@ -118,7 +118,7 @@ namespace FBD.Controllers
             }
             catch (Exception e)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_SUMMARY_RANK);
             }
             
             return View(viewmodel);
@@ -144,7 +144,7 @@ namespace FBD.Controllers
                 {
                     if (IndividualSummaryRanks.EditRank(SummaryRankViewModel, id) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANK, id);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_SUMMARY_RANK, id);
                         return RedirectToAction("Index");
                     }
 
@@ -156,7 +156,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
                 SummaryRankViewModel = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, id);
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_SUMMARY_RANK);
                 return View(SummaryRankViewModel);
             }
         }
@@ -175,14 +175,14 @@ namespace FBD.Controllers
                 int result = IndividualSummaryRanks.DeleteRank(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_RANK);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.INV_SUMMARY_RANK);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.INV_SUMMARY_RANK);
                 return RedirectToAction("Index");
 
             }

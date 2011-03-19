@@ -29,7 +29,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Dispay error message when displaying financial indexes
-                TempData["Message"] = string.Format(Constants.ERR_INDEX,Constants.BORROWING_PURPOSE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX,Constants.BORROWING_PURPOSE);
                 return View(lstBorrowingPP);
             }
             // If there is no error, displaying the list of financial index
@@ -60,7 +60,7 @@ namespace FBD.Controllers
                     if (result == 1)
                     {
                         // Display successful message when adding new financial index
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BORROWING_PURPOSE);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.BORROWING_PURPOSE);
                         return RedirectToAction("Index");
                     }
                 }
@@ -69,7 +69,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 // Display error message when adding new financial index
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BORROWING_PURPOSE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BORROWING_PURPOSE);
                 return View(IndividualBorrowingPP);
             }
         }
@@ -91,7 +91,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BORROWING_PURPOSE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BORROWING_PURPOSE);
             }
             return View(model);
         }
@@ -109,7 +109,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BORROWING_PURPOSE, individualBorrowingPP.PurposeID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BORROWING_PURPOSE, individualBorrowingPP.PurposeID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -119,7 +119,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BORROWING_PURPOSE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BORROWING_PURPOSE);
                 return View(individualBorrowingPP);
             }
         }
@@ -137,7 +137,7 @@ namespace FBD.Controllers
 
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BORROWING_PURPOSE);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BORROWING_PURPOSE);
                     return RedirectToAction("Index");
                 }
 
@@ -145,7 +145,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BORROWING_PURPOSE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BORROWING_PURPOSE);
                 return RedirectToAction("Index");
             }
         }

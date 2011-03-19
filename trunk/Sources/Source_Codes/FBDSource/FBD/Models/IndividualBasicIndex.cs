@@ -11,9 +11,9 @@ namespace FBD.Models
     public partial class IndividualBasicIndex
     {
         /// <summary>
-        /// Select all the Financial Index in the table Business.BasicIndex
+        /// Select all the Basic Index in the table Business.BasicIndex
         /// </summary>
-        /// <returns>List of Financial Index</returns>
+        /// <returns>List of Basic Index</returns>
         public static List<IndividualBasicIndex> SelectBasicIndex()
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -24,7 +24,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Select the Financial Index in the table Business.BasicIndex with input ID
+        /// Select the Basic Index in the table Business.BasicIndex with input ID
         /// </summary>
         /// <param name="id">string ID</param>
         /// <returns>IndividualBasicIndex</returns>
@@ -34,7 +34,7 @@ namespace FBD.Models
 
             IndividualBasicIndex IndividualBasicIndex = null;
 
-            // Get the business financial index from the entities model with the inputted ID
+            // Get the business Basic index from the entities model with the inputted ID
             IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
 
             return IndividualBasicIndex;
@@ -46,7 +46,7 @@ namespace FBD.Models
 
             IndividualBasicIndex IndividualBasicIndex = null;
 
-            // Get the business financial index from the entities model with the inputted ID
+            // Get the business Basic index from the entities model with the inputted ID
             IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
             return IndividualBasicIndex;
         }
@@ -62,7 +62,7 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            // Add new business financial index with the inputted information to the entities
+            // Add new business Basic index with the inputted information to the entities
             FBDModel.AddToIndividualBasicIndex(IndividualBasicIndex);
 
             // Save changes to the Database
@@ -76,10 +76,10 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            // Select the financial index to be updated from database
+            // Select the Basic index to be updated from database
             var temp = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(individualBasicIndex.IndexID));
 
-            // Update the financial index to the entities
+            // Update the Basic index to the entities
             temp.IndexName = individualBasicIndex.IndexName;
             temp.Unit = individualBasicIndex.Unit;
             temp.Formula = individualBasicIndex.Formula;
@@ -97,7 +97,7 @@ namespace FBD.Models
 
             var BasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
 
-            // Delete business financial index from entities
+            // Delete business Basic index from entities
             FBDModel.DeleteObject(BasicIndex);
 
             // Save changes to the database
@@ -107,7 +107,26 @@ namespace FBD.Models
         }
         public class IndividualBasicIndexMetaData
         {
+            [DisplayName("Index ID")]
+            [Required(ErrorMessage = "Index ID is required")]
+            [StringLength(20)]
+            public string IndexID { get; set; }
 
+            [DisplayName("Index Name")]
+            [Required(ErrorMessage = "Index Name is required")]
+            [StringLength(255)]
+            public string IndexName { get; set; }
+
+            [DisplayName("Unit")]
+            [StringLength(50)]
+            public string Unit { get; set; }
+
+            [DisplayName("Formula")]
+            [StringLength(255)]
+            public string Formula { get; set; }
+
+            [DisplayName("Is leaf index")]
+            public bool LeafIndex { get; set; }
         }
     }
 }

@@ -67,14 +67,16 @@ namespace FBD.CommonUtilities
         public const string ERR_KEY_EXIST = "The ID already exists. Please try again!";
         public const string ERR_UNABLE_CHECK = "Error when checking ID dupplication. Please try again!";
         public const string ERR_CONTROLLER_PARSING = "Error when parsing information at server. Try again later";
-
+        
         // PROPORTION ERRORS
         public const string ERR_UPDATE_PROPORTION = "Error when updating to the index {0}. Try again later";
         public const string ERR_UPDATE_PROPORTION_CALCULATED = "Proportion changes were updated successfully but "
                                                                 + "the summary proportion got errors. Please check "
                                                                 + "the logic of proportion again";
+        public const string ERR_UPDATE_PROPORTION_COMMON = "Error when updating propotion. Try again later";
         // SCORE ERRORS
         public const string ERR_UPDATE_SCORE = "Error when updating to the level {0}. Try again later";
+        public const string ERR_UPDATE_SCORE_COMMON = "Error when updating score. Try again later"; 
 
         // FINANCIAL INDEX
 
@@ -155,7 +157,14 @@ namespace FBD.CommonUtilities
         /// </summary>
         public const string BORROWING_PURPOSE = "Borrowing purpose";
         public const string INV_BASIC_INDEX = "Individual Basic Index";
+        public const string INV_COLLATERAL_INDEX = "Individual collateral index";
+        public const string INV_BASIC_RANK = "Individual Basic rank";
+        public const string INV_SUMMARY_RANK = "Individual summary rank";
+        public const string INV_BASIC_INDEX_SCORE = "Individual Basic Index score";
         public const string INV_BASIC_LEVEL_INDEX = "Individual Basic level Index";
+        public const string INV_COLL_LEVEL_INDEX = "Individual collateral level Index";
+        public const string INV_PROPORTION = "Individual Proportion";
+        public const string INV_COLL_RANK = "Individual Collateral Rank";
         /************** END OF ERROR MESSAGES ****************/
 
 

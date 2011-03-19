@@ -29,7 +29,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.INV_COLL_RANK);
             }
 
             return View(ranks);
@@ -43,7 +43,8 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Add()
         {
-            TempData["Message"] = null;
+            TempData[Constants.SCC_MESSAGE] = null;
+            TempData[Constants.SCC_MESSAGE] = null;
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace FBD.Controllers
                 {
                     if (IndividualCollateralRanks.AddRank(CollateralRank) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_RANK);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.INV_COLL_RANK);
                         return RedirectToAction("Index");
                     }
                 }
@@ -71,9 +72,9 @@ namespace FBD.Controllers
                 throw new Exception();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.INV_COLL_RANK);
                 return View(CollateralRank);
             }
         }
@@ -98,7 +99,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_COLL_RANK);
             }
 
             return View(model);
@@ -122,7 +123,7 @@ namespace FBD.Controllers
                 {
                     if (IndividualCollateralRanks.EditRank(CollateralRank) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANK, id);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_COLL_RANK, id);
                         return RedirectToAction("Index");
                     }
 
@@ -134,7 +135,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_COLL_RANK);
                 return View(CollateralRank);
             }
         }
@@ -153,14 +154,14 @@ namespace FBD.Controllers
                 int result = IndividualCollateralRanks.DeleteRank(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_RANK);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.INV_COLL_RANK);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_RANK);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.INV_COLL_RANK);
                 return RedirectToAction("Index");
 
             }

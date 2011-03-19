@@ -17,9 +17,9 @@ namespace FBD.Models
         public static List<IndividualBorrowingPurposes> SelectBorrowingPPList()
         {
             FBDEntities FBDModel = new FBDEntities();
-            List<IndividualBorrowingPurposes> lstFinancialIndex = null;
-            lstFinancialIndex = FBDModel.IndividualBorrowingPurposes.ToList();
-            return lstFinancialIndex;
+            List<IndividualBorrowingPurposes> lstBorrowingPurpose = null;
+            lstBorrowingPurpose = FBDModel.IndividualBorrowingPurposes.ToList();
+            return lstBorrowingPurpose;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace FBD.Models
         /// 2. Insert new index into the Database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
-        /// <param name="businessFinancialIndex">A new FinancialIndex information</param>
+        /// <param name="BorrowingPurpose">A new BorrowingPurpose information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns> 
         public static int AddBorrowingPP(IndividualBorrowingPurposes IndividualBorrowingPP)
         {
