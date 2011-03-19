@@ -16,7 +16,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Display the list of industries, non-financial indexes and corresponding non-financial index score
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Index()
         {
 
@@ -54,8 +54,8 @@ namespace FBD.Controllers
         /// 1. Choose an industry or non-financial index to display information
         /// 2. Saving information
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">the form containing data posted to Server</param>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {

@@ -64,7 +64,7 @@ namespace FBD.Models
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="viewModel">The View Model containing data</param>
         /// <param name="row">The row to insert</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int AddNFIProportionByType(FBDEntities FBDModel, NFIProportionViewModel viewModel,
                                                                         NFIProportionRowViewModel row)
         {
@@ -100,7 +100,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="row">The row to be edited</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int EditNFIProportionByType(FBDEntities FBDModel, NFIProportionRowViewModel row)
         {
             BusinessNFIProportionByType proportionByType = SelectNFIProportionByTypeByProportionID(
@@ -116,7 +116,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="ProportionID">The Proportion id as primary key</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int DeleteNFIProportionByType(FBDEntities FBDModel, int ProportionID)
         {
             BusinessNFIProportionByType proportion = new BusinessNFIProportionByType();

@@ -29,7 +29,7 @@ namespace FBD.Models
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="prmIndustryID">industry ID selected from drop down list</param>
         /// <param name="prmIndexID">index id selected from list</param>
-        /// <returns></returns>
+        /// <returns>List of NonFinancial Index Score</returns>
         public static List<BusinessNonFinancialIndexScore> SelectScoreByIndustryByNonFinancialIndex(FBDEntities FBDModel,
                                                     string prmIndustryID, string prmIndexID)
         {
@@ -49,7 +49,7 @@ namespace FBD.Models
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="viewModel">The view model containing data</param>
         /// <param name="row">The row to insert</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int AddNonFinancialIndexScore(FBDEntities FBDModel, NFIScoreViewModel viewModel,
                                                     NFIScoreRowViewModel row)
         {
@@ -88,7 +88,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="row">The row to be edited</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int EditNonFinancialIndexScore(FBDEntities FBDModel, NFIScoreRowViewModel row)
         {
             BusinessNonFinancialIndexScore scoreToBeEdited = SelectBusinessNonFinancialIndexScoreByScoreID(FBDModel, row.ScoreID);
@@ -107,7 +107,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="ScoreID">The score ID as primary key</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int DeleteNonFinancialIndexScore(FBDEntities FBDModel, int ScoreID)
         {
             BusinessNonFinancialIndexScore businessNonFinancialIndexScore = SelectBusinessNonFinancialIndexScoreByScoreID(FBDModel, ScoreID);

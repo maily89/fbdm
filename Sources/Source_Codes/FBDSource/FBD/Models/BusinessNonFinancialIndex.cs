@@ -13,6 +13,7 @@ namespace FBD.Models
         /// <summary>
         /// Select all the Non Financial Index in the table Business.NonFinancialIndex
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <returns>List of Non Financial Index</returns>
         public static List<BusinessNonFinancialIndex> SelectNonFinancialIndex(FBDEntities FBDModel)
         {
@@ -27,6 +28,7 @@ namespace FBD.Models
         /// <summary>
         /// Select the Non Financial Index in the table Business.NonFinancialIndex with input ID
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="id">string ID</param>
         /// <returns>BusinessNonFinancialIndex</returns>
         public static BusinessNonFinancialIndex SelectNonFinancialIndexByID(FBDEntities FBDModel, string id)
@@ -42,8 +44,8 @@ namespace FBD.Models
         /// <summary>
         /// Select all the non financial indexes where leaf index is true
         /// </summary>
-        /// <param name="FBDModel"></param>
-        /// <returns></returns>
+        /// <param name="FBDModel">Model of EF</param>
+        /// <returns>List of NonFinancial Leaf index</returns>
         public static List<BusinessNonFinancialIndex> SelectNonFinancialLeafIndex(FBDEntities FBDModel)
         {
             List<BusinessNonFinancialIndex> lstBusinessNonFinancialLeafIndexes = FBDModel
@@ -57,8 +59,8 @@ namespace FBD.Models
         /// <summary>
         /// Select all the non financial indexes where leaf index is false
         /// </summary>
-        /// <param name="FBDModel"></param>
-        /// <returns></returns>
+        /// <param name="FBDModel">Model of EF</param>
+        /// <returns>List of NonFinancial Parent index</returns>
         public static List<BusinessNonFinancialIndex> SelectNonFinancialParentIndex(FBDEntities FBDModel)
         {
             List<BusinessNonFinancialIndex> lstBusinessNonFinancialParentIndexes = FBDModel
@@ -75,6 +77,7 @@ namespace FBD.Models
         /// 2. Insert new index into the Database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessNonFinancialIndex">A new NonFinancialIndex information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int AddNonFinancialIndex(FBDEntities FBDModel, BusinessNonFinancialIndex businessNonFinancialIndex)
@@ -94,6 +97,7 @@ namespace FBD.Models
         /// 2. Update appropriate data to table in DB
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessNonFinancialIndex">The non financial index to be updated</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int EditNonFinancialIndex(FBDEntities FBDModel, BusinessNonFinancialIndex businessNonFinancialIndex)
@@ -119,6 +123,7 @@ namespace FBD.Models
         /// 2. Delete the Non Financial Index with selected ID from database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="id">ID of the Non Financial Index selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int DeleteNonFinancialIndex(FBDEntities FBDModel, string id)
