@@ -12,11 +12,11 @@ namespace FBD.Controllers
     public class NFIProportionController : Controller
     {
         //
-        // GET: /FIProportion/
+        // GET: /NFIProportion/
         /// <summary>
         /// Display the list of business industries and corresponding non-financial index proportion
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IndexByIndustry View</returns>
         public ActionResult IndexByIndustry()
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -54,8 +54,8 @@ namespace FBD.Controllers
         /// 1. Choose an industry to display information
         /// 2. Saving information
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">collection of data posted to Server</param>
+        /// <returns>IndexByIndustry View</returns>
         [HttpPost]
         public ActionResult IndexByIndustry(FormCollection formCollection)
         {
@@ -195,7 +195,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Display the list of business types and corresponding non-financial index proportion
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IndexByType View</returns>
         public ActionResult IndexByType()
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -233,8 +233,8 @@ namespace FBD.Controllers
         /// 1. Choose a type to display information
         /// 2. Saving information
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">collection of data posted to Server</param>
+        /// <returns>IndexByType View</returns>
         [HttpPost]
         public ActionResult IndexByType(FormCollection formCollection)
         {

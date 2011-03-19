@@ -17,7 +17,7 @@ namespace FBD.Controllers
         /// Use NFINonFinancialIndexLogic class to select all the non financial indexes 
         /// in the table Business.NonFinancialIndex then display to the [Index] View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Index()
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -51,7 +51,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Forward to Add View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Add View</returns>
         public ActionResult Add()
         {
             return View();
@@ -65,8 +65,8 @@ namespace FBD.Controllers
         /// 3. Use Logic class to insert new Non Financial Index
         /// 4. Redirect to [Index] View with label displaying: "A new Non Financial Index has been added successfully"
         /// </summary>
-        /// <param name="collection"></param>
-        /// <returns></returns>
+        /// <param name="businessNonFinancialIndex">The index to be inserted</param>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Add(BusinessNonFinancialIndex businessNonFinancialIndex)
         {
@@ -106,7 +106,7 @@ namespace FBD.Controllers
         /// 3. Display in [Edit] view
         /// </summary>
         /// <param name="id">id of the non financial index to be editted</param>
-        /// <returns></returns>
+        /// <returns>Edit View</returns>
         public ActionResult Edit(string id)
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -139,8 +139,9 @@ namespace FBD.Controllers
         /// 2. Use Logic class to update appropriate Non Financial Index with ID selected in DB
         /// 3. Display in [Index] view with label displaying: "The Non-Financial Index with ID xyz has been editted successfully"
         /// </summary>
+        /// <param name="id">Id of the index to be edited</param>
         /// <param name="businessNonFinancialIndex">the non-financial index to be editted</param>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Edit(string id, BusinessNonFinancialIndex businessNonFinancialIndex)
         {
@@ -182,7 +183,7 @@ namespace FBD.Controllers
         /// 3. Back to [Index] view with label displaying: "A Non-Financial Index has been deleted successfully" 
         /// </summary>
         /// <param name="id">id of the non-financial index to be deleted</param>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Delete(string id)
         {
             FBDEntities FBDModel = new FBDEntities();
