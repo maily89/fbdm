@@ -130,6 +130,7 @@ namespace FBD.Models
         /// <summary>
         /// Save information about proportion changes to the database
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="viewModel">The View model containing data to be updated</param>
         /// <returns>
         /// The string indicates the non-financial index gets error, 
@@ -192,6 +193,7 @@ namespace FBD.Models
         /// <summary>
         /// Create a view model used to exchange data between Controller and View of FIProportion business
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="prmType">the selected Industry chosen from drop down list of View</param>
         /// <returns>The view model containing data to be displayed</returns>
         public static NFIProportionViewModel CreateViewModelByIndustry(FBDEntities FBDModel, string prmIndustry)

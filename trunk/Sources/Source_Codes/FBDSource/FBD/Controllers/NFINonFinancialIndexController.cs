@@ -77,6 +77,12 @@ namespace FBD.Controllers
                 // If there is no error from client
                 if (ModelState.IsValid)
                 {
+                    if (!StringHelper.IsDigitsNumber(businessNonFinancialIndex.IndexID))
+                    {
+                        // Display error message when new non-financial index is not valid
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_INVALID_INDEX_ID;
+                        return View(businessNonFinancialIndex);
+                    }
                     // Add new business non-financial index that has been inputted
                     int result = BusinessNonFinancialIndex.AddNonFinancialIndex(FBDModel, businessNonFinancialIndex);
 

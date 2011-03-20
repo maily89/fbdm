@@ -6,6 +6,9 @@ using FBD.Models;
 
 namespace FBD.ViewModels
 {
+    /// <summary>
+    /// Contains the list financial index score
+    /// </summary>
     public class FIScoreViewModel
     {
         /// <summary>

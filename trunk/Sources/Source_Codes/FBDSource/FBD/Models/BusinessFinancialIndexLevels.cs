@@ -13,6 +13,7 @@ namespace FBD.Models
         /// <summary>
         /// Select all the Levels in the table Business.FinancialIndexLevels
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <returns>List of Financial Index Levels</returns>
         public static List<BusinessFinancialIndexLevels> SelectFinancialIndexLevels(FBDEntities FBDModel)
         {
@@ -28,6 +29,7 @@ namespace FBD.Models
         /// Select the Levels in the table Business.FinancialIndexLevels with input ID
         /// </summary>
         /// <param name="id">string ID</param>
+        /// <param name="FBDModel">Model of EF</param>
         /// <returns>BusinessFinancialIndexLevels</returns>
         public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(Decimal id, FBDEntities FBDModel)
         {
@@ -44,6 +46,7 @@ namespace FBD.Models
         /// 2. Insert new level into the Database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessFinancialIndexLevels">A new FinancialIndexLevels information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int AddFinancialIndexLevels(FBDEntities FBDModel, BusinessFinancialIndexLevels businessFinancialIndexLevels)
@@ -62,6 +65,7 @@ namespace FBD.Models
         /// 2. Update appropriate data to table in DB
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessFinancialIndexLevels">The financial index level to be updated</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int EditFinancialIndexLevels(FBDEntities FBDModel, BusinessFinancialIndexLevels businessFinancialIndexLevels)
@@ -85,6 +89,7 @@ namespace FBD.Models
         /// 2. Delete the Financial Index Level with selected ID from database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="id">ID of the Financial Index Level selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int DeleteFinancialIndexLevels(FBDEntities FBDModel, Decimal id)

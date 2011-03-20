@@ -167,6 +167,7 @@ namespace FBD.Models
         /// <summary>
         /// Create a view model used to exchange data between Controller and View of NFIScore business
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="prmIndustryID">industry selected from drop down list</param>
         /// <param name="prmIndexID">index selected from list</param>
         /// <returns>The view model containing data to be displayed</returns>

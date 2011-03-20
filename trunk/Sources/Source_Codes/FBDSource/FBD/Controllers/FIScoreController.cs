@@ -16,7 +16,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Display the list of industries, scale types, financial indexes and corresponding financial index score
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Index()
         {
 
@@ -56,8 +56,8 @@ namespace FBD.Controllers
         /// 1. Choose an industry, business scale or financial index to display information
         /// 2. Saving information
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">form Collection of data posted from Client side</param>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
