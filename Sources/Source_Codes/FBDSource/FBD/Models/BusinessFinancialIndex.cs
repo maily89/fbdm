@@ -13,6 +13,7 @@ namespace FBD.Models
         /// <summary>
         /// Select all the Financial Index in the table Business.FinancialIndex
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <returns>List of Financial Index</returns>
         public static List<BusinessFinancialIndex> SelectFinancialIndex(FBDEntities FBDModel)
         {
@@ -27,6 +28,7 @@ namespace FBD.Models
         /// <summary>
         /// Select the Financial Index in the table Business.FinancialIndex with input ID
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="id">string ID</param>
         /// <returns>BusinessFinancialIndex</returns>
         public static BusinessFinancialIndex SelectFinancialIndexByID(FBDEntities FBDModel, string id)
@@ -42,8 +44,8 @@ namespace FBD.Models
         /// <summary>
         /// Select all the financial indexes where leaf index is true, used for business handling proportion
         /// </summary>
-        /// <param name="FBDModel"></param>
-        /// <returns></returns>
+        /// <param name="FBDModel">Model of EF</param>
+        /// <returns>All the financial leaf indexes</returns>
         public static List<BusinessFinancialIndex> SelectFinancialLeafIndex(FBDEntities FBDModel)
         {
             List<BusinessFinancialIndex> lstBusinessFinancialLeafIndexes = FBDModel
@@ -59,6 +61,7 @@ namespace FBD.Models
         /// 2. Insert new index into the Database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessFinancialIndex">A new FinancialIndex information</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int AddFinancialIndex(FBDEntities FBDModel, BusinessFinancialIndex businessFinancialIndex)
@@ -78,6 +81,7 @@ namespace FBD.Models
         /// 2. Update appropriate data to table in DB
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="businessFinancialIndex">The financial index to be updated</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int EditFinancialIndex(FBDEntities FBDModel, BusinessFinancialIndex businessFinancialIndex)
@@ -103,6 +107,7 @@ namespace FBD.Models
         /// 2. Delete the Financial Index with selected ID from database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="id">ID of the Financial Index selected</param>
         /// <returns>Result code, 1 indicates success and 0 indicates error</returns>
         public static int DeleteFinancialIndex(FBDEntities FBDModel, string id)

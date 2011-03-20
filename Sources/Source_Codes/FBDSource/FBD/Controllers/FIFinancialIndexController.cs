@@ -17,7 +17,7 @@ namespace FBD.Controllers
         /// Use FIFinancialIndexLogic class to select all the financial indexes 
         /// in the table Business.FinancialIndex then display to the [Index] View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Index()
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -51,7 +51,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Forward to Add View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Add View</returns>
         public ActionResult Add()
         {
             return View();
@@ -65,8 +65,8 @@ namespace FBD.Controllers
         /// 3. Use Logic class to insert new Financial Index
         /// 4. Redirect to [Index] View with label displaying: "A new Financial Index has been added successfully"
         /// </summary>
-        /// <param name="collection"></param>
-        /// <returns></returns>
+        /// <param name="businessFinancialIndex">The businessFinancialIndex to be inserted</param>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Add(BusinessFinancialIndex businessFinancialIndex)
         {
@@ -77,6 +77,12 @@ namespace FBD.Controllers
                 // If there is no error from client
                 if (ModelState.IsValid)
                 {
+                    if (!StringHelper.IsDigitsNumber(businessFinancialIndex.IndexID))
+                    {
+                        // Display error message when new financial index is not valid
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_INVALID_INDEX_ID;
+                        return View(businessFinancialIndex);
+                    }
                     // Add new business financial index that has been inputted
                     int result = BusinessFinancialIndex.AddFinancialIndex(FBDModel, businessFinancialIndex);
 
@@ -106,7 +112,7 @@ namespace FBD.Controllers
         /// 3. Display in [Edit] view
         /// </summary>
         /// <param name="id">id of the financial index to be editted</param>
-        /// <returns></returns>
+        /// <returns>Edit View</returns>
         public ActionResult Edit(string id)
         {
             FBDEntities FBDModel = new FBDEntities();
@@ -140,7 +146,7 @@ namespace FBD.Controllers
         /// 3. Display in [Index] view with label displaying: "The Financial Index with ID xyz has been editted successfully"
         /// </summary>
         /// <param name="businessFinancialIndex">the financial index to be editted</param>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         [HttpPost]
         public ActionResult Edit(string id, BusinessFinancialIndex businessFinancialIndex)
         {
@@ -182,7 +188,7 @@ namespace FBD.Controllers
         /// 3. Back to [Index] view with label displaying: "A Financial Index has been deleted successfully" 
         /// </summary>
         /// <param name="id">id of the financial index to be deleted</param>
-        /// <returns></returns>
+        /// <returns>Index View</returns>
         public ActionResult Delete(string id)
         {
             FBDEntities FBDModel = new FBDEntities();

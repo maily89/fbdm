@@ -5,6 +5,9 @@ using System.Web;
 
 namespace FBD.ViewModels
 {
+    /// <summary>
+    /// Represent each row of non financial index score
+    /// </summary>
     public class NFIScoreRowViewModel
     {
         /// <summary>

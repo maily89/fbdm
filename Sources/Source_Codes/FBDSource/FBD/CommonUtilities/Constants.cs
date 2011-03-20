@@ -67,6 +67,7 @@ namespace FBD.CommonUtilities
         public const string ERR_KEY_EXIST = "The ID already exists. Please try again!";
         public const string ERR_UNABLE_CHECK = "Error when checking ID dupplication. Please try again!";
         public const string ERR_CONTROLLER_PARSING = "Error when parsing information at server. Try again later";
+        public const string ERR_INVALID_INDEX_ID = "The Index ID must be digits number!";
         
         // PROPORTION ERRORS
         public const string ERR_UPDATE_PROPORTION = "Error when updating to the index {0}. Try again later";
@@ -242,5 +243,7 @@ namespace FBD.CommonUtilities
 
         
         /************** END OF SUCCESSFUL MESSAGES ***************/
+
+        public const string INDEX_FORMAT_STRING = "0123456789";
     }
 }

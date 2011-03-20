@@ -30,7 +30,7 @@ namespace FBD.Models
         /// <param name="prmIndustryID">industry ID selected from drop down list</param>
         /// <param name="prmScaleID">scale id selected from drop down list</param>
         /// <param name="prmIndexID">financial index id selected from drop down list</param>
-        /// <returns></returns>
+        /// <returns>List of BusinessFinancialIndexScore selected by industry, scale and financial index</returns>
         public static List<BusinessFinancialIndexScore> SelectScoreByIndustryByScaleByFinancialIndex(FBDEntities FBDModel,
                                                     string prmIndustryID, string prmScaleID, string prmIndexID)
         {
@@ -52,7 +52,7 @@ namespace FBD.Models
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="viewModel">The view model containing data</param>
         /// <param name="row">The row to insert</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int AddFinancialIndexScore(FBDEntities FBDModel, FIScoreViewModel viewModel,
                                                     FIScoreRowViewModel row)
         {
@@ -94,7 +94,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="row">The row to be edited</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int EditFinancialIndexScore(FBDEntities FBDModel, FIScoreRowViewModel row)
         {
             BusinessFinancialIndexScore scoreToBeEdited = SelectBusinessFinancialIndexScoreByScoreID(FBDModel, row.ScoreID);
@@ -113,7 +113,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>
         /// <param name="ScoreID">The score ID as primary key</param>
-        /// <returns></returns>
+        /// <returns>an integer indicating result</returns>
         public static int DeleteFinancialIndexScore(FBDEntities FBDModel, int ScoreID)
         {
             BusinessFinancialIndexScore businessFinancialIndexScore = SelectBusinessFinancialIndexScoreByScoreID(FBDModel, ScoreID);
@@ -173,6 +173,7 @@ namespace FBD.Models
         /// <summary>
         /// Create a view model used to exchange data between Controller and View of FIProportion business
         /// </summary>
+        /// <param name="FBDModel">Model of EF</param>
         /// <param name="prmIndustryID">industry selected from drop down list</param>
         /// <param name="prmScaleID">scale selected from drop down list</param>
         /// <param name="prmIndexID">index selected from list</param>
