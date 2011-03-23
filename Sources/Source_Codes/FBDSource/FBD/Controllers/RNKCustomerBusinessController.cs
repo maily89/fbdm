@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using FBD.Models;
+using FBD.ViewModels;
+using FBD.CommonUtilities;
 namespace FBD.Controllers
 {
     public class RNKCustomerBusinessController : Controller
@@ -13,92 +15,130 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
+            List<CustomersBusinesses> model = null;
+            try
+            {
+                model = CustomersBusinesses.SelectBusinesses();
 
-        //
-        // GET: /RNKCustomerBusiness/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
+                if (model==null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS);
+            }
+            return View(model);
         }
 
         //
         // GET: /RNKCustomerBusiness/Create
 
-        public ActionResult Create()
+        public ActionResult Add()
         {
-            return View();
+            var model = new RNKCustomerBusinessViewModel();
+            model.SystemBranches = SystemBranches.SelectBranches();
+            return View(model);
         } 
 
         //
         // POST: /RNKCustomerBusiness/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Add(RNKCustomerBusinessViewModel data)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                if (ModelState.IsValid)
+                {
+                    var entity = new FBDEntities();
+                    var business = data.CustomerBusiness;
+                    business.SystemBranches = SystemBranches.SelectBranchByID(data.BranchID,entity);
+                    CustomersBusinesses.AddBusiness(business, entity);
+                }
+                else throw new Exception();
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_BUSINESS);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS);
+                data.SystemBranches = SystemBranches.SelectBranches();
+                return View(data);
             }
         }
-        
+
         //
-        // GET: /RNKCustomerBusiness/Edit/5
- 
+        // GET: /RNLCustomerBusiness/Edit/5
+
         public ActionResult Edit(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /RNKCustomerBusiness/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
+            var model = new RNKCustomerBusinessViewModel();
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                model.SystemBranches = SystemBranches.SelectBranches();
+                model.CustomerBusiness = CustomersBusinesses.SelectBusinessByID(id);
+                model.CustomerBusiness.SystemBranchesReference.Load();
+                model.BranchID = model.CustomerBusiness.SystemBranches.BranchID;
             }
             catch
             {
-                return View();
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.CUSTOMER_BUSINESS);
+            }
+            return View(model);
+
+        }
+
+        //
+        // POST: /RNLCustomerBusiness/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(int id, RNKCustomerBusinessViewModel data)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var entity = new FBDEntities();
+                    var business = CustomersBusinesses.SelectBusinessByID(id, entity);
+                    business.SystemBranches = SystemBranches.SelectBranchByID(data.BranchID, entity);
+                    business.CustomerName = data.CustomerBusiness.CustomerName;
+                    business.CIF = data.CustomerBusiness.CIF;
+                    
+                    //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
+                    CustomersBusinesses.EditBusiness(business);
+                }
+                else throw new Exception();
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST,
+                                                                        Constants.CUSTOMER_BUSINESS,
+                                                                        id.ToString());
+                return RedirectToAction("Index");
+            }
+            catch 
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS);
+                data.SystemBranches = SystemBranches.SelectBranches();
+                return View(data);
             }
         }
 
         //
-        // GET: /RNKCustomerBusiness/Delete/5
- 
+        // GET: /RNLCustomerBusiness/Delete/5
+
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /RNKCustomerBusiness/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
- 
+                if (CustomersBusinesses.DeleteBusiness(id) != 1) throw new Exception();
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.CUSTOMER_BUSINESS);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.CUSTOMER_BUSINESS);
+                return RedirectToAction("Index");
             }
         }
     }

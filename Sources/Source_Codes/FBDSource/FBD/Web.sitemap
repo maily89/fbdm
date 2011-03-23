@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Menu">
+    <siteMapNode resourceKey="Parameter" title="Parameter Management"  description="Managing Parameter">
+      <siteMapNode title="Business Parameters"  description="Managing Parameter for business customers" >
+        <siteMapNode title="Business Industries" controller="BSNIndustry" action="Index" />
+        <siteMapNode title="Business Lines" controller="BSNLine" action="Index" />
+        <siteMapNode title="Business Types" controller="BSNType" action="Index" />
+        <siteMapNode title="Business Scales" >
+          <siteMapNode title="Business Scale Criteria" controller="BSNScaleCriteria" action="Index" />
+          <siteMapNode title="Business Scale Scoring" controller="BSNScaleScore" action="Index" />
+          <siteMapNode title="Business Scale Types" controller="BSNScale" action="Index" />
+        </siteMapNode>
+        <siteMapNode title="Financial Parameterss" siteMapFile="s">
+          <siteMapNode title="Financial Index" controller="FIFinancialIndex" action="Index" />
+          <siteMapNode title="Financial Index Scoring" controller="FIScore" action="Index" />
+          <siteMapNode title="Financial Index Proportion" controller="FIProportion" action="Index" />
+          <siteMapNode title="Financial Index Level" controller="FILevels" action="Index" />
+        </siteMapNode>
+        <siteMapNode title="Non-Financial Parameterss">
+          <siteMapNode title="Non-Financial Index" controller="NFINonFinancialIndex" action="Index" />
+          <siteMapNode title="Non-Financial Index Scoring" controller="NFIScore" action="Index" />
+          <siteMapNode title="Non-Financial Index Proportion" controller="NFIProportion" action="Index" />
+          <siteMapNode title="Non-Financial Index Level" controller="NFILevels" action="Index" />
+        </siteMapNode>
+        <siteMapNode title="Ranking Structure" controller="BSNRankingStructure" action="Index" />
+        <siteMapNode title="Business Ranks" controller="BSNRank" action="Index" />
+      </siteMapNode>
+      <siteMapNode title="Individual Paramaters"  description="Managing Parameter for individual customers">
+        <siteMapNode title="Borrowing purposes" controller="INVBorrowingPurpose" action="Index" />
+        <siteMapNode title="Basic Parameters"  description="Managing Basic Parameter">
+          <siteMapNode title="Basic Index" controller="INVBasicIndex" action="Index" />
+          <siteMapNode title="Basic Index Scoring" controller="INVBasicIndexScore" action="Index" />
+          <siteMapNode title="Basic Index Proportion" controller="INVProportion" action="Index" />
+          <siteMapNode title="Basic Ranks" controller="INVBasicRank" action="Index" />
+        </siteMapNode>
+        <siteMapNode title="Collateral Paramaters"  description="Managing Collateral Parameter for individual customers">
+          <siteMapNode title="Collateral Index" controller="INVCollateralIndex" action="Index" />
+          <siteMapNode title="Collateral Index Scoring" controller="INVCollateralIndexScore" action="Index" />
+          <siteMapNode title="Collateral Index Level" controller="INVCollateralIndexLevels" action="Index" />
+          <siteMapNode title="Collateral Rank" controller="INVCollateralRank" action="Index" />
+        </siteMapNode>
+        <siteMapNode title="Summary Evaluation" controller="INVSummaryRank" action="Index" />
+      </siteMapNode>
+    </siteMapNode>
+    <siteMapNode title="System Management"  description="Managing System">
+      <siteMapNode title="User Groups" controller="SYSUserGroups" action="Index" />
+      <siteMapNode title="System Users" controller="SYSUsers" action="Index" />
+      <siteMapNode title="System Rights" controller="SYSRights" action="Index" />
+      <siteMapNode title="User Decentralization" controller="SYSUserGroupsRights" action="Index" />
+      <siteMapNode title="Branches" controller="SYSBranches" action="Index" />
+      <siteMapNode title="Reporting Periods" controller="SYSReportingPeriod" action="Index" />
+      <siteMapNode title="Customer Types" controller="SYSCustomerType" action="Index" />
+    </siteMapNode>
+    <siteMapNode title="Credit Ranking"  description="Ranking">
+      <siteMapNode title="Business Customers"  description="Ranking for business customers">
+        <siteMapNode title="Business Customers List" controller="RNKCustomerBusiness" action="Index" />
+        <siteMapNode title="Business Ranking" controller="RNKRankBusiness" action="Index" />
+      </siteMapNode>
+      <siteMapNode title="Individual Customers"  description="Ranking for individual customers">
+        <siteMapNode title="Individual Customers List" controller="" action="Index" />
+        <siteMapNode title="Individual Ranking" controller="" action="Index" />
+      </siteMapNode>
+    </siteMapNode>
+      <siteMapNode title="Report Management" description="Report Management" controller="" action="Index" />
+      
+    </siteMapNode>
+</siteMap>

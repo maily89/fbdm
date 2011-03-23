@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  
+  <siteMapNode title="System Management"  description="Managing System">
+    <siteMapNode title="System Management"  description="Managing System">
+      <siteMapNode title="User Groups" controller="SYSUserGroups" action="Index" />
+      <siteMapNode title="System Users" controller="SYSUsers" action="Index" />
+      <siteMapNode title="System Rights" controller="SYSRights" action="Index" />
+      <siteMapNode title="User Decentralization" controller="SYSUserGroupsRights" action="Index" />
+      <siteMapNode title="Branches" controller="SYSBranches" action="Index" />
+      <siteMapNode title="Reporting Periods" controller="SYSReportingPeriod" action="Index" />
+      <siteMapNode title="Customer Types" controller="SYSCustomerType" action="Index" />
+    </siteMapNode>
+    </siteMapNode>
+</siteMap>

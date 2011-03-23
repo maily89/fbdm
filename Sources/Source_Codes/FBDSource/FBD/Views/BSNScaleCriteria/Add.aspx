@@ -10,7 +10,8 @@
 
     <% Html.EnableClientValidation(); %>
     
-    <p style="color:Red"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     <br />
     
     <% using (Html.BeginForm()) {%>

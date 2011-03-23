@@ -23,21 +23,13 @@
         
         </div>
         <div id="menu" >
-             <% 
+             <% %>
+             <%= 
                 Html.Telerik().Menu()
-                    .Name("Menu")
-                    .Items(items =>
-                    {
-                        items.Add()
-                             .Text("Parameter Management")
-                             .Items(item =>
-                             {
-                                 item.Add().Text("Business Industry").Url("./BSNIndustry");
-
-                             });
-                        })
-                    .Render(); 
+               .Name("Menu")
+                                .BindTo("FBDSite")
             %>
+
 
 
                                 
@@ -51,12 +43,55 @@
             </div>
             <div id="right">
                 
-                <% if (Request.Url.AbsolutePath.ToUpper().Contains("/BSN")) { Html.RenderPartial("BSNSideMenu"); }
-                   else if (Request.Url.AbsolutePath.ToUpper().Contains("/SYS")) Html.RenderPartial("SYSSideMenu");
-                    else
-	                {%>
-                        <h2>Menu missing. Please Refer BSN and SYS part at shared view folder and site master to add menu.</h2>
-	                <%}
+                <% if (Request.Url.AbsolutePath.ToUpper().Contains("/BSN") || Request.Url.AbsolutePath.ToUpper().Contains("/INV") || Request.Url.AbsolutePath.ToUpper().Contains("/NFI") || Request.Url.AbsolutePath.ToUpper().Contains("/FI"))
+                   {
+                       if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("Parameter"))
+                       {
+                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("Parameter", sitemap => sitemap.LoadFrom("/Parameter.sitemap"));
+                       }
+
+                       Html.Telerik().PanelBar()
+                           .Name("PanelBar")
+                           .BindTo("Parameter")
+                           .Render();
+   
+                   }
+                   else if (Request.Url.AbsolutePath.ToUpper().Contains("/SYS"))
+                   {
+                       if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("SystemManage"))
+                       {
+                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("SystemManage", sitemap => sitemap.LoadFrom("/System.sitemap"));
+                       }
+
+                       Html.Telerik().PanelBar()
+                           .Name("PanelBar")
+                           .BindTo("SystemManage")
+                           .Render();
+                   }
+                   else if (Request.Url.AbsolutePath.ToUpper().Contains("/RNK"))
+                   {
+                       if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("Ranking"))
+                       {
+                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("Ranking", sitemap => sitemap.LoadFrom("/Ranking.sitemap"));
+                       }
+
+                       Html.Telerik().PanelBar()
+                           .Name("PanelBar")
+                           .BindTo("Ranking")
+                           .Render();
+                   }
+                   else
+                   {
+                       if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("Report"))
+                       {
+                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("System", sitemap => sitemap.LoadFrom("/Report.sitemap"));
+                       }
+
+                       Html.Telerik().PanelBar()
+                           .Name("PanelBar")
+                           .BindTo("Report")
+                           .Render();
+                   }
                 %>
             </div>
         </div>

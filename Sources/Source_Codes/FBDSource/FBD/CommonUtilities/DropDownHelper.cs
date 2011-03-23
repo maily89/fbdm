@@ -9,6 +9,7 @@ namespace FBD.CommonUtilities
     public static class DropDownHelper
     {
         public static List<SelectListItem> ValueType = new List<SelectListItem>();
+        public static List<SelectListItem> AuditedType = new List<SelectListItem>();
         static DropDownHelper()
         {
             ValueType.Add(new SelectListItem
@@ -24,6 +25,18 @@ namespace FBD.CommonUtilities
                         Selected = false
                     });
 
+            AuditedType.Add(new SelectListItem
+            {
+                Text = "Audited",
+                Value = "1",
+                Selected = false
+            });
+            AuditedType.Add(new SelectListItem
+            {
+                Text = "Not Audited",
+                Value = "0",
+                Selected = true
+            });
         }
     }
 }

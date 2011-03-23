@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
 using FBD.CommonUtilities;
+using Telerik.Web.Mvc;
 
 namespace FBD.Controllers
 {
@@ -19,6 +20,7 @@ namespace FBD.Controllers
         /// Display list of industry
         /// </summary>
         /// <returns></returns>
+        
         public ActionResult Index()
         {
             List<BusinessIndustries> industries=null;
@@ -33,7 +35,7 @@ namespace FBD.Controllers
             }
             catch(Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_INDUSTRY);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_INDUSTRY);
             }
             
             return View(industries);
@@ -66,14 +68,14 @@ namespace FBD.Controllers
                 {
                     if (BusinessIndustries.IsIDExist(industry.IndustryID))
                     {
-                        TempData["Message"] = Constants.ERR_KEY_EXIST;
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
                         return View(industry);
                     }
                     int result=BusinessIndustries.AddIndustry(industry);
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_INDUSTRY);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_INDUSTRY);
                         return RedirectToAction("Index");
                     }
                 }
@@ -82,7 +84,7 @@ namespace FBD.Controllers
             }
             catch(Exception )
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_INDUSTRY);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_INDUSTRY);
                 return View(industry);
             }
         }
@@ -107,7 +109,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_INDUSTRY);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_INDUSTRY);
             }
             return View(model);
         }
@@ -132,7 +134,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_INDUSTRY, industry.IndustryID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_INDUSTRY, industry.IndustryID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -143,7 +145,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_INDUSTRY);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_INDUSTRY);
                 return View(industry);
             }
         }
@@ -163,7 +165,7 @@ namespace FBD.Controllers
 
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_INDUSTRY);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_INDUSTRY);
                     return RedirectToAction("Index");
                 }
 
@@ -171,7 +173,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_INDUSTRY);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_INDUSTRY);
                 return RedirectToAction("Index");
             }
             

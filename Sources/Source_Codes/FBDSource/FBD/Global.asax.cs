@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Telerik.Web.Mvc;
 
 namespace FBD
 {
@@ -29,6 +30,9 @@ namespace FBD
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
+
+            SiteMapManager.SiteMaps.Register<XmlSiteMap>("FBDSite", sitemap => sitemap.LoadFrom("/Web.sitemap"));
+
         }
     }
 }

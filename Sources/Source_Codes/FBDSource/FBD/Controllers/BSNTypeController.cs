@@ -26,7 +26,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_TYPE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_TYPE);
 
             }
             
@@ -57,7 +57,7 @@ namespace FBD.Controllers
                     
                     if (BusinessTypes.AddType(type) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_TYPE);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_TYPE);
                         return RedirectToAction("Index");
                     }
                 }
@@ -66,7 +66,7 @@ namespace FBD.Controllers
             }
             catch(Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_TYPE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_TYPE);
                 return View(type);
             }
         }
@@ -88,7 +88,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_TYPE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_TYPE);
             }
 
             return View(model);
@@ -112,7 +112,7 @@ namespace FBD.Controllers
                 {
                     if (BusinessTypes.EditType(type) == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_TYPE, id);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_TYPE, id);
                         return RedirectToAction("Index");
                     }
                     
@@ -124,7 +124,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_TYPE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_TYPE);
                 return View(type);
             }
         }
@@ -142,7 +142,7 @@ namespace FBD.Controllers
             {
                 if (BusinessTypes.DeleteType(id) == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_TYPE);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_TYPE);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
@@ -150,7 +150,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_TYPE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_TYPE);
                 return RedirectToAction("Index");
             }
         }

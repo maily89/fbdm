@@ -18,6 +18,10 @@ namespace FBD.CommonUtilities
 
 
         /*****************CLASS NAMES *******************/
+        //CUSTOMER
+        public const string CUSTOMER_BUSINESS = "Business Customer";
+        public const string CUSTOMER_BUSINESS_RANKING = "Ranked Business Customer";
+        public const string CUSTOMER_LOANTERM = "Loan term";
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "Business Industry";
         public const string BUSINESS_LINE = "Business Line";

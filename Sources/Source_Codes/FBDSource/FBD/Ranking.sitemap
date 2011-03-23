@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Credit Ranking"  description="Ranking">
+    <siteMapNode title="Business Customers"  description="Ranking for business customers">
+      <siteMapNode title="Business Customers List" controller="RNKCustomerBusiness" action="Index" />
+      <siteMapNode title="Business Ranking" controller="RNKRankBusiness" action="Index" />
+    </siteMapNode>
+    <siteMapNode title="Individual Customers"  description="Ranking for individual customers">
+      <siteMapNode title="Individual Customers List" controller="" action="Index" />
+      <siteMapNode title="Individual Ranking" controller="" action="Index" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

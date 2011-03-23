@@ -45,7 +45,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
             }
             return View(model);
         }
@@ -75,7 +75,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
             }
             return View(model);
         }
@@ -107,12 +107,12 @@ namespace FBD.Controllers
                     BusinessLines.AddLine(line,entity);
                 }
                 else throw new Exception();
-                TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_LINE); 
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_LINE); 
                 return RedirectToAction("Index");
             }
             catch(Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_LINE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_LINE);
                 data.BusinessIndustries = BusinessIndustries.SelectIndustries();
                 return View(data);
             }
@@ -133,7 +133,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_LINE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_LINE);
             }
             return View(model);
             
@@ -157,12 +157,13 @@ namespace FBD.Controllers
                     BusinessLines.EditLine(line);
                 }
                 else throw new Exception();
-                TempData["Message"] = "Line has been edited successfully";
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_LINE, id);
+
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch
             {
-                TempData["Message"] = ex.Message;
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_LINE);
                 data.BusinessIndustries = BusinessIndustries.SelectIndustries();
                 return View(data);
             }
@@ -176,12 +177,12 @@ namespace FBD.Controllers
             try
             {
                 if (BusinessLines.DeleteLine(id) != 1) throw new Exception();
-                TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_LINE);
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_LINE);
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_LINE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_LINE);
                 return RedirectToAction("Index");
             }
         }
