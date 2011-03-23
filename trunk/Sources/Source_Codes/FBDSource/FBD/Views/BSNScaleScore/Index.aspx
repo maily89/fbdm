@@ -20,10 +20,11 @@
         <br />
     <%} %>
     <% using (Html.BeginForm()) {%>
-    <%= Html.Telerik().Grid(Model.ScaleScore)
+    <%= Html.Telerik().Grid<FBD.ViewModels.BSNScaleScoreRow>(Model.ScaleScore)
         .Name("ScaleScore")
         .DataKeys(datakeys => datakeys.Add(s => s.ScoreID))
-        .ToolBar(commands => commands.Insert())
+        .ToolBar(commands => commands.Insert().HtmlAttributes(new {@style=(string.IsNullOrEmpty(Model.IndustryID) 
+                || string.IsNullOrEmpty(Model.CriteriaID)?"display:none":"")}))
         .DataBinding(dataBinding => dataBinding
             .Ajax()
             //Home.Index render the grid initially
@@ -34,12 +35,16 @@
         )
         .Columns(columns =>
         {
-            columns.Bound(o => o.FromValue);
-            columns.Bound(o => o.ToValue);
-            columns.Bound(o => o.Score);
-            columns.Command(c => c
-                    .Edit());
-            columns.Command(c => c.Delete());
+            columns.Bound(o => o.FromValue).Width(100);
+            columns.Bound(o => o.ToValue).Width(100);
+            columns.Bound(o => o.Score).Width(100);
+            columns.Command(commands =>
+            {
+                commands.Edit();
+                    commands.Delete();
+            }).Width(200)
+            ;
+       
         })
         .Pageable()
         .Sortable()
@@ -49,6 +54,10 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+<asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
 </asp:Content>
+
 

@@ -180,6 +180,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
+    <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
     <Compile Include="ViewModels\RNKScaleRow.cs" />
     <Compile Include="ViewModels\FIProportionRowViewModel.cs" />
@@ -207,11 +208,6 @@
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FBD.mdf">
-    </Content>
-    <Content Include="App_Data\FBD_log.ldf">
-      <DependentUpon>FBD.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\2010.3.1318\Black\editor.png" />
     <Content Include="Content\2010.3.1318\Black\loading.gif" />
     <Content Include="Content\2010.3.1318\Black\sprite.png" />
@@ -449,6 +445,11 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FBD.mdf">
+    </Content>
+    <Content Include="App_Data\FBD_log.ldf">
+      <DependentUpon>FBD.mdf</DependentUpon>
+    </Content>
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
@@ -467,15 +468,15 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <EntityDeploy Include="Models\FBDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="Report.sitemap" />
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
     <Content Include="Parameter.sitemap" />
     <Content Include="Web.sitemap" />
-    <EntityDeploy Include="Models\FBDModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />
