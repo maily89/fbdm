@@ -80,8 +80,6 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var temp = BusinessScaleScore.SelectScaleScoreByID(scaleScore.ScoreID, entities);
 
-            temp.BusinessScaleCriteriaReference.EntityKey = scaleScore.BusinessScaleCriteriaReference.EntityKey;
-            temp.BusinessIndustriesReference.EntityKey = scaleScore.BusinessIndustriesReference.EntityKey;
             //temp.CriteriaID = scaleScore.CriteriaID;
             temp.FromValue = scaleScore.FromValue;
             //temp.IndustryID = scaleScore.IndustryID;
@@ -102,6 +100,20 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             entities.AddToBusinessScaleScore(scaleScore);
             int result=entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
+        }
+
+        /// <summary>
+        /// add new scaleScore
+        /// </summary>
+        /// <param name="scaleScore">the scaleScore to add</param>
+        public static int AddScaleScore(BusinessScaleScore scaleScore,FBDEntities entities)
+        {
+            if (scaleScore == null) return 0;
+            //if (scaleScore. == null || scaleScore.CriteriaID == null) return 0;
+            
+            entities.AddToBusinessScaleScore(scaleScore);
+            int result = entities.SaveChanges();
             return result <= 0 ? 0 : 1;
         }
         public class BusinessScaleScoreMetaData

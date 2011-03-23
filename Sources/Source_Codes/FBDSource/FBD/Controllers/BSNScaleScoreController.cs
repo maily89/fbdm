@@ -22,17 +22,17 @@ namespace FBD.Controllers
             {
                 if (string.IsNullOrEmpty(IndustryID) 
                 || string.IsNullOrEmpty(CriteriaID)) 
-                return View(new GridModel());
+                return View(new GridModel(new List<BSNScaleScoreRow>()));
 
                 //var model = new BSNScaleScoreViewModel();
                 var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
                 //model.ScaleScore = scaleScores;
 
-                return View(new GridModel(scaleScores));
+                return View(new GridModel<BSNScaleScoreRow>(CopyScaleScore(scaleScores)));
             }
             catch (Exception )
             {
-                return View(new GridModel());
+                return View(new GridModel(new List<BusinessScaleScore>()));
             }
         }
 
@@ -48,18 +48,19 @@ namespace FBD.Controllers
             //Perform model binding (fill the customer properties and validate it).
             if (TryUpdateModel(scaleScore))
             {
-                //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
-                scaleScore.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", IndustryID);
-                scaleScore.BusinessScaleCriteriaReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessScaleScore", "CriteriaID", CriteriaID);
-                //scaleScore.CriteriaID = CriteriaID;
-                //scaleScore.IndustryID = IndustryID;
-                BusinessScaleScore.AddScaleScore(scaleScore);
+                //scaleScore.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", IndustryID);
+                //scaleScore.BusinessScaleCriteriaReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessScaleScore", "CriteriaID", CriteriaID);
+
+                var entities=new FBDEntities();
+                scaleScore.BusinessIndustries = BusinessIndustries.SelectIndustryByID(IndustryID, entities);
+                scaleScore.BusinessScaleCriteria = BusinessScaleCriteria.SelectScaleCriteriaByID(CriteriaID, entities);
+                BusinessScaleScore.AddScaleScore(scaleScore,entities);
 
             }
-            var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
+            List<BusinessScaleScore> scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
             
             //Rebind the grid
-            return View(new GridModel(scaleScores));
+            return View(new GridModel<BSNScaleScoreRow>(CopyScaleScore(scaleScores)));
         }
 
         [HttpPost]
@@ -75,9 +76,6 @@ namespace FBD.Controllers
                 //Perform model binding (fill the customer properties and validate it).
                 if (TryUpdateModel(scaleScore))
                 {
-                    //The model is valid - update the customer and redisplay the grid.
-                    scaleScore.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", IndustryID);
-                    scaleScore.BusinessScaleCriteriaReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessScaleScore", "CriteriaID", CriteriaID);
                 
                     BusinessScaleScore.EditScaleScore(scaleScore);
                 }
@@ -86,7 +84,7 @@ namespace FBD.Controllers
             var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
 
             //Rebind the grid
-            return View(new GridModel(scaleScores));
+            return View(new GridModel<BSNScaleScoreRow>(CopyScaleScore(scaleScores)));
         }
 
         [HttpPost]
@@ -102,7 +100,7 @@ namespace FBD.Controllers
             var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID, CriteriaID);
 
             //Rebind the grid
-            return View(new GridModel(scaleScores));
+            return View(new GridModel<BSNScaleScoreRow>(CopyScaleScore(scaleScores)));
         }
         #endregion
         //
@@ -132,7 +130,8 @@ namespace FBD.Controllers
         {
             var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID,CriteriaID);
             BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
-            model.ScaleScore = null;
+
+            model.ScaleScore = CopyScaleScore(scaleScores);
             model.Industry = BusinessIndustries.SelectIndustries();
             model.Criteria = BusinessScaleCriteria.SelectScaleCriteria();
             model.IndustryID = IndustryID;
@@ -141,7 +140,21 @@ namespace FBD.Controllers
         }
 
         
-
+        private List<BSNScaleScoreRow> CopyScaleScore(List<BusinessScaleScore> scaleScores)
+        {
+            if (scaleScores == null) return null;
+            List<BSNScaleScoreRow> temp = new List<BSNScaleScoreRow>();
+            foreach (BusinessScaleScore item in scaleScores)
+            {
+                var s = new BSNScaleScoreRow();
+                s.FromValue = item.FromValue;
+                s.ToValue = item.ToValue;
+                s.ScoreID = item.ScoreID;
+                s.Score = item.Score;
+                temp.Add(s);
+            }
+            return temp;
+        }
 
     }
 }

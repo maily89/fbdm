@@ -10,7 +10,7 @@ namespace FBD.ViewModels
     {
         public List<BusinessScaleCriteria> Criteria;
         public List<BusinessIndustries> Industry;
-        public List<BusinessScaleScore> ScaleScore;
+        public List<BSNScaleScoreRow> ScaleScore;
         public string CriteriaID;
         public string IndustryID;
     }
