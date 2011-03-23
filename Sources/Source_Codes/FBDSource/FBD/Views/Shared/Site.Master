@@ -84,7 +84,7 @@
                    {
                        if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("Report"))
                        {
-                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("System", sitemap => sitemap.LoadFrom("/Report.sitemap"));
+                           Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("Report", sitemap => sitemap.LoadFrom("/Report.sitemap"));
                        }
 
                        Html.Telerik().PanelBar()
