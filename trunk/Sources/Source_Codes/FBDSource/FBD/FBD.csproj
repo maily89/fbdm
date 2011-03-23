@@ -87,6 +87,7 @@
     <Compile Include="CommonUtilities\StringHelper.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
+    <Compile Include="Controllers\BSNLoanTermController.cs" />
     <Compile Include="Controllers\BSNRankController.cs" />
     <Compile Include="Controllers\BSNRankingStructureController.cs" />
     <Compile Include="Controllers\BSNScaleController.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Controllers\NFINonFinancialIndexController.cs" />
     <Compile Include="Controllers\NFIProportionController.cs" />
     <Compile Include="Controllers\NFIScoreController.cs" />
+    <Compile Include="Controllers\RNKRankBusinessController.cs" />
     <Compile Include="Controllers\INVBorrowingPurposeController.cs" />	
     <Compile Include="Controllers\INVBasicIndexController.cs" />
     <Compile Include="Controllers\INVBasicLevelsController.cs" />
@@ -142,6 +144,16 @@
     <Compile Include="Models\BusinessScales.cs" />
     <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
+    <Compile Include="Models\CustomersBusinesses.cs" />
+    <Compile Include="Models\CustomersBusinessFinancialIndex.cs" />
+    <Compile Include="Models\CustomersBusinessNonFinancialIndex.cs" />
+    <Compile Include="Models\CustomersBusinessRanking.cs" />
+    <Compile Include="Models\CustomersBusinessScale.cs" />
+    <Compile Include="Models\CustomersIndividualBasicIndex.cs" />
+    <Compile Include="Models\CustomersIndividualCollateralIndex.cs" />
+    <Compile Include="Models\CustomersIndividualRanking.cs" />
+    <Compile Include="Models\CustomersIndividuals.cs" />
+    <Compile Include="Models\CustomersLoanTerm.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FBDModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -169,6 +181,7 @@
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKScaleRow.cs" />
     <Compile Include="ViewModels\FIProportionRowViewModel.cs" />
     <Compile Include="ViewModels\FIProportionViewModel.cs" />
     <Compile Include="ViewModels\FIScoreRowViewModel.cs" />
@@ -177,6 +190,10 @@
     <Compile Include="ViewModels\NFIProportionViewModel.cs" />
     <Compile Include="ViewModels\NFIScoreRowViewModel.cs" />
     <Compile Include="ViewModels\NFIScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKPeriodViewModel.cs" />
+    <Compile Include="ViewModels\RNKRakingViewModel.cs" />
+    <Compile Include="ViewModels\RNKBusinessRankingViewModel.cs" />
+    <Compile Include="ViewModels\RNKCustomerBusinessViewModel.cs" />
     <Compile Include="ViewModels\INVBasicIndexScoreViewModel.cs" />
     <Compile Include="ViewModels\INVBasicScoreRowViewModel.cs" />
     <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
@@ -432,6 +449,16 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\BSNLoanTerm\Add.aspx" />
+    <Content Include="Views\BSNLoanTerm\Edit.aspx" />
+    <Content Include="Views\BSNLoanTerm\Index.aspx" />
+    <Content Include="Views\RNKRankBusiness\Add.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddScore.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddStep1.aspx" />
+    <Content Include="Views\RNKRankBusiness\Index.aspx" />
+    <Content Include="Views\RNKCustomerBusiness\Add.aspx" />
+    <Content Include="Views\RNKCustomerBusiness\Edit.aspx" />
+    <Content Include="Views\RNKCustomerBusiness\Index.aspx" />
     <Content Include="Views\Shared\BSNSideMenu.ascx" />
     <Content Include="Views\Shared\SYSSideMenu.ascx" />
     <None Include="CodeTemplates\AddController\Controller.tt">
@@ -442,6 +469,11 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <Content Include="Report.sitemap" />
+    <Content Include="Ranking.sitemap" />
+    <Content Include="System.sitemap" />
+    <Content Include="Parameter.sitemap" />
+    <Content Include="Web.sitemap" />
     <EntityDeploy Include="Models\FBDModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>

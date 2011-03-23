@@ -24,7 +24,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_SCALE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_SCALE);
             }
             return View(scales);
         }
@@ -58,7 +58,7 @@ namespace FBD.Controllers
                     int result=BusinessScales.AddScale(businessScales);
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_SCALE);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.BUSINESS_SCALE);
                         return RedirectToAction("Index");
                     }
                 }
@@ -66,7 +66,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_SCALE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.BUSINESS_SCALE);
                 return View(businessScales);
             }
         }
@@ -92,7 +92,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_SCALE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_SCALE);
             }
             return View(model);
             
@@ -118,7 +118,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALE, businessScales.ScaleID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_SCALE, businessScales.ScaleID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -129,7 +129,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALE);
                 return View(businessScales);
             }
         }
@@ -150,7 +150,7 @@ namespace FBD.Controllers
 
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_SCALE);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.BUSINESS_SCALE);
                     return RedirectToAction("Index");
                 }
 
@@ -158,7 +158,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_SCALE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.BUSINESS_SCALE);
                 return RedirectToAction("Index");
             }
         }

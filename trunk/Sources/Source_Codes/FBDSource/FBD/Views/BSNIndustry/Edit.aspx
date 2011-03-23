@@ -12,7 +12,8 @@
 
     <h2>Edit</h2>
     <% Html.EnableClientValidation(); %>
-    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>

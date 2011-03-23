@@ -37,7 +37,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_RANKING_STRUCTURE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_RANKING_STRUCTURE);
             }
 
             return View(rankingStructure);
@@ -64,7 +64,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_RANKING_STRUCTURE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.BUSINESS_RANKING_STRUCTURE);
             }
             return View(model);
         }
@@ -89,7 +89,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANKING_STRUCTURE, rankingStructure.ID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.BUSINESS_RANKING_STRUCTURE, rankingStructure.ID);
                         return RedirectToAction("Index");
                     }
                 }
@@ -100,7 +100,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANKING_STRUCTURE);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANKING_STRUCTURE);
                 return View(rankingStructure);
             }
         }

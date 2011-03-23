@@ -49,7 +49,9 @@ if(mvcHost.IsPartialView) {
     <h2><#= mvcHost.ViewName #></h2>
     <% Html.EnableClientValidation(); %>
     
-    <p class="message"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+
 
 <#
 } else {
@@ -100,7 +102,7 @@ if(!String.IsNullOrEmpty(mvcViewDataTypeGenericString)) {
 #>
             <tr>
                 <td>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Add" />
                 </td>
                 <td>
                     <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
