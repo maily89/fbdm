@@ -8,20 +8,17 @@ namespace FBD.CommonUtilities
     public class Constants
     {
         /** NUMERIC VALUE */
+
         public const int NUMBER_OF_RANKING_STRUCTURE = 4;
-        /** END OF NUMERIC VALUE */
-        /************** PAGES NAMES *************/
-
-
-
-        /************** END OF PAGES NAMES ***************/
 
 
         /*****************CLASS NAMES *******************/
+
         //CUSTOMER
         public const string CUSTOMER_BUSINESS = "Business Customer";
         public const string CUSTOMER_BUSINESS_RANKING = "Ranked Business Customer";
         public const string CUSTOMER_LOANTERM = "Loan term";
+
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "Business Industry";
         public const string BUSINESS_LINE = "Business Line";
@@ -49,7 +46,26 @@ namespace FBD.CommonUtilities
         public const string SYSTEM_USER = "System User";
         public const string SYSTEM_BRANCH = "System Branch";
         public const string SYSTEM_LIST_RIGHTS = "list of Right for this User Group";
-        /***************** END OF CLASS NAMES **************/
+
+        //INV
+        public const string BORROWING_PURPOSE = "Borrowing purpose";
+        public const string INV_BASIC_INDEX = "Individual Basic Index";
+        public const string INV_COLLATERAL_INDEX = "Individual collateral index";
+        public const string INV_BASIC_RANK = "Individual Basic rank";
+        public const string INV_SUMMARY_RANK = "Individual summary rank";
+        public const string INV_BASIC_INDEX_SCORE = "Individual Basic Index score";
+        public const string INV_BASIC_LEVEL_INDEX = "Individual Basic level Index";
+        public const string INV_COLL_LEVEL_INDEX = "Individual collateral level Index";
+        public const string INV_PROPORTION = "Individual Proportion";
+        public const string INV_COLL_RANK = "Individual Collateral Rank";
+        
+
+
+        /****************** SYSTEM RIGHTS ******************/
+
+        public const string RIGHT_PARAMETERS_VIEW = "001";
+        public const string RIGHT_PARAMETERS_UPDATE = "002";
+        public const string RIGHT_RANKING = "003";
 
 
         /***************** MESSAGE TYPES *****************/
@@ -57,7 +73,6 @@ namespace FBD.CommonUtilities
         public const string SCC_MESSAGE = "SuccessfulMessage";
         public const string ERR_MESSAGE = "ErrorMessage";
 
-        /***************** END OF MESSAGE TYPES ***************/
 
 
         /************** ERROR MESSAGES ****************/
@@ -81,37 +96,7 @@ namespace FBD.CommonUtilities
         public const string ERR_UPDATE_PROPORTION_COMMON = "Error when updating propotion. Try again later";
         // SCORE ERRORS
         public const string ERR_UPDATE_SCORE = "Error when updating to the level {0}. Try again later";
-        public const string ERR_UPDATE_SCORE_COMMON = "Error when updating score. Try again later"; 
-
-        // FINANCIAL INDEX
-
-        public const string ERR_INDEX_FI_FINANCIAL_INDEX = "Error when displaying the list of Financial Indexes";
-        
-        public const string ERR_ADD_POST_FI_FINANCIAL_INDEX = "Error when adding new Financial Index. Plz check your "
-                                                                            + "input carefully!";
-
-        public const string ERR_EDIT_FI_FINANCIAL_INDEX = "Error when select the financial index. Please try again";
-
-        public const string ERR_EDIT_POST_FI_FINANCIAL_INDEX = "Error when editting financial index. Plz check your "
-                                                                            + "input carefully!";
-
-        public const string ERR_DELETE_FI_FINANCIAL_INDEX = "Error when deleting the financial index. Try again later";
-
-
-        // FINANCIAL INDEX LEVELS
-
-        public const string ERR_INDEX_FI_FINANCIAL_INDEX_LEVEL = "Error when displaying the list of Financial Index Levels";
-
-        public const string ERR_ADD_POST_FI_FINANCIAL_INDEX_LEVEL = "Error when adding new Financial Index Level. Plz check your "
-                                                                            + "input carefully!";
-
-        public const string ERR_EDIT_FI_FINANCIAL_INDEX_LEVEL = "Error when select the financial index level. Please try again";
-
-        public const string ERR_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL = "Error when editting financial index level. Plz check your "
-                                                                            + "input carefully!";
-
-        public const string ERR_DELETE_FI_FINANCIAL_INDEX_LEVEL = "Error when deleting the financial index level. Try again later";
-
+        public const string ERR_UPDATE_SCORE_COMMON = "Error when updating score. Try again later";
 
 
         //SYSTEM USER GROUPS
@@ -128,20 +113,7 @@ namespace FBD.CommonUtilities
         public const string ERR_EDIT_POST_SYS_BRANCHES = "ERR_EDIT_POST_SYS_BRANCHES";
         public const string ERR_DELETE_SYS_BRANCHES = "ERR_DELETE_SYS_BRANCHES";
         
-        ////SYSTEM REPORTING PERIODS
-        //public const string ERR_INDEX_SYS_REPORTING_PERIODS = "ERR_INDEX_SYS_REPORTING_PERIODS";
-        //public const string ERR_ADD_POST_SYS_REPORTING_PERIODS = "ERR_ADD_POST_SYS_REPORTING_PERIODS";
-        //public const string ERR_EDIT_SYS_REPORTING_PERIODS = "ERR_EDIT_SYS_REPORTING_PERIODS";
-        //public const string ERR_EDIT_POST_SYS_REPORTING_PERIODS = "ERR_EDIT_POST_SYS_REPORTING_PERIODS";
-        //public const string ERR_DELETE_SYS_REPORTING_PERIODS = "ERR_DELETE_SYS_REPORTING_PERIODS";
         public const string ERR_TO_DATE_LESS_THAN_FROM_DATE = "ERR_TO_DATE_LESS_THAN_FROM_DATE";
-
-        ////SYSTEM RIGHTS
-        //public const string ERR_INDEX_SYS_RIGHTS = "ERR_INDEX_SYS_RIGHTS";
-        //public const string ERR_ADD_POST_SYS_RIGHTS = "ERR_ADD_POST_SYS_RIGHTS";
-        //public const string ERR_EDIT_SYS_RIGHTS = "ERR_EDIT_SYS_RIGHTS";
-        //public const string ERR_EDIT_POST_SYS_RIGHTS = "ERR_EDIT_POST_SYS_RIGHTS";
-        //public const string ERR_DELETE_SYS_RIGHTS = "ERR_DELETE_SYS_RIGHTS";
 
         //SYSTEM USERS
         public const string ERR_INDEX_SYS_USERS = "ERR_INDEX_SYS_USERS";
@@ -149,28 +121,6 @@ namespace FBD.CommonUtilities
         public const string ERR_EDIT_SYS_USERS = "ERR_EDIT_SYS_RIGHTS";
         public const string ERR_EDIT_POST_SYS_USERS = "ERR_EDIT_POST_SYS_USERS";
         public const string ERR_DELETE_SYS_USERS = "ERR_DELETE_SYS_USERS";
-
-        ////SYSTEM DECENTRALIZATION
-        //public const string ERR_DISPLAY_SYS_GROUP_RIGHT = "Error when displaying the selected information";
-        //public const string ERR_UPDATE_SYS_GROUP_RIGHT = "Error when updating to the user group right {0}. Try again later";
-        //public const string ERR_DELETE_SYS_GROUP_RIGHT = "ERR_DELETE_SYS_DECENTRALIZATION";
-        //public const string ERR_POST_SYS_GROUP_RIGHT = "Error when parsing information at server. Try again later";
-       
-        //INV
-        /// <summary>
-        /// Borrowing purpose
-        /// </summary>
-        public const string BORROWING_PURPOSE = "Borrowing purpose";
-        public const string INV_BASIC_INDEX = "Individual Basic Index";
-        public const string INV_COLLATERAL_INDEX = "Individual collateral index";
-        public const string INV_BASIC_RANK = "Individual Basic rank";
-        public const string INV_SUMMARY_RANK = "Individual summary rank";
-        public const string INV_BASIC_INDEX_SCORE = "Individual Basic Index score";
-        public const string INV_BASIC_LEVEL_INDEX = "Individual Basic level Index";
-        public const string INV_COLL_LEVEL_INDEX = "Individual collateral level Index";
-        public const string INV_PROPORTION = "Individual Proportion";
-        public const string INV_COLL_RANK = "Individual Collateral Rank";
-        /************** END OF ERROR MESSAGES ****************/
 
 
 
@@ -184,29 +134,6 @@ namespace FBD.CommonUtilities
         public const string SCC_UPDATE_PROPORTION = "Update proportion successfully";
         public const string SCC_UPDATE_SCORE = "Update score successfully";
 
-        // FINANCIAL INDEX
-
-        public const string SCC_ADD_FI_FINANCIAL_INDEX = "A new Financial Index has been added successfully";
-
-        public const string SCC_EDIT_POST_FI_FINANCIAL_INDEX_1 = "The financial index with ID ";
-
-        public const string SCC_EDIT_POST_FI_FINANCIAL_INDEX_2 = " has been editted successfully";
-
-        public const string SCC_DELETE_FI_FINANCIAL_INDEX = "A financial index has been deleted successfully";
-
-
-        // FINANCIAL INDEX LEVELS
-
-        public const string SCC_ADD_FI_FINANCIAL_INDEX_LEVEL = "A new Financial Index Level has been added successfully";
-
-        public const string SCC_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL_1 = "The financial index level with ID ";
-
-        public const string SCC_EDIT_POST_FI_FINANCIAL_INDEX_LEVEL_2 = " has been editted successfully";
-
-        public const string SCC_DELETE_FI_FINANCIAL_INDEX_LEVEL = "A financial index level has been deleted successfully";
-
-
-
 
         //SYSTEM USER GROUPS
         public const string SCC_ADD_POST_SYS_USER_GROUPS = "SCC_ADD_POST_SYS_USER_GROUPS";
@@ -219,18 +146,6 @@ namespace FBD.CommonUtilities
         public const string SCC_EDIT_POST_SYS_BRANCHES_1 = "SCC_EDIT_POST_SYS_BRANCHES_1";
         public const string SCC_EDIT_POST_SYS_BRANCHES_2 = "SCC_EDIT_POST_SYS_BRANCHES_2";
         public const string SCC_DELETE_SYS_BRANCHES = "SCC_DELETE_SYS_BRANCHES";
-        
-        ////SYSTEM REPORTING PERIODS
-        //public const string SCC_ADD_POST_SYS_REPORTING_PERIODS = "SCC_ADD_POST_SYS_REPORTING_PERIODS";
-        //public const string SCC_EDIT_POST_SYS_REPORTING_PERIODS_1 = "SCC_EDIT_POST_SYS_REPORTING_PERIODS_1";
-        //public const string SCC_EDIT_POST_SYS_REPORTING_PERIODS_2 = "SCC_EDIT_POST_SYS_REPORTING_PERIODS_2";
-        //public const string SCC_DELETE_SYS_REPORTING_PERIODS = "SCC_DELETE_SYS_REPORTING_PERIODS";
-        
-        ////SYSTEM RIGHTS
-        //public const string SCC_ADD_POST_SYS_RIGHTS = "SCC_ADD_POST_SYS_RIGHTS";
-        //public const string SCC_EDIT_POST_SYS_RIGHTS_1 = "SCC_EDIT_POST_SYS_RIGHTS_1";
-        //public const string SCC_EDIT_POST_SYS_RIGHTS_2 = "SCC_EDIT_POST_SYS_RIGHTS_2";
-        //public const string SCC_DELETE_SYS_RIGHTS = "SCC_DELETE_SYS_RIGHTS";
 
         //SYSTEM USERS
         public const string SCC_ADD_POST_SYS_USERS = "SCC_ADD_POST_SYS_USERS";
@@ -238,16 +153,10 @@ namespace FBD.CommonUtilities
         public const string SCC_EDIT_POST_SYS_USERS_2 = "SCC_EDIT_POST_SYS_USERS_2";
         public const string SCC_DELETE_SYS_USERS = "SCC_DELETE_SYS_USERS";
         
-        ////SYSTEM DECENTRALIZATION
-        //public const string SCC_UPDATE_SYS_GROUP_RIGHT = "Update user group right successfully";
-        //public const string SCC_ADD_POST_SYS_DECENTRALIZATION = "SCC_ADD_POST_SYS_DECENTRALIZATION";
-        //public const string SCC_EDIT_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_1";
-        //public const string SCC_EDIT_POST_SYS_DECENTRALIZATION = "SCC_EDIT_POST_SYS_DECENTRALIZATION_2";
-        //public const string SCC_DELETE_SYS_DECENTRALIZATION = "SCC_DELETE_SYS_DECENTRALIZATION";
 
-        
-        /************** END OF SUCCESSFUL MESSAGES ***************/
-
+        /// <summary>
+        /// Used for validating index id
+        /// </summary>
         public const string INDEX_FORMAT_STRING = "0123456789";
     }
 }
