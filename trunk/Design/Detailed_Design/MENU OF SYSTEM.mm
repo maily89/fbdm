@@ -1,0 +1,70 @@
+<map version="0.8.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1300687023468" ID="Freemind_Link_712428864" MODIFIED="1300687031015" TEXT="MENU OF SYSTEM">
+<node CREATED="1300687033484" ID="_" MODIFIED="1300687153140" POSITION="right" TEXT="Parameters Management">
+<node CREATED="1300687292296" ID="Freemind_Link_1776326277" MODIFIED="1300687298609" TEXT="Business Parameters">
+<node CREATED="1300687334000" ID="Freemind_Link_1711883994" MODIFIED="1300689823484" TEXT="Business Industries: BSNIndustry"/>
+<node CREATED="1300687346046" ID="Freemind_Link_505262526" MODIFIED="1300689839968" TEXT="Business Lines: BSNLine"/>
+<node CREATED="1300687382984" ID="Freemind_Link_759729559" MODIFIED="1300689866640" TEXT="Business Types: BSNType"/>
+<node CREATED="1300687400796" ID="Freemind_Link_1432623264" MODIFIED="1300687441828" TEXT="Business Scale">
+<node CREATED="1300687441796" ID="Freemind_Link_1329453612" MODIFIED="1300689894484" TEXT="Scale Criteria: BSNScaleCriteria"/>
+<node CREATED="1300687477265" ID="Freemind_Link_1689851822" MODIFIED="1300689909921" TEXT="Scale Scoring: BSNScaleScore"/>
+<node CREATED="1300687480515" ID="Freemind_Link_128704634" MODIFIED="1300689927671" TEXT="Scale Types: BSNScale"/>
+</node>
+<node CREATED="1300688000890" ID="Freemind_Link_1566375734" MODIFIED="1300688067765" TEXT="Financial Parameters">
+<node CREATED="1300688074250" ID="Freemind_Link_96109555" MODIFIED="1300689973718" TEXT="Financial Index: FIFinancialIndex"/>
+<node CREATED="1300688124375" ID="Freemind_Link_1561069199" MODIFIED="1300689988328" TEXT="Financial Index Scoring: FIScore"/>
+<node CREATED="1300688134390" ID="Freemind_Link_542399433" MODIFIED="1300689999812" TEXT="Financial Index Proportion: FIProportion"/>
+<node CREATED="1300688139890" ID="Freemind_Link_600916988" MODIFIED="1300690018546" TEXT="Financial Index Level: FILevels"/>
+</node>
+<node CREATED="1300688150281" ID="Freemind_Link_1961785570" MODIFIED="1300688160671" TEXT="Non-Financial Parameters">
+<node CREATED="1300688163968" ID="Freemind_Link_1022217783" MODIFIED="1300690035156" TEXT="Non-Financial Index: NFINonFinancialIndex"/>
+<node CREATED="1300688171531" ID="Freemind_Link_1580511968" MODIFIED="1300690045578" TEXT="Non-Financial Index Scoring: NFIScore"/>
+<node CREATED="1300688178781" ID="Freemind_Link_758281572" MODIFIED="1300690057890" TEXT="Non-Financial Index Proportion: NFIProportion"/>
+<node CREATED="1300688187500" ID="Freemind_Link_1727516848" MODIFIED="1300690071046" TEXT="Non-Financial Index Level:  NFILevels"/>
+</node>
+<node CREATED="1300687484890" ID="Freemind_Link_1976742670" MODIFIED="1300690094828" TEXT="Ranking Structure: BSNRankingStructure"/>
+<node CREATED="1300687513390" ID="Freemind_Link_1896338289" MODIFIED="1300690112015" TEXT="Business Ranks: BSNRank"/>
+</node>
+<node CREATED="1300687299703" ID="Freemind_Link_1460292091" MODIFIED="1300687308843" TEXT="Individual Parameters">
+<node CREATED="1300687564812" ID="Freemind_Link_796721107" MODIFIED="1300713677390" TEXT="Borrowing purposes: INVBorrowingPurpose"/>
+<node CREATED="1300687573546" ID="Freemind_Link_85336510" MODIFIED="1300688052968" TEXT="Basic Parameters">
+<node CREATED="1300687663968" ID="Freemind_Link_1061053005" MODIFIED="1300713697640" TEXT="Basic Index: INVBasicIndex"/>
+<node CREATED="1300687670031" ID="Freemind_Link_1277365883" MODIFIED="1300713717656" TEXT="Basic Index Scoring: INVBasicIndexScore"/>
+<node CREATED="1300687693890" ID="Freemind_Link_567345446" MODIFIED="1300713769968" TEXT="Basic Index Proportion: INVProportion"/>
+<node CREATED="1300687701703" ID="Freemind_Link_1594111710" MODIFIED="1300713796203" TEXT="Basic Index Level: INVBasicLevels"/>
+<node CREATED="1300687797359" ID="Freemind_Link_1924623307" MODIFIED="1300713816281" TEXT="Basic Ranks: INVBasicRank"/>
+</node>
+<node CREATED="1300687783484" ID="Freemind_Link_590272545" MODIFIED="1300688063187" TEXT="Collateral Parameters">
+<node CREATED="1300687830656" ID="Freemind_Link_1040435244" MODIFIED="1300713842468" TEXT="Collateral Index: INVCollateralIndex"/>
+<node CREATED="1300687870250" ID="Freemind_Link_98460864" MODIFIED="1300713857375" TEXT="Collateral Index Scoring: INVCollateralIndexScore"/>
+<node CREATED="1300687885453" ID="Freemind_Link_1456282259" MODIFIED="1300713870765" TEXT="Collateral Index Level: INVCollateralLevels"/>
+<node CREATED="1300687915750" ID="Freemind_Link_795930227" MODIFIED="1300713882484" TEXT="Collateral Ranks: INVCollateralRank"/>
+</node>
+<node CREATED="1300687935078" ID="Freemind_Link_1216780182" MODIFIED="1300713901875" TEXT="Summary Evaluation: INVSummaryRank"/>
+</node>
+</node>
+<node CREATED="1300687154796" ID="Freemind_Link_411595023" MODIFIED="1300687161437" POSITION="right" TEXT="System Management">
+<node CREATED="1300688548281" ID="Freemind_Link_1041112768" MODIFIED="1300690155109" TEXT="User Groups: SYSUserGroups"/>
+<node CREATED="1300688570250" ID="Freemind_Link_1060590385" MODIFIED="1300690171906" TEXT="System Users: SYSUsers"/>
+<node CREATED="1300688581796" ID="Freemind_Link_169764558" MODIFIED="1300690188828" TEXT="System Rights: SYSRights"/>
+<node CREATED="1300688591500" ID="Freemind_Link_65417780" MODIFIED="1300690211750" TEXT="User Decentralization: SYSUserGroupsRights"/>
+<node CREATED="1300688606625" ID="Freemind_Link_1056030965" MODIFIED="1300690239093" TEXT="Branches: SYSBranches"/>
+<node CREATED="1300688617093" ID="Freemind_Link_200417669" MODIFIED="1300690263265" TEXT="Reporting Periods: SYSReportingPeriod"/>
+<node CREATED="1300688632625" ID="Freemind_Link_778557879" MODIFIED="1300713928250" TEXT="Customer Types: SYSCustomerType">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1300687162062" ID="Freemind_Link_916762090" MODIFIED="1300687230984" POSITION="right" TEXT="Credit Ranking">
+<node CREATED="1300688652531" ID="Freemind_Link_1427652572" MODIFIED="1300688898734" TEXT="Business Customers">
+<node CREATED="1300688672515" ID="Freemind_Link_1898398344" MODIFIED="1300688910625" TEXT="Business Customer List"/>
+<node CREATED="1300688796765" ID="Freemind_Link_840279061" MODIFIED="1300688916718" TEXT="Business Ranking"/>
+</node>
+<node CREATED="1300688867250" ID="Freemind_Link_377862797" MODIFIED="1300688924125" TEXT="Individual Customers">
+<node CREATED="1300688924125" ID="Freemind_Link_1628623590" MODIFIED="1300688935421" TEXT="Individual Customers List"/>
+<node CREATED="1300688935734" ID="Freemind_Link_1134381683" MODIFIED="1300688940218" TEXT="Individual Ranking"/>
+</node>
+</node>
+<node CREATED="1300687240218" ID="Freemind_Link_1370248912" MODIFIED="1300687277375" POSITION="right" TEXT="Report Management"/>
+</node>
+</map>
