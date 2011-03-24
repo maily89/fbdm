@@ -63,9 +63,9 @@ namespace FBD.CommonUtilities
 
         /****************** SYSTEM RIGHTS ******************/
 
-        public const string RIGHT_PARAMETERS_VIEW = "001";
-        public const string RIGHT_PARAMETERS_UPDATE = "002";
-        public const string RIGHT_RANKING = "003";
+        public const string ACTION_PARAMETERS_VIEW = "001";
+        public const string ACTION_PARAMETERS_UPDATE = "002";
+        public const string ACTION_RANKING = "003";
 
 
         /***************** MESSAGE TYPES *****************/
