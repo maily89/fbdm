@@ -31,6 +31,7 @@
         <siteMapNode title="Basic Index" controller="INVBasicIndex" action="Index" />
         <siteMapNode title="Basic Index Scoring" controller="INVBasicIndexScore" action="Index" />
         <siteMapNode title="Basic Index Proportion" controller="INVProportion" action="Index" />
+        <siteMapNode title="Basic Index Level" controller="INVBasicLevels" action="Index" />
         <siteMapNode title="Basic Ranks" controller="INVBasicRank" action="Index" />
       </siteMapNode>
       <siteMapNode title="Collateral Paramaters"  description="Managing Collateral Parameter for individual customers">
