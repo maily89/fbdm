@@ -36,7 +36,7 @@
             
             <%= Html.Hidden("NumberOfScoreRows", Model.ScoreRows.Count) %>
             <td>
-                <%= Html.Label("Financial Index Score") %>
+                <%= Html.Label("Asssign collateral index") %>
             </td>
             
             <td>
