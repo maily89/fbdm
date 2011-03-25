@@ -103,7 +103,7 @@
     <Compile Include="Controllers\NFINonFinancialIndexController.cs" />
     <Compile Include="Controllers\NFIProportionController.cs" />
     <Compile Include="Controllers\NFIScoreController.cs" />
-     <Compile Include="Controllers\RNKRankBusinessController.cs" />
+    <Compile Include="Controllers\RNKRankBusinessController.cs" />
     <Compile Include="Controllers\INVBorrowingPurposeController.cs" />
     <Compile Include="Controllers\INVBasicIndexController.cs" />
     <Compile Include="Controllers\INVBasicLevelsController.cs" />
@@ -155,6 +155,11 @@
     <Compile Include="Models\CustomersIndividuals.cs" />
     <Compile Include="Models\CustomersLoanTerm.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\FBDModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FBDModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IndividualBorrowingPurposes.cs" />
     <Compile Include="Models\IndividualBasicIndex.cs" />
     <Compile Include="Models\IndividualBasicIndexLevels.cs" />
@@ -463,6 +468,10 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <EntityDeploy Include="Models\FBDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="Report.sitemap" />
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
