@@ -9,7 +9,7 @@
     <h2>INDIVIDUAL BASIC RANK</h2>
 <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-    
+    <h3><%= Html.ActionLink("Create New", "Add") %></h3>
     <table>
         <tr>
             <th></th>
@@ -58,9 +58,7 @@
 
     </table>
 
-    <p>
-        <%= Html.ActionLink("Add New", "Add") %>
-    </p>
+    <h3><%= Html.ActionLink("Create New", "Add") %></h3>
 
 </asp:Content>
 
