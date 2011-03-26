@@ -36,7 +36,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_USER_GROUP_RIGHT);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_LIST_RIGHTS);
                 return View(viewModel);
             }
             return View(viewModel);
@@ -67,7 +67,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, "User Groups");
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_LIST_RIGHTS);
                 return RedirectToAction("Index");
             }
 

@@ -1,18 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.SystemUserGroups>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	User Group
+	Managing System User Groups
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING USER GROUPS</h2>
+    <h2>MANAGING SYSTEM USER GROUPS</h2>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
-    <%= TempData["Message"]!=null?TempData["Message"]:"" %>
-    
-    <h3>
-        <%= Html.ActionLink("Add New User Group", "Add") %>
-    </h3>
+    <p>
+        <%= Html.ActionLink("Add new group", "Add") %>
+    </p>
     <table> 
         <tr>
             <th></th>
@@ -36,9 +36,9 @@
         <% } %>
     </table>
 
-    <h3>
-        <%= Html.ActionLink("Add New User Group", "Add") %>
-    </h3>
+    <p>
+        <%= Html.ActionLink("Add new group", "Add") %>
+    </p>
 
 </asp:Content>
 

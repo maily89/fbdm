@@ -26,7 +26,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_INDEX_SYS_BRANCHES;
+                TempData["Message"] = string.Format(Constants.ERR_INDEX,Constants.SYSTEM_BRANCH);
                 return View(branches);
             }
             return View(branches);
@@ -51,11 +51,22 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (SystemBranches.IsIDExist(branch.BranchID) == 1) //If dupplicated
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
+                        return View(branch);
+                    }
+                    if (SystemBranches.IsIDExist(branch.BranchID) == 2) //If there is any exception
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
+                        return View(branch);
+                    }
+                    //else IsIDExist(right.RightID) == 0 //Means the ID is available
                     int result = SystemBranches.AddBranch(branch);
 
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_BRANCHES;
+                        TempData["Message"] = string.Format(Constants.SCC_ADD,Constants.SYSTEM_BRANCH);
                         return RedirectToAction("Index");
                     }
                 }
@@ -63,7 +74,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_BRANCHES;
+                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.SYSTEM_BRANCH);
                 return View(branch);
             }
         }
@@ -86,7 +97,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_BRANCHES;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT,Constants.SYSTEM_BRANCH);
                 return View(branch);
             }
 
@@ -107,8 +118,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_BRANCHES_1 + id 
-                                              + Constants.SCC_EDIT_POST_SYS_BRANCHES_2;
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_BRANCH, id);
                         return RedirectToAction("Index");
                     }
                 }
@@ -118,7 +128,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_BRANCHES;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_BRANCH);
                 return View(branch);
             }
         }
@@ -133,14 +143,14 @@ namespace FBD.Controllers
                 int result = SystemBranches.DeleteBranch(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = Constants.SCC_DELETE_SYS_BRANCHES;
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE,Constants.SYSTEM_BRANCH);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_DELETE_SYS_BRANCHES;
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_BRANCH);
                 return RedirectToAction("Index");
             }
         }

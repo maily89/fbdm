@@ -1,21 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.SYSUsersViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Add user
+	Add new user
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>ADD NEW A USER</h2>
+    <h2>ADD NEW USER</h2>
     <% Html.EnableClientValidation(); %>
     
-    <p class="message"><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
 
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>User information</legend>
             <table>
             
             <tr>
@@ -29,36 +29,6 @@
                     <div class="editor-field">
                         <%= Html.TextBoxFor(model => model.SystemUsers.UserID) %>
                         <%= Html.ValidationMessageFor(model => model.SystemUsers.UserID) %>
-                    </div>
-               </td>
-           </tr>
-            
-            <tr>
-                <td>
-                
-                    <div class="editor-label">
-                        <%= Html.LabelFor(model => model.GroupID) %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.DropDownList("Group", new SelectList(Model.SystemUserGroups as IEnumerable,
-                            "GroupID", "GroupName", Model != null ? Model.GroupID : null))%>
-                    </div>
-               </td>
-           </tr>
-            
-            <tr>
-                <td>
-                
-                    <div class="editor-label">
-                        <%= Html.LabelFor(model => model.BranchID) %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.DropDownList("Branch", new SelectList(Model.SystemBranches as IEnumerable,
-                            "BranchID", "BranchName", Model != null ? Model.BranchID : null))%>
                     </div>
                </td>
            </tr>
@@ -79,14 +49,43 @@
             
             <tr>
                 <td>
+                
                     <div class="editor-label">
-                        <%= Html.LabelFor(model => model.SystemUsers.Password) %>
+                        <%= Html.LabelFor(model => model.BranchID) %>
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.SystemUsers.Password) %>
-                        <%= Html.ValidationMessageFor(model => model.SystemUsers.Password) %>
+                        <%= Html.DropDownList("BranchID", new SelectList(Model.SystemBranches as IEnumerable,
+                            "BranchID", "BranchName", Model.BranchID))%>
+                    </div>
+               </td>
+           </tr>
+            
+            <tr>
+                <td>
+                
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.GroupID) %>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.DropDownList("GroupID", new SelectList(Model.SystemUserGroups as IEnumerable,
+                            "GroupID", "GroupName", Model.GroupID))%>
+                    </div>
+               </td>
+           </tr>
+            
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <%= Html.LabelFor(model => model.SystemUsers.Password)%>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.TextBoxFor(model => model.SystemUsers.Password, new { @readonly = "true", @disabled = "true" })%>
                     </div>
                </td>
            </tr>

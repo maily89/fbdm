@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.SystemRights>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Right Index
+	Managing System Rights
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING SYSTEM RIGHT INDEX</h2>
-    <%= TempData["Message"]!=null?TempData["Message"]:"" %>
+    <h2>MANAGING SYSTEM RIGHTS</h2>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
+    
     <p>
-        <%= Html.ActionLink("Add new System Right", "Add") %>
+        <%= Html.ActionLink("Add new right", "Add") %>
     </p>
     <table>
         <tr>
@@ -42,7 +44,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Add new System Right", "Add") %>
+        <%= Html.ActionLink("Add new right", "Add") %>
     </p>
 
 </asp:Content>

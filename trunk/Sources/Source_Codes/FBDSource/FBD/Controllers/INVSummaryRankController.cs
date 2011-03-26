@@ -116,7 +116,7 @@ namespace FBD.Controllers
                 //viewmodel.collateralRankID = viewmodel.summaryRanks.IndividualCollateralRanks.RankID;
                 
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_SUMMARY_RANK);
             }

@@ -14,12 +14,14 @@
 
     <h2>ADD NEW REPORTING PERIOD</h2>
     <% Html.EnableClientValidation(); %>
-    <p><%= TempData["Message"] != null ? TempData["Message"]: "" %></p>
+    
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
+
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Reporting period information</legend>
             <table>
             <tr>
                 <td>
@@ -83,15 +85,17 @@
                     </div>
                 </td>
             </tr>
-            </table>
+            
             <tr>
-                <td>
-                    <input type="submit" value="Add" />
-                </td>
-                <td>
-                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-                </td>
-            </tr>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                    <td>
+                        <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                    </td>
+                </tr>
+            </table>
+            
         </fieldset>
 
     <% } %>

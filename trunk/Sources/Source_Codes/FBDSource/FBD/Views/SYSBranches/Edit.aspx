@@ -11,16 +11,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>EDIT SYSTEM BRANCH</h2>
+    <h2>EDIT BRANCH</h2>
     
     <% Html.EnableClientValidation(); %>
-    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Branch information</legend>
             
             <table>
             <tr>
@@ -66,7 +66,7 @@
             
             <tr>
                 <td>
-                    <input type="submit" value="Edit" />
+                    <input type="submit" value="Save" />
                 </td>
                 <td>
                     <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />

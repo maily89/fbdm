@@ -14,19 +14,36 @@ namespace FBD.Models
         public static List<SystemUsers> SelectUsers()
         {
             FBDEntities entities = new FBDEntities();
-            return entities.SystemUsers.Include("SystemBranches").Include("SystemUserGroups").ToList();
+            return entities.SystemUsers.Include("SystemBranches")
+                                       .Include("SystemUserGroups")
+                                       .ToList();
+        }
+
+        public static List<SystemUsers> SelectUsersByBranch(string branchID)
+        {
+            FBDEntities entities = new FBDEntities();
+            List<SystemUsers> lstUsersByBranch = entities.SystemUsers.Include("SystemBranches")
+                                                                     .Include("SystemUserGroups")
+                                                                     .Where(i => i.SystemBranches
+                                                                                 .BranchID.Equals(branchID))
+                                                                     .ToList();
+            return lstUsersByBranch;
         }
 
         public static SystemUsers SelectUserByID(string id)
         {
             FBDEntities entities = new FBDEntities();
-            var user = entities.SystemUsers.First(i => i.UserID == id);
+            var user = entities.SystemUsers.Include("SystemBranches")
+                                           .Include("SystemUserGroups")
+                                           .First(i => i.UserID == id);
             return user;
         }
 
         public static SystemUsers SelectUserByID(string id, FBDEntities entities)
         {
-            var user = entities.SystemUsers.First(i => i.UserID == id);
+            var user = entities.SystemUsers.Include("SystemBranches")
+                                           .Include("SystemUserGroups")
+                                           .First(i => i.UserID == id);
             return user;
         }
 
@@ -80,6 +97,29 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
+        /// <summary>
+        /// Check ID dupplication
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1: if true (dupplication is occuring)
+        /// 0: if false (no dupplication, the ID is available
+        /// 2: if there is any exception
+        /// </returns>
+        public static int IsIDExist(string id)
+        {
+            FBDEntities entities = new FBDEntities();
+            try
+            {
+                bool check = entities.SystemUsers.Where(i => i.UserID == id).Any();
+                return check ? 1 : 0;
+            }
+            catch (Exception)
+            {
+                return 2;
+            }
+        }
+
         public class SystemUsersMetaData
         {
             [DisplayName("User ID")]
@@ -92,7 +132,6 @@ namespace FBD.Models
             public string FullName { get; set; }
 
             [DisplayName("Password")]
-            [Required(ErrorMessage = "Password is required")]
             [StringLength(50)]
             public string Password { get; set; }
 

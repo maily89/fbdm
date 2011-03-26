@@ -27,7 +27,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_INDEX_SYS_USER_GROUPS;
+                TempData["Message"] = string.Format(Constants.ERR_INDEX,Constants.SYSTEM_USER_GROUP);
                 return View(groups);
             }
             return View(groups);
@@ -52,11 +52,22 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (SystemUserGroups.IsIDExist(group.GroupID) == 1) //If dupplicated
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
+                        return View(group);
+                    }
+                    if (SystemUserGroups.IsIDExist(group.GroupID) == 2) //If there is any exception
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
+                        return View(group);
+                    }
+                    //else IsIDExist(right.RightID) == 0 //Means the ID is available
                     int result = SystemUserGroups.AddUserGroup(group);
 
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_ADD_POST_SYS_USER_GROUPS;
+                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_USER_GROUP);
                         return RedirectToAction("Index");
                     }
                 }
@@ -64,7 +75,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_USER_GROUPS;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
         }
@@ -87,7 +98,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_EDIT_SYS_USER_GROUPS;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
 
@@ -108,8 +119,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = Constants.SCC_EDIT_POST_SYS_USER_GROUPS_1 + id 
-                                              + Constants.SCC_EDIT_POST_SYS_USER_GROUPS_2;
+                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_USER_GROUP, id);
                         return RedirectToAction("Index");
                     }
                 }
@@ -119,7 +129,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = Constants.ERR_EDIT_POST_SYS_USER_GROUPS;
+                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
         }
@@ -134,14 +144,14 @@ namespace FBD.Controllers
                 int result = SystemUserGroups.DeleteUserGroup(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = Constants.SCC_DELETE_SYS_USER_GROUPS;
+                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_USER_GROUP);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = Constants.ERR_DELETE_SYS_USER_GROUPS;
+                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_USER_GROUP);
                 return RedirectToAction("Index");
             }
         }
