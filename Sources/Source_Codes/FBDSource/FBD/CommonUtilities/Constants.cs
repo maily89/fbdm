@@ -63,9 +63,9 @@ namespace FBD.CommonUtilities
 
         /****************** SYSTEM RIGHTS ******************/
 
-        public const string ACTION_PARAMETERS_VIEW = "001";
-        public const string ACTION_PARAMETERS_UPDATE = "002";
-        public const string ACTION_RANKING = "003";
+        public const string RIGHT_PARAMETERS_VIEW = "001";
+        public const string RIGHT_PARAMETERS_UPDATE = "002";
+        public const string RIGHT_RANKING = "003";
 
 
         /***************** MESSAGE TYPES *****************/
@@ -98,6 +98,11 @@ namespace FBD.CommonUtilities
         public const string ERR_UPDATE_SCORE = "Error when updating to the level {0}. Try again later";
         public const string ERR_UPDATE_SCORE_COMMON = "Error when updating score. Try again later";
 
+        // AUTHENTICATION ERRORS
+        public const string ERR_LOGIN_MATCH = "The username and password do not match. Plz input again";
+        public const string ERR_LOGIN_INPUT = "Unable to login at this time. Plz come back a bit later";
+        public const string ERR_CHANGE_PASS_MATCH = "The old password is invalid or confirm password does not match. Plz input again";
+        public const string ERR_CHANGE_PASS_INPUT = "Unable to change pass at this time. Plz come back a bit later";
 
         //SYSTEM USER GROUPS
         public const string ERR_INDEX_SYS_USER_GROUPS = "ERR_INDEX_SYS_USER_GROUPS";
@@ -134,6 +139,9 @@ namespace FBD.CommonUtilities
         public const string SCC_UPDATE_PROPORTION = "Update proportion successfully";
         public const string SCC_UPDATE_SCORE = "Update score successfully";
 
+        // AUTHENTICATION SUCCESS
+        public const string SCC_CHANGE_PASS = "Your password has been changed successfully. You need to login with new password";
+
 
         //SYSTEM USER GROUPS
         public const string SCC_ADD_POST_SYS_USER_GROUPS = "SCC_ADD_POST_SYS_USER_GROUPS";
@@ -158,5 +166,15 @@ namespace FBD.CommonUtilities
         /// Used for validating index id
         /// </summary>
         public const string INDEX_FORMAT_STRING = "0123456789";
+
+        public const string FORM_USER_ID = "UserID";
+        public const string FORM_PASSWORD = "Password";
+        public const string FORM_OLD_PASSWORD = "OldPassword";
+        public const string FORM_NEW_PASSWORD = "NewPassword";
+        public const string FORM_CONFIRM_NEW_Password = "ConfirmNewPassword";
+        public const string FORM_USER_GROUP_ID = "UserGroupID";
+
+        public const string SESSION_USER_ID = "UserID";
+        public const string SESSION_USER_GROUP_ID = "UserGroupID";
     }
 }
