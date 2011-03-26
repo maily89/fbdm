@@ -85,6 +85,7 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
+    <Compile Include="Controllers\SYSAuthsController.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
     <Compile Include="Controllers\BSNLoanTermController.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessManager.cs" />
     <Compile Include="Models\BusinessFinancialIndex.cs" />
     <Compile Include="Models\BusinessFinancialIndexLevels.cs" />
     <Compile Include="Models\BusinessFinancialIndexProportion.cs" />
@@ -171,6 +173,8 @@
     <Compile Include="Models\IndividualCollateralIndexScore.cs" />
     <Compile Include="Models\IndividualCollateralRanks.cs" />
     <Compile Include="Models\IndividualSummayRanks.cs" />
+    <Compile Include="Models\SYSChangePassModel.cs" />
+    <Compile Include="Models\SYSLoginModel.cs" />
     <Compile Include="Models\SystemBranches.cs" />
     <Compile Include="Models\SystemReportingPeriods.cs" />
     <Compile Include="Models\SystemRights.cs" />
@@ -476,6 +480,10 @@
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
     <Content Include="Parameter.sitemap" />
+    <Content Include="Views\SYSAuths\ChangePassword.aspx" />
+    <Content Include="Views\SYSAuths\Login.aspx" />
+    <Content Include="Views\SYSAuths\LoginSuccess.aspx" />
+    <Content Include="Views\SYSAuths\Unauthorized.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
