@@ -6,24 +6,21 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Add user group
+	Add new user group
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>ADD NEW A USER GROUP</h2>
+    <h2>ADD NEW USER GROUP</h2>
     
     <% Html.EnableClientValidation(); %>
-    <p>
-        <%= TempData["Message"] != null ? TempData["Message"] : ""%>
-    </p>
-    <br />
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
     <% using (Html.BeginForm()) { %>
         <%= Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Group information</legend>
             <table>
             <tr>
                 <td>

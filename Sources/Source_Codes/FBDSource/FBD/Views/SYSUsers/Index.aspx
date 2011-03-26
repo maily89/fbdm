@@ -1,85 +1,84 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.SYSUsersIndexViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	System User
+	Managing System users
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING USERS</h2>
+    <h2>MANAGING SYSTEM USERS</h2>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
-    <%= TempData["Message"]!=null?TempData["Message"]:"" %>
-    
-        Branches List 
-    <br />
-    <% using (Html.BeginForm())%>
-    <% { %>
-            <%--<%= Html.DropDownList("GroupID", new SelectList(Model.GroupID as IEnumerable, "GroupID", "GroupName", 
-                            Model != null ? Model.GroupID : null), "Select Group", new { onchange = "this.form.submit();" })%>
-            <br /><br />--%>
-            <%= Html.DropDownList("BranchID", new SelectList(Model.Branches as IEnumerable, "BranchID", "BranchName", 
-                            Model != null ? Model.BranchID : null), "Select Branch", new { onchange = "this.form.submit();" })%>                
+    <%using (Html.BeginForm())
+            {%>
+            <%= Html.Label("Choose a Branch")%>
+            <%= Html.DropDownList("BranchID", new SelectList(Model.Branches as IEnumerable, "BranchID", "BranchName",
+                            Model != null ? Model.BranchID : null),"Select Branch", new { onchange = "this.form.submit();" })%>
+            <%} %>
             <br />
-    <% } %>
-    
-    Lines for <%= Model.BranchName %>
-    <h3>
-        <%= Html.ActionLink("Add New User", "Add") %>
-    </h3>
+        <p>
+        <%= Html.ActionLink("Add new user", "Add") %>
+    </p>
+    List of users in <%=Model.BranchName %>:         
     <table>
+        
         <tr>
             <th></th>
-            <th>User ID</th>
-            <th>Group</th>
-            <th>Branch</th>
-            <th>Full Name</th>
-            <th>Password</th>
-            <th>Status</th>
-            <th>Credit Department</th>
-            
+            <th>
+                User ID
+            </th>
+            <th>
+                Full name
+            </th>
+            <th>
+                Branch
+            </th>
+            <th>
+                Group
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Credit department
+            </th>
         </tr>
 
-    <% if (Model.Users != null)
-       {    
-            foreach (var item in Model.Users) { %>
+    <% foreach (var item in Model.Users) {
+            %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.UserID }) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.UserID })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.UserID}) %> |
+                <%= Html.ActionLink("Delete", "Delete", new { id=item.UserID})%>
             </td>
             <td>
                 <%= Html.Encode(item.UserID) %>
             </td>
             <td>
-                <%= Html.Encode(item.SystemUserGroups.GroupName) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.SystemBranches.BranchName) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.FullName) %>
             </td>
             <td>
-                <%= Html.Encode(item.Password) %>
+                <%=Html.Encode(item.SystemBranches.BranchName) %>
             </td>
             <td>
-                <%= Html.Encode(item.Status) %>
+                <%=Html.Encode(item.SystemUserGroups.GroupName) %>
             </td>
             <td>
-                <%= Html.Encode(item.CreditDepartment) %>
+                <%=Html.Encode(item.Status) %>
             </td>
-            
+            <td>
+                <%=Html.Encode(item.CreditDepartment)%>
+            </td>
         </tr>
-    <% } 
-    } %>
+    
+    <% } %>
 
     </table>
 
     <p>
-        <%= Html.ActionLink("Add New User", "Add") %>
+        <%= Html.ActionLink("Add new user", "Add") %>
     </p>
 
 </asp:Content>
-
-

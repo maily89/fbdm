@@ -11,16 +11,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>EDIT THE USER GROUP</h2>
+    <h2>EDIT USER GROUP</h2>
     
     <% Html.EnableClientValidation(); %>
-    <p><%= TempData["Message"] != null ? TempData["Message"] : "" %></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
     
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Group information</legend>
             
             <table>
             <tr>

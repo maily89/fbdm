@@ -156,7 +156,7 @@ namespace FBD.Controllers
                     }
                 }
             }
-            catch(Exception e)
+            catch(Exception )
             {
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_SCORE_COMMON);

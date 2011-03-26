@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.SystemReportingPeriods>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	System reporting periods
+	Managing System reporting periods
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING REPORTING PERIODS</h2>
-    <p class = "message"><%=TempData["Message"]!=null?TempData["Message"]:"" %></p>
+    <h2>MANAGING SYSTEM REPORTING PERIODS</h2>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%><br /></p>
+    
     <p>
-        <%= Html.ActionLink("Add new Reporting Period", "Add") %>
+        <%= Html.ActionLink("Add new reporting period", "Add") %>
     </p>
     <table>
         <tr>
@@ -60,7 +62,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Add new Reporting Period", "Add") %>
+        <%= Html.ActionLink("Add new reporting period", "Add") %>
     </p>
 
 </asp:Content>

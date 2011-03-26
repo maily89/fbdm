@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FBD.CommonUtilities
 {
@@ -51,6 +53,19 @@ namespace FBD.CommonUtilities
             }
 
             return true;
+        }
+
+        public static string Encode(string password)
+        {
+            Byte[] orginialPwBytes;
+            Byte[] encodedPwBytes;
+            MD5 md5;
+
+            md5 = new MD5CryptoServiceProvider();
+            orginialPwBytes = ASCIIEncoding.Default.GetBytes(password);
+            encodedPwBytes = md5.ComputeHash(orginialPwBytes);
+
+            return BitConverter.ToString(encodedPwBytes);
         }
     }
 }
