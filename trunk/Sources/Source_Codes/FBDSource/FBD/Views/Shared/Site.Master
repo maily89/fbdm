@@ -20,7 +20,13 @@
                 <h1>Banking Ranking System</h1>
             </div>
             <br />
-        
+            <div id="right">
+                <%if (Session[FBD.CommonUtilities.Constants.SESSION_USER_ID] != null)
+                  { %>
+                <a href="../SYSAuths/ChangePassword/" style="color:White">Change Password | </a>
+                <a href="../SYSAuths/Logout/" style="color:White">Sign Out</a>
+                <%} %>
+            </div>
         </div>
         <div id="menu" >
              <% %>
