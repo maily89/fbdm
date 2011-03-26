@@ -110,7 +110,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_BASIC_INDEX, individualBasicIndex.IndexID);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.INV_BASIC_INDEX, individualBasicIndex.IndexID);
                         return RedirectToAction("Index");
                     }
                 }
