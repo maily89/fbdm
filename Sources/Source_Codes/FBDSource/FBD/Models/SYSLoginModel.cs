@@ -10,9 +10,23 @@ namespace FBD.Models
     [MetadataType(typeof(SYSLoginModelMetaData))]
     public class SYSLoginModel
     {
+        /// <summary>
+        /// ID of the user
+        /// </summary>
         public string UserID { get; set; }
+
+        /// <summary>
+        /// Password of the user
+        /// </summary>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Verify the user login successfully or not
+        /// </summary>
+        /// <param name="userID">input userId</param>
+        /// <param name="password">input password</param>
+        /// <returns>true: success
+        ///          false: fail</returns>
         public static bool VerifyLogin(string userID, string password)
         {
             if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(password))

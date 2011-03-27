@@ -10,12 +10,20 @@ namespace FBD.Controllers
 {
     public class SYSAuthsController : Controller
     {
-
+        /// <summary>
+        /// Forward to action Login
+        /// </summary>
+        /// <returns>Login View</returns>
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// Handle login post from client
+        /// </summary>
+        /// <param name="loginModel">the model containing userid and password</param>
+        /// <returns>Login View</returns>
         [HttpPost]
         public ActionResult Login(SYSLoginModel loginModel)
         {
@@ -40,6 +48,10 @@ namespace FBD.Controllers
             }
         }
 
+        /// <summary>
+        /// User logout from system, then working session will be ended
+        /// </summary>
+        /// <returns>Login View</returns>
         public ActionResult Logout()
         {
             if (Session[Constants.SESSION_USER_ID] != null)
@@ -51,6 +63,10 @@ namespace FBD.Controllers
             return RedirectToAction("Login");
         }
 
+        /// <summary>
+        /// User sends request to change their password
+        /// </summary>
+        /// <returns>Change Password View</returns>
         public ActionResult ChangePassword()
         {
             if (Session[Constants.SESSION_USER_ID] != null)
@@ -64,6 +80,11 @@ namespace FBD.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// User post password change information to Server
+        /// </summary>
+        /// <param name="model">the model containing change information</param>
+        /// <returns>Change Password View</returns>
         [HttpPost]
         public ActionResult ChangePassword(SYSChangePassModel model)
         {
@@ -93,11 +114,19 @@ namespace FBD.Controllers
             }
         }
 
+        /// <summary>
+        /// User does not have enough power to user specific feature
+        /// </summary>
+        /// <returns>Unauthorized View</returns>
         public ActionResult Unauthorized()
         {
             return View();
         }
 
+        /// <summary>
+        /// User login successfully
+        /// </summary>
+        /// <returns>Login Success View</returns>
         public ActionResult LoginSuccess()
         {
             try

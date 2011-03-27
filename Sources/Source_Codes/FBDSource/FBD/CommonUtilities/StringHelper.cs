@@ -55,6 +55,11 @@ namespace FBD.CommonUtilities
             return true;
         }
 
+        /// <summary>
+        /// The method is used to encode a password as MD5 format
+        /// </summary>
+        /// <param name="password">the password to be encoded</param>
+        /// <returns>an encoded string</returns>
         public static string Encode(string password)
         {
             Byte[] orginialPwBytes;
