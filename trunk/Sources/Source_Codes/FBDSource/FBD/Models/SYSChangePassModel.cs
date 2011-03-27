@@ -9,11 +9,35 @@ namespace FBD.Models
 {
     public class SYSChangePassModel
     {
+        /// <summary>
+        /// ID of the user
+        /// </summary>
         public string UserID { get; set; }
+
+        /// <summary>
+        /// Old password of user
+        /// </summary>
         public string OldPassword { get; set; }
+
+        /// <summary>
+        /// User type new password
+        /// </summary>
         public string NewPassword { get; set; }
+
+        /// <summary>
+        /// User confirm their new password, it must be matched with new password above
+        /// </summary>
         public string ConfirmNewPassword { get; set; }
 
+        /// <summary>
+        /// Verify the change to be successful or not
+        /// </summary>
+        /// <param name="userID">input userID</param>
+        /// <param name="oldPass">input old password</param>
+        /// <param name="newPass">input new password</param>
+        /// <param name="confirmNewPass">confirm the new password</param>
+        /// <returns>true: success
+        ///          false: fail</returns>
         public static bool VerifyChangePass(string userID, string oldPass, string newPass, string confirmNewPass)
         {
             if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(oldPass) 
@@ -35,6 +59,12 @@ namespace FBD.Models
             return true;
         }
 
+        /// <summary>
+        /// Update the user's password
+        /// </summary>
+        /// <param name="userID">user id</param>
+        /// <param name="password">password</param>
+        /// <returns>an integer indicates result</returns>
         public static int ChangePass(string userID, string password)
         {
             FBDEntities FBDModel = new FBDEntities();
