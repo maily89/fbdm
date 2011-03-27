@@ -13,6 +13,10 @@ namespace FBD.Controllers
     {
         #region  Index()
         // GET: /INVBorrowingPurpose/     
+        /// <summary>
+        /// Create view for index page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             List<IndividualBorrowingPurposes> lstBorrowingPP = null;
