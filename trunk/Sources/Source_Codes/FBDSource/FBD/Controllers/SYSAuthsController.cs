@@ -57,7 +57,6 @@ namespace FBD.Controllers
             if (Session[Constants.SESSION_USER_ID] != null)
             {
                 Session[Constants.SESSION_USER_ID] = null;
-                Session[Constants.SESSION_USER_GROUP_ID] = null;
             }
 
             return RedirectToAction("Login");
@@ -100,7 +99,6 @@ namespace FBD.Controllers
                 if (result == 1)
                 {
                     Session[Constants.SESSION_USER_ID] = null;
-                    Session[Constants.SESSION_USER_GROUP_ID] = null;
                     TempData[Constants.SCC_MESSAGE] = Constants.SCC_CHANGE_PASS;
                     return RedirectToAction("Login");
                 }
