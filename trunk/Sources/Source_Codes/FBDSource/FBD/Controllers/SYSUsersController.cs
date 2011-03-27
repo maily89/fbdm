@@ -14,6 +14,12 @@ namespace FBD.Controllers
         //
         // GET: /SYSUsers/
 
+        /// <summary>
+        /// Use SYSUsersLogic class to 
+        /// - select all the Users table [System.Users] 
+        /// - display to the [Index] View
+        /// </summary>
+        /// <returns>[Index] view</returns>
         public ActionResult Index()
         {
             var branch = SystemBranches.SelectBranches();
@@ -25,6 +31,13 @@ namespace FBD.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 1. Receive BranchID from parameter
+        /// 2. Use Logic class to select list Users
+        /// 3. Redirect to [Index] View with list of Users displayed
+        /// </summary>
+        /// <param name="BranchID">BranchID</param>
+        /// <returns>[Index] view</returns>
         [HttpPost]
         public ActionResult Index(string BranchID)
         {
@@ -53,7 +66,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_BRANCH + " or " + Constants.SYSTEM_USER);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_BRANCH + " or " + Constants.SYSTEM_USER);
             }
             return View(model);
         }
@@ -61,9 +74,18 @@ namespace FBD.Controllers
         //
         // GET: /SYSUsers/Add
 
+        /// <summary>
+        /// Use Logic class to 
+        ///     - create ViewModel 
+        ///     - Forward to [Add] View
+        /// </summary>
+        /// <param name="BranchID">ID</param>
+        /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
             var model = new SYSUsersViewModel();
+            model.SystemUsers = new SystemUsers();
+            model.SystemUsers.Password = Constants.FORM_PASSWORD;
             model.SystemUserGroups = SystemUserGroups.SelectUserGroups();
             model.SystemBranches = SystemBranches.SelectBranches();
             return View(model);
@@ -72,6 +94,16 @@ namespace FBD.Controllers
         //
         // POST: /SYSUsers/Create
 
+        /// <summary>
+        /// 1. Receive information from parameter
+        /// 2. Use Logic class to insert new User
+        /// 3. Redirect to [Index] View with label displaying: 
+        /// "A new User has been added successfully"
+        /// </summary>
+        /// <param name="data">Infor of new User with Group and Branch</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Add] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Add(SYSUsersViewModel data)
         {
@@ -84,6 +116,7 @@ namespace FBD.Controllers
                     if (SystemUsers.IsIDExist(data.SystemUsers.UserID) == 1) 
                     {
                         TempData[Constants.ERR_MESSAGE] = Constants.ERR_KEY_EXIST;
+                        data.SystemUsers.Password = Constants.FORM_PASSWORD;
                         data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
                         data.SystemBranches = SystemBranches.SelectBranches();
                         return View(data);
@@ -92,6 +125,7 @@ namespace FBD.Controllers
                     if (SystemUsers.IsIDExist(data.SystemUsers.UserID) == 2) 
                     {
                         TempData[Constants.ERR_MESSAGE] = Constants.ERR_UNABLE_CHECK;
+                        data.SystemUsers.Password = Constants.FORM_PASSWORD;
                         data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
                         data.SystemBranches = SystemBranches.SelectBranches();
                         return View(data);
@@ -111,7 +145,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_USER) ;
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_USER);
                         return RedirectToAction("Index");
                     }
                 }
@@ -119,7 +153,8 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_ADD_POST, Constants.SYSTEM_USER);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.SYSTEM_USER);
+                data.SystemUsers.Password = Constants.FORM_PASSWORD;
                 data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
                 data.SystemBranches = SystemBranches.SelectBranches();
                 return View(data);
@@ -129,6 +164,17 @@ namespace FBD.Controllers
         //
         // GET: /SYSUsers/Edit/5
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to 
+        ///     - select appropriate User from [System.Users] table
+        ///     - create ViewModel contains list of Groups and Branches
+        /// 3. Display in [Edit] view
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>
+        /// [Edit] view: if OK
+        /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
             var model = new SYSUsersViewModel();
@@ -149,7 +195,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT,Constants.SYSTEM_USER);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER);
                 return View(model);
             }
             return View(model);
@@ -158,6 +204,18 @@ namespace FBD.Controllers
         //
         // POST: /SYSUsers/Edit/5
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to update appropriate User 
+        /// with ID in [System.Users] table in DB
+        /// 3. Display in [Index] view with label displaying: 
+        /// "The User with ID xyz has been editted successfully"
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="data">Infor of edited User</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Edit] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Edit(string id, SYSUsersViewModel data)
         {
@@ -176,12 +234,12 @@ namespace FBD.Controllers
                     
                 }
                 else throw new Exception();
-                TempData["Message"] = string.Format(Constants.SCC_EDIT_POST,Constants.SYSTEM_USER,id);
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_USER, id);
                 return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST,Constants.SYSTEM_USER);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_USER);
                 data.SystemUserGroups = SystemUserGroups.SelectUserGroups();
                 data.SystemBranches = SystemBranches.SelectBranches();
                 return View(data);
@@ -191,6 +249,15 @@ namespace FBD.Controllers
         //
         // GET: /SYSUsers/Delete/5
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to delete the User with selected ID
+        /// from the [System.Users] table
+        /// 3. Back to [Index] view with label displaying: 
+        /// "A User has been deleted successfully"
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>[Index] view</returns>
         public ActionResult Delete(string id)
         {
             try
@@ -198,14 +265,14 @@ namespace FBD.Controllers
                 int result = SystemUsers.DeleteUser(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_USER);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_USER);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_USER);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_USER);
                 return RedirectToAction("Index");
             }
         }

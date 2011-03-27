@@ -98,7 +98,6 @@ namespace FBD.Controllers
                         rowModelForSaving.GroupRightID = int.Parse(formCollection["LstGroupRightRows[" + i + "].GroupRightID"].ToString());
                         viewModelForSaving.LstGroupRightRows.Add(rowModelForSaving);
                     }
-                    viewModelForSaving.GroupID = formCollection["GroupID"].ToString();
 
                     string errorIndex = SystemUserGroupsRights.EditMultiGroupRights(entities, viewModelForSaving);
 
@@ -112,6 +111,7 @@ namespace FBD.Controllers
                     else //If OK
                     {
                         TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_LIST_RIGHTS, viewModelForSaving.GroupID);
+                        return View(viewModelAfterEditing);
                     }
 
                 }

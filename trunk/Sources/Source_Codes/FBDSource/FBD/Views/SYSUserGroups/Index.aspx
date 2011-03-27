@@ -24,7 +24,7 @@
             <tr>
                 <td>
                     <%= Html.ActionLink("Edit", "Edit", new { id = item.GroupID })%> 
-                    <%= Html.ActionLink("Delete", "Delete", new { id = item.GroupID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete "+item.GroupName+"?');" })%>
+                    <%= Html.ActionLink("Delete", "Delete", new { id = item.GroupID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete the group "+item.GroupName+"?');" })%>
                 </td>
                 <td>
                     <%= Html.Encode(item.GroupID) %>

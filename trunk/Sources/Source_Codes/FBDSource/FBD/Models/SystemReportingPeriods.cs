@@ -12,7 +12,8 @@ namespace FBD.Models
     public partial class SystemReportingPeriods
     {
         /// <summary>
-        /// Select all reporting periods contained in the [System.ReportingPeriods] table 
+        /// Select all reporting periods 
+        /// in the [System.ReportingPeriods] table 
         /// </summary>
         /// <returns>List of [SystemReportingPeriods]</returns>
         public static List<SystemReportingPeriods> SelectReportingPeriods()
@@ -22,11 +23,10 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Select the period (periodID, periodName, fromDate, toDate, active) 
-        /// in the table [System.ReportingPeriods] with input ID
+        /// Select the period with input ID
         /// </summary>
-        /// <param name="id">[id] param is ID of the returned reporting period</param>
-        /// <returns>One reporting period which has ID is [id] param</returns>
+        /// <param name="id">ID</param>
+        /// <returns>A Period with id = ID</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id)
         {
             FBDEntities entities = new FBDEntities();
@@ -35,11 +35,10 @@ namespace FBD.Models
 
 
         /// <summary>
-        /// Select the period (periodID, periodName, fromDate, toDate, active) 
-        /// in the table [System.ReportingPeriods] with input ID
+        /// Select the period with input ID
         /// </summary>
-        /// <param name="id">[id] param is ID of the returned reporting period</param>
-        /// <returns>Reporting Period has ID = [id]</returns>
+        /// <param name="id">ID</param>
+        /// <returns>A Period with id = ID</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id, FBDEntities entities)
         {
             return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
@@ -70,13 +69,15 @@ namespace FBD.Models
 
         /// <summary>
         /// 1. Receive information from parameter
-        /// 2. Insert new period into the Database
-        /// 3. If successful, return 1 otherwise return 0
+        /// 2. Update new information of the period into the Database
+        /// 3. If successful, return 1 otherwise return 0 or 2
         /// </summary>
-        /// <param name="reportingPeriod">Contains new information of the period</param>
+        /// <param name="reportingPeriod">Contains information for new Period</param>
         /// <returns>
-        /// 1: if OK, 
-        /// 0: if ERROR</returns>
+        /// 1: if OK
+        /// 0: if ERROR
+        /// 2: DateTime error
+        /// </returns>
         public static int EditReportingPeriod(SystemReportingPeriods reportingPeriod)
         {
             FBDEntities entities = new FBDEntities();
@@ -86,7 +87,8 @@ namespace FBD.Models
             temp.FromDate = reportingPeriod.FromDate;
             temp.ToDate = reportingPeriod.ToDate;
             temp.Active = reportingPeriod.Active;
-            
+            if (DateTimeHandler.IsToDateLaterThanFromDate(reportingPeriod.FromDate, reportingPeriod.ToDate))
+                return 2;
             int result = entities.SaveChanges();
             return result <= 0 ? 0 : 1;
         }
@@ -118,7 +120,7 @@ namespace FBD.Models
         /// <returns>
         /// 1: if true (dupplication is occuring)
         /// 0: if false (no dupplication, the ID is available
-        /// 2: if there is any exception
+        /// 2: if there is any other exception
         /// </returns>
         public static int IsIDExist(string id)
         {
@@ -134,7 +136,6 @@ namespace FBD.Models
             }
         }
 
-
         public class SystemReportingPeriodMetadata
         {
             [DisplayName("Period ID")]
@@ -147,13 +148,9 @@ namespace FBD.Models
             public string PeriodName { get; set; }
 
             [DisplayName("From Date")]
-            //[Required()]
-            //[StringLength()]
             public DateTime? FromDate { get; set; }
 
             [DisplayName("To Date")]
-            //[Required()]
-            //[StringLength()]
             public DateTime? ToDate { get; set; }
 
         }

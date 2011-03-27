@@ -22,7 +22,7 @@ namespace FBD.Controllers
         /// in the table [System.ReportingPeriods] 
         /// then display to the [Index] View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>[Index] view</returns>
         public ActionResult Index()
         {
             List<SystemReportingPeriods> lstPeriod = null;
@@ -47,8 +47,8 @@ namespace FBD.Controllers
         /// <summary>
         /// Forward to [Add] view
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">ID</param>
+        /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
             return View();
@@ -64,8 +64,10 @@ namespace FBD.Controllers
         /// 3. Redirect to [Index] View with label displaying: 
         /// "A new period has been added successfully"
         /// </summary>
-        /// <param name="reportingPeriod"></param>
-        /// <returns></returns>
+        /// <param name="reportingPeriod">Infor of adding period</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Add] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Add(SystemReportingPeriods reportingPeriod)
         {
@@ -85,12 +87,12 @@ namespace FBD.Controllers
                     }
                     //else IsIDExist(reportingPeriod.PeriodID) == 0 //Means the ID is available
                     int result = SystemReportingPeriods.AddReportingPeriod(reportingPeriod);
-                    if (result == 2)
+                    if (result == 2) //DateTime error
                     {
                         TempData[Constants.ERR_MESSAGE] = Constants.ERR_TO_DATE_LESS_THAN_FROM_DATE;
                         return View(reportingPeriod);
                     }
-                    if (result == 1)
+                    if (result == 1) //Adding Successed
                     {
                         TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_REPORTING_PERIOD);
                         return RedirectToAction("Index");
@@ -116,8 +118,10 @@ namespace FBD.Controllers
         /// from [System.ReportingPeriods] table
         /// 3. Display in [Edit] view
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">ID</param>
+        /// <returns>
+        /// [Edit] view: if OK
+        /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
             SystemReportingPeriods reportingPeriod = null;
@@ -151,9 +155,11 @@ namespace FBD.Controllers
         /// 3. Display in [Index] view with label displaying: 
         /// "PeriodID xyz has been editted successfully"
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="reportingPeriod"></param>
-        /// <returns></returns>
+        /// <param name="id">ID</param>
+        /// <param name="reportingPeriod">Infor of edited period</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Edit] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Edit(string id, SystemReportingPeriods reportingPeriod)
         {
@@ -162,7 +168,12 @@ namespace FBD.Controllers
                 if (ModelState.IsValid)
                 {
                     int result = SystemReportingPeriods.EditReportingPeriod(reportingPeriod);
-                    if (result == 1)
+                    if (result == 2) //DateTime Error
+                    {
+                        TempData[Constants.ERR_MESSAGE] = Constants.ERR_TO_DATE_LESS_THAN_FROM_DATE;
+                        return View(reportingPeriod);
+                    }
+                    if (result == 1) //Updated Successed
                     {
                         TempData[Constants.SCC_MESSAGE] = string.Format( Constants.SCC_EDIT_POST, Constants.SYSTEM_REPORTING_PERIOD,reportingPeriod.PeriodID);
                         return RedirectToAction("Index");
@@ -179,7 +190,14 @@ namespace FBD.Controllers
 
         //
         // GET: /SYSReportingPeriod/Delete/5
- 
+        
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to delete the period with selected ID from the [System.ReportingPeriods] table
+        /// 3. Back to [Index] view with label displaying: "A period has been deleted successfully"
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>[Index] view</returns>
         public ActionResult Delete(string id)
         {
             try
@@ -194,7 +212,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.SCC_MESSAGE] = string.Format( Constants.ERR_DELETE, Constants.SYSTEM_REPORTING_PERIOD);
+                TempData[Constants.ERR_MESSAGE] = string.Format( Constants.ERR_DELETE, Constants.SYSTEM_REPORTING_PERIOD);
                 return RedirectToAction("Index");
             }
         }

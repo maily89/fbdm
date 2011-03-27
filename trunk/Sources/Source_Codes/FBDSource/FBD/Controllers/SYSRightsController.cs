@@ -19,7 +19,7 @@ namespace FBD.Controllers
         /// (RightID, Right) in the table [System.Rights] 
         /// then display to the [Index] View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>[Index] View</returns>
         public ActionResult Index()
         {
             List<SystemRights> rights = null;
@@ -42,7 +42,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Forward to Add view
         /// </summary>
-        /// <returns></returns>
+        /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
             return View();
@@ -58,8 +58,10 @@ namespace FBD.Controllers
         /// 3. Redirect to [Index] View with label displaying: 
         /// "A new Right has been added successfully"
         /// </summary>
-        /// <param name="right"></param>
-        /// <returns></returns>
+        /// <param name="right">Infor of new Right</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Add] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Add(SystemRights right)
         {
@@ -105,8 +107,10 @@ namespace FBD.Controllers
         /// from [System.Rights] table
         /// 3. Display in [Edit] view
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">ID</param>
+        /// <returns>
+        /// [Edit] view: if OK
+        /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
             SystemRights right = null;
@@ -135,9 +139,11 @@ namespace FBD.Controllers
         /// 3. Display in [Index] view with label displaying: 
         /// "The Right with ID xyz has been editted successfully"
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
+        /// <param name="id">ID</param>
+        /// <param name="right">Infor of edited right</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Edit] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Edit(string id, SystemRights right)
         {
@@ -149,7 +155,9 @@ namespace FBD.Controllers
                     if (result == 1)
                     {
                         TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_RIGHT, right.RightID);
+                        return RedirectToAction("Index");
                     }
+                    
                 }
                 throw new Exception();
             }
@@ -163,6 +171,15 @@ namespace FBD.Controllers
         //
         // GET: /SYSRights/Delete/5
  
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to delete the Right 
+        /// with selected ID from the [System.Rights] table
+        /// 3. Back to [Index] view with label displaying: 
+        /// "A right has been deleted successfully"
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(string id)
         {
             try
