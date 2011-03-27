@@ -137,25 +137,7 @@ namespace FBD.Models
             return rankViewModel;
         }
 
-        public static int AddCollateralIndexScore(FBDEntities FBDModel, INVSummaryRankViewModel viewModel)
-        {
-            //IndividualSummaryRanks SummaryRank = new IndividualSummaryRanks();
-
-            //IndividualCollateralRanks CollateralRanks = new IndividualCollateralRanks();
-            //IndividualBasicRanks BasicRanks = new IndividualBasicRanks();
-
-
-
-            //SummaryRank.IndividualBasicRanks = viewModel.basicRanks();
-            //SummaryRank.IndividualCollateralRanks = viewModel.
-
-            //FBDModel.AddToIndividualCollateralIndexScore(CollateralIndexScore);
-            //int temp = FBDModel.SaveChanges();
-
-            //return temp <= 0 ? 0 : 1;
-            return 1;
-        }
-
+     
         public class IndividualSummaryRanksMetaData
         {
 
