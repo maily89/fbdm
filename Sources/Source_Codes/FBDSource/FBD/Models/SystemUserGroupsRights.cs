@@ -14,13 +14,14 @@ namespace FBD.Models
         /// Select all records in SystemUserGroupsRights which has GroupID = groupID
         /// </summary>
         /// <param name="entities">The Model of Entities Framework</param>
-        /// <param name="groupID">ID of the selected Group</param>
-        /// <returns>List of SystemUserGroupsRights</returns>
+        /// <param name="groupID">groupID</param>
+        /// <returns>List of all GroupsRights</returns>
         public static List<SystemUserGroupsRights> SelectSysGroupsRightsByGroup(FBDEntities entities, string groupID)
         {
             
             List<SystemUserGroupsRights> lstRightsByGroup = entities.SystemUserGroupsRights
                                                                     .Include("SystemRights")
+                                                                    .Include("SystemUserGroups")
                                                                     .Where(i => i.SystemUserGroups
                                                                                  .GroupID.Equals(groupID))
                                                                     .ToList();
@@ -28,14 +29,16 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Select single record in SystemUserGroupsRights with specified id
+        /// Select single GroupsRights with specified id
         /// </summary>
         /// <param name="entities">The Model of Entities Framework</param>
-        /// <param name="id">The id as primary key in SystemUserGroupsRights</param>
-        /// <returns>a record in SystemUserGroupsRights, has ID = id parameter</returns>
+        /// <param name="id">ID</param>
+        /// <returns>A GroupsRights with id = ID</returns>
         public static SystemUserGroupsRights SelectSysGroupRightByID(FBDEntities entities, int id)
         {
             SystemUserGroupsRights rightbyID = entities.SystemUserGroupsRights
+                                                       .Include("SystemRights")
+                                                       .Include("SystemUserGroups")
                                                        .First(i => i.ID == id);
             return rightbyID;
         }
@@ -45,12 +48,12 @@ namespace FBD.Models
         /// </summary>
         /// <param name="entities">The Model of Entities Framework</param>
         /// <param name="viewModel">The View model contains a GroupID and list of right for this Group</param>
-        /// <param name="row">The row View Model contains data to be inserted</param>
+        /// <param name="row">The row View Model contains data of 1 Right</param>
         /// <returns>
         /// 1: if OK
         /// 0: if ERROR
         /// </returns>
-        public static int AddGroupRight(FBDEntities entities, SYSUserGroupsRightsViewModel viewModel, SYSUserGroupsRightsRowViewModel row)
+        private static int AddGroupRight(FBDEntities entities, SYSUserGroupsRightsViewModel viewModel, SYSUserGroupsRightsRowViewModel row)
         {
             SystemUserGroupsRights groupRight = new SystemUserGroupsRights();
 
@@ -79,16 +82,15 @@ namespace FBD.Models
         /// Delete a record from SystemUserGroupsRights
         /// </summary>
         /// <param name="entities">The Model of Entities Framework</param>
-        /// <param name="id">ID of the row to be deleted</param>
+        /// <param name="id">ID</param>
         /// <returns>
         /// 1: if OK
         /// 0: if ERROR
         /// </returns>
-        public static int DeleteGroupRight(FBDEntities entities, int id)
+        private static int DeleteGroupRight(FBDEntities entities, int id)
         {
             SystemUserGroupsRights groupRight = new SystemUserGroupsRights();
-            groupRight = entities.SystemUserGroupsRights
-                                 .First(i => i.ID == id);
+            groupRight = SelectSysGroupRightByID(entities,id);
             entities.DeleteObject(groupRight);
             int result = entities.SaveChanges();
 
@@ -96,7 +98,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Edit multiple records to SystemUserGroupsRights
+        /// Edit (add/delete) multiple records to SystemUserGroupsRights
         /// </summary>
         /// <param name="entities">The Model of Entities Framework</param>
         /// <param name="viewModel">The View model contains a GroupID and list of right for this Group</param>

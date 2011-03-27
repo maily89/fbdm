@@ -51,7 +51,7 @@
         <tr>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.UserID}) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.UserID})%>
+                <%= Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete the user " + item.FullName + "?');" })%>
             </td>
             <td>
                 <%= Html.Encode(item.UserID) %>

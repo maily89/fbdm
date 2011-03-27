@@ -12,7 +12,12 @@ namespace FBD.Controllers
     {
         //
         // GET: /SYSUserGroups/
-
+        /// <summary>
+        /// Use SYSGroupsLogic class to 
+        /// - select all the groups in the table [System.UserGroups] 
+        /// - then display to the [Index] View
+        /// </summary>
+        /// <returns>[Index] view</returns>
         public ActionResult Index()
         {
             List<SystemUserGroups> groups = null;
@@ -27,7 +32,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_INDEX,Constants.SYSTEM_USER_GROUP);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_USER_GROUP);
                 return View(groups);
             }
             return View(groups);
@@ -37,6 +42,10 @@ namespace FBD.Controllers
         //
         // GET: /SYSUserGroups/Add
 
+        /// <summary>
+        /// Forward to [Add] View
+        /// </summary>
+        /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
             return View();
@@ -45,6 +54,16 @@ namespace FBD.Controllers
         //
         // POST: /SYSUserGroups/Create
 
+        /// <summary>
+        /// 1. Receive information from parameter
+        /// 2. Use Logic class to insert new Group
+        /// 3. Redirect to [Index] View with label displaying: 
+        /// "A new group has been added successfully"
+        /// </summary>
+        /// <param name="group">Infor of new Group</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Add] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Add(SystemUserGroups group)
         {
@@ -67,7 +86,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_USER_GROUP);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.SYSTEM_USER_GROUP);
                         return RedirectToAction("Index");
                     }
                 }
@@ -75,7 +94,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
         }
@@ -83,6 +102,16 @@ namespace FBD.Controllers
         //
         // GET: /SYSUserGroups/Edit/5
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to select appropriate Group 
+        /// from [System.UserGroups] table
+        /// 3. Display in [Edit] view
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>
+        /// [Edit] view: if OK
+        /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
             SystemUserGroups group = null;
@@ -98,7 +127,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
 
@@ -108,6 +137,18 @@ namespace FBD.Controllers
         //
         // POST: /SYSUserGroups/Edit/5
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Use Logic class to update appropriate Group with ID 
+        /// selected in [System.UserGroups] table in DB
+        /// 3. Display in [Index] view with label displaying: 
+        /// "The group with ID xyz has been editted successfully"
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="group">Infor of edited group</param>
+        /// <returns>
+        /// [Index] view: if OK
+        /// [Edit] view: if ERROR</returns>
         [HttpPost]
         public ActionResult Edit(string id, SystemUserGroups group)
         {
@@ -119,7 +160,7 @@ namespace FBD.Controllers
 
                     if (result == 1)
                     {
-                        TempData["Message"] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_USER_GROUP, id);
+                        TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.SYSTEM_USER_GROUP, id);
                         return RedirectToAction("Index");
                     }
                 }
@@ -129,7 +170,7 @@ namespace FBD.Controllers
             {
                 //TODO: Temporary error handle.
 
-                TempData["Message"] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_USER_GROUP);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_USER_GROUP);
                 return View(group);
             }
         }
@@ -137,6 +178,15 @@ namespace FBD.Controllers
         //
         // GET: /SYSUserGroups/Delete/5
 
+        /// <summary>
+        /// 1.. Receive ID from parameter
+        /// 2. Use Logic class to delete the Group 
+        /// with selected ID from the [System.UserGroups] table
+        /// 3. Back to [Index] view with label displaying: 
+        /// "A group has been deleted successfully"
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>[Index] view</returns>
         public ActionResult Delete(string id)
         {
             try
@@ -144,14 +194,14 @@ namespace FBD.Controllers
                 int result = SystemUserGroups.DeleteUserGroup(id);
                 if (result == 1)
                 {
-                    TempData["Message"] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_USER_GROUP);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.SYSTEM_USER_GROUP);
                     return RedirectToAction("Index");
                 }
                 throw new Exception();
             }
             catch (Exception)
             {
-                TempData["Message"] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_USER_GROUP);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.SYSTEM_USER_GROUP);
                 return RedirectToAction("Index");
             }
         }

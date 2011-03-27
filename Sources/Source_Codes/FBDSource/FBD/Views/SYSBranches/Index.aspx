@@ -26,7 +26,7 @@
         <tr>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.BranchID }) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.BranchID })%>
+                <%= Html.ActionLink("Delete", "Delete", new { id = item.BranchID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete the branch " + item.BranchName + "?');" })%>
             </td>
             <td>
                 <%= Html.Encode(item.BranchID) %>

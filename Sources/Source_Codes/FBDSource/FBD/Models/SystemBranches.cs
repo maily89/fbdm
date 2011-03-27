@@ -11,12 +11,22 @@ namespace FBD.Models
     [MetadataType(typeof(SystemBranchesMetaData))]
     public partial class SystemBranches
     {
+        /// <summary>
+        /// Select all Branches 
+        /// in the table [System.Branches]
+        /// </summary>
+        /// <returns>List of all branches</returns>
         public static List<SystemBranches> SelectBranches()
         {
             FBDEntities entities = new FBDEntities();
             return entities.SystemBranches.ToList();
         }
 
+        /// <summary>
+        /// Select a single Branch with specific ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>A Branch with id = ID</returns>
         public static SystemBranches SelectBranchByID(string id)
         {
             FBDEntities entities = new FBDEntities();
@@ -24,12 +34,27 @@ namespace FBD.Models
             return Branch;
         }
 
+        /// <summary>
+        /// Select a single Branch with specific ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="entities">The Model of Entities Framework</param>
+        /// <returns>A Branch with id = ID</returns>
         public static SystemBranches SelectBranchByID(string id, FBDEntities entities)
         {
             var Branch = entities.SystemBranches.First(i => i.BranchID == id);
             return Branch;
         }
 
+        /// <summary>
+        /// 1. Receive information from parameter
+        /// 2. Insert new Branch into the Database
+        /// 3. If successful, return 1 otherwise return 0
+        /// </summary>
+        /// <param name="branch">Infor of new Branch</param>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int AddBranch(SystemBranches branch)
         {
             FBDEntities entities = new FBDEntities();
@@ -42,10 +67,15 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// 
+        /// 1. Receive ID from parameter
+        /// 2. Update appropriate Branch with ID 
+        /// in [System.Branches] table in DB
+        /// 3. If successful, return 1 otherwise return 0
         /// </summary>
-        /// <param name="Branch"></param>
-        /// <returns></returns>
+        /// <param name="Branch">Infor of updated Branch</param>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int EditBranch(SystemBranches branch)
         {
             FBDEntities entities = new FBDEntities();
@@ -58,6 +88,16 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
+        /// <summary>
+        /// 1. Receive ID from parameter
+        /// 2. Delete the Branch with selected ID 
+        /// from [System.Branches] table
+        /// 3. If successful, return 1 otherwise return 0
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>
+        /// 1: if OK
+        /// 0: if ERROR</returns>
         public static int DeleteBranch(string id)
         {
             FBDEntities entities = new FBDEntities();
