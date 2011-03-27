@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
+    [MetadataType(typeof(SYSChangePassModelMetaData))]
     public class SYSChangePassModel
     {
         /// <summary>
@@ -79,8 +81,7 @@ namespace FBD.Models
                 return 0;    
             }
 
-            // NEED TO ENCODE HERE
-            user.Password = password;
+            user.Password = StringHelper.Encode(password);
             int temp = FBDModel.SaveChanges();
 
             return temp <= 0 ? 0 : 1;

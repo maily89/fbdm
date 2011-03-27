@@ -133,6 +133,5 @@ namespace FBD.CommonUtilities
         public const string FORM_USER_GROUP_ID = "UserGroupID";
 
         public const string SESSION_USER_ID = "UserID";
-        public const string SESSION_USER_GROUP_ID = "UserGroupID";
     }
 }

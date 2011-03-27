@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -43,8 +44,7 @@ namespace FBD.Models
                     return false;
                 }
 
-                // NEED TO DECODE PASSWORD HERE
-                if (!user.Password.Equals(password))
+                if (!user.Password.Equals(StringHelper.Encode(password)))
                 {
                     return false;
                 }
