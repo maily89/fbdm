@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FBD.Models;
 using FBD.ViewModels;
 using Telerik.Web.Mvc;
+using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
@@ -18,6 +19,10 @@ namespace FBD.Controllers
         [GridAction]
         public ActionResult IndexAjax(string IndustryID,string CriteriaID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (string.IsNullOrEmpty(IndustryID) 
@@ -40,6 +45,10 @@ namespace FBD.Controllers
         [GridAction]
         public ActionResult Insert(string IndustryID, string CriteriaID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return null;
+            }
             if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
 
             //Create a new instance of the EditableCustomer class.
@@ -67,6 +76,10 @@ namespace FBD.Controllers
         [GridAction]
         public ActionResult Update(string IndustryID, string CriteriaID,int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return null;
+            }
             if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
             var entity =new FBDEntities();
             var scaleScore = BusinessScaleScore.SelectScaleScoreByID(id, entity);
@@ -91,7 +104,10 @@ namespace FBD.Controllers
         [GridAction]
         public ActionResult Delete(string IndustryID, string CriteriaID,int id)
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return null;
+            }
             if (string.IsNullOrEmpty(IndustryID) || string.IsNullOrEmpty(CriteriaID)) return View(new GridModel());
             //Delete the customer
             BusinessScaleScore.DeleteScaleScore(id);
@@ -111,6 +127,11 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             //var scaleScores = BusinessScaleScore.SelectScaleScore();
             BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
             model.ScaleScore = null;
@@ -128,6 +149,11 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(string IndustryID,string CriteriaID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             var scaleScores = BusinessScaleScore.SelectScaleScore(IndustryID,CriteriaID);
             BSNScaleScoreViewModel model = new BSNScaleScoreViewModel();
 

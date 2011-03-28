@@ -17,6 +17,11 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             List<BusinessScales> scales = null;
             try
             {
@@ -38,6 +43,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             return View();
         }
 
@@ -51,6 +60,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(BusinessScales businessScales)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -80,6 +93,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             BusinessScales model = null;
             try
             {
@@ -109,6 +126,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, BusinessScales businessScales)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
 
@@ -143,7 +164,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = BusinessScales.DeleteScale(id);

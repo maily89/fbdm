@@ -35,6 +35,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessRanking_BusinessRanks_Delete", "BusinessRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessRanks), "CustomersBusinessRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessScaleScore_BusinessScaleCriteria_Delete", "BusinessScaleCriteria", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.BusinessScaleCriteria), "BusinessScaleScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessScaleScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessScale_BusinessScaleCriteria_Delete", "BusinessScaleCriteria", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessScaleCriteria), "CustomersBusinessScale", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessScale))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessScales), "CustomersBusinessRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessRanking_BusinessTypes_Delete", "BusinessTypes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessTypes), "CustomersBusinessRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomerBusinesses_SystemBranches_Delete", "SystemBranches", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.SystemBranches), "CustomersBusinesses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinesses))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessRanking_CustomersBusinesses_Delete", "CustomersBusinesses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.CustomersBusinesses), "CustomersBusinessRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessRanking))]
@@ -71,7 +72,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
 
 // Original file name:
-// Generation date: 3/23/2011 4:49:19 PM
+// Generation date: 3/29/2011 12:04:59 AM
 namespace FBD.Models
 {
     
@@ -3914,6 +3915,27 @@ namespace FBD.Models
                 }
             }
         }
+        /// <summary>
+        /// There are no comments for CustomersBusinessRanking in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersBusinessRanking_BusinessScales_Delete", "CustomersBusinessRanking")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersBusinessRanking> CustomersBusinessRanking
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersBusinessRanking>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "CustomersBusinessRanking");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersBusinessRanking>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "CustomersBusinessRanking", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for FBDModel.BusinessScaleScore in the schema.
@@ -4250,7 +4272,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="businessID">Initial value of BusinessID.</param>
         /// <param name="cIF">Initial value of CIF.</param>
-        public static CustomersBusinesses CreateCustomersBusinesses(int businessID, decimal cIF)
+        public static CustomersBusinesses CreateCustomersBusinesses(int businessID, string cIF)
         {
             CustomersBusinesses customersBusinesses = new CustomersBusinesses();
             customersBusinesses.BusinessID = businessID;
@@ -4285,7 +4307,7 @@ namespace FBD.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal CIF
+        public string CIF
         {
             get
             {
@@ -4295,13 +4317,13 @@ namespace FBD.Models
             {
                 this.OnCIFChanging(value);
                 this.ReportPropertyChanging("CIF");
-                this._CIF = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this._CIF = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
                 this.ReportPropertyChanged("CIF");
                 this.OnCIFChanged();
             }
         }
-        private decimal _CIF;
-        partial void OnCIFChanging(decimal value);
+        private string _CIF;
+        partial void OnCIFChanging(string value);
         partial void OnCIFChanged();
         /// <summary>
         /// There are no comments for Property CustomerName in the schema.
@@ -4907,29 +4929,6 @@ namespace FBD.Models
         partial void OnTotalDebtChanging(global::System.Nullable<decimal> value);
         partial void OnTotalDebtChanged();
         /// <summary>
-        /// There are no comments for Property ScaleScore in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> ScaleScore
-        {
-            get
-            {
-                return this._ScaleScore;
-            }
-            set
-            {
-                this.OnScaleScoreChanging(value);
-                this.ReportPropertyChanging("ScaleScore");
-                this._ScaleScore = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ScaleScore");
-                this.OnScaleScoreChanged();
-            }
-        }
-        private global::System.Nullable<decimal> _ScaleScore;
-        partial void OnScaleScoreChanging(global::System.Nullable<decimal> value);
-        partial void OnScaleScoreChanged();
-        /// <summary>
         /// There are no comments for Property FinancialScore in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -5092,6 +5091,43 @@ namespace FBD.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<BusinessRanks>("FBDModel.CustomersBusinessRanking_BusinessRanks_Delete", "BusinessRanks", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for BusinessScales in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public BusinessScales BusinessScales
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessScales>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessScales>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for BusinessScales in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<BusinessScales> BusinessScalesReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessScales>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<BusinessScales>("FBDModel.CustomersBusinessRanking_BusinessScales_Delete", "BusinessScales", value);
                 }
             }
         }
@@ -5393,7 +5429,7 @@ namespace FBD.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Value
+        public global::System.Nullable<decimal> Value
         {
             get
             {
@@ -5403,13 +5439,13 @@ namespace FBD.Models
             {
                 this.OnValueChanging(value);
                 this.ReportPropertyChanging("Value");
-                this._Value = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._Value = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("Value");
                 this.OnValueChanged();
             }
         }
-        private string _Value;
-        partial void OnValueChanging(string value);
+        private global::System.Nullable<decimal> _Value;
+        partial void OnValueChanging(global::System.Nullable<decimal> value);
         partial void OnValueChanged();
         /// <summary>
         /// There are no comments for Property Score in the schema.
@@ -6320,7 +6356,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="individualID">Initial value of IndividualID.</param>
         /// <param name="cIF">Initial value of CIF.</param>
-        public static CustomersIndividuals CreateCustomersIndividuals(int individualID, decimal cIF)
+        public static CustomersIndividuals CreateCustomersIndividuals(int individualID, string cIF)
         {
             CustomersIndividuals customersIndividuals = new CustomersIndividuals();
             customersIndividuals.IndividualID = individualID;
@@ -6355,7 +6391,7 @@ namespace FBD.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal CIF
+        public string CIF
         {
             get
             {
@@ -6365,13 +6401,13 @@ namespace FBD.Models
             {
                 this.OnCIFChanging(value);
                 this.ReportPropertyChanging("CIF");
-                this._CIF = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this._CIF = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
                 this.ReportPropertyChanged("CIF");
                 this.OnCIFChanged();
             }
         }
-        private decimal _CIF;
-        partial void OnCIFChanging(decimal value);
+        private string _CIF;
+        partial void OnCIFChanging(string value);
         partial void OnCIFChanged();
         /// <summary>
         /// There are no comments for Property CustomerName in the schema.
