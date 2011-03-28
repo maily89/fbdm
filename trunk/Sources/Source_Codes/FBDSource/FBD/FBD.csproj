@@ -173,6 +173,8 @@
     <Compile Include="Models\IndividualCollateralIndexScore.cs" />
     <Compile Include="Models\IndividualCollateralRanks.cs" />
     <Compile Include="Models\IndividualSummayRanks.cs" />
+    <Compile Include="Models\DatabaseHelper.cs" />
+    <Compile Include="Models\RNKScaleMarking.cs" />
     <Compile Include="Models\SYSChangePassModel.cs" />
     <Compile Include="Models\SYSLoginModel.cs" />
     <Compile Include="Models\SystemBranches.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKFinancialRow.cs" />
     <Compile Include="ViewModels\RNKScaleRow.cs" />
     <Compile Include="ViewModels\FIProportionRowViewModel.cs" />
     <Compile Include="ViewModels\FIProportionViewModel.cs" />
@@ -458,8 +461,10 @@
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
     <Content Include="Views\RNKRankBusiness\Add.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddFinancialScore.aspx" />
     <Content Include="Views\RNKRankBusiness\AddScore.aspx" />
     <Content Include="Views\RNKRankBusiness\AddStep1.aspx" />
+    <Content Include="Views\RNKRankBusiness\Edit.aspx" />
     <Content Include="Views\RNKRankBusiness\Index.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Add.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Edit.aspx" />

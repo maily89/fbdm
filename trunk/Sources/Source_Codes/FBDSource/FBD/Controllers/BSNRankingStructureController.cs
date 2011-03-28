@@ -21,6 +21,11 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             List<BusinessRankingStructure> rankingStructure = null;
             try
             {
@@ -53,6 +58,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             BusinessRankingStructure model = null;
             try
             {
@@ -80,6 +89,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(int id, BusinessRankingStructure rankingStructure)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
 

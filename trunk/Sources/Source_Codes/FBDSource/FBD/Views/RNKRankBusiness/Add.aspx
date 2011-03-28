@@ -1,19 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.RNKBusinessRankingViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Add
+	<%= TempData["EditMode"]!=null?"Edit":"Add" %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Add</h2>
+    <h2><%= TempData["EditMode"]!=null?"Edit":"Add" %></h2>
     <% Html.EnableClientValidation(); %>
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
 
-    <% using (Html.BeginForm("Add", "RNKRankBusiness"))
+    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
        {%>
         <%= Html.ValidationSummary(true) %>
 
@@ -28,13 +28,14 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.CIF, new { @readonly = "true", @disabled = "true" })%>
+                        <%= Html.TextBoxFor(model => model.CIF, new { @readonly = "true" })%>
                     </div>
                </td>
            </tr>
             <tr>
                 <td>
                     <div class="editor-label">
+                        <%= Html.HiddenFor(m=>m.IsNew) %>
                         <%= FBD.CommonUtilities.Constants.SYSTEM_REPORTING_PERIOD %>
                     </div>
                 </td>
@@ -47,6 +48,7 @@
             <tr>
                 <td>
                     <div class="editor-label">
+                        <%= Html.HiddenFor(model=>model.CustomerID) %>
                         <%= Html.LabelFor(model => model.BusinessRanking.CreditDepartment) %>
                     </div>
                 </td>

@@ -25,11 +25,13 @@ namespace FBD.Models
             if (industryID == null || criteriaID == null) return null;
 
             FBDEntities entities = new FBDEntities();
-            var scores = from score in entities.BusinessScaleScore
-                        where score.BusinessIndustries.IndustryID == industryID && score.BusinessScaleCriteria.CriteriaID == criteriaID
-                        select score;
+            var scores = entities.BusinessScaleScore
+                                .Include("BusinessIndustries")
+                                .Include("BusinessScaleCriteria")
+                                .Where(score=>score.BusinessIndustries.IndustryID == industryID && score.BusinessScaleCriteria.CriteriaID == criteriaID).ToList();
 
-            return scores.ToList();
+
+            return scores;
             
         }
 

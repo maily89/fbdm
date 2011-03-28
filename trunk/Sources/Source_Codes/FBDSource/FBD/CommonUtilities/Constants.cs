@@ -15,28 +15,30 @@ namespace FBD.CommonUtilities
         /*****************CLASS NAMES *******************/
 
         //CUSTOMER
-        public const string CUSTOMER_BUSINESS = "Business Customer";
-        public const string CUSTOMER_BUSINESS_RANKING = "Ranked Business Customer";
+        public const string CUSTOMER_BUSINESS_SCALE = "Customer business Scale";
+        public const string CUSTOMER_BUSINESS = "business Customer";
+        public const string CUSTOMER_BUSINESS_RANKING = "Ranked business Customer";
         public const string CUSTOMER_LOANTERM = "Loan term";
+        public const string CUSTOMER_BUSINESS_FINANCIAL_INDEX = "Customer business financial index";
 
         //BUSINESS
-        public const string BUSINESS_INDUSTRY = "Business Industry";
-        public const string BUSINESS_LINE = "Business Line";
-        public const string BUSINESS_RANK = "Business Rank";
-        public const string BUSINESS_RANKING_STRUCTURE = "Business Ranking Structure";
-        public const string BUSINESS_TYPE = "Business Type";
-        public const string BUSINESS_SCALE = "Business Scale";
-        public const string BUSINESS_SCALECRITERIA = "Business Scale Criteria";
+        public const string BUSINESS_INDUSTRY = "business Industry";
+        public const string BUSINESS_LINE = "business Line";
+        public const string BUSINESS_RANK = "business Rank";
+        public const string BUSINESS_RANKING_STRUCTURE = "business Ranking Structure";
+        public const string BUSINESS_TYPE = "business Type";
+        public const string BUSINESS_SCALE = "business Scale";
+        public const string BUSINESS_SCALECRITERIA = "business Scale Criteria";
 
-        public const string BUSINESS_FINANCIAL_INDEX = "Business Financial Index";
-        public const string BUSINESS_FINANCIAL_INDEX_LEVEL = "Business Financial Index Level";
-        public const string BUSINESS_FINANCIAL_INDEX_PROPORTION = "Business Financial Index Proportion";
-        public const string BUSINESS_FINANCIAL_INDEX_SCORE = "Business Financial Index Score";
+        public const string BUSINESS_FINANCIAL_INDEX = "business Financial Index";
+        public const string BUSINESS_FINANCIAL_INDEX_LEVEL = "business Financial Index Level";
+        public const string BUSINESS_FINANCIAL_INDEX_PROPORTION = "business Financial Index Proportion";
+        public const string BUSINESS_FINANCIAL_INDEX_SCORE = "business Financial Index ScoreList";
 
-        public const string BUSINESS_NON_FINANCIAL_INDEX = "Business Non-Financial Index";
-        public const string BUSINESS_NON_FINANCIAL_INDEX_LEVEL = "Business Non-Financial Index Level";
-        public const string BUSINESS_NON_FINANCIAL_INDEX_PROPORTION = "Business Non-Financial Index Proportion";
-        public const string BUSINESS_NON_FINANCIAL_INDEX_SCORE = "Business Non-Financial Index Score";
+        public const string BUSINESS_NON_FINANCIAL_INDEX = "business Non-Financial Index";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_LEVEL = "business Non-Financial Index Level";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_PROPORTION = "business Non-Financial Index Proportion";
+        public const string BUSINESS_NON_FINANCIAL_INDEX_SCORE = "business Non-Financial Index ScoreList";
 
         //SYSTEM
         public const string SYSTEM_USER_GROUP = "System User Group";
@@ -121,7 +123,7 @@ namespace FBD.CommonUtilities
         public const string SCC_CHANGE_PASS = "Your password has been changed successfully. You need to login with new password";
 
         /// <summary>
-        /// Used for validating index id
+        /// Used for validating index rankingID
         /// </summary>
         public const string INDEX_FORMAT_STRING = "0123456789";
 

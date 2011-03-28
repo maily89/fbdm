@@ -15,7 +15,11 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-            
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             BSNLineIndexViewModel model = new BSNLineIndexViewModel();
             try
             {
@@ -54,7 +58,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(string IndustryID)
         {
-            
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new BSNLineIndexViewModel();
             try
             {
@@ -85,6 +92,10 @@ namespace FBD.Controllers
 
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new BSNLineViewModel();
             model.BusinessIndustries = BusinessIndustries.SelectIndustries();
             return View(model);
@@ -96,6 +107,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(BSNLineViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -123,6 +138,10 @@ namespace FBD.Controllers
  
         public ActionResult Edit(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new BSNLineViewModel();
             try
             {
@@ -145,6 +164,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(int id, BSNLineViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -174,6 +197,10 @@ namespace FBD.Controllers
  
         public ActionResult Delete(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (BusinessLines.DeleteLine(id) != 1) throw new Exception();
