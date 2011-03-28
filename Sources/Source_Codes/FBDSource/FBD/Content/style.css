@@ -54,7 +54,7 @@ a:hover {
 /** Style for header starts here */
 
 #header {
-	width: 800px;
+	width: 1050px;
 	height: 150px;
 	margin: 0px auto;
 	background: url(images/img01.jpg) no-repeat left top;
@@ -113,7 +113,7 @@ a:hover {
 /** Style for wrapper starts here */
 
 #wrapper {
-	width: 800px;
+	width: 1050px;
 	min-height:100%;
 	margin: 0px auto;
 	background: #FFFFFF;
@@ -188,7 +188,7 @@ a:hover {
 
 #footer {
 	clear: both;
-	width: 800px;
+	width: 1050px;
 	height: 38px;
 	margin: 0px auto 0px auto;
 	padding-top: 13px;
