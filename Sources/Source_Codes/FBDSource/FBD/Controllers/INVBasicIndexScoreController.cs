@@ -17,7 +17,10 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             INVBasicIndexScoreViewModel viewModel = new INVBasicIndexScoreViewModel();
             FBDEntities FBDModel = new FBDEntities();
 
@@ -85,6 +88,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     INVBasicIndexScoreViewModel viewModelForSavingScore = new INVBasicIndexScoreViewModel();
 
                     // Iterate all the rows of financial index proportion list

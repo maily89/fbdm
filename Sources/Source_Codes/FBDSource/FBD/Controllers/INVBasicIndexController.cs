@@ -15,6 +15,10 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<IndividualBasicIndex> lstBasicIndex = null;
             try
             {

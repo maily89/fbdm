@@ -24,6 +24,10 @@ namespace FBD.Controllers
         FBDEntities FBDmodel = new FBDEntities();
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<IndividualSummaryRanks> ranks = null;
             try
             {
@@ -46,6 +50,11 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            TempData[Constants.SCC_MESSAGE] = null;
             INVSummaryRankViewModel viewmodel = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, -1);
             return View(viewmodel);
         }
@@ -60,7 +69,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(INVSummaryRankViewModel data)
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             IndividualSummaryRanks summaryRank = new IndividualSummaryRanks();
             //summaryRank.ID = int.Parse(form["summaryRanks.ID"]);
             //summaryRank.Evaluation = form["summaryRanks.Evaluation"];
@@ -102,6 +114,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             INVSummaryRankViewModel viewmodel = null;
             try
             {
@@ -135,6 +151,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(int id, INVSummaryRankViewModel SummaryRankViewModel)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 //IndividualSummaryRanks summaryRank = new IndividualSummaryRanks();
@@ -170,6 +190,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = IndividualSummaryRanks.DeleteRank(id);

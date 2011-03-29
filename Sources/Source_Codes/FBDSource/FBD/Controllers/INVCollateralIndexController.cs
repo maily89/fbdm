@@ -15,6 +15,10 @@ namespace FBD.Controllers
 
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<IndividualCollateralIndex> lstCollateralIndex = null;
             try
             {
@@ -42,6 +46,11 @@ namespace FBD.Controllers
 
         public ActionResult Create()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            TempData[Constants.SCC_MESSAGE] = null;
             return View();
         }
 
@@ -51,6 +60,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Create(IndividualCollateralIndex individualCollateralIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 // If there is no error from client
@@ -80,6 +93,10 @@ namespace FBD.Controllers
 
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             IndividualCollateralIndex model = null;
             try
             {
@@ -102,6 +119,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, IndividualCollateralIndex individualCollateralIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -131,6 +152,10 @@ namespace FBD.Controllers
 
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = IndividualCollateralIndex.DeleteCollateralIndex(id);
