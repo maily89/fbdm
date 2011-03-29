@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<FBD.ViewModels.RNKFinancialRow>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<FBD.ViewModels.RNKNonFinancialRow>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%=TempData["EditMode"] != null ? "Edit Financial Score" : "Add Financial Score"%>
+	<%=TempData["EditMode"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%=TempData["EditMode"] != null ? "Edit Financial Score" : "Add Financial Score"%></h2>
+    <h2><%=TempData["EditMode"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%></h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditFinancialScore" : "AddFinancialScore", "RNKRankBusiness", new { id = Url.RequestContext.RouteData.Values["id"] }))
+    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditNonFinancialScore" : "AddNonFinancialScore", "RNKRankBusiness", new { id = Url.RequestContext.RouteData.Values["id"] }))
        { %>
     <table>
         <tr>
@@ -32,7 +32,7 @@
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
                 <%= Html.HiddenFor(m=>m[i].LeafIndex) %>
-                <%= Html.HiddenFor(m=>m[i].CustomerFinancialID) %>
+                <%= Html.HiddenFor(m=>m[i].CustomerNonFinancialID) %>
                 <%= Html.Hidden("Index", i)%>
             </td>
             <td>

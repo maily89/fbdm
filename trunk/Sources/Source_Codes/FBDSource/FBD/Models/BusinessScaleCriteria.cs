@@ -22,6 +22,16 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// list of businessScaleCriteria
+        /// </summary>
+        /// <returns>list of businessScaleCriteria</returns>
+        public static List<BusinessScaleCriteria> SelectScaleCriteria(FBDEntities entities)
+        {
+            
+            return entities.BusinessScaleCriteria.ToList();
+        }
+
+        /// <summary>
         /// return the scaleCriteria specified by id
         /// </summary>
         /// <param name="id">id of the scaleCriteria</param>

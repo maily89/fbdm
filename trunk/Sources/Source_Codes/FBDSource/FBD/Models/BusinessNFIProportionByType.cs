@@ -44,6 +44,20 @@ namespace FBD.Models
             return lstNFIProportionByType;
         }
 
+        internal static BusinessNFIProportionByType SelectProportionByTypeAndIndex(FBDEntities entity, string parentID, string typeID)
+        {
+            BusinessNFIProportionByType lstNFIProportionByType = entity
+                                                                    .BusinessNFIProportionByType
+                                                                    .Include("BusinessNonFinancialIndex")
+                                                                    .Include("BusinessTypes")
+                                                                    .First(p => p.BusinessTypes
+                                                                                 .TypeID
+                                                                                 .Equals(typeID)
+                                                                                 && p.BusinessNonFinancialIndex.IndexID==parentID
+                                                                            );
+
+            return lstNFIProportionByType;
+        }
         /// <summary>
         /// Select a single record in BusinessNFIProportionByType with specified proportion id
         /// </summary>
@@ -239,5 +253,7 @@ namespace FBD.Models
 
             return viewModelResult;
         }
+
+
     }
 }

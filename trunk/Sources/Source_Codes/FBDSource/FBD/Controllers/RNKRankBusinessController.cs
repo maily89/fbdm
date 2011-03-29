@@ -24,6 +24,10 @@ namespace FBD.Controllers
                 {
                     throw new Exception();
                 }
+                foreach (CustomersBusinessRanking item in model)
+                {
+                    item.BusinessScalesReference.Load();
+                }
             }
             catch
             {
@@ -115,8 +119,9 @@ namespace FBD.Controllers
                     id = ranking.ID;
                 }
                 else throw new Exception();
+
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_BUSINESS_RANKING);
-                return View("AddScore", ScaleList(id));
+                return View("AddScore", CustomersBusinessScale.ScaleList(id));
             }
             catch (Exception)
             {
@@ -159,35 +164,16 @@ namespace FBD.Controllers
         }
 
 
-
+        /// <summary>
+        /// Add Score
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult AddFinancialScore(int id)
         {
             try
             {
-                FBDEntities entities = new FBDEntities();
-                CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
-                ranking.BusinessIndustriesReference.Load();
-
-                if (ranking.BusinessScales == null)
-                    RNKScaleMarking.SaveScaleScore(id, entities);
-                ranking.BusinessScalesReference.Load();
-                string scale = ranking.BusinessScales.ScaleID;
-
-                string IndustryID = ranking.BusinessIndustries.IndustryID;
-
-                List<BusinessFinancialIndex> indexList = BusinessFinancialIndex.SelectFinancialIndex(entities);
-
-                List<RNKFinancialRow> financial = new List<RNKFinancialRow>();
-                foreach (BusinessFinancialIndex item in indexList)
-                {
-                    var temp = new RNKFinancialRow();
-                    temp.RankingID = id;
-                    temp.Index = item;
-                    item.BusinessFinancialIndexScore.Load();
-                    temp.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, IndustryID, scale, item.IndexID);
-
-                    financial.Add(temp);
-                }
+                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, true);
                 return View(financial);
             }
             catch (Exception)
@@ -195,39 +181,104 @@ namespace FBD.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        
+
+        /// <summary>
+        /// Add Score
+        /// </summary>
+        /// <param name="rnkFinancialRow"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult AddFinancialScore(List<RNKFinancialRow> rnkFinancialRow)
+        public ActionResult AddFinancialScore(List<RNKFinancialRow> rnkFinancialRow,int id)
         {
             try
             {
                 FBDEntities entities = new FBDEntities();
-                int rankID=0;
+                int rankID=id;
                 foreach (RNKFinancialRow item in rnkFinancialRow)
                 {
-                    rankID=item.RankingID;
-                    CustomersBusinessFinancialIndex indexScore = new CustomersBusinessFinancialIndex();
-
-                    indexScore.BusinessFinancialIndex = BusinessFinancialIndex.SelectFinancialIndexByID(entities,item.Index.IndexID);
-
-                    indexScore.Value = item.Score.ToString();
-                    indexScore.CustomersBusinessRanking = CustomersBusinessRanking.SelectBusinessRankingByID(rankID, entities);
-
-                    if (item.ScoreID >0)
+                    if (item.LeafIndex)
                     {
-                        BusinessFinancialIndexScore score = BusinessFinancialIndexScore.SelectBusinessFinancialIndexScoreByScoreID(entities, item.ScoreID);
-                        score.BusinessFinancialIndexLevelsReference.Load();
-                        indexScore.Value = score.FixedValue;
-                        indexScore.BusinessFinancialIndexLevels = score.BusinessFinancialIndexLevels;
-                    }
+                        CustomersBusinessFinancialIndex indexScore = new CustomersBusinessFinancialIndex();
+                        indexScore = CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entities, item, indexScore);
 
-                    entities.AddToCustomersBusinessFinancialIndex(indexScore);
+                        entities.AddToCustomersBusinessFinancialIndex(indexScore);
+                    }
                 }
+                entities.SaveChanges();
+                RNKFinancialMarking.CalculateFinancialScore(id, true, entities);
+                if (TempData["FinancialRedirect"] != null)
+                    return RedirectToAction("Edit", new { id = rankID });
                 return RedirectToAction("AddNonFinancialIndex",new{id=rankID});
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+                CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);
+
+                if (TempData["FinancialRedirect"] != null)
+                    TempData["FinancialRedirect"] = "Edit";
                 return View(rnkFinancialRow);
+            }
+        }
+
+        /// <summary>
+        /// Add Score
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult AddNonFinancialScore(int id)
+        {
+            try
+            {
+                List<RNKNonFinancialRow> nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, true);
+
+                return View(nonFinancial);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+        /// <summary>
+        /// Add Score
+        /// </summary>
+        /// <param name="rnkNonFinancialRow"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
+        {
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                int rankID = id;
+                foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
+                {
+                    if (item.LeafIndex)
+                    {
+                        CustomersBusinessNonFinancialIndex indexScore = new CustomersBusinessNonFinancialIndex();
+                        indexScore = CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entities, item, indexScore);
+
+                        entities.AddToCustomersBusinessNonFinancialIndex(indexScore);
+                    }
+                }
+                entities.SaveChanges();
+                RNKNonFinancialMarking.CalculateNonFinancialScore(id, true, entities);
+                if (TempData["NonFinancialRedirect"] != null)
+                    return RedirectToAction("Edit", new { id = rankID });
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+                CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
+                if (TempData["NonFinancialRedirect"] != null)
+                    TempData["NonFinancialRedirect"] = "Edit";//Rewrite temp data
+                return View(rnkNonFinancialRow);
             }
         }
         #endregion
@@ -294,11 +345,11 @@ namespace FBD.Controllers
         {
             if (CustomersBusinessScale.SelectBusinessScaleByRankingID(id).Count <= 0)
             {
-                return View("AddScore", ScaleList(id));
+                return View("AddScore", CustomersBusinessScale.ScaleList(id));
             }
             TempData["EditMode"] = "EditMode";
 
-            return View("AddScore", ScaleEditList(id));
+            return View("AddScore", CustomersBusinessScale.ScaleEditList(id));
         }
 
         [HttpPost]
@@ -312,7 +363,7 @@ namespace FBD.Controllers
                 
                 foreach (RNKScaleRow item in rnkScaleRow)
                 {
-                    var temp = CustomersBusinessScale.SelectBusinessScaleByID(item.CustomerScaleID);
+                    var temp = CustomersBusinessScale.SelectBusinessScaleByID(item.CustomerScaleID,entity);
                     rankID = item.RankingID;
                     temp.Score = item.Score;
                     temp.Value = item.Value;
@@ -325,7 +376,7 @@ namespace FBD.Controllers
                 // Mark Scale ScoreList.
                 if (rankID > 0) RNKScaleMarking.SaveScaleScore(rankID, entity);
 
-                return RedirectToAction("AddFinancialScore", new { id = rankID });
+                return RedirectToAction("Edit", new { id = rankID });
             }
             catch (Exception)
             {
@@ -338,77 +389,111 @@ namespace FBD.Controllers
         
         public ActionResult EditFinancialScore(int id)
         {
+            //Check if there's no saved data=> return
+            List<RNKFinancialRow> financial=null;
+            if (CustomersBusinessFinancialIndex.SelectFinancialIndexByRankingID(id).Count <= 0)
+            {
+                financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, true);
+                TempData["FinancialRedirect"] = "Edit";
+                return View("AddFinancialScore",financial);
+            }
+
+            //Change to edit
+            TempData["EditMode"] = "EditMode";
+
+            financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, false);
+            return View("AddFinancialScore", financial);
+        }
+        [HttpPost]
+        public ActionResult EditFinancialScore(List<RNKFinancialRow> rnkFinancialRow,int id)
+        {
             try
             {
-                return null;
+                FBDEntities entity = new FBDEntities();
+                int rankID = id;
+
+                //Load FinancialRow and save them.
+                foreach (RNKFinancialRow item in rnkFinancialRow)
+                {
+                    if (item.LeafIndex)
+                    {
+                        CustomersBusinessFinancialIndex indexScore = CustomersBusinessFinancialIndex.SelectFinancialIndexByID(item.CustomerFinancialID,entity);
+
+                        CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entity, item, indexScore);
+
+                        CustomersBusinessFinancialIndex.EditFinancialIndex(indexScore, entity);
+                    }
+
+                }
+
+                RNKFinancialMarking.CalculateFinancialScore(id, false, entity);
+
+                return RedirectToAction("Edit", new { id = rankID });
             }
             catch (Exception)
             {
-                return RedirectToAction("Index");
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+                TempData["EditMode"] = "EditMode";
+                CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);
+                return View("AddFinancialScore", rnkFinancialRow);
+            }
+        }
+
+        public ActionResult EditNonFinancialScore(int id)
+        {
+            //Check if there's no saved data=> return
+            List<RNKNonFinancialRow> nonFinancial = null;
+            if (CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByRankingID(id).Count <= 0)
+            {
+                nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, true);
+                TempData["NonFinancialRedirect"] = "Edit";
+                return View("AddNonFinancialScore", nonFinancial);
+            }
+
+            //Change to edit
+            TempData["EditMode"] = "EditMode";
+
+            nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, false);
+            return View("AddNonFinancialScore", nonFinancial);
+        }
+        [HttpPost]
+        public ActionResult EditNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
+        {
+            try
+            {
+                FBDEntities entity = new FBDEntities();
+                int rankID = id;
+
+                //Load NonFinancialRow and save them.
+                foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
+                {
+                    if (item.LeafIndex)
+                    {
+                        CustomersBusinessNonFinancialIndex indexScore = CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByID(item.CustomerNonFinancialID, entity);
+
+                        CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entity, item, indexScore);
+
+                        CustomersBusinessNonFinancialIndex.EditNonFinancialIndex(indexScore, entity);
+                    }
+
+                }
+
+                RNKNonFinancialMarking.CalculateNonFinancialScore(id, false, entity);
+
+                return RedirectToAction("Edit", new { id = rankID });
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+                TempData["EditMode"] = "EditMode";
+                CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
+                return View("AddNonFinancialScore", rnkNonFinancialRow);
             }
         }
         #endregion
 
         #region Private
-        private List<RNKScaleRow> ScaleList(int id)
-        {
-            var ranking=CustomersBusinessRanking.SelectBusinessRankingByID(id);
-
-            var scaleCriteria = BusinessScaleCriteria.SelectScaleCriteria();
-            List<RNKScaleRow> scale = new List<RNKScaleRow>();
-            foreach (BusinessScaleCriteria item in scaleCriteria)
-            {
-                var temp = new RNKScaleRow();
-                temp.CriteriaID = item.CriteriaID;
-                temp.RankingID = id;
-                temp.CriteriaName = item.CriteriaName;
-                scale.Add(temp);
-            }
-            return scale;
-        }
-
-        private List<RNKScaleRow> ScaleEditList(int id)
-        {
-            var entities=new FBDEntities();
-            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
-
-            var customerScale = CustomersBusinessScale.SelectBusinessScaleByRankingID(id);
-            
-            List<RNKScaleRow> scale = new List<RNKScaleRow>();
-            foreach (CustomersBusinessScale item in customerScale)
-            {
-                var temp = new RNKScaleRow();
-               
-                item.BusinessScaleCriteriaReference.Load();
-                temp.CriteriaID = item.BusinessScaleCriteria.CriteriaID;
-                temp.RankingID = id;
-                temp.CriteriaName = item.BusinessScaleCriteria.CriteriaName;
-                temp.Value = item.Value;
-                temp.CustomerScaleID = item.ID;
-                scale.Add(temp);
-            }
-
-            return scale;
-        }
-
-        //private List<RNKFinancialRow> FinancialRow(int rankingID)
-        //{
-        //    var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID);
-
-        //    var index = BusinessFinancialIndex.SelectFinancialIndex(new FBDEntities());
-
-        //    List<RNKFinancialRow> financial = new List<RNKFinancialRow>();
-        //    foreach (BusinessFinancialIndex item in index)
-        //    {
-        //        var temp = new RNKFinancialRow();
-        //        temp.IndexID = item.IndexID;
-        //        temp.IndexName = item.IndexName;
-        //        if (item.ValueType=="C")
-        //        {
-        //            temp.Levels=BusinessFinancialIndexLevels.SelectFinancialIndexLevels(
-        //        }
-        //    }
-        //}
+        
         
         //
         // GET: /RNKRank/Delete/5
@@ -418,6 +503,7 @@ namespace FBD.Controllers
         /// <param name="rankingID"></param>
         /// <returns></returns>
         #endregion
+
         public ActionResult Delete(int id)
         {
             try

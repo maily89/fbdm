@@ -11,6 +11,12 @@ namespace FBD.Models
 
     public class RNKScaleMarking
     {
+        /// <summary>
+        /// Save ScaleScore for an Scale object
+        /// </summary>
+        /// <param name="rankingID"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public static int SaveScaleScore(int rankingID,FBDEntities entities)
         {
             
@@ -27,7 +33,13 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
-
+        /// <summary>
+        /// Marking Scale for rankiing id and industryID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="industryID"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public static BusinessScales ScaleMarking(int id,string industryID, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(industryID)) return null;
@@ -42,11 +54,17 @@ namespace FBD.Models
                 var temp = GetScaleScore(item,industryID);
                 if (temp != null) sum += temp.Value;
             }
-
+            
             
             return GetScale(sum, entities);
         }
 
+        /// <summary>
+        /// Get a specific Scale for a scale score
+        /// </summary>
+        /// <param name="score"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public static BusinessScales GetScale(decimal score, FBDEntities entities)
         {
             var scaleList = entities.BusinessScales.ToList();
@@ -60,6 +78,12 @@ namespace FBD.Models
             return null;
         }
         
+        /// <summary>
+        /// Get scale Score for each criteria and industryID
+        /// </summary>
+        /// <param name="scale"></param>
+        /// <param name="industryID"></param>
+        /// <returns></returns>
         public static Nullable<decimal> GetScaleScore(CustomersBusinessScale scale,string industryID)
         {
             if (scale == null || string.IsNullOrEmpty(industryID)) return null;

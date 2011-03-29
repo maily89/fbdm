@@ -45,6 +45,36 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// Select all the non-financial index proportion filtered by specified business industry in
+        /// table BusinessNFIProportionByIndustry
+        /// </summary>
+        /// <param name="FBDModel">The Model of Entities Framework</param>
+        /// <param name="prmIndustry">The selected industry</param>
+        /// <returns>List of non-financial index proportion</returns>
+        public static BusinessNFIProportionByIndustry SelectNonFinancialIndexProportionByIndustryAndIndex(
+                                                                    FBDEntities FBDModel, string prmIndustry, string indexID)
+        {
+            try
+            {
+                BusinessNFIProportionByIndustry lstNFIProportionByIndustry = FBDModel
+                                                                                    .BusinessNFIProportionByIndustry
+                                                                                    .Include("BusinessNonFinancialIndex")
+                                                                                    .Include("BusinessIndustries")
+                                                                                    .First(p => p.BusinessIndustries
+                                                                                                 .IndustryID
+                                                                                                 .Equals(prmIndustry)
+                                                                                                 &&
+                                                                                                 p.BusinessNonFinancialIndex.IndexID.Equals(indexID)
+                                                                                                 );
+                return lstNFIProportionByIndustry;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Select a single record in BusinessNFIProportionByIndustry with specified proportion id
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>

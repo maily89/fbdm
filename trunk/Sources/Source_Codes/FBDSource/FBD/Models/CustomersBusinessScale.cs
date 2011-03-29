@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using FBD.ViewModels;
 namespace FBD.Models
 {
 
@@ -23,6 +24,33 @@ namespace FBD.Models
 
             FBDEntities entities = new FBDEntities();
             var business = entities.CustomersBusinessScale.First(i => i.ID == id);
+
+            return business;
+        }
+
+        /// <summary>
+        /// return the business specified by rankingID
+        /// </summary>
+        /// <param name="rankingID">rankingID of the business</param>
+        /// <returns>business</returns>
+        public static CustomersBusinessScale SelectBusinessScaleByRankingIDAndCriteriaID(int rankingID, string criteriaID)
+        {
+
+            FBDEntities entities = new FBDEntities();
+            CustomersBusinessScale business;
+            try
+            {
+                business = entities.CustomersBusinessScale
+                                    .Include("BusinessScaleCriteria")
+                                    .Include("CustomersBusinessRanking")
+                                    .First(i => i.CustomersBusinessRanking.ID == rankingID && i.BusinessScaleCriteria.CriteriaID == criteriaID);
+                                    
+
+            }
+            catch
+            {
+                return null;
+            }
 
             return business;
         }
@@ -60,12 +88,12 @@ namespace FBD.Models
         /// add new business
         /// </summary>
         /// <param name="business">the business to add</param>
-        public static int AddBusinessScale(CustomersBusinessScale ranking)
+        public static int AddBusinessScale(CustomersBusinessScale scale)
         {
-            if (ranking == null) return 0;
+            if (scale == null) return 0;
             FBDEntities entities = new FBDEntities();
 
-            entities.AddToCustomersBusinessScale(ranking);
+            entities.AddToCustomersBusinessScale(scale);
 
             int temp = entities.SaveChanges();
             // return 0 if there is error, 1 otherwise
@@ -76,12 +104,12 @@ namespace FBD.Models
         /// add new business
         /// </summary>
         /// <param name="business">the business to add</param>
-        public static int AddBusinessScale(CustomersBusinessScale ranking, FBDEntities entities)
+        public static int AddBusinessScale(CustomersBusinessScale scale, FBDEntities entities)
         {
-            if (ranking == null || entities == null) return 0;
+            if (scale == null || entities == null) return 0;
 
 
-            entities.AddToCustomersBusinessScale(ranking);
+            entities.AddToCustomersBusinessScale(scale);
 
             int temp = entities.SaveChanges();
             // return 0 if there is error, 1 otherwise
@@ -108,14 +136,14 @@ namespace FBD.Models
         /// edit new business ranking
         /// </summary>
         /// <param name="business">the business to add</param>
-        public static int EditBusinessScale(CustomersBusinessScale ranking, FBDEntities entities)
+        public static int EditBusinessScale(CustomersBusinessScale scale, FBDEntities entities)
         {
-            if (ranking == null || entities == null) return 0;
+            if (scale == null || entities == null) return 0;
 
-            DatabaseHelper.AttachToOrGet<CustomersBusinessScale>(entities, ranking.GetType().Name, ref ranking);
+            DatabaseHelper.AttachToOrGet<CustomersBusinessScale>(entities, scale.GetType().Name, ref scale);
 
             ObjectStateManager stateMgr = entities.ObjectStateManager;
-            ObjectStateEntry stateEntry = stateMgr.GetObjectStateEntry(ranking);
+            ObjectStateEntry stateEntry = stateMgr.GetObjectStateEntry(scale);
             stateEntry.SetModified();
 
             int result = entities.SaveChanges();
@@ -136,6 +164,65 @@ namespace FBD.Models
             int temp = entities.SaveChanges();
 
             return temp <= 0 ? 0 : 1;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static List<RNKScaleRow> ScaleList(int id)
+        {
+            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+
+            var scaleCriteria = BusinessScaleCriteria.SelectScaleCriteria();
+            List<RNKScaleRow> scale = new List<RNKScaleRow>();
+            foreach (BusinessScaleCriteria item in scaleCriteria)
+            {
+                var temp = new RNKScaleRow();
+                temp.CriteriaID = item.CriteriaID;
+                temp.RankingID = id;
+                temp.CriteriaName = item.CriteriaName;
+                scale.Add(temp);
+            }
+            return scale;
+        }
+
+        public static List<RNKScaleRow> ScaleEditList(int id)
+        {
+            var entities = new FBDEntities();
+            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id, entities);
+
+            var scaleCriteria = BusinessScaleCriteria.SelectScaleCriteria(entities);
+
+
+            List<RNKScaleRow> scale = new List<RNKScaleRow>();
+            foreach (BusinessScaleCriteria item in scaleCriteria)
+            {
+                var customerScale = CustomersBusinessScale.SelectBusinessScaleByRankingIDAndCriteriaID(id, item.CriteriaID);
+
+                var temp = new RNKScaleRow();
+                // if theres no current criteria, create new
+                if (customerScale == null)
+                {
+                    customerScale = new CustomersBusinessScale();
+
+                    customerScale.CustomersBusinessRanking = ranking;
+                    customerScale.BusinessScaleCriteria = item;
+
+                    CustomersBusinessScale.AddBusinessScale(customerScale, entities);
+                }
+
+                // copy customerScale to RNKScaleRow
+                temp.CriteriaID = item.CriteriaID;
+                temp.RankingID = id;
+                temp.CriteriaName = item.CriteriaName;
+                temp.Value = customerScale.Value;
+                temp.CustomerScaleID = customerScale.ID;
+                scale.Add(temp);
+            }
+
+            return scale;
         }
         public class CustomersBusinessScaleMetaData
         {

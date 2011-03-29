@@ -119,7 +119,8 @@ namespace FBD.Models
         		
         	[DisplayName("CIF")]
         	[Required]
-            public decimal CIF { get; set; }
+            [StringLength(20)]
+            public string CIF { get; set; }
         		
         	[DisplayName("Customer Name")]
         	[StringLength(255)]

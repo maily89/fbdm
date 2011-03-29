@@ -16,10 +16,10 @@
         <td><%= Html.ActionLink("Edit Scale Info", "EditScale", new { id = Model })%></td>
         </tr>
         <tr>
-        <td><%= Html.ActionLink("Edit Financial Index", "AddFinancialScore", new { id = Model })%></td>
+        <td><%= Html.ActionLink("Edit Financial Index", "EditFinancialScore", new { id = Model})%></td>
         </tr>
         <tr>
-        <td><%= Html.ActionLink("Edit Non-Financial Index Score", "EditNonFinancialIndex", new { id = Model })%></td>
+        <td><%= Html.ActionLink("Edit Non-Financial Index Score", "EditNonFinancialScore", new { id = Model })%></td>
         </tr>
     </tbody>
     </table>

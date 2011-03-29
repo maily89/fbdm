@@ -85,6 +85,7 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
+    <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
     <Compile Include="Controllers\SYSAuthsController.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
@@ -117,7 +118,7 @@
     <Compile Include="Controllers\INVCollateralRankController.cs" />
     <Compile Include="Controllers\INVSummaryRankController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
+    <Compile Include="Controllers\RNKCustomerIndividualController.cs" />
     <Compile Include="Controllers\SYSBranchesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="Models\BusinessScales.cs" />
     <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
+    <Compile Include="Models\RNKNonFinancialMarking.cs" />
+    <Compile Include="Models\RNKFinancialMarking.cs" />
     <Compile Include="Models\CustomersBusinesses.cs" />
     <Compile Include="Models\CustomersBusinessFinancialIndex.cs" />
     <Compile Include="Models\CustomersBusinessNonFinancialIndex.cs" />
@@ -188,6 +191,8 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKNonFinancialRow.cs" />
+    <Compile Include="ViewModels\RNKCustomerIndividualsViewModel.cs" />
     <Compile Include="ViewModels\RNKFinancialRow.cs" />
     <Compile Include="ViewModels\RNKScaleRow.cs" />
     <Compile Include="ViewModels\FIProportionRowViewModel.cs" />
@@ -460,10 +465,14 @@
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
+    <Content Include="Views\RNKCustomerIndividuals\Add.aspx" />
+    <Content Include="Views\RNKCustomerIndividuals\Edit.aspx" />
+    <Content Include="Views\RNKCustomerIndividuals\Index.aspx" />
     <Content Include="Views\RNKRankBusiness\Add.aspx" />
     <Content Include="Views\RNKRankBusiness\AddFinancialScore.aspx" />
     <Content Include="Views\RNKRankBusiness\AddScore.aspx" />
     <Content Include="Views\RNKRankBusiness\AddStep1.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddNonFinancialScore.aspx" />
     <Content Include="Views\RNKRankBusiness\Edit.aspx" />
     <Content Include="Views\RNKRankBusiness\Index.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Add.aspx" />

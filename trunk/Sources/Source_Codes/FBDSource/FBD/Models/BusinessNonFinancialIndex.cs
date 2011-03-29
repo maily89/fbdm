@@ -33,6 +33,7 @@ namespace FBD.Models
         /// <returns>BusinessNonFinancialIndex</returns>
         public static BusinessNonFinancialIndex SelectNonFinancialIndexByID(FBDEntities FBDModel, string id)
         {
+            
             BusinessNonFinancialIndex businessNonFinancialIndex = null;
 
             // Get the business non financial index from the entities model with the inputted ID
