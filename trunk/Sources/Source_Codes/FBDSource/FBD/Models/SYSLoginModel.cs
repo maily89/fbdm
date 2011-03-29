@@ -43,7 +43,7 @@ namespace FBD.Models
                 {
                     return false;
                 }
-
+                string md5 = StringHelper.Encode(password);
                 if (!user.Password.Equals(StringHelper.Encode(password)))
                 {
                     return false;

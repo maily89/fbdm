@@ -19,6 +19,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<IndividualBorrowingPurposes> lstBorrowingPP = null;
             try
             {
@@ -46,6 +50,11 @@ namespace FBD.Controllers
         // GET: /INVBorrowingPurpose/Create
         public ActionResult Create()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            TempData[Constants.SCC_MESSAGE] = null;
             return View();
         } 
         //
@@ -54,6 +63,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Create(IndividualBorrowingPurposes IndividualBorrowingPP)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 // If there is no error from client
@@ -135,6 +148,10 @@ namespace FBD.Controllers
  
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result=IndividualBorrowingPurposes.DeleteBorrowingPurpose(id);
