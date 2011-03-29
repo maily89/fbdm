@@ -19,6 +19,10 @@ namespace FBD.Controllers
         /// <returns>Index View</returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             // The view model to be exchanged
@@ -66,6 +70,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Industry"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     // Create View model with input industry selected from drop down list
                     FIProportionViewModel viewModelForSelectingIndustries = BusinessFinancialIndexProportion
                                                                             .CreateViewModelByIndustry(
@@ -87,6 +95,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     FIProportionViewModel viewModelForSavingProportion = new FIProportionViewModel();
 
                     // With each financial index row in the list posted from View

@@ -20,6 +20,10 @@ namespace FBD.Controllers
         /// <returns>Index View</returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             List<BusinessNonFinancialIndex> lstNonFinancialIndex = new List<BusinessNonFinancialIndex>();
@@ -54,6 +58,10 @@ namespace FBD.Controllers
         /// <returns>Add View</returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             return View();
         }
 
@@ -70,6 +78,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(BusinessNonFinancialIndex businessNonFinancialIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             try
@@ -109,6 +121,10 @@ namespace FBD.Controllers
         /// <returns>Edit View</returns>
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             BusinessNonFinancialIndex nonFinancialIndex = null;
@@ -145,6 +161,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, BusinessNonFinancialIndex businessNonFinancialIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             try
@@ -186,6 +206,10 @@ namespace FBD.Controllers
         /// <returns>Index View</returns>
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             try

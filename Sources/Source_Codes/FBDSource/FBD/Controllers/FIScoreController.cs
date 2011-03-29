@@ -19,7 +19,10 @@ namespace FBD.Controllers
         /// <returns>Index View</returns>
         public ActionResult Index()
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FIScoreViewModel viewModel = new FIScoreViewModel();
             FBDEntities FBDModel = new FBDEntities();
 
@@ -70,6 +73,10 @@ namespace FBD.Controllers
                     || formCollection["Scale"] != null
                         || formCollection["FinancialIndex"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     // ... then create view model for displaying information
                     FIScoreViewModel viewModelForDisplayingInformation = BusinessFinancialIndexScore
                                                             .CreateViewModelByIndustryByScaleByFinancialIndex(
@@ -93,6 +100,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     FIScoreViewModel viewModelForSavingScore = new FIScoreViewModel();
 
                     // Iterate all the rows of financial index proportion list

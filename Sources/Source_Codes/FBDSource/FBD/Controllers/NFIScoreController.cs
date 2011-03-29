@@ -19,7 +19,10 @@ namespace FBD.Controllers
         /// <returns>Index View</returns>
         public ActionResult Index()
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             NFIScoreViewModel viewModel = new NFIScoreViewModel();
             FBDEntities FBDModel = new FBDEntities();
 
@@ -67,6 +70,10 @@ namespace FBD.Controllers
                 if (formCollection["Industry"] != null
                         || formCollection["NonFinancialIndex"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     // ... then create view model for displaying information
                     NFIScoreViewModel viewModelForDisplayingInformation = BusinessNonFinancialIndexScore
                                                             .CreateViewModelByIndustryByNonFinancialIndex(
@@ -88,6 +95,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     NFIScoreViewModel viewModelForSavingScore = new NFIScoreViewModel();
 
                     // Iterate all the rows of non-financial index proportion list

@@ -19,6 +19,10 @@ namespace FBD.Controllers
         /// <returns>IndexByIndustry View</returns>
         public ActionResult IndexByIndustry()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             // The view model to be exchanged
@@ -66,6 +70,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Industry"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     // Create View model with input industry selected from drop down list
                     NFIProportionViewModel viewModelForSelectingIndustries = BusinessNFIProportionByIndustry
                                                                             .CreateViewModelByIndustry(
@@ -87,6 +95,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     NFIProportionViewModel viewModelForSavingProportion = new NFIProportionViewModel();
 
                     // With each non-financial index row in the list posted from View
@@ -198,6 +210,10 @@ namespace FBD.Controllers
         /// <returns>IndexByType View</returns>
         public ActionResult IndexByType()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities FBDModel = new FBDEntities();
 
             // The view model to be exchanged
@@ -245,6 +261,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Type"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     // Create View model with input type selected from drop down list
                     NFIProportionViewModel viewModelForSelectingTypes = BusinessNFIProportionByType
                                                                             .CreateViewModelByType(
@@ -266,6 +286,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     NFIProportionViewModel viewModelForSavingProportion = new NFIProportionViewModel();
 
                     // With each non-financial index row in the list posted from View
