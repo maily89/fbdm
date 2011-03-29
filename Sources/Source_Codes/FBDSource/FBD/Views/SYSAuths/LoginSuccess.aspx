@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><font style="color: Blue">WELL COME <%=Model.FullName %> BACK TO FBD APPLICATION</font></h2>
+    <h2><font style="color: Blue"> HAVE A NICE WORKING DAY, <%=Model.FullName %> </font></h2>
     <br />
         
     <b>User ID          : <font style="color: Brown"><%=Model.UserID %></font></b>
@@ -18,5 +18,7 @@
     <b>In Group         : <font style="color: Brown"><%=Model.SystemUserGroups.GroupName %></font></b>
     <br />
     <b>At Branch        : <font style="color: Brown"><%=Model.SystemBranches.BranchName %></font></b>
+    <br />
+    <b><%= Html.ActionLink("Want to change your password?", "ChangePassword") %></b>
 
 </asp:Content>

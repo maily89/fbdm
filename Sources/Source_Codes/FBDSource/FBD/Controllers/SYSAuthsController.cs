@@ -76,7 +76,7 @@ namespace FBD.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
         /// <summary>
@@ -118,6 +118,10 @@ namespace FBD.Controllers
         /// <returns>Unauthorized View</returns>
         public ActionResult Unauthorized()
         {
+            if (Session[Constants.SESSION_USER_ID] == null)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
 
@@ -136,11 +140,11 @@ namespace FBD.Controllers
                     return View(model);
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login");
             }
             catch (Exception)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login");
             }
         }
     }
