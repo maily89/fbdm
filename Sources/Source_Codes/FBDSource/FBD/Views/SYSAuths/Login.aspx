@@ -44,7 +44,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.Password) %>
+                            <%= Html.PasswordFor(model => model.Password) %>
                             <%= Html.ValidationMessageFor(model => model.Password) %>
                         </div>
                     </td>
