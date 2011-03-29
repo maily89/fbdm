@@ -44,7 +44,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.OldPassword) %>
+                            <%= Html.PasswordFor(model => model.OldPassword)%>
                             <%= Html.ValidationMessageFor(model => model.OldPassword) %>
                         </div>
                     </td>
@@ -58,7 +58,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.NewPassword) %>
+                            <%= Html.PasswordFor(model => model.NewPassword)%>
                             <%= Html.ValidationMessageFor(model => model.NewPassword) %>
                         </div>
                     </td>
@@ -72,7 +72,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.ConfirmNewPassword) %>
+                            <%= Html.PasswordFor(model => model.ConfirmNewPassword)%>
                             <%= Html.ValidationMessageFor(model => model.ConfirmNewPassword) %>
                         </div>
                     </td>
