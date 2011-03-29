@@ -43,7 +43,7 @@
         
             <td>                
                 <%= Html.ListBox("FinancialIndex",new SelectList(Model.FinancialIndexes as IEnumerable,"IndexID","IndexName",
-                                    Model.IndexID != null ? Model.IndexID : null),new {onchange="this.form.submit();",
+                                    Model.FinancialIndexes.Count > 0 ? Model.FinancialIndexes[0].IndexID : null),new {onchange="this.form.submit();",
                                                     style="width:400px"})%>
             </td>                
         </tr>
