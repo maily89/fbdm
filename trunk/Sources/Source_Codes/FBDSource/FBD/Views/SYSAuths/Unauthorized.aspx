@@ -8,8 +8,8 @@
 
     <h2>UNAUTHORIZED</h2>
     
-    <h3><font style="background-color: Olive; color: White">You dont have permission to user this feature</font></h3>
+    <h3><font style="background-color: Olive; color: White">The system realized that you dont have permission to user this feature</font></h3>
     <i><b>The system classifies users to guarantee the security requirement. </b></i> <br />
-    <i><b>You need to login with account which has enough power. </b></i>
-    
+    <i><b>You need to login with account which has enough power. </b></i><br />
+    <b><%= Html.ActionLink("Sign In Here", "Login") %></b>    
 </asp:Content>

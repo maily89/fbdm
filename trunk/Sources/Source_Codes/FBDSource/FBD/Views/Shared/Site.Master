@@ -23,8 +23,8 @@
             <div id="right">
                 <%if (Session[FBD.CommonUtilities.Constants.SESSION_USER_ID] != null)
                   { %>
-                <a href="../SYSAuths/ChangePassword/" style="color:White">Change Password | </a>
-                <a href="../SYSAuths/Logout/" style="color:White">Sign Out</a>
+                <a href="/SYSAuths/LoginSuccess/" style="color:White"><%=Session[FBD.CommonUtilities.Constants.SESSION_USER_ID].ToString()%> | </a>
+                <a href="/SYSAuths/Logout/" style="color:White">Sign Out</a>
                 <%} %>
             </div>
         </div>
