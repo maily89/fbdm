@@ -19,7 +19,8 @@
       <siteMapNode title="Non-Financial Parameterss">
         <siteMapNode title="Non-Financial Index" controller="NFINonFinancialIndex" action="Index" />
         <siteMapNode title="Non-Financial Index Scoring" controller="NFIScore" action="Index" />
-        <siteMapNode title="Non-Financial Index Proportion" controller="NFIProportion" action="Index" />
+        <siteMapNode title="Non-Financial Index Proportion By Industry" controller="NFIProportion" action="IndexByIndustry" />
+        <siteMapNode title="Non-Financial Index Proportion By Type" controller="NFIProportion" action="IndexByType" />
         <siteMapNode title="Non-Financial Index Level" controller="NFILevels" action="Index" />
       </siteMapNode>
       <siteMapNode title="Ranking Structure" controller="BSNRankingStructure" action="Index" />

@@ -28,7 +28,7 @@ namespace FBD.Models
         /// <returns>Business</returns>
         public static CustomersBusinessRanking SelectBusinessRankingByID(int id)
         {
-
+            if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
             var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
 
@@ -154,8 +154,6 @@ namespace FBD.Models
         	[DisplayName("Total Debt")]
             public Nullable<decimal> TotalDebt { get; set; }
         		
-        	[DisplayName("Scale Score")]
-            public Nullable<decimal> ScaleScore { get; set; }
         		
         	[DisplayName("Financial Score")]
             public Nullable<decimal> FinancialScore { get; set; }

@@ -20,11 +20,41 @@ namespace FBD.Models
             List<BusinessFinancialIndexProportion> lstFIProportionByIndustry = FBDModel
                                                                                 .BusinessFinancialIndexProportion
                                                                                 .Include("BusinessFinancialIndex")
+                                                                                .Include("BusinessIndustries")
                                                                                 .Where(p => p.BusinessIndustries
                                                                                              .IndustryID
                                                                                              .Equals(prmIndustry))
                                                                                              .ToList();
             return lstFIProportionByIndustry;
+        }
+
+        /// <summary>
+        /// Select all the financial index proportion filtered by specified industry
+        /// </summary>
+        /// <param name="FBDModel">The Model of Entities Framework</param>
+        /// <param name="prmIndustry">The selected industry</param>
+        /// <returns>List of financial index proportion</returns>
+        public static BusinessFinancialIndexProportion SelectFinancialIndexProportionByIndustryAndIndex(
+                                                                    FBDEntities FBDModel, string industryID, string indexID)
+        {
+            try
+            {
+                BusinessFinancialIndexProportion fiProportion = FBDModel
+                                                                                    .BusinessFinancialIndexProportion
+                                                                                    .Include("BusinessFinancialIndex")
+                                                                                    .Include("BusinessIndustries")
+                                                                                    .First(p => p.BusinessIndustries
+                                                                                                 .IndustryID
+                                                                                                 .Equals(industryID)
+                                                                                             && p.BusinessFinancialIndex.IndexID.Equals(indexID));
+
+
+                return fiProportion;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>

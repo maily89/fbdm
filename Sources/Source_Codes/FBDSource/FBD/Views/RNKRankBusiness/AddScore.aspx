@@ -7,7 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= TempData["EditMode"]!=null?"Edit":"Add Score" %></h2>
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditScale" : "AddScore", "RNKRankBusiness"))
+    
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+
+    
+    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditScale" : "AddScore", "RNKRankBusiness", new { id = Url.RequestContext.RouteData.Values["id"] }))
        { %>
     <table>
         <tr>

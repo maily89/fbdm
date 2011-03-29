@@ -23,7 +23,7 @@
             </th>
             
             <th>
-                ScaleScore
+                Scale
             </th>
             <th>
                 FinancialScore
@@ -52,7 +52,7 @@
             </td>
 
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.ScaleScore)) %>
+                <%= Html.Encode(String.Format("{0:F}", item.BusinessScales!=null?item.BusinessScales.Scale:null)) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.FinancialScore)) %>

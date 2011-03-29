@@ -5,15 +5,15 @@ using System.Web;
 using FBD.Models;
 namespace FBD.ViewModels
 {
-    public class RNKFinancialRow
+    public class RNKNonFinancialRow
     {
         public int RankingID { get; set; }
         
-        public BusinessFinancialIndex Index { get; set; }
-        public List<BusinessFinancialIndexScore> ScoreList { get; set; }
+        public BusinessNonFinancialIndex Index { get; set; }
+        public List<BusinessNonFinancialIndexScore> ScoreList { get; set; }
         public int ScoreID { get; set; }
         public Nullable<decimal> Score { get; set; }
-        public int CustomerFinancialID { get; set; }
+        public int CustomerNonFinancialID { get; set; }
         public bool LeafIndex { get; set; }
     }
 }
