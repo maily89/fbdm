@@ -105,6 +105,7 @@ namespace FBD.CommonUtilities
         public const string ERR_LOGIN_INPUT = "Unable to login at this time. Please come back a bit later";
         public const string ERR_CHANGE_PASS_MATCH = "The old password is invalid or confirm password does not match. Please input again";
         public const string ERR_CHANGE_PASS_INPUT = "Unable to change pass at this time. Please come back a bit later";
+        public const string ERR_RESET_PASS = "Cannot reset this password. Plz come back later";
 
         //COMMON
         public const string ERR_TO_DATE_LESS_THAN_FROM_DATE = "To date must be greater than from date. Please input again";
@@ -121,6 +122,7 @@ namespace FBD.CommonUtilities
 
         // AUTHENTICATION SUCCESS
         public const string SCC_CHANGE_PASS = "Your password has been changed successfully. You need to login with new password";
+        public const string SCC_RESET_PASS = "The password has been reset successfully";
 
         /// <summary>
         /// Used for validating index rankingID

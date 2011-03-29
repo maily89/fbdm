@@ -276,5 +276,30 @@ namespace FBD.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        /// <summary>
+        /// Reset user' password
+        /// </summary>
+        /// <param name="userID">the user id</param>
+        /// <returns>Edit View</returns>
+        public ActionResult ResetPassword(string userID)
+        {
+            try
+            {
+                int result = SystemUsers.ResetPassword(userID);
+                if (result == 1)
+                {
+                    TempData[Constants.SCC_MESSAGE] = Constants.SCC_RESET_PASS;
+                    return RedirectToAction("Edit", new { id = userID });
+                }
+
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = Constants.ERR_RESET_PASS;
+                return RedirectToAction("Edit", new { id = userID });
+            }
+        }
     }
 }
