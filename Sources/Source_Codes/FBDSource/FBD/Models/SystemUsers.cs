@@ -154,6 +154,22 @@ namespace FBD.Models
             }
         }
 
+        /// <summary>
+        /// Reset user password to default
+        /// </summary>
+        /// <param name="userID">id of user</param>
+        /// <returns>an integer indicates result</returns>
+        public static int ResetPassword(string userID)
+        {
+            FBDEntities entities = new FBDEntities();
+
+            var temp = SystemUsers.SelectUserByID(userID, entities);
+            temp.Password = CommonUtilities.StringHelper.Encode("password");
+            int result = entities.SaveChanges();
+
+            return result <= 0 ? 0 : 1;
+        }
+
         public class SystemUsersMetaData
         {
             [DisplayName("User ID")]
