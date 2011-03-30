@@ -30,7 +30,7 @@ namespace FBD.Controllers
             {
                 List<BusinessIndustries> lstIndustries = BusinessIndustries.SelectIndustries();
                 List<BusinessScales> lstScales = BusinessScales.SelectScales();
-                List<BusinessFinancialIndex> lstFinancialIndexes = BusinessFinancialIndex.SelectFinancialIndex(FBDModel);
+                List<BusinessFinancialIndex> lstFinancialIndexes = BusinessFinancialIndex.SelectFinancialLeafIndex(FBDModel);
 
                 // If there is no information to choose from the drop down list, return empty-data View
                 if (lstIndustries.Count() < 1 || lstScales.Count() < 1 || lstFinancialIndexes.Count() < 1)
