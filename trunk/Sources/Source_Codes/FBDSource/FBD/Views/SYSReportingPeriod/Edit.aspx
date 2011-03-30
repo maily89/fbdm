@@ -32,7 +32,7 @@
                 <td>
                     <div class="editor-field">
                     <%= Html.TextBoxFor(model => model.PeriodID, new { @readonly = "true", @disabled = "true" })%>
-                    <%= Html.ValidationMessageFor(model => model.PeriodID)%>
+                    <%= Html.HiddenFor(model => model.PeriodID)%>   
             </div>
                 </td>
             </tr>

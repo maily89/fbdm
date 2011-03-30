@@ -33,7 +33,6 @@
                     <div class="editor-field">
                         <%= Html.TextBoxFor(model => model.GroupID, new { @readonly = "true", @disabled = "true" }) %>                        
                         <%= Html.HiddenFor(model => model.GroupID)%>                
-                        <%= Html.HiddenFor(model => model.GroupID) %>
                     </div>
                 </td>
             </tr>
