@@ -121,6 +121,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RNKCustomerIndividualController.cs" />
     <Compile Include="Controllers\SYSBranchesController.cs" />
+    <Compile Include="Controllers\SYSCustomerTypesController.cs" />
     <Compile Include="Controllers\SYSUserGroupsRightsController.cs" />
     <Compile Include="Controllers\SYSReportingPeriodController.cs" />
     <Compile Include="Controllers\SYSUserGroupsController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Models\SYSChangePassModel.cs" />
     <Compile Include="Models\SYSLoginModel.cs" />
     <Compile Include="Models\SystemBranches.cs" />
+    <Compile Include="Models\SystemCustomerType.cs" />
     <Compile Include="Models\SystemReportingPeriods.cs" />
     <Compile Include="Models\SystemRights.cs" />
     <Compile Include="Models\SystemUserGroups.cs" />
@@ -510,6 +512,9 @@
     <Content Include="Views\SYSAuths\Login.aspx" />
     <Content Include="Views\SYSAuths\LoginSuccess.aspx" />
     <Content Include="Views\SYSAuths\Unauthorized.aspx" />
+    <Content Include="Views\SYSCustomerTypes\Add.aspx" />
+    <Content Include="Views\SYSCustomerTypes\Edit.aspx" />
+    <Content Include="Views\SYSCustomerTypes\Index.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>

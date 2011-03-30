@@ -24,10 +24,16 @@ namespace FBD.Controllers
         {
             var branch = SystemBranches.SelectBranches();
             var model = new SYSUsersIndexViewModel();
-            model.Branches = branch;
-            var temp = SystemUsers.SelectUsers();
-            model.Users = temp;
-
+            try
+            {
+                model.Branches = branch;
+                var temp = SystemUsers.SelectUsers();
+                model.Users = temp;
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_RIGHT);
+            }
             return View(model);
         }
 
@@ -50,7 +56,7 @@ namespace FBD.Controllers
 
                 if (BranchID != null)
                 {
-                    if (BranchID == "")
+                    if (BranchID.Equals(""))
                     {
                         model.Users = SystemUsers.SelectUsers();
                     }
@@ -84,10 +90,17 @@ namespace FBD.Controllers
         public ActionResult Add()
         {
             var model = new SYSUsersViewModel();
-            model.SystemUsers = new SystemUsers();
-            model.SystemUsers.Password = Constants.FORM_PASSWORD;
-            model.SystemUserGroups = SystemUserGroups.SelectUserGroups();
-            model.SystemBranches = SystemBranches.SelectBranches();
+            try
+            {
+                model.SystemUsers = new SystemUsers();
+                model.SystemUsers.Password = Constants.FORM_PASSWORD;
+                model.SystemUserGroups = SystemUserGroups.SelectUserGroups();
+                model.SystemBranches = SystemBranches.SelectBranches();
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_RIGHT);
+            }
             return View(model);
         }
 

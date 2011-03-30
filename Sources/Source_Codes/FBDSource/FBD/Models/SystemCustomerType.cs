@@ -4,63 +4,60 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
-    [MetadataType(typeof(SystemBranchesMetaData))]
-    public partial class SystemBranches
+    [MetadataType(typeof(SystemCustomerTypesMetadata))]
+    public partial class SystemCustomerTypes
     {
         /// <summary>
-        /// Select all Branches 
-        /// in the table [System.Branches]
+        /// Select all Customer types (TypeID, TypeName) 
+        /// in the table [System.CustomerTypes]
         /// </summary>
-        /// <returns>List of all branches</returns>
-        public static List<SystemBranches> SelectBranches()
+        /// <returns>List of all SystemCustomerTypes</returns>
+        public static List<SystemCustomerTypes> SelectTypes()
         {
             FBDEntities entities = new FBDEntities();
-            return entities.SystemBranches.ToList();
+            return entities.SystemCustomerTypes.ToList();
         }
 
         /// <summary>
-        /// Select a single Branch with specific ID
+        /// Select Customer Type (TypeID, TypeName) 
+        /// in the table [System.CustomerTypes] with input ID
         /// </summary>
         /// <param name="id">ID</param>
-        /// <returns>A Branch with id = ID</returns>
-        public static SystemBranches SelectBranchByID(string id)
+        /// <returns>A Customer type with id = ID</returns>
+        public static SystemCustomerTypes SelectTypeByID(string id)
         {
             FBDEntities entities = new FBDEntities();
-            var Branch = entities.SystemBranches.First(i => i.BranchID == id);
-            return Branch;
+            return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
         }
 
         /// <summary>
-        /// Select a single Branch with specific ID
+        /// Select Customer Type (TypeID, TypeName) 
+        /// in the table [System.CustomerTypes] with input ID, entities
         /// </summary>
         /// <param name="id">ID</param>
         /// <param name="entities">The Model of Entities Framework</param>
-        /// <returns>A Branch with id = ID</returns>
-        public static SystemBranches SelectBranchByID(string id, FBDEntities entities)
+        /// <returns>A customer type with id = ID</returns>
+        public static SystemCustomerTypes SelectTypeByID(string id, FBDEntities entities)
         {
-            var Branch = entities.SystemBranches.First(i => i.BranchID == id);
-            return Branch;
+            return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
         }
 
         /// <summary>
         /// 1. Receive information from parameter
-        /// 2. Insert new Branch into the Database
+        /// 2. Insert new type into the Database
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
-        /// <param name="branch">Infor of new Branch</param>
+        /// <param name="type">Infor of the new type</param>
         /// <returns>
         /// 1: if OK
         /// 0: if ERROR</returns>
-        public static int AddBranch(SystemBranches branch)
+        public static int AddType(SystemCustomerTypes type)
         {
             FBDEntities entities = new FBDEntities();
-
-            entities.AddToSystemBranches(branch);
-
+            entities.AddToSystemCustomerTypes(type);
             int result = entities.SaveChanges();
 
             return result <= 0 ? 0 : 1;
@@ -68,21 +65,19 @@ namespace FBD.Models
 
         /// <summary>
         /// 1. Receive ID from parameter
-        /// 2. Update appropriate Branch with ID 
-        /// in [System.Branches] table in DB
+        /// 2. Update appropriate Type (TypeID, TypeName) 
+        /// with ID selected in [System.CustomerTypes] table in DB
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
-        /// <param name="Branch">Infor of updated Branch</param>
+        /// <param name="type">Infor of the edited Type</param>
         /// <returns>
         /// 1: if OK
         /// 0: if ERROR</returns>
-        public static int EditBranch(SystemBranches branch)
+        public static int EditType(SystemCustomerTypes type)
         {
             FBDEntities entities = new FBDEntities();
-
-            var temp = SystemBranches.SelectBranchByID(branch.BranchID, entities);
-            temp.BranchName = branch.BranchName;
-            temp.Active = branch.Active;
+            var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(type.TypeID));
+            temp.TypeName = type.TypeName;
             int result = entities.SaveChanges();
 
             return result <= 0 ? 0 : 1;
@@ -90,20 +85,19 @@ namespace FBD.Models
 
         /// <summary>
         /// 1. Receive ID from parameter
-        /// 2. Delete the Branch with selected ID 
-        /// from [System.Branches] table
+        /// 2. Delete the Type with selected ID 
+        /// from the [System.CustomerTypes] table
         /// 3. If successful, return 1 otherwise return 0
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns>
         /// 1: if OK
         /// 0: if ERROR</returns>
-        public static int DeleteBranch(string id)
+        public static int DeleteType(string id)
         {
             FBDEntities entities = new FBDEntities();
-
-            var branch = SystemBranches.SelectBranchByID(id, entities);
-            entities.DeleteObject(branch);
+            var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+            entities.DeleteObject(temp);
             int result = entities.SaveChanges();
 
             return result <= 0 ? 0 : 1;
@@ -112,7 +106,7 @@ namespace FBD.Models
         /// <summary>
         /// Check ID dupplication
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">ID</param>
         /// <returns>
         /// 1: if true (dupplication is occuring)
         /// 0: if false (no dupplication, the ID is available
@@ -123,7 +117,7 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             try
             {
-                bool check = entities.SystemBranches.Where(i => i.BranchID == id).Any();
+                bool check = entities.SystemCustomerTypes.Where(i => i.TypeID == id).Any();
                 return check ? 1 : 0;
             }
             catch (Exception)
@@ -132,18 +126,17 @@ namespace FBD.Models
             }
         }
 
-
-        public class SystemBranchesMetaData
+        public class SystemCustomerTypesMetadata
         {
-            [DisplayName("Branch ID")]
-            [Required(ErrorMessage = "Branch ID is required")]
+            [DisplayName("Type ID")]
+            [Required(ErrorMessage = "Type ID is required")]
             [StringLength(10)]
-            public string BranchID { get; set; }
+            public string TypeID { get; set; }
 
-            [DisplayName("Branch Name")]
-            [Required(ErrorMessage = "Branch Name is required")]
+            [DisplayName("Type Name")]
+            [Required(ErrorMessage = "Type name is required")]
             [StringLength(255)]
-            public string BranchName { get; set; }
+            public string TypeName { get; set; }
         }
     }
 }

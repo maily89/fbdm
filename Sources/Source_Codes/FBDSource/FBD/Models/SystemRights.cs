@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FBD.Models
 {
+    [MetadataType(typeof (SystemRights))]
     public partial class SystemRights
     {
         /// <summary>
@@ -130,12 +131,12 @@ namespace FBD.Models
             [DisplayName("Right ID")]
             [Required(ErrorMessage = "Right ID is required")]
             [StringLength(20)]
-            public string IndexID { get; set; }
+            public string RightID { get; set; }
 
             [DisplayName("Right")]
             [Required(ErrorMessage = "Right is required")]
             [StringLength(255)]
-            public string IndexName { get; set; }
+            public string Right { get; set; }
         }
     }
 }
