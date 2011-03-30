@@ -9,7 +9,7 @@
       <siteMapNode title="User Decentralization" controller="SYSUserGroupsRights" action="Index" />
       <siteMapNode title="Branches" controller="SYSBranches" action="Index" />
       <siteMapNode title="Reporting Periods" controller="SYSReportingPeriod" action="Index" />
-      <siteMapNode title="Customer Types" controller="SYSCustomerType" action="Index" />
+      <siteMapNode title="Customer Types" controller="SYSCustomerTypes" action="Index" />
     </siteMapNode>
     </siteMapNode>
 </siteMap>

@@ -141,7 +141,7 @@ namespace FBD.Models
 
             [DisplayName("Group Name")]
             [Required(ErrorMessage = "Group Name is required")]
-            [StringLength(50)]
+            [StringLength(255)]
             public string GroupName { get; set; }
         }
     }
