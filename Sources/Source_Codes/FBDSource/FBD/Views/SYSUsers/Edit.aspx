@@ -34,7 +34,7 @@
                 <td>
                     <div class="editor-field">
                         <%= Html.TextBoxFor(model => model.SystemUsers.UserID, new { @readonly = "true", @disabled = "true" })%>
-                        <%= Html.ValidationMessageFor(model => model.SystemUsers.UserID) %>
+                        <%= Html.HiddenFor(model => model.SystemUsers.UserID)%>
                     </div>
                </td>
            </tr>
@@ -82,7 +82,7 @@
                     </div>
                </td>
            </tr>
-            
+            <%= Html.HiddenFor(model => model.SystemUsers.Password)%>
             <tr>
                 <td>
                     <div class="editor-label">
