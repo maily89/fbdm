@@ -98,7 +98,7 @@
             
             <td>
                 <input type="submit" name="Save" value="Save" />
-                <input type="button" value="Check Total Proportion" onclick="javascript:alert(CheckTotalFIProportion());" />
+                <input type="button" value="Check Total Proportion" onclick="javascript:alert(CheckTotalNFIProportionByIndustry());" />
             </td>
         </tr>
         <% } %>    
