@@ -31,6 +31,35 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// Select all the basic index proportion filtered by specified Borrowing purpose and Index ID
+        /// </summary>
+        /// <param name="FBDModel">The Model of Entities Framework</param>
+        /// <param name="prmBorrowingPP">The selected Borrowing purpose</param>
+        /// <returns>List of basic index proportion</returns>
+        public static IndividualBasicIndexProportion SelectBasicIndexProportionByBorrowingPPAndBasicIndex(
+                                                                    FBDEntities FBDModel, string prmBorrowingPPID,string indexID)
+        {
+            try
+            {
+                IndividualBasicIndexProportion lstINVProportionByBorrowingPP = FBDModel
+                                                                                    .IndividualBasicIndexProportion
+                                                                                    .Include("IndividualBasicIndex")
+                                                                                    .Include("IndividualBasicIndex")
+                                                                                    .First(p => p.IndividualBorrowingPurposes
+                                                                                                 .PurposeID
+                                                                                                 .Equals(prmBorrowingPPID)
+                                                                                           && p.IndividualBasicIndex.IndexID.Equals(indexID)
+                                                                                           );
+                return lstINVProportionByBorrowingPP;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
+        /// <summary>
         /// Select a single record in IndividualBasicIndexProportion with specified proportion id
         /// </summary>
         /// <param name="FBDModel">The Model of Entities Framework</param>

@@ -88,7 +88,7 @@ namespace FBD.Controllers
             //else: ERROR
             model.ReportingPeriods = SystemReportingPeriods.SelectReportingPeriods();
             model.BusinessCustomer = CustomersBusinesses.SelectBusinesses();
-            TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.SYSTEM_REPORTING_PERIOD);
+            TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_RANKING);
             
             return View(model);
         }
@@ -298,7 +298,24 @@ namespace FBD.Controllers
 
             ranking.SystemReportingPeriodsReference.Load();
             addModel.PeriodID = ranking.SystemReportingPeriods.PeriodID;
-            
+
+            ranking.BusinessIndustriesReference.Load();
+            if(ranking.BusinessIndustries!=null)
+            addModel.IndustryID = ranking.BusinessIndustries.IndustryID;
+
+            ranking.BusinessTypesReference.Load();
+            if(ranking.BusinessTypes!=null)
+            addModel.TypeID = ranking.BusinessTypes.TypeID;
+
+            ranking.CustomersLoanTermReference.Load();
+            if (ranking.CustomersLoanTerm != null)
+                addModel.LoanID = ranking.CustomersLoanTerm.LoanTermID;
+
+            ranking.SystemCustomerTypesReference.Load();
+            if (ranking.SystemCustomerTypes != null)
+                addModel.CustomerTypeID = ranking.SystemCustomerTypes.TypeID;
+
+            ranking.CustomersBusinessesReference.Load();
             var customer = ranking.CustomersBusinesses;
             addModel.CustomerID = customer.BusinessID;
             addModel.CIF = customer.CIF;

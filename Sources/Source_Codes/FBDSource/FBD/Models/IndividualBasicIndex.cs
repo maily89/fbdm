@@ -24,6 +24,17 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// Select all the Basic Index in the table Business.BasicIndex
+        /// </summary>
+        /// <returns>List of Basic Index</returns>
+        public static List<IndividualBasicIndex> SelectBasicIndex(FBDEntities FBDModel)
+        {
+
+            List<IndividualBasicIndex> lstBasicIndex = null;
+            lstBasicIndex = FBDModel.IndividualBasicIndex.ToList();
+            return lstBasicIndex;
+        }
+        /// <summary>
         /// Select the Basic Index in the table Business.BasicIndex with input ID
         /// </summary>
         /// <param name="id">string ID</param>

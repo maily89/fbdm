@@ -85,6 +85,7 @@
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
+    <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
     <Compile Include="Controllers\SYSAuthsController.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
@@ -147,6 +148,8 @@
     <Compile Include="Models\BusinessScales.cs" />
     <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
+    <Compile Include="Models\RNKCollateralMarking.cs" />
+    <Compile Include="Models\RNKBasicMarking.cs" />
     <Compile Include="Models\RNKNonFinancialMarking.cs" />
     <Compile Include="Models\RNKFinancialMarking.cs" />
     <Compile Include="Models\CustomersBusinesses.cs" />
@@ -191,6 +194,10 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKCollateralRow.cs" />
+    <Compile Include="ViewModels\RNKBasicRow.cs" />
+    <Compile Include="ViewModels\RNKIndividualViewModel.cs" />
     <Compile Include="ViewModels\RNKNonFinancialRow.cs" />
     <Compile Include="ViewModels\RNKCustomerIndividualsViewModel.cs" />
     <Compile Include="ViewModels\RNKFinancialRow.cs" />
@@ -209,7 +216,6 @@
     <Compile Include="ViewModels\RNKCustomerBusinessViewModel.cs" />
     <Compile Include="ViewModels\INVBasicIndexScoreViewModel.cs" />
     <Compile Include="ViewModels\INVBasicScoreRowViewModel.cs" />
-    <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
     <Compile Include="ViewModels\INVCollateralScoreRowViewModel.cs" />
     <Compile Include="ViewModels\INVProportionRowViewModel.cs" />
     <Compile Include="ViewModels\INVProportionViewModel.cs" />
@@ -494,6 +500,12 @@
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
     <Content Include="Parameter.sitemap" />
+    <Content Include="Views\RNKRankIndividual\Add.aspx" />
+    <Content Include="Views\RNKRankIndividual\AddBasicScore.aspx" />
+    <Content Include="Views\RNKRankIndividual\AddInfo.aspx" />
+    <Content Include="Views\RNKRankIndividual\AddCollateralScore.aspx" />
+    <Content Include="Views\RNKRankIndividual\Edit.aspx" />
+    <Content Include="Views\RNKRankIndividual\Index.aspx" />
     <Content Include="Views\SYSAuths\ChangePassword.aspx" />
     <Content Include="Views\SYSAuths\Login.aspx" />
     <Content Include="Views\SYSAuths\LoginSuccess.aspx" />
