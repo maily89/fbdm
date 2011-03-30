@@ -72,5 +72,12 @@ namespace FBD.CommonUtilities
 
             return BitConverter.ToString(encodedPwBytes);
         }
+
+        public static string FormatDate(DateTime date)
+        {
+            if (date == null ) return null;
+            return string.Format(Constants.DATE_FORMAT , date);
+
+        }
     }
 }

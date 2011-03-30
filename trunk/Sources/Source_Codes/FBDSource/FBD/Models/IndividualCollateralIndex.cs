@@ -24,6 +24,18 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// Select all the Individual Collateral Index in the table Business.CollateralIndex
+        /// </summary>
+        /// <returns>List of Individual Collateral Index</returns>
+        public static List<IndividualCollateralIndex> SelectCollateralIndex(FBDEntities FBDModel)
+        {
+            
+
+            List<IndividualCollateralIndex> lstCollateralIndex = null;
+            lstCollateralIndex = FBDModel.IndividualCollateralIndex.ToList();
+            return lstCollateralIndex;
+        }
+        /// <summary>
         /// Select the Individual Collateral Index in the table Business.CollateralIndex with input ID
         /// </summary>
         /// <param name="id">string ID</param>

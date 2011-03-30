@@ -28,7 +28,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_INDIVIDUAL);
             }
             return View(model);
         }
@@ -59,12 +59,12 @@ namespace FBD.Controllers
                     CustomersIndividuals.AddIndividual(individual, entity);
                 }
                 else throw new Exception();
-                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_INDIVIDUAL);
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_INDIVIDUAL);
                 data.SystemBranches = SystemBranches.SelectBranches();
                 return View(data);
             }
@@ -85,7 +85,7 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.CUSTOMER_INDIVIDUAL);
             }
             return View(model);
 
@@ -112,13 +112,13 @@ namespace FBD.Controllers
                 }
                 else throw new Exception();
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST,
-                                                                        Constants.CUSTOMER_BUSINESS,
+                                                                        Constants.CUSTOMER_INDIVIDUAL,
                                                                         id.ToString());
                 return RedirectToAction("Index");
             }
             catch 
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_INDIVIDUAL);
                 data.SystemBranches = SystemBranches.SelectBranches();
                 return View(data);
             }
@@ -132,12 +132,12 @@ namespace FBD.Controllers
             try
             {
                 if (CustomersIndividuals.DeleteIndividual(id) != 1) throw new Exception();
-                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.CUSTOMER_INDIVIDUAL);
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.CUSTOMER_BUSINESS);
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.CUSTOMER_INDIVIDUAL);
                 return RedirectToAction("Index");
             }
         }

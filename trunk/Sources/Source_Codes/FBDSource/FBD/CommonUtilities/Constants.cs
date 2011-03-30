@@ -7,6 +7,8 @@ namespace FBD.CommonUtilities
 {
     public class Constants
     {
+        /* Format */
+        public const string DATE_FORMAT = "{0:dd/MM/yyyy}";
         /** NUMERIC VALUE */
 
         public const int NUMBER_OF_RANKING_STRUCTURE = 4;
@@ -20,6 +22,9 @@ namespace FBD.CommonUtilities
         public const string CUSTOMER_BUSINESS_RANKING = "Ranked business Customer";
         public const string CUSTOMER_LOANTERM = "Loan term";
         public const string CUSTOMER_BUSINESS_FINANCIAL_INDEX = "Customer business financial index";
+
+        public const string CUSTOMER_INDIVIDUAL_RANKING = "Ranked Individual Customer";
+        public const string CUSTOMER_INDIVIDUAL = "Individual Customer";
 
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "business Industry";

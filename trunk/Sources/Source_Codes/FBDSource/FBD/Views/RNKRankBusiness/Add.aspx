@@ -103,6 +103,19 @@
            <tr>
                 <td>
                     <div class="editor-label">
+                        Loan Term
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <%= Html.DropDownList("LoanID", new SelectList(FBD.ViewModels.RNKRankingViewModel.LoanTerm as IEnumerable, 
+"LoanTermID", "LoanTermName", Model!=null?Model.LoanID:null)) %>
+                    </div>
+               </td>
+           </tr>
+           <tr>
+                <td>
+                    <div class="editor-label">
                         <%=FBD.CommonUtilities.Constants.BUSINESS_TYPE %>
                     </div>
                 </td>
@@ -172,7 +185,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(m=>m.BusinessRanking.DateModified) %>
+                        <%= Html.TextBoxFor(m => m.BusinessRanking.DateModified, new { @readonly = "true" })%>
                     </div>
                </td>
            </tr>

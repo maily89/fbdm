@@ -95,5 +95,21 @@ namespace FBD.ViewModels
             }
         }
 
+        public static List<IndividualBorrowingPurposes> BorrowingPurpose
+        {
+            get
+            {
+                try
+                {
+                    var temp = IndividualBorrowingPurposes.SelectBorrowingPPList();
+                    return temp;
+                }
+                catch
+                {
+                    return new List<IndividualBorrowingPurposes>();
+                }
+            }
+        }
+
     }
 }

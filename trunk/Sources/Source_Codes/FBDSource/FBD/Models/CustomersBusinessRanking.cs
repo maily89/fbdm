@@ -38,7 +38,9 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectRankingByPeriodAndCustomer(string periodID, int customerID)
         {
             FBDEntities entities = new FBDEntities();
-            var result = entities.CustomersBusinessRanking.Include("SystemReportingPeriods").Where(i => i.CustomersBusinesses.BusinessID == customerID && i.SystemReportingPeriods.PeriodID == periodID).Any();
+            var result = entities.CustomersBusinessRanking.Include("SystemReportingPeriods")
+                .Include("CustomersBusinesses")
+                .Where(i => i.CustomersBusinesses.BusinessID == customerID && i.SystemReportingPeriods.PeriodID == periodID).Any();
             if (result)
             {
                 return entities.CustomersBusinessRanking
