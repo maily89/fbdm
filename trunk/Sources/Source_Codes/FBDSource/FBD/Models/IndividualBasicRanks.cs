@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace FBD.Models
 {
     [MetadataType(typeof(IndividualBasicRanksMetaData))]
-    public partial class IndividualBasicRanks
+    public partial class IndividualBasicRanks: IRanks
     {
         /// <summary>
         /// list of IndividualBasicRanks

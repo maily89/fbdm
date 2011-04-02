@@ -112,6 +112,7 @@ namespace FBD.Controllers
                     ranking.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entity);
                     ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entity);
                     ranking.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(rknBusinessRankingViewModel.PeriodID, entity);
+                    ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(rknBusinessRankingViewModel.CustomerTypeID, entity);
                     //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
                     if (rknBusinessRankingViewModel.IsNew)
                         CustomersBusinessRanking.AddBusinessRanking(ranking, entity);
@@ -341,6 +342,7 @@ namespace FBD.Controllers
                     ranking.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entity);
                     ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entity);
                     ranking.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(rknBusinessRankingViewModel.PeriodID, entity);
+                    ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(rknBusinessRankingViewModel.CustomerTypeID, entity);
 
                     CustomersBusinessRanking.EditBusinessRanking(ranking, entity);
                     rankingID = ranking.ID;

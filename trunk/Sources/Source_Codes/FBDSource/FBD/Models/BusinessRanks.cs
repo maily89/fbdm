@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace FBD.Models
 {
     [MetadataType(typeof(BusinessRanksMetaData))]
-    public partial class BusinessRanks
+    public partial class BusinessRanks : FBD.Models.IRanks
     {
         /// <summary>
         /// list of businessRanks
@@ -19,6 +19,15 @@ namespace FBD.Models
             return entities.BusinessRanks.ToList();
         }
 
+        /// <summary>
+        /// list of businessRanks
+        /// </summary>
+        /// <returns>list of businessRanks</returns>
+        public static List<BusinessRanks> SelectRanks(FBDEntities entities)
+        {
+
+            return entities.BusinessRanks.ToList();
+        }
         /// <summary>
         /// return the rank specified by id
         /// </summary>
