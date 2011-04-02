@@ -86,12 +86,20 @@ namespace FBD.ViewModels
                 }
             }
         }
-        //What the hell is this?
+        
         public static List<SystemCustomerTypes> CustomerType
         {
             get
             {
-                return new List<SystemCustomerTypes>();
+                try
+                {
+                    var temp = FBD.Models.SystemCustomerTypes.SelectTypes();
+                    return temp;
+                }
+                catch
+                {
+                    return new List<SystemCustomerTypes>();
+                }
             }
         }
 

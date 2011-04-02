@@ -20,6 +20,8 @@ namespace FBD.Models
             return entities.BusinessRankingStructure.ToList();
         }
 
+        
+
         /// <summary>
         /// return the rankingStructure specified by id
         /// </summary>

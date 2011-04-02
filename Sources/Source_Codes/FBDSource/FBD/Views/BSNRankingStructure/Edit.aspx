@@ -28,7 +28,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.IndexType) %>
+                            <%= Html.TextBoxFor(model => model.IndexType,new{@readonly="true"}) %>
                             <%= Html.ValidationMessageFor(model => model.IndexType) %>
                         </div>
                    </td>
@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.AuditedStatus) %>
+                            <%= Html.TextBoxFor(model => model.AuditedStatus, new { @readonly = "true" })%>
                             <%= Html.ValidationMessageFor(model => model.AuditedStatus) %>
                         </div>
                    </td>

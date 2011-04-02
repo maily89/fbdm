@@ -48,6 +48,8 @@ namespace FBD.Models
                 }
                 
             }
+
+            
             ranking.FinancialScore = finalScore/100;
             entities.SaveChanges();
             return finalScore/100;

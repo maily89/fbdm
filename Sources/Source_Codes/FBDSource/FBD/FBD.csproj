@@ -35,6 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -149,6 +154,7 @@
     <Compile Include="Models\BusinessScales.cs" />
     <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
+    <Compile Include="Models\IRanks.cs" />
     <Compile Include="Models\RNKCollateralMarking.cs" />
     <Compile Include="Models\RNKBasicMarking.cs" />
     <Compile Include="Models\RNKNonFinancialMarking.cs" />
@@ -181,6 +187,7 @@
     <Compile Include="Models\IndividualCollateralRanks.cs" />
     <Compile Include="Models\IndividualSummayRanks.cs" />
     <Compile Include="Models\DatabaseHelper.cs" />
+    <Compile Include="Models\RNKRankMarking.cs" />
     <Compile Include="Models\RNKScaleMarking.cs" />
     <Compile Include="Models\SYSChangePassModel.cs" />
     <Compile Include="Models\SYSLoginModel.cs" />
@@ -192,6 +199,19 @@
     <Compile Include="Models\SystemUserGroupsRights.cs" />
     <Compile Include="Models\SystemUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\BusinessReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BusinessReportSource.cs" />
+    <Compile Include="Report\ScaleReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScaleReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
@@ -462,6 +482,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +537,16 @@
     <Content Include="Views\SYSCustomerTypes\Edit.aspx" />
     <Content Include="Views\SYSCustomerTypes\Index.aspx" />
     <Content Include="Web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\BusinessReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BusinessReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ScaleReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ScaleReport.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\SYSReportingPeriod\.svn\prop-base\" />
