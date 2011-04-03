@@ -220,14 +220,15 @@ input[type="password"]
 
 table 
 {
-  border: solid 1px #e8eef4;
+  width: 100%;
+  border: solid 2px #e8eef4;
   border-collapse: collapse;
 }
 
 table td 
 {
-  padding: 5px;   
-  border: solid 1px #e8eef4;
+  padding: 4px;   
+  border: solid 2px #e8eef4;
 }
 
 table th
@@ -235,7 +236,7 @@ table th
   padding: 6px 5px;
   text-align: left;
   background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
+  border: solid 2px #e8eef4;   
 }
 
 /* MISC  

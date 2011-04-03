@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING FINANCIAL INDEX PROPORTION</h2>
+    <h2>FINANCIAL INDEX PROPORTION</h2>
 
     <% Html.EnableClientValidation(); %>    
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
