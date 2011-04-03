@@ -18,9 +18,6 @@
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
-
-        <fieldset>
-            <legend>Fields</legend>
             <table>
                 <tr>
                     <td>
@@ -52,14 +49,13 @@
                 
                 <tr>
                     <td>
-                        <input type="submit" value="Login" />
                     </td>
                     <td>
+                        <input type="submit" value="Login" />
                         <input type='button' onclick="window.location.href='<%= Url.Action("Index", "Home") %>';" value="Cancel" />
                     </td>
                 </tr>
             </table>
-        </fieldset>
 
     <% } %>
 </asp:Content>
