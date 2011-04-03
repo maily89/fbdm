@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>MANAGING NON-FINANCIAL INDEX PROPORTION BY BUSINESS TYPES</h2>
+    <h2>NON-FINANCIAL INDEX PROPORTION BY BUSINESS TYPES</h2>
 
     <% Html.EnableClientValidation(); %>    
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
