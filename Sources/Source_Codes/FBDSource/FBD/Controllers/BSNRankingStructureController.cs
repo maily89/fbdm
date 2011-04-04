@@ -30,11 +30,7 @@ namespace FBD.Controllers
             try
             {
                 rankingStructure = BusinessRankingStructure.SelectRankingStructures();
-                if (rankingStructure.Count!= 4)
-                {
-                    BusinessRankingStructure.Reset();
-                    rankingStructure = BusinessRankingStructure.SelectRankingStructures();
-                }
+
                 if (rankingStructure == null)
                 {
                     throw new Exception();

@@ -56,8 +56,8 @@ namespace FBD.Models
         {
             FBDEntities entities = new FBDEntities();
             var temp = BusinessRankingStructure.SelectRankingStructureByID(rankingStructure.ID, entities);
-            temp.AuditedStatus = rankingStructure.AuditedStatus;
-            temp.IndexType = rankingStructure.IndexType;
+            //temp.AuditedStatus = rankingStructure.AuditedStatus;
+            //temp.IndexType = rankingStructure.IndexType;
             temp.Percentage = rankingStructure.Percentage;
             return entities.SaveChanges()<=0?0:1;
         }

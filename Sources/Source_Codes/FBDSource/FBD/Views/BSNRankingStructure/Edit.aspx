@@ -14,7 +14,7 @@
     
 
     <% using (Html.BeginForm()) {%>
-        <%= Html.ValidationSummary(true) %>
+        <%= Html.ValidationSummary(false) %>
         
         <fieldset>
             <legend>Fields</legend>
@@ -28,8 +28,8 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.IndexType,new{@readonly="true"}) %>
-                            <%= Html.ValidationMessageFor(model => model.IndexType) %>
+                            <%= Html.TextBox("IndexTypeText",Model.IndexType==FBD.CommonUtilities.Constants.RNK_STRUCTURE_FINANCIAL_INDEX?"Financial Index":"NonFinancial Index",new {@readonly="true"}) %>
+                            <%= Html.HiddenFor(m=>m.IndexType) %>
                         </div>
                    </td>
                </tr>
@@ -42,8 +42,8 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.AuditedStatus, new { @readonly = "true" })%>
-                            <%= Html.ValidationMessageFor(model => model.AuditedStatus) %>
+                            <%= Html.TextBox("AuditStatusText", Model.AuditedStatus == FBD.CommonUtilities.Constants.RNK_STRUCTURE_AUDITED ? "Audited" : "Not Audited", new { @readonly = "true" })%>
+                            <%=Html.HiddenFor(m=>m.AuditedStatus) %>
                         </div>
                    </td>
                </tr>

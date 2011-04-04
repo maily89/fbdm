@@ -32,10 +32,10 @@
                <%= Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
             </td>
             <td>
-                <%= Html.Encode(item.IndexType) %>
+                <%= Html.Encode(item.IndexType == FBD.CommonUtilities.Constants.RNK_STRUCTURE_FINANCIAL_INDEX ? "Financial Index" : "NonFinancial Index")%>
             </td>
             <td>
-                <%= Html.Encode(item.AuditedStatus) %>
+                <%= Html.Encode(item.AuditedStatus == FBD.CommonUtilities.Constants.RNK_STRUCTURE_AUDITED ? "Audited" : "Not Audited")%>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Percentage)) %>
