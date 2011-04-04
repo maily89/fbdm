@@ -22,6 +22,11 @@ namespace FBD.Controllers
         /// <returns>[Index] view</returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             var branch = SystemBranches.SelectBranches();
             var model = new SYSUsersIndexViewModel();
             try
@@ -47,7 +52,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(string BranchID)
         {
-
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new SYSUsersIndexViewModel();
             try
             {
@@ -89,6 +97,10 @@ namespace FBD.Controllers
         /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new SYSUsersViewModel();
             try
             {
@@ -120,7 +132,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(SYSUsersViewModel data)
         {
-            
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -190,6 +205,10 @@ namespace FBD.Controllers
         /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new SYSUsersViewModel();
 
             try
@@ -232,6 +251,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, SYSUsersViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -273,6 +296,10 @@ namespace FBD.Controllers
         /// <returns>[Index] view</returns>
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = SystemUsers.DeleteUser(id);
@@ -297,6 +324,10 @@ namespace FBD.Controllers
         /// <returns>Edit View</returns>
         public ActionResult ResetPassword(string userID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = SystemUsers.ResetPassword(userID);

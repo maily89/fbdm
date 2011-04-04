@@ -24,6 +24,10 @@ namespace FBD.Controllers
         /// <returns>Return View with the newly created View Model</returns>
         public ActionResult Index ()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             FBDEntities entities = new FBDEntities();
             SYSUserGroupsRightsViewModel viewModel = new SYSUserGroupsRightsViewModel();
             try
@@ -58,6 +62,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["UserGroup"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_VIEW, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     SYSUserGroupsRightsViewModel viewModelForGroupDDL = SystemUserGroupsRights
                                                                         .CreateViewModelbyGroup(
                                                                             entities,
@@ -75,6 +83,10 @@ namespace FBD.Controllers
             {
                 if (formCollection["Save"] != null)
                 {
+                    if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+                    {
+                        return RedirectToAction("Unauthorized", "SYSAuths");
+                    }
                     SYSUserGroupsRightsViewModel viewModelForSaving = new SYSUserGroupsRightsViewModel();
                     viewModelForSaving.GroupID = formCollection["GroupID"].ToString();
                     for (int i = 0; i < int.Parse(formCollection["NumberOfRightRows"].ToString()); i++)
