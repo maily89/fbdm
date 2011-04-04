@@ -87,6 +87,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult ChangePassword(SYSChangePassModel model)
         {
+            if (Session[Constants.SESSION_USER_ID] == null)
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 if (!SYSChangePassModel.VerifyChangePass(model.UserID, model.OldPassword, model.NewPassword, model.ConfirmNewPassword))

@@ -22,6 +22,10 @@ namespace FBD.Controllers
         /// <returns>[Index] View</returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<SystemCustomerTypes> types = null;
             try
             {
@@ -45,6 +49,10 @@ namespace FBD.Controllers
         /// <returns>[Add] view</returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             return View();
         }
 
@@ -65,6 +73,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(SystemCustomerTypes type)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -113,6 +125,10 @@ namespace FBD.Controllers
         /// [Index] view: if ERROR</returns>
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             SystemCustomerTypes type = null;
             try
             {
@@ -147,6 +163,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, SystemCustomerTypes type)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -182,6 +202,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_SYSTEM_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = SystemCustomerTypes.DeleteType(id);

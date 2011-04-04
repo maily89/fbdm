@@ -73,6 +73,8 @@ namespace FBD.CommonUtilities
         public const string RIGHT_PARAMETERS_VIEW = "001";
         public const string RIGHT_PARAMETERS_UPDATE = "002";
         public const string RIGHT_RANKING = "003";
+        public const string RIGHT_SYSTEM_VIEW = "004";
+        public const string RIGHT_SYSTEM_UPDATE = "005";
 
 
         /***************** MESSAGE TYPES *****************/
