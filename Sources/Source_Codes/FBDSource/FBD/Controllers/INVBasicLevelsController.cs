@@ -17,7 +17,8 @@ namespace FBD.Controllers
         /// Use FIBasicIndexLevels class to select all the Basic index levels
         /// in the table Business.BasicIndexLevels then display to the [Index] View
         /// </summary>
-        /// <returns></returns>
+        /// <returns>index view</returns>
+        
         public ActionResult Index()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))

@@ -42,9 +42,9 @@ namespace FBD.Controllers
         //
         // GET: /INVBasicRank/Add
         /// <summary>
-        /// 
+        /// Create a add form for user
         /// </summary>
-        /// <returns></returns>
+        /// <returns> add view</returns>
         public ActionResult Add()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -58,10 +58,10 @@ namespace FBD.Controllers
         //
         // POST: /INVBasicRank/Add
         /// <summary>
-        /// 
+        /// Select infor from add form and insert it into db
         /// </summary>
-        /// <param name="rank"></param>
-        /// <returns></returns>
+        /// <param name="rank">basic rank object</param>
+        /// <returns>index view</returns>
         [HttpPost]
         public ActionResult Add(IndividualBasicRanks BasicRank)
         {
@@ -93,10 +93,10 @@ namespace FBD.Controllers
         //
         // GET: /INVBasicRank/Edit/5
         /// <summary>
-        /// 
+        /// Create a edit form with selected basic rank
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">id</param>
+        /// <returns>index view</returns>
         public ActionResult Edit(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -123,11 +123,11 @@ namespace FBD.Controllers
         //
         // POST: /INVBasicRank/Edit/5
         /// <summary>
-        /// 
+        /// Select edited information and update to db
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="rank"></param>
-        /// <returns></returns>
+        /// <param name="id">id</param>
+        /// <param name="rank">new rank</param>
+        /// <returns>index view</returns>
         [HttpPost]
         public ActionResult Edit(string id, IndividualBasicRanks basicRank)
         {
@@ -162,10 +162,10 @@ namespace FBD.Controllers
         //
         // GET: /INVBasicRank/Delete/5
         /// <summary>
-        /// 
+        /// Delete selected rank
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id"> ID</param>
+        /// <returns>Index view</returns>
         public ActionResult Delete(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))

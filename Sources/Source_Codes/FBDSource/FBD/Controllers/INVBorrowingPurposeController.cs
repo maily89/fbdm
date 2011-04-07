@@ -48,6 +48,11 @@ namespace FBD.Controllers
         #region Create
         //
         // GET: /INVBorrowingPurpose/Create
+
+        /// <summary>
+        /// Create a form for user
+        /// </summary>
+        /// <returns> create view</returns>
         public ActionResult Create()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -60,6 +65,11 @@ namespace FBD.Controllers
         //
         // POST: /INVBorrowingPurpose/Create
 
+        /// <summary>
+        /// Get information from create view to insert into DB
+        /// </summary>
+        /// <param name="IndividualBorrowingPP">IndividualBorrowingPP</param>
+        /// <returns>index view</returns>
         [HttpPost]
         public ActionResult Create(IndividualBorrowingPurposes IndividualBorrowingPP)
         {
@@ -145,6 +155,12 @@ namespace FBD.Controllers
       
         //
         // GET: /INVBorrowingPurpose/Delete/5
+
+        /// <summary>
+        /// Delete a selectedborrowing purpose
+        /// </summary>
+        /// <param name="id"> id </param>
+        /// <returns> index view </returns>
  
         public ActionResult Delete(string id)
         {

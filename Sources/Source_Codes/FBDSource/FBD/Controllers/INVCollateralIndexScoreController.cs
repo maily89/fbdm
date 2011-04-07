@@ -15,6 +15,11 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralIndexScore/
 
+        /// <summary>
+        /// Create index view with a list of collatealindex score form db 
+        /// </summary>
+        /// <returns> index view </returns>
+        
         public ActionResult Index()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
@@ -51,10 +56,10 @@ namespace FBD.Controllers
 
 
         /// <summary>
-        /// 
+        /// process display a collateralindexscore and save the updated score
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">formCollection</param>
+        /// <returns>index view</returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {

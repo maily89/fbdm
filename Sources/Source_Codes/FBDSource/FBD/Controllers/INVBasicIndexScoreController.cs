@@ -12,8 +12,13 @@ namespace FBD.Controllers
 {
     public class INVBasicIndexScoreController : Controller
     {
+
         //
         // GET: /INVBasicIndexScore/
+        /// <summary>
+        /// Get List for index page 
+        /// </summary>
+        /// <returns></returns>
 
         public ActionResult Index()
         {
@@ -52,10 +57,10 @@ namespace FBD.Controllers
 
 
         /// <summary>
-        /// 
+        /// Create index view and get information from form
         /// </summary>
-        /// <param name="formCollection"></param>
-        /// <returns></returns>
+        /// <param name="formCollection">formCollection</param>
+        /// <returns>index view</returns>
          [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
