@@ -70,6 +70,3 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
-</asp:Content>
-
