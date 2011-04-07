@@ -18,7 +18,7 @@ namespace FBD.Controllers
         /// <summary>
         /// Display list of Rank
         /// </summary>
-        /// <returns></returns>
+        /// <returns>index view</returns>
         public ActionResult Index()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
@@ -42,9 +42,9 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralRank/Add
         /// <summary>
-        /// 
+        /// create a add form 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>add view</returns>
         public ActionResult Add()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -59,10 +59,10 @@ namespace FBD.Controllers
         //
         // POST: /INVCollateralRank/Add
         /// <summary>
-        /// 
+        /// Insert information from add form to DB
         /// </summary>
-        /// <param name="rank"></param>
-        /// <returns></returns>
+        /// <param name="rank">rank object</param>
+        /// <returns>index view</returns>
         [HttpPost]
         public ActionResult Add(IndividualCollateralRanks CollateralRank)
         {
@@ -94,10 +94,10 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralRank/Edit/5
         /// <summary>
-        /// 
+        /// create edit form
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">id</param>
+        /// <returns>edit form</returns>
         public ActionResult Edit(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -124,11 +124,11 @@ namespace FBD.Controllers
         //
         // POST: /INVCollateralRank/Edit/5
         /// <summary>
-        /// 
+        /// select edited information from edit page to update into db
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="rank"></param>
-        /// <returns></returns>
+        /// <param name="id">id</param>
+        /// <param name="rank">updated rank</param>
+        /// <returns>index</returns>
         [HttpPost]
         public ActionResult Edit(string id, IndividualCollateralRanks CollateralRank)
         {
@@ -163,10 +163,10 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralRank/Delete/5
         /// <summary>
-        /// 
+        /// Delete a selected rank
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">id</param>
+        /// <returns>index</returns>
         public ActionResult Delete(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))

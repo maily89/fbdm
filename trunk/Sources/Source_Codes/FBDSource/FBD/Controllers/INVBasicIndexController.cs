@@ -12,6 +12,10 @@ namespace FBD.Controllers
     {
         //
         // GET: /INVBasicIndex/
+        /// <summary>
+        /// Get List for index page 
+        /// </summary>
+        /// <returns>index view</returns>
 
         public ActionResult Index()
         {
@@ -43,7 +47,11 @@ namespace FBD.Controllers
        
         //
         // GET: /INVBasicIndex/Create
-
+        
+        /// <summary>
+        /// Generate create form
+        /// </summary>
+        /// <returns>create view</returns>
         public ActionResult Create()
         {
             return View();
@@ -51,7 +59,12 @@ namespace FBD.Controllers
 
         //
         // POST: /INVBasicIndex/Create
-
+        /// <summary>
+        /// Process create object
+        /// </summary>
+        /// <param name="individualBasicIndex">individualBasicIndex</param>
+        /// <returns>index view</returns>
+        
         [HttpPost]
         public ActionResult Create(IndividualBasicIndex individualBasicIndex)
         {
@@ -81,7 +94,11 @@ namespace FBD.Controllers
         
         //
         // GET: /INVBasicIndex/Edit/5
-
+        /// <summary>
+        /// Generate the edit form for user edit infor
+        /// </summary>
+        /// <param name="id"> ID </param>
+        /// <returns> Index page if success</returns>
         public ActionResult Edit(string id)
         {
             IndividualBasicIndex model = null;
@@ -102,6 +119,12 @@ namespace FBD.Controllers
 
         //
         // POST: /INVBasicIndex/Edit/5
+        /// <summary>
+        /// Process Get edit information and return the index page
+        /// </summary>
+        /// <param name="id"> ID </param>
+        /// <returns> Index page if success</returns>
+      
 
         [HttpPost]
         public ActionResult Edit(string id, IndividualBasicIndex individualBasicIndex)
@@ -132,7 +155,12 @@ namespace FBD.Controllers
 
         //
         // GET: /INVBasicIndex/Delete/5
-
+        /// <summary>
+        /// Delete the selected individualBasicIndex
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Index view</returns>
+        
         public ActionResult Delete(string id)
         {
             try

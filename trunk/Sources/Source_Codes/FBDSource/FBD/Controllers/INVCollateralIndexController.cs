@@ -13,6 +13,11 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralIndex/
 
+        /// <summary>
+        /// create a index view with a list of collateralindex from db
+        /// </summary>
+        /// <returns>index view</returns>
+        
         public ActionResult Index()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
@@ -44,6 +49,11 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralIndex/Create
 
+        /// <summary>
+        /// create a create form
+        /// </summary>
+        /// <returns>create view</returns>
+
         public ActionResult Create()
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -56,6 +66,12 @@ namespace FBD.Controllers
 
         //
         // POST: /INVCollateralIndex/Create
+
+        /// <summary>
+        /// select information from create view and insert it into db
+        /// </summary>
+        /// <param name="individualCollateralIndex">individualCollateralIndex</param>
+        /// <returns>index view</returns>
 
         [HttpPost]
         public ActionResult Create(IndividualCollateralIndex individualCollateralIndex)
@@ -91,6 +107,12 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralIndex/Edit/5
 
+        /// <summary>
+        /// Create a edit form with 
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>eidt view</returns>
+
         public ActionResult Edit(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
@@ -115,6 +137,13 @@ namespace FBD.Controllers
 
         //
         // POST: /INVCollateralIndex/Edit/5
+
+        /// <summary>
+        /// Process get information from edit form and update it into db
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="individualCollateralIndex">individualCollateralIndex</param>
+        /// <returns>index view</returns>
 
         [HttpPost]
         public ActionResult Edit(string id, IndividualCollateralIndex individualCollateralIndex)
@@ -150,6 +179,12 @@ namespace FBD.Controllers
         //
         // GET: /INVCollateralIndex/Delete/5
 
+        /// <summary>
+        /// Delete a selected collateral index from db
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>index view</returns>
+        
         public ActionResult Delete(string id)
         {
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
