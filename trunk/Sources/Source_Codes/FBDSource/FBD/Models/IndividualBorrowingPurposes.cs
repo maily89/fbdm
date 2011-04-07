@@ -66,7 +66,7 @@ namespace FBD.Models
         public static int EditBorowingPurpose(IndividualBorrowingPurposes IndividualBorrowingPP)
         {
             FBDEntities entities = new FBDEntities();
-            var temp = entities.IndividualBorrowingPurposes.First(pp => pp.PurposeID == IndividualBorrowingPP.PurposeID);
+            var temp = SelectBorrowingPPByID(IndividualBorrowingPP.PurposeID, entities);//entities.IndividualBorrowingPurposes.First(pp => pp.PurposeID == IndividualBorrowingPP.PurposeID);
             temp.Purpose = IndividualBorrowingPP.Purpose;
             
             int result = entities.SaveChanges();
@@ -77,7 +77,7 @@ namespace FBD.Models
         public static int DeleteBorrowingPurpose(string id)
         {
             FBDEntities entities = new FBDEntities();
-            var borrowingPP = entities.IndividualBorrowingPurposes.First(pp => pp.PurposeID == id);
+            var borrowingPP = SelectBorrowingPPByID(id, entities);//entities.IndividualBorrowingPurposes.First(pp => pp.PurposeID == id);
             entities.DeleteObject(borrowingPP);
             int temp = entities.SaveChanges();
 
