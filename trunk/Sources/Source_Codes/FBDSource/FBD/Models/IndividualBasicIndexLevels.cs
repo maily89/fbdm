@@ -40,7 +40,7 @@ namespace FBD.Models
             IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
 
             // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID == id);
+            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
 
             return IndividualBasicIndexLevels;
         }
@@ -50,7 +50,7 @@ namespace FBD.Models
             IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
 
             // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID == id);
+            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
 
             return IndividualBasicIndexLevels;
         }
@@ -87,8 +87,8 @@ namespace FBD.Models
             FBDEntities FBDModel = new FBDEntities();
 
             // Select the Basic index to be updated from database
-            var temp = FBDModel.IndividualBasicIndexLevels.First(level =>
-                                            level.LevelID == IndividualBasicIndexLevels.LevelID);
+            var temp = SelectBasicIndexLevelsByID(IndividualBasicIndexLevels.LevelID,FBDModel);//FBDModel.IndividualBasicIndexLevels.First(level =>
+                                            //level.LevelID.Equals(IndividualBasicIndexLevels.LevelID));
 
             // Update the Basic index to the entities
             temp.Score = IndividualBasicIndexLevels.Score;
@@ -110,7 +110,7 @@ namespace FBD.Models
         public static int DeleteBasicIndexLevels(Decimal id)
         {
             FBDEntities FBDModel = new FBDEntities();
-            var BasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID == id);
+            var BasicIndexLevels = SelectBasicIndexLevelsByID(id, FBDModel);//FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
 
             // Delete business Basic index from entities
             FBDModel.DeleteObject(BasicIndexLevels);
@@ -125,7 +125,7 @@ namespace FBD.Models
         {
             [DisplayName("Level ID")]
             [Required(ErrorMessage = "Level ID is required")]
-            public Decimal LevelID { get; set; }
+            public String LevelID { get; set; }
 
             [DisplayName("Score")]
             [Required(ErrorMessage = "Score is required")]

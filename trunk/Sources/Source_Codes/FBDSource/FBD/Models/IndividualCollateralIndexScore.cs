@@ -17,7 +17,7 @@ namespace FBD.Models
         public static IndividualCollateralIndexScore SelectIndividualCollateralIndexScoreByScoreID(FBDEntities FBDModel, int prmScoreID)
         {
             IndividualCollateralIndexScore score = FBDModel.IndividualCollateralIndexScore
-                                                        .First(s => s.ScoreID == prmScoreID);
+                                                        .First(s => s.ScoreID.Equals(prmScoreID));
 
             return score;
         }

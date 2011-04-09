@@ -54,6 +54,12 @@ namespace FBD.Controllers
         /// <returns>create view</returns>
         public ActionResult Create()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            TempData[Constants.SCC_MESSAGE] = null;
+            TempData[Constants.ERR_MESSAGE] = null;
             return View();
         } 
 
@@ -68,6 +74,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Create(IndividualBasicIndex individualBasicIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 // If there is no error from client
@@ -101,6 +111,10 @@ namespace FBD.Controllers
         /// <returns> Index page if success</returns>
         public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             IndividualBasicIndex model = null;
             try
             {
@@ -129,6 +143,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, IndividualBasicIndex individualBasicIndex)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -163,6 +181,10 @@ namespace FBD.Controllers
         
         public ActionResult Delete(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 int result = IndividualBasicIndex.DeleteBasicIndex(id);

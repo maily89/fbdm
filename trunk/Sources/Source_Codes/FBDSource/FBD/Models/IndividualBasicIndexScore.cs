@@ -17,7 +17,7 @@ namespace FBD.Models
         public static IndividualBasicIndexScore SelectIndividualBasicIndexScoreByScoreID(FBDEntities FBDModel, int prmScoreID)
         {
             IndividualBasicIndexScore score = FBDModel.IndividualBasicIndexScore
-                                                        .First(s => s.ScoreID == prmScoreID);
+                                                        .First(s => s.ScoreID.Equals(prmScoreID));
 
             return score;
         }

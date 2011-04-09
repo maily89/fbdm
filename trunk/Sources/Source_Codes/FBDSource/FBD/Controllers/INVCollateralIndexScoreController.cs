@@ -68,9 +68,7 @@ namespace FBD.Controllers
             try
             {
                 // If action posted to Controller is choosing item from drop down list...
-                if (formCollection["Collateral Index"] != null
-                    || formCollection["Borrowing Purpose"] != null
-                       )
+                if (formCollection["Collateral Index"] != null )
                 {
                     // ... then create view model for displaying information
                     INVCollateralIndexScoreViewModel viewModelForDisplayingInformation = IndividualCollateralIndexScore

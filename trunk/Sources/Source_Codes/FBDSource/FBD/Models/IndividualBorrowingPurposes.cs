@@ -88,7 +88,7 @@ namespace FBD.Models
         {
             [DisplayName("Purpose ID")]
             [Required(ErrorMessage = "Borrowing purpose ID is required")]
-            [StringLength(20)]
+            [StringLength(3)]
             public string PurposeID { get; set; }
 
             [DisplayName("Purpose ")]

@@ -28,7 +28,7 @@ namespace FBD.Models
         {
             if (string.IsNullOrEmpty(id)) return null;
             FBDEntities entities = new FBDEntities();
-            var rank = entities.IndividualBasicRanks.First(i => i.RankID == id);
+            var rank = entities.IndividualBasicRanks.First(i => i.RankID.Equals(id));
             return rank;
         }
 
@@ -41,7 +41,7 @@ namespace FBD.Models
         public static IndividualBasicRanks SelectRankByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var rank = entities.IndividualBasicRanks.First(i => i.RankID == id);
+            var rank = entities.IndividualBasicRanks.First(i => i.RankID.Equals(id));
             return rank;
         }
 

@@ -86,10 +86,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommonUtilities\Caculator.cs" />
     <Compile Include="CommonUtilities\Constants.cs" />
     <Compile Include="CommonUtilities\DateTimeHandler.cs" />
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
+    <Compile Include="CommonUtilities\KMean.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
+    <Compile Include="Controllers\MiningByStepController.cs" />
+    <Compile Include="Controllers\MiningController.cs" />
     <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
     <Compile Include="Controllers\SYSAuthsController.cs" />
@@ -216,6 +220,7 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\CustomerBusinessRankingViewModel.cs" />
     <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
     <Compile Include="ViewModels\RNKCollateralRow.cs" />
     <Compile Include="ViewModels\RNKBasicRow.cs" />
@@ -246,6 +251,7 @@
     <Compile Include="ViewModels\SYSUserGroupsRightsViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
+    <Compile Include="CommonUtilities\Vector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2010.3.1318\Black\editor.png" />
@@ -491,9 +497,12 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
+    <Content Include="MvcPager.dll" />
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
+    <Content Include="Views\Mining\GetCustomerList.aspx" />
+    <Content Include="Views\Mining\Index.aspx" />
     <Content Include="Views\RNKCustomerIndividuals\Add.aspx" />
     <Content Include="Views\RNKCustomerIndividuals\Edit.aspx" />
     <Content Include="Views\RNKCustomerIndividuals\Index.aspx" />

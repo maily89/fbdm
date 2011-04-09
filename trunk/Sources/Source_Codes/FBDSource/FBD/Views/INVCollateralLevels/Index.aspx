@@ -30,7 +30,7 @@
                 <%= Html.ActionLink("Delete", "Delete", new { id = item.LevelID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete levels " + item.LevelID + "?');" })%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.LevelID)) %>
+                <%= Html.Encode(String.Format("{0}", item.LevelID)) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Score)) %>

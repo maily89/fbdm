@@ -22,7 +22,7 @@ namespace FBD.Models
         {
             List<IndividualBasicIndexProportion> lstINVProportionByBorrowingPP = FBDModel
                                                                                 .IndividualBasicIndexProportion
-                                                                                .Include("IndividualBasicIndex")
+                                                                               // .Include("IndividualBasicIndex")
                                                                                 .Where(p => p.IndividualBorrowingPurposes
                                                                                              .PurposeID
                                                                                              .Equals(prmBorrowingPPID))
@@ -43,8 +43,8 @@ namespace FBD.Models
             {
                 IndividualBasicIndexProportion lstINVProportionByBorrowingPP = FBDModel
                                                                                     .IndividualBasicIndexProportion
-                                                                                    .Include("IndividualBasicIndex")
-                                                                                    .Include("IndividualBasicIndex")
+                                                                                   // .Include("IndividualBasicIndex")
+                                                                                    //.Include("IndividualBasicIndex")
                                                                                     .First(p => p.IndividualBorrowingPurposes
                                                                                                  .PurposeID
                                                                                                  .Equals(prmBorrowingPPID)
@@ -68,10 +68,10 @@ namespace FBD.Models
         public static IndividualBasicIndexProportion SelectBasicIndexProportionByProportionID(FBDEntities FBDModel,
                                                                                                     int ProportionID)
         {
-            //to: recheck about the exeption: null = null. however, we can't use .equal in null case
+            //to: recheck about the exeption: null = null. however, we can't use .equal in null case9
             IndividualBasicIndexProportion BasicIndexProportion = FBDModel
                                                                          .IndividualBasicIndexProportion
-                                                                         .First(p => p.ProportionID == ProportionID);
+                                                                         .First(p => p.ProportionID.Equals(ProportionID));
             
             return BasicIndexProportion;
         }
@@ -140,8 +140,7 @@ namespace FBD.Models
         public static int DeleteBasicIndexProportion(FBDEntities FBDModel, int ProportionID)
         {
             IndividualBasicIndexProportion deletedBasicIndexProportion = new IndividualBasicIndexProportion();
-            deletedBasicIndexProportion = FBDModel.IndividualBasicIndexProportion
-                                                .First(p => p.ProportionID == ProportionID);
+            deletedBasicIndexProportion = SelectBasicIndexProportionByProportionID(FBDModel, ProportionID);
             FBDModel.DeleteObject(deletedBasicIndexProportion);
             int temp = FBDModel.SaveChanges();
 
@@ -211,7 +210,7 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// Create a view model used to exchange data between Controller and View of INVProportion business
+        /// Create a view model used to exchange data between Controller and View of INVProportion 
         /// </summary>
         /// <param name="prmBorrowingPP">the selected Borrowing purpose chosen from drop down list of View</param>
         /// <returns>The view model containing data to be displayed</returns>
@@ -274,9 +273,9 @@ namespace FBD.Models
         }
         class IndividualBasicIndexProportionMetaData
         {
-
-           
-            [StringLength(255)]
+            [Required(ErrorMessage="Proportion can't be empty")]
+            [StringLength(5)]
+            [RegularExpression("[0-9]*.",ErrorMessage="Propotion must be a numberic")]
             public decimal Proportion { get; set; }
         }
     }

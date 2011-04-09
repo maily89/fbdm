@@ -107,6 +107,10 @@ namespace FBD.Controllers
         // GET: /INVBorrowingPurpose/Edit/5
          public ActionResult Edit(string id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             IndividualBorrowingPurposes model = null;
             try
             {
@@ -128,6 +132,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(string id, IndividualBorrowingPurposes individualBorrowingPP)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
