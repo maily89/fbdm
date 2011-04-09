@@ -37,7 +37,7 @@
             <%= Html.HiddenFor(model => model.BorrowingPPID) %>
             <%= Html.Hidden("NumberOfProportionRows", Model.ProportionRows.Count) %>
             <td>
-                <%= Html.Label("Financial Index Proportion") %>
+                <%= Html.Label("Basic Index Proportion") %>
             </td>
             
             <td>
