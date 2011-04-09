@@ -497,7 +497,6 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
-    <Content Include="MvcPager.dll" />
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
