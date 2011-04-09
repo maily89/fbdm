@@ -88,7 +88,7 @@ namespace FBD.Models
             FBDEntities FBDModel = new FBDEntities();
 
             // Select the Basic index to be updated from database
-            var temp = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(individualBasicIndex.IndexID));
+            var temp = SelectBasicIndexByID(individualBasicIndex.IndexID, FBDModel);//FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(individualBasicIndex.IndexID));
 
             // Update the Basic index to the entities
             temp.IndexName = individualBasicIndex.IndexName;
@@ -106,7 +106,7 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            var BasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
+            var BasicIndex = SelectBasicIndexByID(id, FBDModel); //FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
 
             // Delete business Basic index from entities
             FBDModel.DeleteObject(BasicIndex);
@@ -121,6 +121,7 @@ namespace FBD.Models
             [DisplayName("Index ID")]
             [Required(ErrorMessage = "Index ID is required")]
             [StringLength(20)]
+            [RegularExpression("[0-9]+", ErrorMessage = "Index ID must be numberic")]
             public string IndexID { get; set; }
 
             [DisplayName("Index Name")]

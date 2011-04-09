@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -19,6 +20,34 @@ namespace FBD.Models
         {
             FBDEntities entities = new FBDEntities();
             return entities.CustomersBusinessRanking.OrderBy(m => m.ID).ToList();
+        }
+
+        public static List<CustomersBusinessRanking> SelectBusinessRankings(string OrderBy)
+        {
+            FBDEntities entities = new FBDEntities();
+            return entities.CustomersBusinessRanking.OrderBy(OrderBy).ToList();
+        }
+
+        //public static List<CustomersBusinessRanking> SelectBusinessRankingsDeOrder(string DeOrderBy, string Descending)
+        //{
+        //    FBDEntities entities = new FBDEntities();
+        //    return entities.CustomersBusinessRanking.OrderByDescending(DeOrderBy).ToList();
+        //}
+
+        public static List<Vector> SelectBusinessRankingToVector()
+        {
+            FBDEntities entities = new FBDEntities();
+            List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking.Include("CustomersBusinesses").Include("BusinessRanks").ToList();
+            List<Vector> vList = new List<Vector>();
+            foreach(CustomersBusinessRanking cbr in cbrList)
+            {
+                if (cbr.FinancialScore != null && cbr.NonFinancialScore != null)
+                {
+                    Vector v = new Vector(cbr);
+                    vList.Add(v);
+                }
+            }
+            return vList;
         }
 
         /// <summary>
@@ -113,6 +142,20 @@ namespace FBD.Models
 
             int result=entities.SaveChanges();
 
+            return result <= 0 ? 0 : 1;
+        }
+
+        //should change type of rank ID
+        public static int UpdateBusinessRanking(int ID, string rankID)
+        {
+            
+            FBDEntities entities = new FBDEntities();
+            var temp = entities.CustomersBusinessRanking.First(i => i.ID == ID); ;
+            var tempRank = BusinessRanks.SelectRankByID(rankID, entities);
+            temp.BusinessRanks = tempRank;
+            temp.DateModified = DateTime.Now ;
+            
+            int result = entities.SaveChanges();
             return result <= 0 ? 0 : 1;
         }
 

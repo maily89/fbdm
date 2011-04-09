@@ -40,7 +40,7 @@ namespace FBD.Models
             IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
 
             // Get the business Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID == id);
+            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
 
             return IndividualCollateralIndexLevels;
         }
@@ -50,7 +50,7 @@ namespace FBD.Models
             IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
 
             // Get the business Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID == id);
+            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
 
             return IndividualCollateralIndexLevels;
         }
@@ -87,8 +87,8 @@ namespace FBD.Models
             FBDEntities FBDModel = new FBDEntities();
 
             // Select the Collateral Index to be updated from database
-            var temp = FBDModel.IndividualCollateralIndexLevels.First(level =>
-                                            level.LevelID == IndividualCollateralIndexLevels.LevelID);
+            var temp = SelectCollateralIndexLevelsByID(IndividualCollateralIndexLevels.LevelID, FBDModel);// FBDModel.IndividualCollateralIndexLevels.First(level =>
+                                            //level.LevelID.Equals(IndividualCollateralIndexLevels.LevelID));
 
             // Update the Collateral Index to the entities
             temp.Score = IndividualCollateralIndexLevels.Score;
@@ -110,7 +110,7 @@ namespace FBD.Models
         public static int DeleteCollateralIndexLevels(Decimal id)
         {
             FBDEntities FBDModel = new FBDEntities();
-            var CollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID == id);
+            var CollateralIndexLevels = SelectCollateralIndexLevelsByID(id, FBDModel);//FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
 
             // Delete business Collateral Index from entities
             FBDModel.DeleteObject(CollateralIndexLevels);

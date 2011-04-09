@@ -89,7 +89,7 @@ namespace FBD.Models
             FBDEntities FBDModel = new FBDEntities();
 
             // Select the Individual Collateral Index to be updated from database
-            var temp = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(IndividualCollateralIndex.IndexID));
+            var temp = SelectCollateralIndexByID(IndividualCollateralIndex.IndexID, FBDModel);//FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(IndividualCollateralIndex.IndexID));
 
             // Update the Individual Collateral Index to the entities
             temp.IndexName = IndividualCollateralIndex.IndexName;
@@ -107,7 +107,7 @@ namespace FBD.Models
         {
             FBDEntities FBDModel = new FBDEntities();
 
-            var CollateralIndex = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
+            var CollateralIndex = SelectCollateralIndexByID(id, FBDModel); //FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
 
             // Delete business Individual Collateral Index from entities
             FBDModel.DeleteObject(CollateralIndex);

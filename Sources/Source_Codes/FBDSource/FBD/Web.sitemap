@@ -39,7 +39,7 @@
         <siteMapNode title="Collateral Paramaters"  description="Managing Collateral Parameter for individual customers">
           <siteMapNode title="Collateral Index" controller="INVCollateralIndex" action="Index" />
           <siteMapNode title="Collateral Index Scoring" controller="INVCollateralIndexScore" action="Index" />
-          <siteMapNode title="Collateral Index Level" controller="INVCollateralIndexLevels" action="Index" />
+          <siteMapNode title="Collateral Index Level" controller="INVCollateralLevels" action="Index" />
           <siteMapNode title="Collateral Rank" controller="INVCollateralRank" action="Index" />
         </siteMapNode>
         <siteMapNode title="Summary Evaluation" controller="INVSummaryRank" action="Index" />

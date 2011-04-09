@@ -4681,7 +4681,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="FBDModel">
+      <Diagram Name="FBDModel" ZoomLevel="100">
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.75" PointY="21" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="0.75" PointY="8.5" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="14.75" Height="1.7879850260416674" IsExpanded="true" />
