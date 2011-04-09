@@ -145,10 +145,15 @@ namespace FBD.CommonUtilities
 
         public const string SESSION_USER_ID = "UserID";
 
+
+        //10 centroid vector
+        public static double[] level =  { 0,25, 32, 41 ,48,55,63,72,81,90,100};
+        
         // RANKING STRUCTURE
         public const string RNK_STRUCTURE_AUDITED = "1";
         public const string RNK_STRUCTURE_NONAUDITED = "0";
         public const string RNK_STRUCTURE_FINANCIAL_INDEX = "1";
         public const string RNK_STRUCTURE_NONFINANCIAL_INDEX = "2";
+
     }
 }
