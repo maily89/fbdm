@@ -92,7 +92,6 @@
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="CommonUtilities\KMean.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
-    <Compile Include="Controllers\MiningByStepController.cs" />
     <Compile Include="Controllers\MiningController.cs" />
     <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
@@ -220,7 +219,6 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
-    <Compile Include="ViewModels\CustomerBusinessRankingViewModel.cs" />
     <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
     <Compile Include="ViewModels\RNKCollateralRow.cs" />
     <Compile Include="ViewModels\RNKBasicRow.cs" />
