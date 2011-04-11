@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -29,7 +30,7 @@ namespace FBD.Models
         {
             
             FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinesses.First(i => i.BusinessID == id);
+            var Business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
 
             return Business;
         }
@@ -44,7 +45,7 @@ namespace FBD.Models
         public static CustomersBusinesses SelectBusinessByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var business = entities.CustomersBusinesses.First(i => i.BusinessID == id);
+            var business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
             return business;
         }
 

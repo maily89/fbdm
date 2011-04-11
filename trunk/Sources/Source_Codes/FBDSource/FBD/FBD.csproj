@@ -95,6 +95,7 @@
     <Compile Include="Controllers\MiningController.cs" />
     <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
+    <Compile Include="Controllers\RPTBusinessReportController.cs" />
     <Compile Include="Controllers\SYSAuthsController.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
@@ -172,7 +173,6 @@
     <Compile Include="Models\CustomersIndividualRanking.cs" />
     <Compile Include="Models\CustomersIndividuals.cs" />
     <Compile Include="Models\CustomersLoanTerm.cs" />
-    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FBDModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -192,6 +192,12 @@
     <Compile Include="Models\DatabaseHelper.cs" />
     <Compile Include="Models\RNKRankMarking.cs" />
     <Compile Include="Models\RNKScaleMarking.cs" />
+    <Compile Include="Models\RPTBusinessReportModel.cs" />
+    <Compile Include="Models\RPTFinancialReportModel.cs" />
+    <Compile Include="Models\RPTIBusinessReportService.cs" />
+    <Compile Include="Models\RPTIBusinessReportServiceImpl.cs" />
+    <Compile Include="Models\RPTNonFinancialReportModel.cs" />
+    <Compile Include="Models\RPTScaleReportModel.cs" />
     <Compile Include="Models\SYSChangePassModel.cs" />
     <Compile Include="Models\SYSLoginModel.cs" />
     <Compile Include="Models\SystemBranches.cs" />
@@ -202,17 +208,33 @@
     <Compile Include="Models\SystemUserGroupsRights.cs" />
     <Compile Include="Models\SystemUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report\BusinessReport.cs">
+    <Compile Include="ReportDataSets\BusinessReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BusinessReport.rpt</DependentUpon>
+      <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BusinessFinancialReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessFinancialReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\BusinessReportSource.cs" />
-    <Compile Include="Report\ScaleReport.cs">
+    <Compile Include="Report\BusinessGeneralReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ScaleReport.rpt</DependentUpon>
+      <DependentUpon>BusinessGeneralReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BusinessNonFinancialReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessNonFinancialReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BusinessScaleReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScaleReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
@@ -521,6 +543,17 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <None Include="ReportDataSets\BusinessReportDataSet.xsc">
+      <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ReportDataSets\BusinessReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BusinessReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportDataSets\BusinessReportDataSet.xss">
+      <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
+    </None>
     <EntityDeploy Include="Models\FBDModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
@@ -545,13 +578,21 @@
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Report\BusinessReport.rpt">
+    <EmbeddedResource Include="Report\BusinessFinancialReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BusinessReport.cs</LastGenOutput>
+      <LastGenOutput>BusinessFinancialReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\ScaleReport.rpt">
+    <EmbeddedResource Include="Report\BusinessGeneralReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ScaleReport.cs</LastGenOutput>
+      <LastGenOutput>BusinessGeneralReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BusinessNonFinancialReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BusinessNonFinancialReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BusinessScaleReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BusinessScaleReport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -583,7 +624,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61880</DevelopmentServerPort>
+          <DevelopmentServerPort>2482</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
