@@ -188,7 +188,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: Temporary error handle.
+                
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.SYSTEM_USER_GROUP);
                 return View(group);

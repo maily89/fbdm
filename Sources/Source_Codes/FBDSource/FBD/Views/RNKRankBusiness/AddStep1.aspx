@@ -9,26 +9,32 @@
     <h2>Add Customer Ranking</h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+    <%Html.RenderPartial("BusinessStep",FBD.CommonUtilities.Constants.BusinessRankStep.ChooseCustomer); %>
 
-    
 <% using (Html.BeginForm())
                    { %>
+       <table width="100%">
+		<tr>
+		<td><b>Reporting Period</b></td>
+        <td> <%= Html.DropDownList("PeriodID", new SelectList(Model.ReportingPeriods as IEnumerable,
+                "PeriodID", "PeriodName", Model != null ? Model.PeriodID : null))%></td>
+        </tr>
+		<tr>
+		<td><b>Business customer</b></td>
+		<td><%= Html.DropDownList("CustomerID", new SelectList(Model.BusinessCustomer as IEnumerable,
+        "BusinessID", "CustomerName", Model != null ? Model.CustomerID : 0))%></td>
+		</tr>
+		<tr>
+		<td></td>
+		<td>
+		<input value="Choose this customer" type="submit"/>
+        <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
 
-       <p>Reporting Period<br/>   
-          <%= Html.DropDownList("PeriodID", new SelectList(Model.ReportingPeriods as IEnumerable,
-                "PeriodID", "PeriodName", Model != null ? Model.PeriodID : null))%>
-            
+		</td>
+		</tr>
+	</table>
 
-        </p>
-
-       <p>
-       Customer List
-
-        <br/>
-            <%= Html.DropDownList("CustomerID", new SelectList(Model.BusinessCustomer as IEnumerable,
-        "BusinessID", "CustomerName", Model != null ? Model.CustomerID : 0))%>
-         </p>
-      <input type="submit" value="Rank this customer" />
+       
 
 <%} %>
 

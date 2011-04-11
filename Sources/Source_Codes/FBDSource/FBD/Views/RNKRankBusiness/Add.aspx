@@ -11,8 +11,9 @@
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-
-
+    
+    <%Html.RenderPartial("BusinessStep",FBD.CommonUtilities.Constants.BusinessRankStep.General); %>
+    <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
     <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
        {%>
         <%= Html.ValidationSummary(true) %>
@@ -20,34 +21,12 @@
         <fieldset>
             <legend>Fields</legend>
             <table>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        CIF Number
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.CIF, new { @readonly = "true" })%>
-                    </div>
-               </td>
-           </tr>
+            
             <tr>
                 <td>
                     <div class="editor-label">
                         <%= Html.HiddenFor(m=>m.IsNew) %>
-                        <%= FBD.CommonUtilities.Constants.SYSTEM_REPORTING_PERIOD %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.PeriodID, new { @readonly = "true"})%>
-                    </div>
-               </td>
-           </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
+                        <%= Html.HiddenFor(model => model.PeriodID)%>
                         <%= Html.HiddenFor(model=>model.CustomerID) %>
                         <%= Html.LabelFor(model => model.BusinessRanking.CreditDepartment) %>
                     </div>
@@ -161,7 +140,7 @@
                 <td>
                     <div class="editor-field">
                         <%= Html.DropDownList("CustomerTypeID", new SelectList(FBD.ViewModels.RNKRankingViewModel.CustomerType as IEnumerable, 
-"TypeID", "TypeName", Model!=null?Model.CustomerTypeID:null),"Customer Type") %>
+"TypeID", "TypeName", Model!=null?Model.CustomerTypeID:null)) %>
                     </div>
                </td>
            </tr>

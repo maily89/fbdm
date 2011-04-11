@@ -6,7 +6,7 @@ using FBD.ViewModels;
 
 namespace FBD.Models
 {
-    public partial class IndividualCollateralIndexScore
+    public partial class IndividualCollateralIndexScore : FBD.Models.IIndexScore
     {
         /// <summary>
         /// Select all the Collateral index score filtered by specified score id

@@ -1,17 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<FBD.ViewModels.RNKBasicRow>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%=TempData["EditMode"] != null ? "Edit Basic Score" : "Add Basic Score"%>
+	<%=ViewData["Edit"] != null ? "Edit Basic Score" : "Add Basic Score"%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%=TempData["EditMode"] != null ? "Edit Basic Score" : "Add Basic Score"%></h2>
+    <h2><%=ViewData["Edit"] != null ? "Edit Basic Score" : "Add Basic Score"%></h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditBasicScore" : "AddBasicScore", "RNKRankIndividual", new { id = Url.RequestContext.RouteData.Values["id"] }))
+    <% if (ViewData["Edit"] != null){ %>
+    <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.Basic); %>
+    <%} %>
+    <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetIndividualRankingInfo(System.Convert.ToInt16(ViewData["RankID"])));%>
+    <% using (Html.BeginForm("AddBasicCalculate", "RNKRankIndividual", new { id = ViewData["RankID"] }))
        { %>
+       <%=Html.Hidden("Edit",ViewData["Edit"]) %>
+       <%=Html.Hidden("rankID",ViewData["RankID"]) %>
+
     <table>
         <tr>
             <th>IndexID</th>
@@ -32,7 +38,7 @@
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
                 <%= Html.HiddenFor(m=>m[i].LeafIndex) %>
-                <%= Html.HiddenFor(m=>m[i].CustomerBasicID) %>
+                <%= Html.HiddenFor(m=>m[i].CustomerScoreID) %>
                 <%= Html.Hidden("Index", i)%>
             </td>
             <td>
@@ -60,7 +66,27 @@
     <% } %>
 
     </table>
-    <input type="submit" value="Save" />
+    
+    <hr />
+    <table>
+	<tr>
+	<td><input value="Calculate Result" type="submit"/></td>
+	<%if (ViewData["Edit"] == null)
+    {%>
+	<td><input value="Skip this process" type="button" onclick="window.location.href='<%= Url.Action("AddCollateralScore", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%} else{ %>
+    <td><input value="Cancel" type="button" onclick="window.location.href='<%= Url.Action("DetailBasic", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%} %>
+	</tr>
+	</table>
+	<br />
+	<%if (ViewData["Edit"] == null)
+    {%>
+	<b>*Calculate:</b> Basic score will be displayed before next step<br />
+	<b>*Skip:</b> Basic score will get 0 as default
+
+    
+    <%}%>
 <%} %>
 
 

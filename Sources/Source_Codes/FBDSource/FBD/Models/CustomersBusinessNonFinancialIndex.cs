@@ -193,7 +193,7 @@ namespace FBD.Models
                 }
                 var temp = new RNKNonFinancialRow();
 
-                temp.CustomerNonFinancialID = customerNonFinancial.ID;
+                temp.CustomerScoreID = customerNonFinancial.ID;
                 temp.RankingID = rankingID;
                 temp.Index = item;
                 temp.LeafIndex = true;
@@ -262,9 +262,9 @@ namespace FBD.Models
             public string Value { get; set; }
         }
 
-        internal static void Reload(List<RNKNonFinancialRow> rnkNonFinancialRow)
+        internal static List<RNKNonFinancialRow> Reload(List<RNKNonFinancialRow> rnkNonFinancialRow)
         {
-            if (rnkNonFinancialRow.Count <= 0) return;
+            if (rnkNonFinancialRow.Count <= 0) return rnkNonFinancialRow;
             FBDEntities entities = new FBDEntities();
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rnkNonFinancialRow[0].RankingID);
             
@@ -276,6 +276,7 @@ namespace FBD.Models
                 item.Index = BusinessNonFinancialIndex.SelectNonFinancialIndexByID(entities, item.Index.IndexID);
                 item.ScoreList = BusinessNonFinancialIndexScore.SelectScoreByIndustryByNonFinancialIndex(entities, industryID, item.Index.IndexID);
             }
+            return rnkNonFinancialRow;
         }
     }
 }

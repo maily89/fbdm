@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FBD.Models
 {
     [MetadataType(typeof(IndividualCollateralIndexMetaData))]
-    public partial class IndividualCollateralIndex
+    public partial class IndividualCollateralIndex : IIndex
     {
         /// <summary>
         /// Select all the Individual Collateral Index in the table Business.CollateralIndex

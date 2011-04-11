@@ -52,7 +52,7 @@
       <siteMapNode title="User Decentralization" controller="SYSUserGroupsRights" action="Index" />
       <siteMapNode title="Branches" controller="SYSBranches" action="Index" />
       <siteMapNode title="Reporting Periods" controller="SYSReportingPeriod" action="Index" />
-      <siteMapNode title="Customer Types" controller="SYSCustomerType" action="Index" />
+      <siteMapNode title="Customer Types" controller="SYSCustomerTypes" action="Index" />
     </siteMapNode>
     <siteMapNode title="Credit Ranking"  description="Ranking">
       <siteMapNode title="Business Customers"  description="Ranking for business customers">
@@ -60,8 +60,8 @@
         <siteMapNode title="Business Ranking" controller="RNKRankBusiness" action="Index" />
       </siteMapNode>
       <siteMapNode title="Individual Customers"  description="Ranking for individual customers">
-        <siteMapNode title="Individual Customers List" controller="RNKCustomerIndividualsController" action="Index" />
-        <siteMapNode title="Individual Ranking" controller="" action="Index" />
+        <siteMapNode title="Individual Customers List" controller="RNKCustomerIndividuals" action="Index" />
+        <siteMapNode title="Individual Ranking" controller="RNKRankIndividual" action="Index" />
       </siteMapNode>
     </siteMapNode>
     <siteMapNode title="Report Management" description="Report Management" controller="" action="Index" />

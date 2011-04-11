@@ -32,6 +32,24 @@ namespace FBD.Models
             return null;
         }
 
+        public static int RemarkAll(int id)
+        {
+            FBDEntities entities=new FBDEntities();
+            RNKScaleMarking.SaveScaleScore(id,entities);
+            RNKFinancialMarking.CalculateFinancialScore(id, false, entities);
+            RNKNonFinancialMarking.CalculateNonFinancialScore(id, false, entities);
+
+            return SaveBusinessRank(id);
+        }
+
+        public static int SaveBusinessRank(int id)
+        {
+            FBDEntities entities=new FBDEntities();
+            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id, entities);
+            ranking.BusinessRanks = GetBusinessRank(ranking.FinancialScore.Value + ranking.NonFinancialScore.Value, entities);
+            return entities.SaveChanges() == 1 ? 0 : 1;
+        }
+
         public static BusinessRanks GetBusinessRank(decimal score, FBDEntities entities)
         {
             var rankList = BusinessRanks.SelectRanks(entities);
@@ -41,7 +59,7 @@ namespace FBD.Models
             }
             return null;
         }
-        public static IndividualSummaryRanks GetIndividualRank(int id, FBDEntities entities)
+        public static IndividualSummaryRanks SaveIndividualRank(int id, FBDEntities entities)
         {
             
             var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id,entities);
@@ -53,9 +71,16 @@ namespace FBD.Models
             var rankValid = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(entities, basicRank.RankID, collateralRank.RankID);
 
             if (rankValid.Count <= 0) return null;
-            else return rankValid[0];
+            else
+            {
+                ranking.IndividualSummaryRanks = rankValid[0];
+                entities.SaveChanges();
+                return rankValid[0];
+            }
         
         }
+
+
 
 
         private static bool IsInRank(decimal score, IRanks item)

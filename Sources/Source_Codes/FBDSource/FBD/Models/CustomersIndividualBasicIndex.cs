@@ -181,7 +181,7 @@ namespace FBD.Models
                 }
                 var temp = new RNKBasicRow();
 
-                temp.CustomerBasicID = customerBasic.ID;
+                temp.CustomerScoreID = customerBasic.ID;
                 temp.RankingID = rankingID;
                 temp.Index = item;
                 temp.LeafIndex = true;
@@ -238,14 +238,14 @@ namespace FBD.Models
             return indexScore;
         }
         #endregion
-        internal static void Reload(List<RNKBasicRow> rnkBasicRow)
+        internal static List<RNKBasicRow> Reload(List<RNKBasicRow> rnkBasicRow)
         {
-            if (rnkBasicRow.Count <= 0) return;
+            if (rnkBasicRow.Count <= 0) return rnkBasicRow;
             FBDEntities entities = new FBDEntities();
             var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(rnkBasicRow[0].RankingID);
 
             ranking.IndividualBorrowingPurposesReference.Load();
-            if (ranking.IndividualBorrowingPurposes == null) return ;
+            if (ranking.IndividualBorrowingPurposes == null) return rnkBasicRow;
             string purpose = ranking.IndividualBorrowingPurposes.PurposeID;
 
             foreach (RNKBasicRow item in rnkBasicRow)
@@ -253,6 +253,8 @@ namespace FBD.Models
                 item.Index = IndividualBasicIndex.SelectBasicIndexByID(item.Index.IndexID,entities);
                 item.ScoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, item.Index.IndexID,purpose);
             }
+
+            return rnkBasicRow;
         }
         public class CustomersIndividualBasicIndexMetaData
         {

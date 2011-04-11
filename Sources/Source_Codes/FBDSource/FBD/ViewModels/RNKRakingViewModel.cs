@@ -6,8 +6,71 @@ using FBD.Models;
 
 namespace FBD.ViewModels
 {
+    public class RNKCustomerInfo
+    {
+        public string CIF { set; get; }
+        public string CustomerName { set; get; }
+        public string ReportingPeriod { set; get; }
+        public string Branch { set; get; }
+        public DateTime Date { get; set; }
+        public static RNKCustomerInfo GetBusinessRankingInfo(int id)
+        {
+
+            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+            if (ranking == null) return new RNKCustomerInfo();
+            ranking.CustomersBusinessesReference.Load();
+            var customer = ranking.CustomersBusinesses;
+
+            var temp = new RNKCustomerInfo();
+            temp.CIF = customer.CIF;
+            temp.CustomerName = customer.CustomerName;
+
+            ranking.SystemReportingPeriodsReference.Load();
+            temp.ReportingPeriod = ranking.SystemReportingPeriods.PeriodName;
+
+            customer.SystemBranchesReference.Load();
+            temp.Branch = customer.SystemBranches.BranchName;
+
+            return temp;
+        }
+        public static RNKCustomerInfo GetIndividualRankingInfo(int id)
+        {
+
+            var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id);
+            if (ranking == null) return new RNKCustomerInfo();
+            ranking.CustomersIndividualsReference.Load();
+            var customer = ranking.CustomersIndividuals;
+
+            var temp = new RNKCustomerInfo();
+            temp.CIF = customer.CIF;
+            temp.CustomerName = customer.CustomerName;
+
+            if(ranking.Date!=null)
+            temp.Date = ranking.Date.Value;
+
+            customer.SystemBranchesReference.Load();
+            temp.Branch = customer.SystemBranches.BranchName;
+
+            return temp;
+        }
+    }
     public static class RNKRankingViewModel
     {
+        public static List<SystemBranches> SystemBranch
+        {
+            get
+            {
+                try
+                {
+                    var temp = FBD.Models.SystemBranches.SelectBranches();
+                    return temp;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
         public static List<BusinessIndustries> BusinessIndustries
         {
 
@@ -119,5 +182,6 @@ namespace FBD.ViewModels
             }
         }
 
+        
     }
 }

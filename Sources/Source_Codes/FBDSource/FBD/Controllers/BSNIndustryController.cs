@@ -10,8 +10,7 @@ using Telerik.Web.Mvc;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
-    //TODO: check industry name and id unique
+
     public class BSNIndustryController : Controller
     {
         //
@@ -164,7 +163,6 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: Temporary error handle.
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_INDUSTRY);
                 return View(industry);

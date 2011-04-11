@@ -6,8 +6,8 @@
       <siteMapNode title="Business Ranking" controller="RNKRankBusiness" action="Index" />
     </siteMapNode>
     <siteMapNode title="Individual Customers"  description="Ranking for individual customers">
-      <siteMapNode title="Individual Customers List" controller="" action="Index" />
-      <siteMapNode title="Individual Ranking" controller="" action="Index" />
+      <siteMapNode title="Individual Customers List" controller="RNKCustomerIndividuals" action="Index" />
+      <siteMapNode title="Individual Ranking" controller="RNKRankIndividual" action="Index" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>

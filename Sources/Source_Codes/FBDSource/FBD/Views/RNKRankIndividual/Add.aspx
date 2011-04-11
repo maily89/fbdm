@@ -7,24 +7,35 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Add Individual Ranking</h2>
+    <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+    <%Html.RenderPartial("IndividualStep",FBD.CommonUtilities.Constants.IndividualRankStep.General); %>
+    <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
 
     <% using (Html.BeginForm())
                        { %>
+        <table width="100%">
+        <tr>
+        <td><b>Date</b></td>
+        <td>
+        <%= Html.Telerik().DatePickerFor(model => model.Date).Format("dd-MMM-yyyy")%>
+        </td>
+        </tr>
+        <tr>
+        <td><b>Customer List</b></td>
+        <td><%= Html.DropDownList("CustomerID", new SelectList(Model.IndividualCustomer as IEnumerable,
+                                        "IndividualID", "CustomerName", Model != null ? Model.CustomerID : 0))%>
+        </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>
+                <input type="submit" value="Rank this customer" />
+                <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
 
-           <p>Date<br/>   
-              <%= Html.Telerik().DatePickerFor(model => model.Date).Format("dd-MM-yyyy")%>
-                
-            </p>
-
-           <p>
-           Customer List
-
-            <br/>
-                <%= Html.DropDownList("CustomerID", new SelectList(Model.IndividualCustomer as IEnumerable,
-                                "IndividualID", "CustomerName", Model != null ? Model.CustomerID : 0))%>
-             </p>
-          <input type="submit" value="Rank this customer" />
-
+        </td>
+        </tr>
+        </table>
     <%} %>
 </asp:Content>
 

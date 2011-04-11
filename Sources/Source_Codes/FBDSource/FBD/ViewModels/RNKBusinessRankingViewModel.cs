@@ -18,6 +18,7 @@ namespace FBD.ViewModels
         public string CustomerTypeID { get; set; }
         public string CIF { get; set; }
         public bool IsNew { get; set; }
-       
+        public decimal TotalScore { get; set; }
+        public RNKCustomerInfo CustomerInfo { set; get; }
     }
 }

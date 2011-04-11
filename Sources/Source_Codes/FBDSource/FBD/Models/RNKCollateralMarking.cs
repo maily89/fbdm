@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using FBD.ViewModels;
 
 namespace FBD.Models
 {
@@ -27,10 +28,6 @@ namespace FBD.Models
         {
             //Step1: Load all collateral score saved.
             CustomersIndividualRanking ranking=CustomersIndividualRanking.SelectIndividualRankingByID(rankingID,entities);
-
-
-            
-
             ranking.CustomersIndividualCollateralIndex.Load();
            
             decimal finalScore = 0;
@@ -82,7 +79,9 @@ namespace FBD.Models
                     if (score >= item.FromValue && score <= item.ToValue)
                     {
                         item.IndividualCollateralIndexLevelsReference.Load();
+
                         indexScore.IndividualCollateralIndexLevels = item.IndividualCollateralIndexLevels;
+
                         return indexScore.IndividualCollateralIndexLevels;
                     }
                 }
@@ -99,5 +98,70 @@ namespace FBD.Models
             return null;
         }
 
+
+        internal static decimal CalculateTempCollateral(int rankingID, List<RNKCollateralRow> rnkCollateralRow)
+        {
+            //Step1: Load all collateral score saved.
+            FBDEntities entities = new FBDEntities();
+            CustomersIndividualRanking ranking = CustomersIndividualRanking.SelectIndividualRankingByID(rankingID, entities);
+
+            decimal finalScore = 0;
+            //Step2: calculate LevelID for each collateral score.
+            foreach (RNKCollateralRow indexScore in rnkCollateralRow)
+            {
+
+                    GetLevel(indexScore, ranking, entities);
+
+                //calculate score
+                    finalScore += indexScore.CalculatedScore;
+
+            }
+            ranking.CollateralIndexScore = finalScore / 100;
+            entities.SaveChanges();
+            return finalScore / 100;
+        }
+
+        private static void GetLevel(RNKCollateralRow indexScore, CustomersIndividualRanking ranking, FBDEntities entities)
+        {
+            
+            var index = indexScore.Index;
+
+
+            List<IndividualCollateralIndexScore> scoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities, index.IndexID);
+
+            foreach (IndividualCollateralIndexScore item in scoreList)
+            {
+                if (index.ValueType == "N") //numeric type
+                {
+                    decimal score = System.Convert.ToDecimal(indexScore.Value);
+                    if (score >= item.FromValue && score <= item.ToValue)
+                    {
+                        item.IndividualCollateralIndexLevelsReference.Load();
+
+                        if (item.IndividualCollateralIndexLevels != null)
+                            indexScore.CalculatedScore = item.IndividualCollateralIndexLevels.Score;
+                        else
+                        {
+                            indexScore.CalculatedScore = 0;
+                        }
+                        return;
+                    }
+                }
+                else // character type
+                {
+                    if (indexScore.Value.Equals(item.FixedValue))
+                    {
+                        if (item.IndividualCollateralIndexLevels != null)
+                            indexScore.CalculatedScore = item.IndividualCollateralIndexLevels.Score;
+                        else
+                        {
+                            indexScore.CalculatedScore = 0;
+                        }
+                        return;
+                    }
+                }
+            }
+            
+        }
     }
 }

@@ -5,12 +5,57 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
 
     public class RNKFinancialMarking
     {
+        public static void CalculateTempFinancial(int rankingID, List<RNKFinancialRow> rnkFinancial,out decimal totalScore,out decimal totalProportion)
+        {
+            //Step1: Load all financial score saved.
+            FBDEntities entities = new FBDEntities();
+            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID, entities);
+            ranking.BusinessIndustriesReference.Load();
+            ranking.BusinessScalesReference.Load();
+
+            decimal total = 0;
+
+            foreach (RNKFinancialRow indexScore in rnkFinancial)
+            {
+                //get Score
+                GetScore(indexScore, ranking);
+
+                //calculate score
+
+                var proportion = BusinessFinancialIndexProportion.SelectFinancialIndexProportionByIndustryAndIndex
+                    (entities, ranking.BusinessIndustries.IndustryID, indexScore.Index.IndexID);
+
+                decimal score = indexScore.CalculatedScore;
+                if (proportion != null && proportion.Proportion != null)
+                {
+                    decimal prop = proportion.Proportion.Value;
+                    total += score * prop;
+                    indexScore.Proportion = prop;
+                    indexScore.Result = score* prop/100;
+                }
+
+                
+
+            }
+
+            totalScore = total/100;
+            totalProportion = GetFinancialProportion(ranking).Percentage.Value;
+
+        }
+
+        public static BusinessRankingStructure GetFinancialProportion(CustomersBusinessRanking ranking)
+        {
+            var temp = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus);
+            return temp;
+        }
         public static decimal CalculateFinancialScore(int rankingID,bool keepExistingLevel, FBDEntities entities)
         {
             //Step1: Load all financial score saved.
@@ -49,23 +94,47 @@ namespace FBD.Models
                 
             }
 
-            
-            ranking.FinancialScore = finalScore/100;
+            ranking.FinancialScore = finalScore / 100 * GetFinancialProportion(ranking).Percentage.Value/100;
             entities.SaveChanges();
             return finalScore/100;
-
-
         }
 
+        public static decimal GetScore(RNKFinancialRow indexScore, CustomersBusinessRanking ranking)
+        {
+            if (!indexScore.LeafIndex) return 0;
+            FBDEntities entities = new FBDEntities();
+            var index = BusinessFinancialIndex.SelectFinancialIndexByID(entities,indexScore.Index.IndexID);
+            if (indexScore.Index.ValueType == "N")
+            {
+
+                List<BusinessFinancialIndexScore> scoreList = BusinessFinancialIndexScore
+                    .SelectScoreByIndustryByScaleByFinancialIndex(entities, ranking.BusinessIndustries.IndustryID, ranking.BusinessScales.ScaleID, index.IndexID);
+
+                return GetScoreFromViewModel(indexScore, index, scoreList);
+            }
+            else
+            {
+                BusinessFinancialIndexScore score = BusinessFinancialIndexScore.SelectBusinessFinancialIndexScoreByScoreID(entities,indexScore.ScoreID);
+                score.BusinessFinancialIndexLevelsReference.Load();
+                indexScore.CalculatedScore = score.BusinessFinancialIndexLevels.Score;
+                indexScore.Value = score.FixedValue;
+                return indexScore.CalculatedScore;
+            }
+        }
         public static BusinessFinancialIndexLevels GetLevel(CustomersBusinessFinancialIndex indexScore,CustomersBusinessRanking ranking,FBDEntities entities)
         {
+           
             indexScore.BusinessFinancialIndexReference.Load();
             var index=indexScore.BusinessFinancialIndex;
-
-
+            if (!indexScore.BusinessFinancialIndex.LeafIndex) return null;
             List<BusinessFinancialIndexScore> scoreList = BusinessFinancialIndexScore
                 .SelectScoreByIndustryByScaleByFinancialIndex(entities, ranking.BusinessIndustries.IndustryID, ranking.BusinessScales.ScaleID, index.IndexID);
 
+            return GetLevelFromModel(indexScore, index, scoreList);
+        }
+
+        private static BusinessFinancialIndexLevels GetLevelFromModel(CustomersBusinessFinancialIndex indexScore, BusinessFinancialIndex index, List<BusinessFinancialIndexScore> scoreList)
+        {
             foreach (BusinessFinancialIndexScore item in scoreList)
             {
                 if (index.ValueType == "N") //numeric type
@@ -91,5 +160,24 @@ namespace FBD.Models
             return null;
         }
 
+        private static decimal GetScoreFromViewModel(RNKFinancialRow indexScore, BusinessFinancialIndex index, List<BusinessFinancialIndexScore> scoreList)
+        {
+            
+            foreach (BusinessFinancialIndexScore item in scoreList)
+            {
+
+                    if (indexScore.Score == null) return 0;
+                    decimal score = indexScore.Score.Value;
+                    if (score >= item.FromValue && score <= item.ToValue)
+                    {
+                        item.BusinessFinancialIndexLevelsReference.Load();
+                        indexScore.CalculatedScore = item.BusinessFinancialIndexLevels.Score;
+                        return indexScore.CalculatedScore;
+                    }
+                
+
+            }
+            return 0;
+        }
     }
 }

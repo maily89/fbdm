@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using FBD.ViewModels;
 
 namespace FBD.Models
 {
@@ -47,18 +48,63 @@ namespace FBD.Models
 
             List<CustomersBusinessScale> scale = CustomersBusinessScale.SelectBusinessScaleByRankingID(id,entities); // get scale lsit
 
-            decimal sum = 0;
+            decimal temp;
+            return ScaleMarking(id, industryID, entities, scale,out temp );
+        }
+
+        public static BusinessScales ScaleMarking(int id, string industryID, FBDEntities entities,List<CustomersBusinessScale> scale,out decimal sum)
+        {
+            sum = 0;
+            if (id == 0) return null;
+            if (string.IsNullOrEmpty(industryID)) return null;
+            if (entities == null || scale == null) return null;
+            sum = 0;
 
             foreach (CustomersBusinessScale item in scale)
             {
-                var temp = GetScaleScore(item,industryID);
+                var temp = GetScaleScore(item, industryID);
                 if (temp != null) sum += temp.Value;
             }
-            
-            
+
             return GetScale(sum, entities);
         }
+        /// <summary>
+        /// Mark and load scale used for preview only
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="industryID"></param>
+        /// <param name="scale"></param>
+        /// <returns></returns>
+        public static BusinessScales ScaleTempMarking(int id, string industryID,List<RNKScaleRow> scale,out decimal sum)
+        {
+            sum = 0;
+            if (id == 0) return null;
+            if (string.IsNullOrEmpty(industryID)) return null;
+            if (scale == null) return null;
+            FBDEntities entities=new FBDEntities();
+            
 
+            foreach (RNKScaleRow item in scale)
+            {
+
+                //get all scale score
+                List<BusinessScaleScore> scaleList = BusinessScaleScore.SelectScaleScore(industryID, item.CriteriaID);
+                decimal value = System.Convert.ToDecimal(item.Value);
+                foreach (BusinessScaleScore scaleScore in scaleList)
+                {
+                    if (value >= scaleScore.FromValue && value <= scaleScore.ToValue)
+                    {
+                        Nullable<decimal> scoreValue = scaleScore.Score;
+                        item.Score = scoreValue;
+                        if (scoreValue != null)
+                            sum += scoreValue.Value;
+                        break;
+                    }
+                }
+            }
+
+            return GetScale(sum, entities);
+        }
         /// <summary>
         /// Get a specific Scale for a scale score
         /// </summary>
@@ -77,6 +123,7 @@ namespace FBD.Models
             }
             return null;
         }
+
         
         /// <summary>
         /// Get scale Score for each criteria and industryID

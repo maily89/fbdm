@@ -47,6 +47,12 @@ namespace FBD.Models
             return rankingStructure;
         }
 
+        public static BusinessRankingStructure SelectRankingStructureByIndexAndAudit(string indexType, string auditType)
+        {
+            FBDEntities entities=new FBDEntities();
+            var rankingStructure = entities.BusinessRankingStructure.First(r => r.AuditedStatus == auditType && r.IndexType == indexType);
+            return rankingStructure;
+        }
 
         /// <summary>
         /// edit the rankingStructure

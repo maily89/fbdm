@@ -8,25 +8,27 @@ using FBD.ViewModels;
 using FBD.CommonUtilities;
 namespace FBD.Controllers
 {
-    //TODO: Paging for customers
     public class RNKRankBusinessController : Controller
     {
         //
         // GET: /RKNRankBusiness/
-
+        // TODO: check user ID
         public ActionResult Index()
         {
-            List<CustomersBusinessRanking> model = null;
+            List<CustomersBusinessRanking> customerRankList = null;
             try
             {
-                model = CustomersBusinessRanking.SelectBusinessRankings();
-                if (model == null)
+                //load customer ranking list
+                customerRankList = CustomersBusinessRanking.SelectBusinessRankings();
+                if (customerRankList == null)
                 {
                     throw new Exception();
                 }
-                foreach (CustomersBusinessRanking item in model)
+                foreach (CustomersBusinessRanking item in customerRankList)
                 {
                     item.BusinessScalesReference.Load();
+                    item.CustomersBusinessesReference.Load();
+                    item.BusinessRanksReference.Load();
                 }
             }
             catch
@@ -34,13 +36,47 @@ namespace FBD.Controllers
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS_RANKING);
 
             }
-            return View(model);
+            RNKBusinessIndex index = new RNKBusinessIndex();
+            index.CustomerRanking = customerRankList;
+            return View(index);
+           
+        }
+
+        [HttpPost]
+        public ActionResult Index(RNKBusinessIndex data)
+        {
+            List<CustomersBusinessRanking> model = null;
+            try
+            {
+                if (data.Cif == null) data.Cif = "";
+                model = CustomersBusinessRanking.SelectRankingByPeriodAndCifAndBranch(data.PeriodID,data.Cif,data.BranchID);
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+                foreach (CustomersBusinessRanking item in model)
+                {
+                    item.BusinessScalesReference.Load();
+                    item.CustomersBusinessesReference.Load();
+                    item.BusinessRanksReference.Load();
+                }
+            }
+            catch
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS_RANKING);
+
+            }
+            data.CustomerRanking = model;
+            return View(data);
         }
 
         #region Add
-        //
-        // GET: /RKNRankBusiness/Create
-
+        
+        /// <summary>
+        /// this method display choose customer view
+        /// this method do not save any data to database yet!
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddStep1()
         {
             //TODO: check branch
@@ -57,93 +93,152 @@ namespace FBD.Controllers
             return View(model);
         }
 
-        //
-        // Post: /RKNRankBusiness/Add
+        /// <summary>
+        /// This methods get data from choose customer view,and return view for adding customer detailed info
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AddStep1(RNKPeriodViewModel data)
         {
             if (data == null) return null;
             var model = new RNKPeriodViewModel();
-
-            if (data.CustomerID>0 && !string.IsNullOrEmpty(data.PeriodID))
+            try
             {
-                var ranking = CustomersBusinessRanking.SelectRankingByPeriodAndCustomer(data.PeriodID, data.CustomerID);
-                RNKBusinessRankingViewModel addModel = new RNKBusinessRankingViewModel();
-                if (ranking == null) // if this is new customer
+                if (data.CustomerID > 0 && !string.IsNullOrEmpty(data.PeriodID))
                 {
-                    ranking = new CustomersBusinessRanking();
-                    
-                    addModel.IsNew = true;
+                    //adding ranking object to model
+                    var ranking = CustomersBusinessRanking.SelectRankingByPeriodAndCustomer(data.PeriodID, data.CustomerID);
+                    RNKBusinessRankingViewModel addModel = new RNKBusinessRankingViewModel();
+                    if (ranking == null) // if this is new customer
+                    {
+                        ranking = new CustomersBusinessRanking();
+
+                        addModel.IsNew = true;
+                    }
+                    addModel.BusinessRanking = ranking;
+                    ranking.DateModified = DateTime.Now;
+                    addModel.PeriodID = data.PeriodID;
+                    addModel.CustomerID = data.CustomerID;
+
+                    //loading customer
+                    var customer = CustomersBusinesses.SelectBusinessByID(data.CustomerID);
+                    customer.SystemBranchesReference.Load();
+                    addModel.CIF = customer.CIF;
+
+                    //adding customer info
+                    RNKCustomerInfo temp = new RNKCustomerInfo();
+                    temp.CIF = customer.CIF;
+                    temp.CustomerName = customer.CustomerName;
+                    temp.ReportingPeriod = SystemReportingPeriods.SelectReportingPeriodByID(data.PeriodID).PeriodName;
+
+                    if (customer.SystemBranches != null)
+                    temp.Branch = customer.SystemBranches.BranchName;
+                    addModel.CustomerInfo = temp;
+                    return View("Add", addModel);
                 }
-                else return View("Edit",ranking.ID); // if this is not a new customer ranking
-                addModel.BusinessRanking = ranking;
-                ranking.DateModified = DateTime.Now;
-                addModel.PeriodID = data.PeriodID;
-                addModel.CustomerID = data.CustomerID;
-                var customer = CustomersBusinesses.SelectBusinessByID(data.CustomerID);
-                addModel.CIF = customer.CIF;
-                return View("Add",addModel);
+                throw new Exception();
             }
+            catch
+            {
+                //else: ERROR
+                model.ReportingPeriods = SystemReportingPeriods.SelectReportingPeriods();
+                model.BusinessCustomer = CustomersBusinesses.SelectBusinesses();
+              
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_RANKING);
 
-            //else: ERROR
-            model.ReportingPeriods = SystemReportingPeriods.SelectReportingPeriods();
-            model.BusinessCustomer = CustomersBusinesses.SelectBusinesses();
-            TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_RANKING);
-            
-            return View(model);
+                return View(model);
+            }
         }
-
+        /// <summary>
+        /// this method is used to add detail customer ranking info
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(RNKBusinessRankingViewModel rknBusinessRankingViewModel)
+        public ActionResult Add(RNKBusinessRankingViewModel data)
         {
             int id;
-            if (rknBusinessRankingViewModel == null) return null;
+            if (data == null) return null;
             try
             {
                 if (ModelState.IsValid)
                 {
+
                     var entity = new FBDEntities();
-                    var ranking = rknBusinessRankingViewModel.BusinessRanking;
+                    var ranking = data.BusinessRanking;
+                    
+                    ranking.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(data.CustomerID, entity);
+                    if(data.IndustryID!=null)
+                    ranking.BusinessIndustries = BusinessIndustries.SelectIndustryByID(data.IndustryID, entity);
 
+                    if(data.TypeID!=null)
+                    ranking.BusinessTypes = BusinessTypes.SelectTypeByID(data.TypeID, entity);
 
+                    if (data.LoanID!=null)
+                    ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(data.LoanID, entity);
 
-                    ranking.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(rknBusinessRankingViewModel.CustomerID, entity);
-                    ranking.BusinessIndustries = BusinessIndustries.SelectIndustryByID(rknBusinessRankingViewModel.IndustryID, entity);
-                    ranking.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entity);
-                    ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entity);
-                    ranking.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(rknBusinessRankingViewModel.PeriodID, entity);
-                    ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(rknBusinessRankingViewModel.CustomerTypeID, entity);
+                    ranking.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(data.PeriodID, entity);
+
+                    if(data.CustomerTypeID!=null)
+                    ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(data.CustomerTypeID, entity);
                     //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
-                    if (rknBusinessRankingViewModel.IsNew)
+                    if (data.IsNew)
                         CustomersBusinessRanking.AddBusinessRanking(ranking, entity);
                     else CustomersBusinessRanking.EditBusinessRanking(ranking, entity);
+
+                    
                     id = ranking.ID;
+                    ViewData["RankID"] = id;
                 }
                 else throw new Exception();
 
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_BUSINESS_RANKING);
-                return View("AddScore", CustomersBusinessScale.ScaleList(id));
+                return View("AddScore", CustomersBusinessScale.LoadScaleRow(id));
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_RANKING);
+                
+                RNKCustomerInfo temp = new RNKCustomerInfo();
+                var customer = CustomersBusinesses.SelectBusinessByID(data.CustomerID);
+                temp.CIF = customer.CIF;
+                temp.CustomerName = customer.CustomerName;
 
-                return View(rknBusinessRankingViewModel);
+                if(data.PeriodID!=null)
+                temp.ReportingPeriod = SystemReportingPeriods.SelectReportingPeriodByID(data.PeriodID).PeriodName;
+
+                customer.SystemBranchesReference.Load();
+                if(customer.SystemBranches!=null)
+                temp.Branch = customer.SystemBranches.BranchName;
+                data.CustomerInfo = temp;
+                ViewData["RankID"] = data.BusinessRanking.ID;
+                return View(data);
             }
         }
 
         [HttpPost]
-        public ActionResult AddScore(List<RNKScaleRow> rknScaleRow)
+        public ActionResult AddScore(List<RNKScaleRow> rknScaleRow,int rankID)
         {
+            ViewData["RankID"] = rankID;
+            return View(rknScaleRow);
+        }
+
+        [HttpPost]
+        public ActionResult SaveScore(List<RNKScaleRow> rknScaleRow,string SaveBack,string SaveNext,string Back,string rankID)
+        {
+            ViewData["RankID"] = rankID;
+            if (Back != null) return View("AddScore", rknScaleRow);
+
             try
             {
                 FBDEntities entity = new FBDEntities();
-                int rankID = 0;
+                int rankingID = 0;
 
                 foreach (RNKScaleRow item in rknScaleRow)
                 {
                     var temp = new CustomersBusinessScale();
-                    rankID = item.RankingID;
+                    rankingID = item.RankingID;
                     temp.Score = item.Score;
                     temp.Value = item.Value;
 
@@ -153,32 +248,137 @@ namespace FBD.Controllers
                     CustomersBusinessScale.AddBusinessScale(temp, entity);
                 }
                 // Mark Scale ScoreList.
-                if (rankID > 0) RNKScaleMarking.SaveScaleScore(rankID, entity);
-
-                return RedirectToAction("AddFinancialScore", new { id = rankID });
+                if (rankingID > 0) RNKScaleMarking.SaveScaleScore(rankingID, entity);
+                if(SaveNext!=null)
+                    return RedirectToAction("AddFinancialScore", new { id = rankID!=null?rankID:rankingID.ToString() });
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_SCALE);
-                return View(rknScaleRow);
+                return View("AddScore",rknScaleRow);
             }
+        }
+        [HttpPost]
+        public ActionResult AddScoreCalculate(List<RNKScaleRow> rknScaleRow,string rankID)
+        {
+            ViewData["RankID"] = rankID;
+            if (rknScaleRow==null || rknScaleRow.Count<=0) return View(rknScaleRow);
+
+            GenerateScoreCalculate(rknScaleRow);
+            return View(rknScaleRow);
         }
 
 
+        private void GenerateScoreCalculate(List<RNKScaleRow> rknScaleRow)
+        {
+            var rankingID = rknScaleRow[0].RankingID;
+            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID);
+            ranking.BusinessIndustriesReference.Load();
+            if (ranking.BusinessIndustries == null) return;
+            string industryID = ranking.BusinessIndustries.IndustryID;
+            // Load row and all of their information available
+            decimal sum = 0;
+            BusinessScales scale = RNKScaleMarking.ScaleTempMarking(rankingID, industryID, rknScaleRow, out sum);
+            // Marking them.
+            ViewData["ScaleScore"] = sum;
+
+            if (scale != null)
+            ViewData["Scale"] = scale.Scale;
+        }
+
+
+        
+        public ActionResult Ranking(int id)
+        {
+            var model = new RNKRankFinal();
+            try
+            {
+                ViewData["RankID"] = id.ToString();
+                RNKRankMarking.SaveBusinessRank(id);
+                LoadRankingViewModel(id, model);
+
+                //TODO: Cluster Rank handle
+
+            }
+            catch
+            {
+                //TODO: Add to constants
+                TempData[Constants.ERR_MESSAGE] = "There's error when loading ranking for business customer";
+            }
+            return View(model);
+
+        }
+
+        private static void LoadRankingViewModel(int id, RNKRankFinal model)
+        {
+            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+            ranking.BusinessScalesReference.Load();
+            ranking.BusinessRanksReference.Load();
+            ranking.CustomersBusinessScale.Load();
+            ranking.BusinessIndustriesReference.Load();
+
+
+            if (ranking.BusinessScales != null)
+                model.Scale = ranking.BusinessScales.Scale;
+
+            decimal temp;
+            if (ranking.BusinessIndustries != null)
+            {
+                RNKScaleMarking.ScaleMarking(id, ranking.BusinessIndustries.IndustryID, new FBDEntities(), ranking.CustomersBusinessScale.ToList(), out temp);
+
+                model.ScaleScore = temp;
+            }
+
+            model.FinancialResult = ranking.FinancialScore != null ? ranking.FinancialScore.Value : 0;
+            model.NonFinancialResult = ranking.NonFinancialScore != null ? ranking.NonFinancialScore.Value : 0;
+
+
+            try
+            {
+                model.FinancialProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+                model.FinancialScore = model.FinancialResult / model.FinancialProportion * 100;
+            }
+            catch
+            {
+                model.FinancialProportion = 0;
+                model.FinancialScore = 0;
+            }
+
+            try
+            {
+                model.NonFinancialProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+                model.NonFinancialScore = model.NonFinancialResult / model.NonFinancialProportion * 100;
+            }
+            catch
+            {
+                model.NonFinancialProportion = 0;
+                model.NonFinancialScore = 0;
+            }
+
+            model.TotalScore = model.FinancialResult + model.NonFinancialResult;
+            if (ranking.BusinessRanks != null)
+                model.ClassRank = ranking.BusinessRanks.Rank;
+        }
         /// <summary>
         /// Add Score
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult AddFinancialScore(int id)
+        public ActionResult AddFinancialScore(int id,string Edit)
         {
+            
             try
             {
-                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, true);
+                ViewData["RankID"] = id;
+                if (Edit != null) ViewData["Edit"] = true;
+                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id,Edit==null? true:false);
                 return View(financial);
             }
             catch (Exception)
             {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Edit == null ? Constants.ERR_ADD_POST : Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
+                if(Edit!=null) return RedirectToAction("DetailFinancial",new{id=id});
                 return RedirectToAction("Index");
             }
         }
@@ -191,54 +391,107 @@ namespace FBD.Controllers
         /// <param name="rnkFinancialRow"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddFinancialScore(List<RNKFinancialRow> rnkFinancialRow,int id)
+        public ActionResult SaveFinancialScore(List<RNKFinancialRow> rnkFinancialRow,string Edit, string SaveBack, string SaveNext, string Back,string SaveRerank, int rankID)
         {
+
             try
             {
-                FBDEntities entities = new FBDEntities();
-                int rankID=id;
-                foreach (RNKFinancialRow item in rnkFinancialRow)
-                {
-                    if (item.LeafIndex)
-                    {
-                        CustomersBusinessFinancialIndex indexScore = new CustomersBusinessFinancialIndex();
-                        indexScore = CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entities, item, indexScore);
-
-                        entities.AddToCustomersBusinessFinancialIndex(indexScore);
-                    }
+                ViewData["RankID"] = rankID.ToString();
+                if(Edit!=null){
+                    ViewData["Edit"]=Edit;
                 }
-                entities.SaveChanges();
-                RNKFinancialMarking.CalculateFinancialScore(id, true, entities);
-                if (TempData["FinancialRedirect"] != null)
-                    return RedirectToAction("Edit", new { id = rankID });
-                return RedirectToAction("AddNonFinancialIndex",new{id=rankID});
+                if (Back != null && Edit==null) return View("AddFinancialScore", CustomersBusinessFinancialIndex.Reload(rnkFinancialRow));
+
+                if(Edit==null)
+                {
+                    int ranking = AddFinancialList(rnkFinancialRow, rankID);
+                }
+                else
+                {
+                    EditFinancialList(rnkFinancialRow, rankID);
+                }
+
+                if(SaveNext!=null)
+                return RedirectToAction("AddNonFinancialScore",new{id=rankID});
+
+                if(SaveRerank!=null)
+                    return RedirectToAction("Rerank",new{id=rankID,redirectAction="DetailFinancial"});
+                if(Edit!=null)
+                {
+                    return RedirectToAction("DetailFinancial",new {id=rankID});
+                }
+                else
+                    return RedirectToAction("Index");
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
-                CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);
-
-                if (TempData["FinancialRedirect"] != null)
-                    TempData["FinancialRedirect"] = "Edit";
-                return View(rnkFinancialRow);
+                CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);                
+                return View("AddFinancialScore",rnkFinancialRow);
             }
         }
 
+        private static int AddFinancialList(List<RNKFinancialRow> rnkFinancialRow, int rankID)
+        {
+                        FBDEntities entities = new FBDEntities();
+                        int ranking = rankID;
+
+                        foreach (RNKFinancialRow item in rnkFinancialRow)
+                        {
+                            if (item.LeafIndex)
+                            {
+                                CustomersBusinessFinancialIndex indexScore = new CustomersBusinessFinancialIndex();
+                                indexScore = CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entities, item, indexScore);
+
+                                entities.AddToCustomersBusinessFinancialIndex(indexScore);
+                            }
+                        }
+                        entities.SaveChanges();
+                        RNKFinancialMarking.CalculateFinancialScore(rankID , true, entities);
+        return ranking;
+        }
+
+        [HttpPost]
+        public ActionResult AddFinancialCalculate(List<RNKFinancialRow> rnkFinancialRow,string Edit, string rankID)
+        {
+            //return viewdata state
+            ViewData["RankID"] = rankID;
+            if(Edit!=null) ViewData["Edit"]=Edit;
+            if (rnkFinancialRow == null || rnkFinancialRow.Count <= 0) return View(rnkFinancialRow);
+
+            var rankingID = System.Convert.ToInt16(rankID);
+            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID);
+
+            decimal final;
+            decimal prop;
+            RNKFinancialMarking.CalculateTempFinancial(rankingID, rnkFinancialRow,out final,out prop);
+
+            ViewData["FinancialScore"] = final;
+            ViewData["FinancialProportion"] = prop;
+            ViewData["FinancialResult"] = final * prop / 100;
+            return View(rnkFinancialRow);
+        }
         /// <summary>
         /// Add Score
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult AddNonFinancialScore(int id)
+        public ActionResult AddNonFinancialScore(int id,string Edit)
         {
             try
             {
-                List<RNKNonFinancialRow> nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, true);
+                if(Edit!=null){
+                ViewData["Edit"] = Edit;
+                }
+                ViewData["RankID"] = id.ToString();
+                List<RNKNonFinancialRow> nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id,Edit==null? true:false );
 
                 return View(nonFinancial);
             }
             catch (Exception)
             {
+                if (Edit != null) return RedirectToAction("DetailNonFinancial", new { id = id });
+
                 return RedirectToAction("Index");
             }
         }
@@ -251,44 +504,90 @@ namespace FBD.Controllers
         /// <param name="rnkNonFinancialRow"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
+        public ActionResult SaveNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, string SaveBack, string SaveNext, string Back,string SaveRerank, int rankID,string Edit)
         {
+             
             try
             {
-                FBDEntities entities = new FBDEntities();
-                int rankID = id;
-                foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
+                ViewData["RankID"] = rankID.ToString();
+                if (Edit != null)
                 {
-                    if (item.LeafIndex)
-                    {
-                        CustomersBusinessNonFinancialIndex indexScore = new CustomersBusinessNonFinancialIndex();
-                        indexScore = CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entities, item, indexScore);
-
-                        entities.AddToCustomersBusinessNonFinancialIndex(indexScore);
-                    }
+                    ViewData["Edit"] = Edit;
                 }
-                entities.SaveChanges();
-                RNKNonFinancialMarking.CalculateNonFinancialScore(id, true, entities);
-                if (TempData["NonFinancialRedirect"] != null)
-                    return RedirectToAction("Edit", new { id = rankID });
+                if (Back != null && Edit == null) return View("AddNonFinancialScore", CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow));
+
+                if (Edit == null)
+                {
+                    AddNonFinancialList(rnkNonFinancialRow, rankID);
+                }
+                else
+                {
+                    EditNonFinancialList(rnkNonFinancialRow, rankID);
+                }
+                if(SaveBack!=null)
                 return RedirectToAction("Index");
+
+                if (SaveRerank != null)
+                    return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailNonFinancial" });
+                if (Edit != null)
+                {
+                    return RedirectToAction("DetailNonFinancial", new { id = rankID });
+                }
+                else
+                return RedirectToAction("Ranking", new { id = rankID });
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
                 CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
-                if (TempData["NonFinancialRedirect"] != null)
-                    TempData["NonFinancialRedirect"] = "Edit";//Rewrite temp data
+                ViewData["RankID"] = rankID.ToString();
                 return View(rnkNonFinancialRow);
             }
         }
+
+        private static void AddNonFinancialList(List<RNKNonFinancialRow> rnkNonFinancialRow, int rankID)
+        {
+            FBDEntities entities = new FBDEntities();
+
+            foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
+            {
+                if (item.LeafIndex)
+                {
+                    CustomersBusinessNonFinancialIndex indexScore = new CustomersBusinessNonFinancialIndex();
+                    indexScore = CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entities, item, indexScore);
+
+                    entities.AddToCustomersBusinessNonFinancialIndex(indexScore);
+                }
+            }
+            entities.SaveChanges();
+            RNKNonFinancialMarking.CalculateNonFinancialScore(rankID, true, entities);
+        }
+
+        [HttpPost]
+        public ActionResult AddNonFinancialCalculate(List<RNKNonFinancialRow> rnkNonFinancialRow, string rankID,string Edit)
+        {
+            ViewData["RankID"] = rankID;
+            if (Edit != null) ViewData["Edit"] = Edit;
+
+            if (rnkNonFinancialRow == null || rnkNonFinancialRow.Count <= 0) return View(rnkNonFinancialRow);
+
+            var rankingID = rnkNonFinancialRow[0].RankingID;
+            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID);
+
+            decimal final;
+            decimal prop;
+            RNKNonFinancialMarking.CalculateTempNonFinancial(rankingID, rnkNonFinancialRow, out final, out prop);
+
+            ViewData["NonFinancialScore"] = final;
+            ViewData["NonFinancialProportion"] = prop;
+            ViewData["NonFinancialResult"] = final * prop / 100;
+            return View(rnkNonFinancialRow);
+        }
+
         #endregion
 
         #region Edit
-        public ActionResult Edit(int id)
-        {
-            return View(id);
-        }
+
 
         public ActionResult EditInfo(int id)
         {
@@ -318,10 +617,12 @@ namespace FBD.Controllers
 
             ranking.CustomersBusinessesReference.Load();
             var customer = ranking.CustomersBusinesses;
+
             addModel.CustomerID = customer.BusinessID;
             addModel.CIF = customer.CIF;
-            TempData["EditMode"] = "EditMode";
-            return View("Add", addModel);
+
+            addModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(ranking.ID);
+            return View(addModel);
 
         }
 
@@ -350,29 +651,35 @@ namespace FBD.Controllers
                 else throw new Exception();
 
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.CUSTOMER_BUSINESS_RANKING);
-                return RedirectToAction("Edit", new { id = rankingID });
+                return RedirectToAction("DetailGeneral", new { id = rankingID });
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_RANKING);
-
+                rknBusinessRankingViewModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(rknBusinessRankingViewModel.BusinessRanking.ID);
                 return View(rknBusinessRankingViewModel);
             }
         }
 
-        public ActionResult EditScale(int id)
+        public ActionResult EditScore(int id)
         {
-            if (CustomersBusinessScale.SelectBusinessScaleByRankingID(id).Count <= 0)
-            {
-                return View("AddScore", CustomersBusinessScale.ScaleList(id));
-            }
-            TempData["EditMode"] = "EditMode";
-
-            return View("AddScore", CustomersBusinessScale.ScaleEditList(id));
+            ViewData["RankID"] = id.ToString();
+            return View(CustomersBusinessScale.LoadAndAddScaleRow(id));
         }
 
         [HttpPost]
-        public ActionResult EditScale(List<RNKScaleRow> rnkScaleRow,int id)
+        public ActionResult EditScoreCalculate(List<RNKScaleRow> rknScaleRow, string rankID)
+        {
+            ViewData["RankID"] = rankID;
+            if (rknScaleRow == null || rknScaleRow.Count <= 0) return View(rknScaleRow);
+
+            GenerateScoreCalculate(rknScaleRow);
+            return View(rknScaleRow);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditScoreSave(List<RNKScaleRow> rnkScaleRow,string SaveBack,string SaveRerank,string Back,int id)
         {
             try
             {
@@ -394,120 +701,136 @@ namespace FBD.Controllers
                 }
                 // Mark Scale ScoreList.
                 if (rankID > 0) RNKScaleMarking.SaveScaleScore(rankID, entity);
+                if (Back != null) return View("EditScore", rnkScaleRow);
 
-                return RedirectToAction("Edit", new { id = rankID });
+                if (SaveRerank != null)
+                    return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailScale" });
+
+                return RedirectToAction("DetailScale", new { id = rankID });
             }
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_SCALE);
-                TempData["EditMode"] = "EditMode";
-                return View("AddScore",rnkScaleRow);
+
+                return View(rnkScaleRow);
             }
         }
 
         
-        public ActionResult EditFinancialScore(int id)
+        //public ActionResult EditFinancialScore(int id)
+        //{
+        //    //Check if there's no saved data=> return
+        //    List<RNKFinancialRow> financial=null;
+        //    if (CustomersBusinessFinancialIndex.SelectFinancialIndexByRankingID(id).Count <= 0)
+        //    {
+        //        financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, true);
+        //        TempData["FinancialRedirect"] = "Edit";
+        //        return View("AddFinancialScore",financial);
+        //    }
+
+        //    //Change to edit
+        //    TempData["EditMode"] = "EditMode";
+
+        //    financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, false);
+        //    return View("AddFinancialScore", financial);
+        //}
+        //[HttpPost]
+        //public ActionResult EditFinancialScore(List<RNKFinancialRow> rnkFinancialRow,int id)
+        //{
+        //    try
+        //    {
+        //        int rankID = EditFinancialList(rnkFinancialRow, id);
+
+        //        return RedirectToAction("Edit", new { id = rankID });
+        //    }
+        //    catch (Exception)
+        //    {
+        //        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+        //        TempData["EditMode"] = "EditMode";
+        //        CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);
+        //        return View("AddFinancialScore", rnkFinancialRow);
+        //    }
+        //}
+
+        private static int EditFinancialList(List<RNKFinancialRow> rnkFinancialRow, int id)
         {
-            //Check if there's no saved data=> return
-            List<RNKFinancialRow> financial=null;
-            if (CustomersBusinessFinancialIndex.SelectFinancialIndexByRankingID(id).Count <= 0)
-            {
-                financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, true);
-                TempData["FinancialRedirect"] = "Edit";
-                return View("AddFinancialScore",financial);
-            }
+                        FBDEntities entity = new FBDEntities();
+                        int rankID = id;
 
-            //Change to edit
-            TempData["EditMode"] = "EditMode";
+                        //Load FinancialRow and save them.
+                        foreach (RNKFinancialRow item in rnkFinancialRow)
+                        {
+                            if (item.LeafIndex)
+                            {
+                                CustomersBusinessFinancialIndex indexScore = CustomersBusinessFinancialIndex.SelectFinancialIndexByID(item.CustomerScoreID,entity);
 
-            financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id, false);
-            return View("AddFinancialScore", financial);
+                                CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entity, item, indexScore);
+
+                                CustomersBusinessFinancialIndex.EditFinancialIndex(indexScore, entity);
+                            }
+
+                        }
+
+                        RNKFinancialMarking.CalculateFinancialScore(id, false, entity);
+        return rankID;
         }
-        [HttpPost]
-        public ActionResult EditFinancialScore(List<RNKFinancialRow> rnkFinancialRow,int id)
+
+        //public ActionResult EditNonFinancialScore(int id)
+        //{
+        //    //Check if there's no saved data=> return
+        //    List<RNKNonFinancialRow> nonFinancial = null;
+        //    if (CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByRankingID(id).Count <= 0)
+        //    {
+        //        nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, true);
+        //        TempData["NonFinancialRedirect"] = "Edit";
+        //        return View("AddNonFinancialScore", nonFinancial);
+        //    }
+
+        //    //Change to edit
+        //    TempData["EditMode"] = "EditMode";
+
+        //    nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, false);
+        //    return View("AddNonFinancialScore", nonFinancial);
+        //}
+        //[HttpPost]
+        //public ActionResult EditNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
+        //{
+        //    try
+        //    {
+        //        int rankID = EditNonFinancialList(rnkNonFinancialRow, id);
+
+        //        return RedirectToAction("Edit", new { id = rankID });
+        //    }
+        //    catch (Exception)
+        //    {
+        //        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
+        //        TempData["EditMode"] = "EditMode";
+        //        CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
+        //        return View("AddNonFinancialScore", rnkNonFinancialRow);
+        //    }
+        //}
+
+        private static int EditNonFinancialList(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
         {
-            try
+            FBDEntities entity = new FBDEntities();
+            int rankID = id;
+
+            //Load NonFinancialRow and save them.
+            foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
             {
-                FBDEntities entity = new FBDEntities();
-                int rankID = id;
-
-                //Load FinancialRow and save them.
-                foreach (RNKFinancialRow item in rnkFinancialRow)
+                if (item.LeafIndex)
                 {
-                    if (item.LeafIndex)
-                    {
-                        CustomersBusinessFinancialIndex indexScore = CustomersBusinessFinancialIndex.SelectFinancialIndexByID(item.CustomerFinancialID,entity);
+                    CustomersBusinessNonFinancialIndex indexScore = CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByID(item.CustomerScoreID, entity);
 
-                        CustomersBusinessFinancialIndex.ConvertFinancialRowToModel(entity, item, indexScore);
+                    CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entity, item, indexScore);
 
-                        CustomersBusinessFinancialIndex.EditFinancialIndex(indexScore, entity);
-                    }
-
+                    CustomersBusinessNonFinancialIndex.EditNonFinancialIndex(indexScore, entity);
                 }
 
-                RNKFinancialMarking.CalculateFinancialScore(id, false, entity);
-
-                return RedirectToAction("Edit", new { id = rankID });
-            }
-            catch (Exception)
-            {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
-                TempData["EditMode"] = "EditMode";
-                CustomersBusinessFinancialIndex.Reload(rnkFinancialRow);
-                return View("AddFinancialScore", rnkFinancialRow);
-            }
-        }
-
-        public ActionResult EditNonFinancialScore(int id)
-        {
-            //Check if there's no saved data=> return
-            List<RNKNonFinancialRow> nonFinancial = null;
-            if (CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByRankingID(id).Count <= 0)
-            {
-                nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, true);
-                TempData["NonFinancialRedirect"] = "Edit";
-                return View("AddNonFinancialScore", nonFinancial);
             }
 
-            //Change to edit
-            TempData["EditMode"] = "EditMode";
-
-            nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, false);
-            return View("AddNonFinancialScore", nonFinancial);
-        }
-        [HttpPost]
-        public ActionResult EditNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, int id)
-        {
-            try
-            {
-                FBDEntities entity = new FBDEntities();
-                int rankID = id;
-
-                //Load NonFinancialRow and save them.
-                foreach (RNKNonFinancialRow item in rnkNonFinancialRow)
-                {
-                    if (item.LeafIndex)
-                    {
-                        CustomersBusinessNonFinancialIndex indexScore = CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByID(item.CustomerNonFinancialID, entity);
-
-                        CustomersBusinessNonFinancialIndex.ConvertNonFinancialRowToModel(entity, item, indexScore);
-
-                        CustomersBusinessNonFinancialIndex.EditNonFinancialIndex(indexScore, entity);
-                    }
-
-                }
-
-                RNKNonFinancialMarking.CalculateNonFinancialScore(id, false, entity);
-
-                return RedirectToAction("Edit", new { id = rankID });
-            }
-            catch (Exception)
-            {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
-                TempData["EditMode"] = "EditMode";
-                CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
-                return View("AddNonFinancialScore", rnkNonFinancialRow);
-            }
+            RNKNonFinancialMarking.CalculateNonFinancialScore(id, false, entity);
+            return rankID;
         }
         #endregion
 
@@ -523,6 +846,167 @@ namespace FBD.Controllers
         /// <returns></returns>
         #endregion
 
+        #region ViewDetail
+        public ActionResult DetailGeneral(int id)
+        {
+            try
+            {
+                ViewData["RankID"] = id.ToString();
+                var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+                ranking.LoadAll();
+
+                RNKBusinessRankingViewModel model = new RNKBusinessRankingViewModel();
+                model.BusinessRanking = ranking;
+                model.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(id);
+                return View(model);
+            }
+            catch
+            {
+                //TODO: add error text to constant
+                TempData[Constants.ERR_MESSAGE] = "Error occured when loading the ranked customers. Please try again later";
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult DetailScale(int id)
+        {
+            try
+            {
+                TempData["DetailView"] = "EditMode";
+                ViewData["RankID"] = id.ToString();
+
+                var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+                ranking.BusinessScalesReference.Load();
+                ranking.CustomersBusinessScale.Load();
+                ranking.BusinessIndustriesReference.Load();
+
+
+                if (ranking.BusinessScales != null)
+                    ViewData["Scale"] = ranking.BusinessScales.Scale;
+
+                decimal temp;
+                if (ranking.BusinessIndustries != null)
+                {
+                    RNKScaleMarking.ScaleMarking(id, ranking.BusinessIndustries.IndustryID, new FBDEntities(), ranking.CustomersBusinessScale.ToList(), out temp);
+
+                    ViewData["ScaleScore"] = temp;
+                }
+            }
+            catch
+            {
+                //TODO: ERRor message here
+            }
+            return View(CustomersBusinessScale.LoadAndAddScaleRow(id));
+        
+        }
+        public ActionResult DetailFinancial(int id)
+        {
+            ViewData["RankID"] = id.ToString();
+            try
+            {
+                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id,false);
+                var ranking=CustomersBusinessRanking.SelectBusinessRankingByID(id);
+                var tempScore=ranking.FinancialScore;
+                ViewData["FinancialResult"] = tempScore;
+                try
+                {
+                    ViewData["FinancialProportion"] = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+                }
+                catch
+                {
+                    ViewData["FinancialProportion"] = "0";
+                }
+                try
+                {
+                    var prop = System.Convert.ToDecimal(ViewData["FinancialProportion"]);
+                    if (prop != 0 && tempScore != null)
+                    {
+                        ViewData["FinancialScore"] = tempScore / prop * 100;
+                    }
+                }
+                catch
+                {
+                    ViewData["FinancialScore"] = "0";
+                }
+                ViewData["DetailView"] = "true";
+                return View(financial);
+            }
+            catch (Exception)
+            {
+                //TODO: ERROR MESSAGE
+                ViewData["DetailView"] = true;
+                return RedirectToAction("DetailGeneral");
+            }
+        }
+
+        public ActionResult DetailNonFinancial(int id)
+        {
+            ViewData["RankID"] = id.ToString();
+            try
+            {
+                List<RNKNonFinancialRow> NonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id, false);
+                var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
+                var tempScore = ranking.NonFinancialScore;
+                ViewData["NonFinancialResult"] = tempScore;
+                try
+                {
+                    ViewData["NonFinancialProportion"] = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+                }
+                catch
+                {
+                    ViewData["NonFinancialProportion"] = "0";
+                }
+                try
+                {
+                    var prop = System.Convert.ToDecimal(ViewData["NonFinancialProportion"]);
+                    if (prop != 0 && tempScore != null)
+                    {
+                        ViewData["NonFinancialScore"] = tempScore / prop * 100;
+                    }
+                }
+                catch
+                {
+                    ViewData["NonFinancialScore"] = "0";
+                }
+                ViewData["DetailView"] = "true";
+                return View(NonFinancial);
+            }
+            catch (Exception)
+            {
+                //TODO: ERROR MESSAGE
+                ViewData["DetailView"] = true;
+                return RedirectToAction("DetailGeneral");
+            }
+        }
+
+        #endregion
+        #region ViewCalculated
+        public ActionResult EditScaleCalculate(int id)
+        {
+            return null;
+        }
+        #endregion
+
+        public ActionResult Rerank(int id,string redirectAction)
+        {
+            RNKRankFinal model = new RNKRankFinal();
+            
+            try
+            {
+                ViewData["RankID"] = id.ToString();
+                ViewData["redirectAction"] = redirectAction;
+                ViewData["Edit"] = true;
+                RNKRankMarking.RemarkAll(id);
+                
+                LoadRankingViewModel(id, model);
+                TempData["Dialog"] = "Rank was saved successfully";
+                return View("Ranking",model);
+            }
+            catch
+            {
+                //TODO: ERROR message here
+            }
+            return View("Ranking", model);
+        }
         public ActionResult Delete(int id)
         {
             try

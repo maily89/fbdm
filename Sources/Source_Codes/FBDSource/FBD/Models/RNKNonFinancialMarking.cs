@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.CommonUtilities;
+using FBD.ViewModels;
 
 namespace FBD.Models
 {
@@ -72,9 +73,12 @@ namespace FBD.Models
                 }
             }
 
-            ranking.NonFinancialScore = finalScore/100;
+            decimal totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+
+            ranking.NonFinancialScore = finalScore*totalProportion/10000;
+
             entities.SaveChanges();
-            return finalScore/100;
+            return finalScore/10000;
 
 
         }
@@ -143,5 +147,103 @@ namespace FBD.Models
             return null;
         }
 
+
+        public static void CalculateTempNonFinancial(int rankingID, List<FBD.ViewModels.RNKNonFinancialRow> rnkNonFinancial, out decimal totalScore, out decimal totalProportion)
+        {
+            totalScore = 0;
+            totalProportion = 0;
+            //Step1: Load all nonFinancial score saved.
+            FBDEntities entities = new FBDEntities();
+            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID, entities);
+            ranking.BusinessIndustriesReference.Load();
+            ranking.BusinessTypesReference.Load();
+
+            if (ranking.BusinessIndustries == null || ranking.BusinessTypes == null) return;
+
+            RNKNonFinancialRow currentParent=null;
+            //Gia dinh rang cac score duoc sap xep tu cha => con(order by ID)
+            foreach (RNKNonFinancialRow indexScore in rnkNonFinancial)
+            {
+                //get Score
+                if (!indexScore.LeafIndex)
+                {
+                    // do cac index dc sap xep dung, cha luon dung truoc con
+                    //do do index k0 phai la la se la current Parent cua all leaf index lien sau do
+                    currentParent = indexScore;
+                    var parentProp = BusinessNFIProportionByType.SelectProportionByTypeAndIndex(entities, currentParent.Index.IndexID, ranking.BusinessTypes.TypeID);
+                    currentParent.Proportion = parentProp.Proportion!=null?parentProp.Proportion.Value:0;
+                    
+                }
+                else
+                {
+                    GetScore(indexScore, ranking);
+
+                    var proportion = BusinessNFIProportionByIndustry.SelectNonFinancialIndexProportionByIndustryAndIndex
+                            (entities, ranking.BusinessIndustries.IndustryID, indexScore.Index.IndexID);
+                    
+                    decimal score = indexScore.CalculatedScore;
+                    if (proportion != null && proportion.Proportion != null)
+                    {
+                        decimal tempProp = proportion.Proportion.Value;
+                        indexScore.Proportion = currentParent.Proportion * tempProp / 100;
+                        
+                    }
+                    indexScore.Result = indexScore.Proportion * indexScore.CalculatedScore/100;
+                    totalScore += indexScore.Result;
+                }
+            }
+
+
+            totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+
+
+        }
+        public static decimal GetScore(RNKNonFinancialRow indexScore, CustomersBusinessRanking ranking)
+        {
+            if (!indexScore.LeafIndex) return 0;
+            FBDEntities entities = new FBDEntities();
+            var index = BusinessNonFinancialIndex.SelectNonFinancialIndexByID(entities, indexScore.Index.IndexID);
+            if (indexScore.Index.ValueType == "N")
+            {
+
+                List<BusinessNonFinancialIndexScore> scoreList = BusinessNonFinancialIndexScore
+                    .SelectScoreByIndustryByNonFinancialIndex(entities, ranking.BusinessIndustries.IndustryID, index.IndexID);
+
+                return GetScoreFromViewModel(indexScore, index, scoreList);
+            }
+            else
+            {
+                BusinessNonFinancialIndexScore score = BusinessNonFinancialIndexScore.SelectBusinessNonFinancialIndexScoreByScoreID(entities, indexScore.ScoreID);
+                score.BusinessNonFinancialIndexLevelsReference.Load();
+                indexScore.CalculatedScore = score.BusinessNonFinancialIndexLevels.Score;
+                indexScore.Value = score.FixedValue;
+                return indexScore.CalculatedScore;
+            }
+        }
+        private static decimal GetScoreFromViewModel(RNKNonFinancialRow indexScore, BusinessNonFinancialIndex index, List<BusinessNonFinancialIndexScore> scoreList)
+        {
+
+            foreach (BusinessNonFinancialIndexScore item in scoreList)
+            {
+
+                if (indexScore.Score == null) return 0;
+                decimal score = indexScore.Score.Value;
+                if (score >= item.FromValue && score <= item.ToValue)
+                {
+                    item.BusinessNonFinancialIndexLevelsReference.Load();
+                    if (item.BusinessNonFinancialIndexLevels != null)
+                    {
+                        indexScore.CalculatedScore = item.BusinessNonFinancialIndexLevels.Score;
+                    }
+                    else indexScore.CalculatedScore = 0;
+                        return indexScore.CalculatedScore;
+                    
+
+                }
+
+
+            }
+            return 0;
+        }
     }
 }

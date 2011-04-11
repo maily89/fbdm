@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessClusterRanks), "CustomersBusinessRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexProportion))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "BusinessFinancialIndexScore_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndex), "BusinessFinancialIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.BusinessFinancialIndexScore))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersBusinessFinancialIndex_BusinessFinancialIndex_Delete", "BusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.BusinessFinancialIndex), "CustomersBusinessFinancialIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersBusinessFinancialIndex))]
@@ -53,9 +54,9 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualCollateralIndex_IndividualCollateralIndexLevels_Delete", "IndividualCollateralIndexLevels", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualCollateralIndexLevels), "CustomersIndividualCollateralIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualCollateralIndex))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_CustomersIndividuals_Delete", "CustomersIndividuals", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.CustomersIndividuals), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_CustomersLoanTerm_Delete", "CustomersLoanTerm", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.CustomersLoanTerm), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualBasicRanks), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_IndividualBorrowingPurposes_Delete", "IndividualBorrowingPurposes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualBorrowingPurposes), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualCollateralRanks), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualClusterRanks), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.IndividualSummaryRanks), "CustomersIndividualRanking", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividualRanking))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "CustomersIndividuals_SystemBranches_Delete", "SystemBranches", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(FBD.Models.SystemBranches), "CustomersIndividuals", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.CustomersIndividuals))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexProportion_IndividualBasicIndex_Delete", "IndividualBasicIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicIndex), "IndividualBasicIndexProportion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexProportion))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "IndividualBasicIndexScore_IndividualBasicIndex_Delete", "IndividualBasicIndex", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.IndividualBasicIndex), "IndividualBasicIndexScore", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.IndividualBasicIndexScore))]
@@ -72,7 +73,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
 
 // Original file name:
-// Generation date: 3/30/2011 3:56:04 AM
+// Generation date: 4/11/2011 11:26:49 PM
 namespace FBD.Models
 {
     
@@ -106,6 +107,21 @@ namespace FBD.Models
             this.OnContextCreated();
         }
         partial void OnContextCreated();
+        /// <summary>
+        /// There are no comments for BusinessClusterRanks in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<BusinessClusterRanks> BusinessClusterRanks
+        {
+            get
+            {
+                if ((this._BusinessClusterRanks == null))
+                {
+                    this._BusinessClusterRanks = base.CreateQuery<BusinessClusterRanks>("[BusinessClusterRanks]");
+                }
+                return this._BusinessClusterRanks;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<BusinessClusterRanks> _BusinessClusterRanks;
         /// <summary>
         /// There are no comments for BusinessFinancialIndex in the schema.
         /// </summary>
@@ -617,6 +633,21 @@ namespace FBD.Models
         }
         private global::System.Data.Objects.ObjectQuery<IndividualBorrowingPurposes> _IndividualBorrowingPurposes;
         /// <summary>
+        /// There are no comments for IndividualClusterRanks in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<IndividualClusterRanks> IndividualClusterRanks
+        {
+            get
+            {
+                if ((this._IndividualClusterRanks == null))
+                {
+                    this._IndividualClusterRanks = base.CreateQuery<IndividualClusterRanks>("[IndividualClusterRanks]");
+                }
+                return this._IndividualClusterRanks;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<IndividualClusterRanks> _IndividualClusterRanks;
+        /// <summary>
         /// There are no comments for IndividualCollateralIndex in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<IndividualCollateralIndex> IndividualCollateralIndex
@@ -796,6 +827,13 @@ namespace FBD.Models
             }
         }
         private global::System.Data.Objects.ObjectQuery<SystemUsers> _SystemUsers;
+        /// <summary>
+        /// There are no comments for BusinessClusterRanks in the schema.
+        /// </summary>
+        public void AddToBusinessClusterRanks(BusinessClusterRanks businessClusterRanks)
+        {
+            base.AddObject("BusinessClusterRanks", businessClusterRanks);
+        }
         /// <summary>
         /// There are no comments for BusinessFinancialIndex in the schema.
         /// </summary>
@@ -1035,6 +1073,13 @@ namespace FBD.Models
             base.AddObject("IndividualBorrowingPurposes", individualBorrowingPurposes);
         }
         /// <summary>
+        /// There are no comments for IndividualClusterRanks in the schema.
+        /// </summary>
+        public void AddToIndividualClusterRanks(IndividualClusterRanks individualClusterRanks)
+        {
+            base.AddObject("IndividualClusterRanks", individualClusterRanks);
+        }
+        /// <summary>
         /// There are no comments for IndividualCollateralIndex in the schema.
         /// </summary>
         public void AddToIndividualCollateralIndex(IndividualCollateralIndex individualCollateralIndex)
@@ -1117,6 +1162,141 @@ namespace FBD.Models
         public void AddToSystemUsers(SystemUsers systemUsers)
         {
             base.AddObject("SystemUsers", systemUsers);
+        }
+    }
+    /// <summary>
+    /// There are no comments for FBDModel.BusinessClusterRanks in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// RankID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="BusinessClusterRanks")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class BusinessClusterRanks : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new BusinessClusterRanks object.
+        /// </summary>
+        /// <param name="rankID">Initial value of RankID.</param>
+        public static BusinessClusterRanks CreateBusinessClusterRanks(string rankID)
+        {
+            BusinessClusterRanks businessClusterRanks = new BusinessClusterRanks();
+            businessClusterRanks.RankID = rankID;
+            return businessClusterRanks;
+        }
+        /// <summary>
+        /// There are no comments for Property RankID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string RankID
+        {
+            get
+            {
+                return this._RankID;
+            }
+            set
+            {
+                this.OnRankIDChanging(value);
+                this.ReportPropertyChanging("RankID");
+                this._RankID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("RankID");
+                this.OnRankIDChanged();
+            }
+        }
+        private string _RankID;
+        partial void OnRankIDChanging(string value);
+        partial void OnRankIDChanged();
+        /// <summary>
+        /// There are no comments for Property Rank in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Rank
+        {
+            get
+            {
+                return this._Rank;
+            }
+            set
+            {
+                this.OnRankChanging(value);
+                this.ReportPropertyChanging("Rank");
+                this._Rank = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Rank");
+                this.OnRankChanged();
+            }
+        }
+        private string _Rank;
+        partial void OnRankChanging(string value);
+        partial void OnRankChanged();
+        /// <summary>
+        /// There are no comments for Property Evaluation in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Evaluation
+        {
+            get
+            {
+                return this._Evaluation;
+            }
+            set
+            {
+                this.OnEvaluationChanging(value);
+                this.ReportPropertyChanging("Evaluation");
+                this._Evaluation = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Evaluation");
+                this.OnEvaluationChanged();
+            }
+        }
+        private string _Evaluation;
+        partial void OnEvaluationChanging(string value);
+        partial void OnEvaluationChanged();
+        /// <summary>
+        /// There are no comments for Property Centroid in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Centroid
+        {
+            get
+            {
+                return this._Centroid;
+            }
+            set
+            {
+                this.OnCentroidChanging(value);
+                this.ReportPropertyChanging("Centroid");
+                this._Centroid = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Centroid");
+                this.OnCentroidChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Centroid;
+        partial void OnCentroidChanging(global::System.Nullable<decimal> value);
+        partial void OnCentroidChanged();
+        /// <summary>
+        /// There are no comments for CustomersBusinessRanking in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersBusinessRanking_BusinessClusterRanks_Delete", "CustomersBusinessRanking")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersBusinessRanking> CustomersBusinessRanking
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersBusinessRanking>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "CustomersBusinessRanking");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersBusinessRanking>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "CustomersBusinessRanking", value);
+                }
+            }
         }
     }
     /// <summary>
@@ -5021,6 +5201,43 @@ namespace FBD.Models
         partial void OnDateModifiedChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnDateModifiedChanged();
         /// <summary>
+        /// There are no comments for BusinessClusterRanks in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public BusinessClusterRanks BusinessClusterRanks
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessClusterRanks>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessClusterRanks>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for BusinessClusterRanks in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<BusinessClusterRanks> BusinessClusterRanksReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<BusinessClusterRanks>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<BusinessClusterRanks>("FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete", "BusinessClusterRanks", value);
+                }
+            }
+        }
+        /// <summary>
         /// There are no comments for BusinessIndustries in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersBusinessRanking_BusinessIndustries_Delete", "BusinessIndustries")]
@@ -6229,43 +6446,6 @@ namespace FBD.Models
             }
         }
         /// <summary>
-        /// There are no comments for IndividualBasicRanks in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public IndividualBasicRanks IndividualBasicRanks
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualBasicRanks>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualBasicRanks>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for IndividualBasicRanks in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<IndividualBasicRanks> IndividualBasicRanksReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualBasicRanks>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<IndividualBasicRanks>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "IndividualBasicRanks", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for IndividualBorrowingPurposes in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualBorrowingPurposes_Delete", "IndividualBorrowingPurposes")]
@@ -6303,39 +6483,76 @@ namespace FBD.Models
             }
         }
         /// <summary>
-        /// There are no comments for IndividualCollateralRanks in the schema.
+        /// There are no comments for IndividualClusterRanks in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public IndividualCollateralRanks IndividualCollateralRanks
+        public IndividualClusterRanks IndividualClusterRanks
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualCollateralRanks>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualClusterRanks>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualCollateralRanks>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualClusterRanks>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for IndividualCollateralRanks in the schema.
+        /// There are no comments for IndividualClusterRanks in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<IndividualCollateralRanks> IndividualCollateralRanksReference
+        public global::System.Data.Objects.DataClasses.EntityReference<IndividualClusterRanks> IndividualClusterRanksReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualCollateralRanks>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualClusterRanks>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<IndividualCollateralRanks>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "IndividualCollateralRanks", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<IndividualClusterRanks>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "IndividualClusterRanks", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for IndividualSummaryRanks in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public IndividualSummaryRanks IndividualSummaryRanks
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualSummaryRanks>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualSummaryRanks>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for IndividualSummaryRanks in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<IndividualSummaryRanks> IndividualSummaryRanksReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<IndividualSummaryRanks>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<IndividualSummaryRanks>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "IndividualSummaryRanks", value);
                 }
             }
         }
@@ -7446,27 +7663,6 @@ namespace FBD.Models
         partial void OnRiskGroupChanging(string value);
         partial void OnRiskGroupChanged();
         /// <summary>
-        /// There are no comments for CustomersIndividualRanking in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualBasicRanks_Delete", "CustomersIndividualRanking")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersIndividualRanking> CustomersIndividualRanking
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "CustomersIndividualRanking");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualBasicRanks_Delete", "CustomersIndividualRanking", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for IndividualSummaryRanks in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "IndividualSummaryRanks_IndividualBasicRanks_Delete", "IndividualSummaryRanks")]
@@ -7617,6 +7813,141 @@ namespace FBD.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<IndividualBasicIndexScore>("FBDModel.IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete", "IndividualBasicIndexScore", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for FBDModel.IndividualClusterRanks in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualClusterRanks")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class IndividualClusterRanks : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new IndividualClusterRanks object.
+        /// </summary>
+        /// <param name="id">Initial value of ID.</param>
+        public static IndividualClusterRanks CreateIndividualClusterRanks(int id)
+        {
+            IndividualClusterRanks individualClusterRanks = new IndividualClusterRanks();
+            individualClusterRanks.ID = id;
+            return individualClusterRanks;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private int _ID;
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property Rank in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Rank
+        {
+            get
+            {
+                return this._Rank;
+            }
+            set
+            {
+                this.OnRankChanging(value);
+                this.ReportPropertyChanging("Rank");
+                this._Rank = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Rank");
+                this.OnRankChanged();
+            }
+        }
+        private string _Rank;
+        partial void OnRankChanging(string value);
+        partial void OnRankChanged();
+        /// <summary>
+        /// There are no comments for Property CentroidX in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> CentroidX
+        {
+            get
+            {
+                return this._CentroidX;
+            }
+            set
+            {
+                this.OnCentroidXChanging(value);
+                this.ReportPropertyChanging("CentroidX");
+                this._CentroidX = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CentroidX");
+                this.OnCentroidXChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _CentroidX;
+        partial void OnCentroidXChanging(global::System.Nullable<decimal> value);
+        partial void OnCentroidXChanged();
+        /// <summary>
+        /// There are no comments for Property CentroidY in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> CentroidY
+        {
+            get
+            {
+                return this._CentroidY;
+            }
+            set
+            {
+                this.OnCentroidYChanging(value);
+                this.ReportPropertyChanging("CentroidY");
+                this._CentroidY = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CentroidY");
+                this.OnCentroidYChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _CentroidY;
+        partial void OnCentroidYChanging(global::System.Nullable<decimal> value);
+        partial void OnCentroidYChanged();
+        /// <summary>
+        /// There are no comments for CustomersIndividualRanking in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualClusterRanks_Delete", "CustomersIndividualRanking")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersIndividualRanking> CustomersIndividualRanking
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "CustomersIndividualRanking");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete", "CustomersIndividualRanking", value);
                 }
             }
         }
@@ -8268,27 +8599,6 @@ namespace FBD.Models
         partial void OnEvaluationChanging(string value);
         partial void OnEvaluationChanged();
         /// <summary>
-        /// There are no comments for CustomersIndividualRanking in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualCollateralRanks_Delete", "CustomersIndividualRanking")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersIndividualRanking> CustomersIndividualRanking
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "CustomersIndividualRanking");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualCollateralRanks_Delete", "CustomersIndividualRanking", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for IndividualSummaryRanks in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "IndividualSummaryRanks_IndividualCollateralRanks_Delete", "IndividualSummaryRanks")]
@@ -8377,6 +8687,27 @@ namespace FBD.Models
         private string _Evaluation;
         partial void OnEvaluationChanging(string value);
         partial void OnEvaluationChanged();
+        /// <summary>
+        /// There are no comments for CustomersIndividualRanking in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("FBDModel", "CustomersIndividualRanking_IndividualSummaryRanks_Delete", "CustomersIndividualRanking")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<CustomersIndividualRanking> CustomersIndividualRanking
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "CustomersIndividualRanking");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CustomersIndividualRanking>("FBDModel.CustomersIndividualRanking_IndividualSummaryRanks_Delete", "CustomersIndividualRanking", value);
+                }
+            }
+        }
         /// <summary>
         /// There are no comments for IndividualBasicRanks in the schema.
         /// </summary>
