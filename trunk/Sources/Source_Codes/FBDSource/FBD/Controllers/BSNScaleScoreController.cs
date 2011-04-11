@@ -10,7 +10,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
+    
     //TODO: check scaleScore name and id unique
     public class BSNScaleScoreController : Controller
     {

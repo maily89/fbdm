@@ -1,17 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<FBD.ViewModels.RNKNonFinancialRow>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%=TempData["EditMode"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%>
+	<%=ViewData["Edit"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%=TempData["EditMode"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%></h2>
+    <h2><%=ViewData["Edit"] != null ? "Edit NonFinancial Score" : "Add NonFinancial Score"%></h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditNonFinancialScore" : "AddNonFinancialScore", "RNKRankBusiness", new { id = Url.RequestContext.RouteData.Values["id"] }))
+        <%if (ViewData["Edit"] == null)
+          { %>
+    <%Html.RenderPartial("BusinessStep", FBD.CommonUtilities.Constants.BusinessRankStep.NonFinancial); %>
+     <% } %>
+    <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetBusinessRankingInfo(System.Convert.ToInt32(ViewData["RankID"]))); %>
+    <% using (Html.BeginForm("AddNonFinancialCalculate", "RNKRankBusiness", new { id = ViewData["RankID"] }))
        { %>
+           <%=Html.Hidden("Edit", ViewData["Edit"])%>
+           <%=Html.Hidden("rankID", ViewData["RankID"])%>
+
     <table>
         <tr>
             <th>IndexID</th>
@@ -28,18 +35,24 @@
     
         <tr>
             <td>
+
                 <%= Html.Encode(Model[i].Index.IndexID)%>
+                
+
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
+                <%= Html.HiddenFor(m => m[i].Index.IndexName)%>
+                <%= Html.HiddenFor(m => m[i].Index.ValueType)%>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
-                <%= Html.HiddenFor(m=>m[i].LeafIndex) %>
-                <%= Html.HiddenFor(m=>m[i].CustomerNonFinancialID) %>
+                <%= Html.HiddenFor(m => m[i].LeafIndex)%>
+                <%= Html.HiddenFor(m => m[i].CustomerScoreID)%>
                 <%= Html.Hidden("Index", i)%>
             </td>
             <td>
+
                 <%= Html.Encode(Model[i].Index.IndexName)%>
-                
+
             </td>
-            <td><% if (Model[i].Index.LeafIndex)
+            <td><% if (Model[i].LeafIndex)
                    {
                        if (Model[i].Index.ValueType == "N")
                        {%>
@@ -49,7 +62,7 @@
                        {%>
                        
                            <%=Html.DropDownListFor(m => m[i].ScoreID, new SelectList(Model[i].ScoreList as IEnumerable,
-               "ScoreID", "FixedValue",Model[i].ScoreID))%>
+               "ScoreID", "FixedValue", Model[i].ScoreID))%>
                        <%}
                    }
             %>
@@ -60,10 +73,29 @@
     <% } %>
 
     </table>
-    <input type="submit" value="Save" />
-<%} %>
+    <table>
+	<tr>
+	<td><input value="Calculate Result" type="submit"/></td>
+	<%if (ViewData["Edit"] == null)
+   {%>
+	<td><input value="Skip this process" type="button" onclick="window.location.href='<%= Url.Action("Ranking", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%}
+   else
+   { %>
+    <td><input value="Cancel" type="button" onclick="window.location.href='<%= Url.Action("DetailNonFinancial", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%} %>
+	</tr>
+	</table>
+	<br />
+	<%if (ViewData["Edit"] == null)
+   {%>
+	<b>*Calculate:</b> Non Financial score will be displayed before next step<br />
+	<b>*Skip:</b> NonFinancial score will get 0 as default
 
-
+    
+    <%}
+       }
+           %>
 </asp:Content>
 
 

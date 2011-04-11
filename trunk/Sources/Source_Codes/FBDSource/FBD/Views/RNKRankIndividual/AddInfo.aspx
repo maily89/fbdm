@@ -1,62 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.RNKIndividualViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= TempData["EditMode"]!=null?"Edit":"Add" %>
+	<%= ViewData["Edit"]!=null?"Edit ":"Add " %>Customer Ranking
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%= TempData["EditMode"]!=null?"Edit":"Add" %></h2>
+    <h2><%= ViewData["Edit"]!=null?"Edit":"Add " %>Customer Ranking</h2>
     <% Html.EnableClientValidation(); %>
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
+    <% if (ViewData["Edit"] != null)
+       { %>
+    <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.General); %>
+    <%} %>
+    <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
 
-
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditInfo" : "AddInfo", "RNKRankIndividual"))
+    <% using (Html.BeginForm())
        {%>
         <%= Html.ValidationSummary(true) %>
-
+        <%= Html.Hidden("Edit",ViewData["Edit"] %>
+        <%= Html.Hidden("rankID",ViewData["RankID"]) %>
         <fieldset>
             <legend>Fields</legend>
-            <table>
-            
+            <table>            
             <tr>
                 <td>
                     <div class="editor-label">
-                        <%= Html.LabelFor(model => model.Date) %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.Date,new{@readonly="true"}) %>
-                        <%= Html.HiddenFor(model => model.CustomerID) %>
-                    </div>
-               </td>
-           </tr>
-            
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        <%= Html.LabelFor(model => model.CIF) %>
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.CIF, new { @readonly = "true" })%>
-                        
-                    </div>
-               </td>
-           </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
+     
                         <%= Html.LabelFor(model => model.IndividualRanking.CreditDepartment) %>
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
                         <%= Html.TextBoxFor(model => model.IndividualRanking.CreditDepartment)%>
+                        <%= Html.HiddenFor(model => model.Date) %>
+                        <%= Html.HiddenFor(model => model.CIF)%>
+                        <%= Html.HiddenFor(model => model.CustomerID) %>
                         <%= Html.ValidationMessageFor(model => model.IndividualRanking.CreditDepartment)%>
                     </div>
                </td>
@@ -69,7 +50,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.DropDownList("PurposeID", new SelectList(FBD.ViewModels.RNKRankingViewModel.CustomerType as IEnumerable,
+                        <%= Html.DropDownList("PurposeID", new SelectList(FBD.ViewModels.RNKRankingViewModel.BorrowingPurpose as IEnumerable,
                             "PurposeID", "Purpose", Model != null ? Model.PurposeID : null))%>
                     </div>
                </td>
@@ -130,10 +111,14 @@
            </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Add" />
+                    <input type="submit" value="Save" />
                 </td>
                 <td>
-                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                    <%if (ViewData["Edit"]==null){ %>
+                        <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
+                    <%}else { %>
+                        <input type='button' onclick="window.location.href='<%= Url.Action("DetailGeneral") %>';" value="Cancel" />
+                    <% }%>
                 </td>
             </tr>
         </table>

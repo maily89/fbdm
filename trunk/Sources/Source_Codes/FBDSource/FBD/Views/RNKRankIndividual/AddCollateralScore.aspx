@@ -6,12 +6,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%=TempData["EditMode"] != null ? "Edit Collateral Score" : "Add Collateral Score"%></h2>
+    <h2><%=ViewData["EditMode"] != null ? "Edit Collateral Score" : "Add Collateral Score"%></h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditCollateralScore" : "AddCollateralScore", "RNKRankIndividual", new { id = Url.RequestContext.RouteData.Values["id"] }))
+    <% using (Html.BeginForm( ))
        { %>
+       <%=Html.Hidden("Edit",ViewData["Edit"]) %>
+       <%=Html.Hidden("rankID",ViewData["RankID"]) %>
+
     <table>
         <tr>
             <th>IndexID</th>
@@ -32,7 +35,7 @@
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
                 <%= Html.HiddenFor(m=>m[i].LeafIndex) %>
-                <%= Html.HiddenFor(m=>m[i].CustomerCollateralID) %>
+                <%= Html.HiddenFor(m=>m[i].CustomerScoreID) %>
                 <%= Html.Hidden("Index", i)%>
             </td>
             <td>
@@ -60,7 +63,26 @@
     <% } %>
 
     </table>
-    <input type="submit" value="Save" />
+    <hr />
+    <table>
+	<tr>
+	<td><input value="Calculate Result" type="submit"/></td>
+	<%if (ViewData["Edit"] == null)
+    {%>
+	<td><input value="Skip this process" type="button" onclick="window.location.href='<%= Url.Action("Ranking", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%} else{ %>
+    <td><input value="Cancel" type="button" onclick="window.location.href='<%= Url.Action("DetailCollateral", new { id = ViewData["RankID"] } ) %>';"/></td>
+	<%} %>
+	</tr>
+	</table>
+	<br />
+	<%if (ViewData["Edit"] == null)
+    {%>
+	<b>*Calculate:</b> Collateral score will be displayed before next step<br />
+	<b>*Skip:</b> Collateral score will get 0 as default
+
+    
+    <%}%>
 <%} %>
 
 

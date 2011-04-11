@@ -9,7 +9,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
+    
     //TODO: check rank name and id unique
     public class BSNRankController : Controller
     {
@@ -151,7 +151,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: Temporary error handle.
+                
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_RANK);
                 return View(businessRanks);

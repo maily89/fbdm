@@ -28,13 +28,13 @@ namespace FBD.CommonUtilities
             AuditedType.Add(new SelectListItem
             {
                 Text = "Audited",
-                Value = "1",
+                Value = Constants.RNK_STRUCTURE_AUDITED,
                 Selected = false
             });
             AuditedType.Add(new SelectListItem
             {
                 Text = "Not Audited",
-                Value = "0",
+                Value = Constants.RNK_STRUCTURE_NONAUDITED,
                 Selected = true
             });
         }

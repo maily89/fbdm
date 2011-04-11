@@ -351,3 +351,16 @@ div#title
 {
 	color:Blue;
 }
+.step
+{
+    background-color:#90EE90;
+    
+}
+.currentStep
+{
+    background-color:#ADD8E6;
+}
+.brownText
+{
+    color:#804000;
+}

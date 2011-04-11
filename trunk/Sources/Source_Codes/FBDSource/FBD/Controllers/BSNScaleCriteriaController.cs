@@ -9,7 +9,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
+    
     //TODO: check scaleCriteria name and id unique
     public class BSNScaleCriteriaController : Controller
     {
@@ -155,7 +155,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: Temporary error handle.
+                
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_SCALECRITERIA);
                 return View(scaleCriteria);

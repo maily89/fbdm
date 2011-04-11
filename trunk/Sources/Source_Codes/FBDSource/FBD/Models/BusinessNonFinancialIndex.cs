@@ -20,7 +20,7 @@ namespace FBD.Models
             List<BusinessNonFinancialIndex> lstNonFinancialIndex = null;
 
             // Get the business non financial index from entities model
-            lstNonFinancialIndex = FBDModel.BusinessNonFinancialIndex.ToList();
+            lstNonFinancialIndex = FBDModel.BusinessNonFinancialIndex.OrderBy(m=>m.IndexID).ToList();
 
             return lstNonFinancialIndex;
         }

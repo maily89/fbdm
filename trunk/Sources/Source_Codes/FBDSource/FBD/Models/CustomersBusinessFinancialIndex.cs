@@ -180,7 +180,7 @@ namespace FBD.Models
             temp.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, IndustryID, scale, item.IndexID);
             return temp;
         }
-
+        
         public static RNKFinancialRow LoadExistingFinancialRow(int rankingID, FBDEntities entities, string scale, string IndustryID, BusinessFinancialIndex item)
         {
             if (item.LeafIndex)
@@ -198,11 +198,13 @@ namespace FBD.Models
                 }
                 var temp = new RNKFinancialRow();
 
-                temp.CustomerFinancialID = customerFinancial.ID;
+                temp.CustomerScoreID = customerFinancial.ID;
                 temp.RankingID = rankingID;
                 temp.Index = item;
                 temp.LeafIndex = true;
                 item.BusinessFinancialIndexScore.Load();
+                customerFinancial.BusinessFinancialIndexLevelsReference.Load();
+
                 if (temp.Index.ValueType == "C")
                 {
                     temp.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, IndustryID, scale, item.IndexID);
@@ -211,6 +213,7 @@ namespace FBD.Models
                         if (score.FixedValue.Equals(customerFinancial.Value))
                         {
                             temp.ScoreID = score.ScoreID;
+                            temp.Value = score.FixedValue;
                             break;
                         }
                     }
@@ -267,20 +270,30 @@ namespace FBD.Models
             public string Value { get; set; }
         }
 
-        internal static void Reload(List<RNKFinancialRow> rnkFinancialRow)
+
+        public static List<RNKFinancialRow> Reload(List<RNKFinancialRow> rnkFinancialRow)
         {
-            if(rnkFinancialRow.Count<=0) return;
-            FBDEntities entities = new FBDEntities();
-            var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rnkFinancialRow[0].RankingID);
-            ranking.BusinessScalesReference.Load();
-            ranking.BusinessIndustriesReference.Load();
-            string industryID = ranking.BusinessIndustries.IndustryID;
-            string scale = ranking.BusinessScales.ScaleID;
+            if (rnkFinancialRow == null || rnkFinancialRow.Count <= 0) return rnkFinancialRow;
+
+            var rankID = rnkFinancialRow[0].RankingID;
+            CustomersBusinessRanking ranking = null;
+            FBDEntities entity = new FBDEntities();
             foreach (RNKFinancialRow item in rnkFinancialRow)
             {
-                item.Index = BusinessFinancialIndex.SelectFinancialIndexByID(entities,item.Index.IndexID);
-                item.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, industryID, scale, item.Index.IndexID);
+                if (item.LeafIndex && item.Index.ValueType == "C")
+                {
+                    if (ranking == null)
+                    {
+                        ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankID, entity);
+                        ranking.BusinessIndustriesReference.Load();
+                        ranking.BusinessScalesReference.Load();
+
+                        if (ranking.BusinessScales == null || ranking.BusinessIndustries == null) return rnkFinancialRow;
+                    }
+                    item.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entity, ranking.BusinessIndustries.IndustryID, ranking.BusinessScales.ScaleID, item.Index.IndexID);
+                }
             }
+            return rnkFinancialRow;
         }
     }
 }

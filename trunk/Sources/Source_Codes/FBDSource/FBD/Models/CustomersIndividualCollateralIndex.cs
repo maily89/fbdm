@@ -176,7 +176,7 @@ namespace FBD.Models
                 }
                 var temp = new RNKCollateralRow();
 
-                temp.CustomerCollateralID = customerCollateral.ID;
+                temp.CustomerScoreID = customerCollateral.ID;
                 temp.RankingID = rankingID;
                 temp.Index = item;
                 temp.LeafIndex = true;
@@ -233,9 +233,9 @@ namespace FBD.Models
             return indexScore;
         }
         #endregion
-        internal static void Reload(List<RNKCollateralRow> rnkCollateralRow)
+        internal static List<RNKCollateralRow> Reload(List<RNKCollateralRow> rnkCollateralRow)
         {
-            if (rnkCollateralRow.Count <= 0) return;
+            if (rnkCollateralRow.Count <= 0) return rnkCollateralRow;
             FBDEntities entities = new FBDEntities();
             var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(rnkCollateralRow[0].RankingID);
 
@@ -245,6 +245,8 @@ namespace FBD.Models
                 item.Index = IndividualCollateralIndex.SelectCollateralIndexByID(item.Index.IndexID, entities);
                 item.ScoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities, item.Index.IndexID);
             }
+
+            return rnkCollateralRow;
         }
         public class CustomersIndividualCollateralIndexMetaData
         {

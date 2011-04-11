@@ -11,9 +11,12 @@
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
-    
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditScale" : "AddScore", "RNKRankBusiness", new { id = Url.RequestContext.RouteData.Values["id"] }))
+    <%Html.RenderPartial("BusinessStep",FBD.CommonUtilities.Constants.BusinessRankStep.Scale); %>
+    <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetBusinessRankingInfo(System.Convert.ToInt32(ViewData["RankID"]))); %>
+
+    <% using (Html.BeginForm("AddScoreCalculate", "RNKRankBusiness", new { id = System.Convert.ToInt32(ViewData["RankID"]) }))
        { %>
+    <%=Html.Hidden("rankID",ViewData["RankID"]) %>
     <table>
         <tr>
 
@@ -24,7 +27,7 @@
                 Criteria Name
             </th>
             <th>
-                Score
+                Value
             </th>
         </tr>
 
@@ -51,7 +54,17 @@
     <% } %>
 
     </table>
-    <input type="submit" value="Save" />
+    <hr/>
+	<hr/>
+	<table>
+	<tr>
+	<td><input value="Calculate Result" type="submit"/></td>
+	<td><input value="Skip this process" type="button" onclick="window.location.href='<%= Url.Action("AddFinancialScore", new { id = ViewData["RankID"] } ) %>';"/></td>
+	</tr>
+	</table>
+	<br />
+	<b>*Calculate:</b> Scale score will be displayed before next step<br />
+	<b>*Skip:</b> Scale score will get 0 as default
 <%} %>
 
 

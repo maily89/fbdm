@@ -29,6 +29,7 @@ namespace FBD.Models
         /// <returns>IndividualBorrowingPurposes object</returns>
         public static IndividualBorrowingPurposes SelectBorrowingPPByID(string id)
         {
+            if (id == null) return null;
             FBDEntities FBDModel = new FBDEntities();
             IndividualBorrowingPurposes IndividualBorrowingPurposes = null;
             IndividualBorrowingPurposes = FBDModel.IndividualBorrowingPurposes.First(pp => pp.PurposeID.Equals(id));

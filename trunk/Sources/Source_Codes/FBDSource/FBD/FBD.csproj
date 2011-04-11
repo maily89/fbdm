@@ -158,6 +158,13 @@
     <Compile Include="Models\BusinessScales.cs" />
     <Compile Include="Models\BusinessScaleScore.cs" />
     <Compile Include="Models\BusinessTypes.cs" />
+    <Compile Include="Models\FBDModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FBDModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IIndexScore.cs" />
+    <Compile Include="Models\IIndividualCollateralIndex.cs" />
     <Compile Include="Models\IRanks.cs" />
     <Compile Include="Models\RNKCollateralMarking.cs" />
     <Compile Include="Models\RNKBasicMarking.cs" />
@@ -173,11 +180,6 @@
     <Compile Include="Models\CustomersIndividualRanking.cs" />
     <Compile Include="Models\CustomersIndividuals.cs" />
     <Compile Include="Models\CustomersLoanTerm.cs" />
-    <Compile Include="Models\FBDModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FBDModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\IndividualBorrowingPurposes.cs" />
     <Compile Include="Models\IndividualBasicIndex.cs" />
     <Compile Include="Models\IndividualBasicIndexLevels.cs" />
@@ -241,7 +243,13 @@
     <Compile Include="ViewModels\BSNLineViewModel.cs" />
     <Compile Include="ViewModels\BSNScaleScoreRow.cs" />
     <Compile Include="ViewModels\BSNScaleScoreViewModel.cs" />
+    <Compile Include="ViewModels\RNKRankIndividualFinal.cs" />
+    <Compile Include="ViewModels\RNKIndividualIndex.cs" />
+    <Compile Include="ViewModels\RNKRankFinal.cs" />
     <Compile Include="ViewModels\INVCollateralIndexScoreViewModel.cs" />
+    <Compile Include="ViewModels\IRNKCollateralRow.cs" />
+    <Compile Include="ViewModels\IRNKIndex.cs" />
+    <Compile Include="ViewModels\RNKBusinessIndex.cs" />
     <Compile Include="ViewModels\RNKCollateralRow.cs" />
     <Compile Include="ViewModels\RNKBasicRow.cs" />
     <Compile Include="ViewModels\RNKIndividualViewModel.cs" />
@@ -526,10 +534,21 @@
     <Content Include="Views\RNKCustomerIndividuals\Edit.aspx" />
     <Content Include="Views\RNKCustomerIndividuals\Index.aspx" />
     <Content Include="Views\RNKRankBusiness\Add.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddFinancialCalculate.aspx" />
     <Content Include="Views\RNKRankBusiness\AddFinancialScore.aspx" />
-    <Content Include="Views\RNKRankBusiness\AddScore.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddNonFinancialCalculate.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddScoreCalculate.aspx" />
+    <Content Include="Views\RNKRankBusiness\CalculateScale.aspx" />
     <Content Include="Views\RNKRankBusiness\AddStep1.aspx" />
     <Content Include="Views\RNKRankBusiness\AddNonFinancialScore.aspx" />
+    <Content Include="Views\RNKRankBusiness\AddScore.aspx" />
+    <Content Include="Views\RNKRankBusiness\EditScoreCalculate.aspx" />
+    <Content Include="Views\RNKRankBusiness\DetailNonFinancial.aspx" />
+    <Content Include="Views\RNKRankBusiness\DetailScale.aspx" />
+    <Content Include="Views\RNKRankBusiness\PartNonFinancial.ascx" />
+    <Content Include="Views\RNKRankBusiness\DetailFinancial.aspx" />
+    <Content Include="Views\RNKRankBusiness\DetailGeneral.aspx" />
+    <Content Include="Views\RNKRankBusiness\DetailStep.ascx" />
     <Content Include="Views\RNKRankBusiness\Edit.aspx" />
     <Content Include="Views\RNKRankBusiness\Index.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Add.aspx" />
@@ -562,12 +581,30 @@
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
     <Content Include="Parameter.sitemap" />
+    <Content Include="Views\RNKRankBusiness\PartScale.ascx" />
+    <Content Include="Views\RNKRankBusiness\PartFinancial.ascx" />
+    <Content Include="Views\RNKRankBusiness\Ranking.aspx" />
     <Content Include="Views\RNKRankIndividual\Add.aspx" />
     <Content Include="Views\RNKRankIndividual\AddBasicScore.aspx" />
+    <Content Include="Views\RNKRankIndividual\AddBasicCalculate.aspx" />
     <Content Include="Views\RNKRankIndividual\AddInfo.aspx" />
     <Content Include="Views\RNKRankIndividual\AddCollateralScore.aspx" />
+    <Content Include="Views\RNKRankIndividual\AddCollateralCalculate.aspx" />
+    <Content Include="Views\RNKRankIndividual\DetailCollateral.aspx" />
+    <Content Include="Views\RNKRankIndividual\DetailBasic.aspx" />
+    <Content Include="Views\RNKRankIndividual\DetailGeneral.aspx" />
+    <Content Include="Views\RNKRankIndividual\DetailStep.ascx" />
+    <Content Include="Views\RNKRankIndividual\IndividualStep.ascx" />
+    <Content Include="Views\RNKRankIndividual\CustomerInfo.ascx" />
     <Content Include="Views\RNKRankIndividual\Edit.aspx" />
+    <Content Include="Views\RNKRankBusiness\EditScore.aspx" />
     <Content Include="Views\RNKRankIndividual\Index.aspx" />
+    <Content Include="Views\RNKRankBusiness\BusinessStep.ascx" />
+    <Content Include="Views\RNKRankBusiness\CustomerInfo.ascx" />
+    <Content Include="Views\RNKRankIndividual\PartBasic.ascx" />
+    <Content Include="Views\RNKRankIndividual\PartCollateral.ascx" />
+    <Content Include="Views\RNKRankIndividual\Ranking.aspx" />
+    <Content Include="Views\Shared\ViewUserControl1.ascx" />
     <Content Include="Views\SYSAuths\ChangePassword.aspx" />
     <Content Include="Views\SYSAuths\Login.aspx" />
     <Content Include="Views\SYSAuths\LoginSuccess.aspx" />

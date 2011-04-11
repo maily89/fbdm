@@ -14,6 +14,7 @@ namespace FBD.ViewModels
         public int CustomerID { get; set; }
         public string CIF { get; set; }
         public string LoanTermID { get; set; }
-        public string PurposeID { get; set; }   
+        public string PurposeID { get; set; }
+        public RNKCustomerInfo CustomerInfo { get; set; }
     }
 }

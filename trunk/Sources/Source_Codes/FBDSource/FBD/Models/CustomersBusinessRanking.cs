@@ -89,6 +89,18 @@ namespace FBD.Models
             }
             return null;
         }
+
+        public static List<CustomersBusinessRanking> SelectRankingByPeriodAndCifAndBranch(string periodID, string cif, string branchID)
+        {
+            FBDEntities entities = new FBDEntities();
+            var result = entities.CustomersBusinessRanking
+                .Include("SystemReportingPeriods")
+                .Include("CustomersBusinesses")
+                .Include("CustomersBusinesses.SystemBranches")
+                .Where(i => i.CustomersBusinesses.CIF.StartsWith(cif) && i.SystemReportingPeriods.PeriodID == periodID && i.CustomersBusinesses.SystemBranches.BranchID == branchID).ToList();
+            
+            return result;
+        }
         /// <summary>
         /// return the Business specified by id
         /// </summary>
@@ -190,6 +202,20 @@ namespace FBD.Models
             int temp = entities.SaveChanges();
 
             return temp <= 0 ? 0 : 1;
+        }
+
+        public void LoadAll()
+        {
+            
+            this.BusinessIndustriesReference.Load();
+            this.BusinessRanksReference.Load();
+            this.BusinessScalesReference.Load();
+            this.BusinessTypesReference.Load();
+            this.CustomersBusinessesReference.Load();
+            this.CustomersLoanTermReference.Load();
+            this.SystemCustomerTypesReference.Load();
+            this.SystemReportingPeriodsReference.Load();
+
         }
         public class CustomersBusinessRankingMetaData
         {

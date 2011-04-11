@@ -174,7 +174,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static List<RNKScaleRow> ScaleList(int id)
+        public static List<RNKScaleRow> LoadScaleRow(int id)
         {
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
 
@@ -191,7 +191,8 @@ namespace FBD.Models
             return scale;
         }
 
-        public static List<RNKScaleRow> ScaleEditList(int id)
+
+        public static List<RNKScaleRow> LoadAndAddScaleRow(int id)
         {
             var entities = new FBDEntities();
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id, entities);
@@ -221,6 +222,7 @@ namespace FBD.Models
                 temp.RankingID = id;
                 temp.CriteriaName = item.CriteriaName;
                 temp.Value = customerScale.Value;
+                temp.Score = customerScale.Score;
                 temp.CustomerScaleID = customerScale.ID;
                 scale.Add(temp);
             }

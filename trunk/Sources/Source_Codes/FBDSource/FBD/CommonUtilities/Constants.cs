@@ -7,6 +7,25 @@ namespace FBD.CommonUtilities
 {
     public class Constants
     {
+        /*Enum*/
+        public enum IndividualRankStep
+        {
+            ChooseCustomer,
+            General,
+            Basic,
+            Collateral,
+            Ranking
+        }
+        public enum BusinessRankStep
+        {
+            ChooseCustomer,
+            General,
+            Scale,
+            Financial,
+            NonFinancial,
+            Ranking
+        }
+        
         /* Format */
         public const string DATE_FORMAT = "{0:dd/MM/yyyy}";
         /** NUMERIC VALUE */

@@ -70,11 +70,12 @@
                         <div class="editor-field">
                             <%= Html.TextBoxFor(model => model.Formula) %>
                             <%= Html.ValidationMessageFor(model => model.Formula) %>
+                            <%= Html.HiddenFor(m => m.ValueType)%>
                         </div>
                    </td>
                </tr>
             
-                <tr>
+                <%--<tr>
                     <td>
                         <div class="editor-label">
                             <%= Html.LabelFor(model => model.ValueType) %>
@@ -82,11 +83,11 @@
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.DropDownListFor(m => m.ValueType, FBD.CommonUtilities.DropDownHelper.ValueType)%>
-                            <%= Html.ValidationMessageFor(model => model.ValueType) %>
+                        <% Model.ValueType = "N"; %>
+                            <%= Html.HiddenFor(m => m.ValueType)%>
                         </div>
                    </td>
-               </tr>
+               </tr>--%>
             
              <tr>
                 <td>

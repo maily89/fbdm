@@ -13,5 +13,6 @@ namespace FBD.ViewModels
         public Nullable<decimal> Value { get; set; }
         public int CustomerScaleID { get; set; }
         public Nullable<decimal> Score { get; set; }
+
     }
 }

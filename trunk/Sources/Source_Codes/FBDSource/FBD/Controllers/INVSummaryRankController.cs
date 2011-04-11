@@ -10,7 +10,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
+    
     //TODO: check rank name and id unique
     public class INVSummaryRankController : Controller
     {
@@ -174,7 +174,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: Temporary error handle.
+                
                 SummaryRankViewModel = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, id);
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_SUMMARY_RANK);
                 return View(SummaryRankViewModel);

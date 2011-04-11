@@ -8,7 +8,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    //TODO: check Rights
+    
     //TODO: check type name and id unique
     public class BSNTypeController : Controller
     {
@@ -144,7 +144,7 @@ namespace FBD.Controllers
             }
             catch 
             {
-                //TODO: Temporary error handle.
+                
 
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.BUSINESS_TYPE);
                 return View(type);

@@ -125,12 +125,15 @@ namespace FBD.Models
         	[Required]
             public int ScoreID { get; set; }
         		
+            [Required]
         	[DisplayName("From Value")]
             public Nullable<decimal> FromValue { get; set; }
         		
+            [Required]
         	[DisplayName("To Value")]
             public Nullable<decimal> ToValue { get; set; }
         		
+            [Required]
         	[DisplayName("Score")]
             public Nullable<decimal> Score { get; set; }
         }

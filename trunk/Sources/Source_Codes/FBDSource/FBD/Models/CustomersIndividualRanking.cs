@@ -38,21 +38,33 @@ namespace FBD.Models
 
         public static CustomersIndividualRanking SelectRankingByDateAndCustomer(DateTime date, int customerID)
         {
+            
             FBDEntities entities = new FBDEntities();
             var result = entities.CustomersIndividualRanking
                         .Include("CustomersIndividual")
                         .Include("Date")
-                        .Where(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value.ToShortDateString() == date.ToShortDateString())
+                        .Where(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value == date)
                         .Any();
             if (result)
             {
                 return  entities.CustomersIndividualRanking
                         .Include("CustomersIndividual")
                         .Include("Date")
-                        .First(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value.ToShortDateString() == date.ToShortDateString());
+                        .First(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value == date);
             }
             return null;
         }
+
+        public static List<CustomersIndividualRanking> SelectRankingByDateAndCifAndBranch(DateTime date, string Cif, string BranchID)
+        {
+            FBDEntities entities = new FBDEntities();
+            var result = entities.CustomersIndividualRanking
+                .Include("CustomersIndividuals")
+                .Include("CustomersIndividuals.SystemBranches")
+                .Where(i => i.CustomersIndividuals.CIF.StartsWith(Cif) && i.CustomersIndividuals.SystemBranches.BranchID == BranchID && i.Date == date).ToList();
+            return result;
+        }
+
         /// <summary>
         /// return the Individual specified by id
         /// </summary>
@@ -162,6 +174,15 @@ namespace FBD.Models
         		
         	[DisplayName("Date Modified")]
             public Nullable<System.DateTime> DateModified { get; set; }
+        }
+
+        internal void LoadAll()
+        {
+            this.CustomersIndividualsReference.Load();
+            this.CustomersLoanTermReference.Load();
+            this.IndividualBorrowingPurposesReference.Load();
+            this.IndividualSummaryRanksReference.Load();
+            
         }
     }
 }

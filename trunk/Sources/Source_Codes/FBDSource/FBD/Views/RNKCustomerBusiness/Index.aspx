@@ -14,7 +14,27 @@
     <h3>
     <%= Html.ActionLink("Add New Business Customer", "Add") %>
     </h3>
-    <table>
+    <% Html.Telerik().Grid(Model)
+           .Name("Grid")
+           .Columns(columns =>
+               {
+                   columns.Template(c =>
+                   {%>
+                        <%= Html.ActionLink("Edit", "Edit", new { id = c.BusinessID })%> |
+                        <%= Html.ActionLink("Delete", "Delete", new { id = c.BusinessID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete " + c.CustomerName + "?');" })%>
+<%
+        }).Title("").Width(100);
+                   columns.Bound(c => c.CIF).Title("CIF");
+                   columns.Bound(c => c.CustomerName).Title("Customer Name");
+                   
+                   
+               })
+           .Sortable()
+           .Pageable(p=> p.PageSize(20))
+           .Render();
+        
+    %>
+    <%--<table>
         <tr>
             <th></th>
             <th>
@@ -49,7 +69,7 @@
     
     <% } %>
 
-    </table>
+    </table>--%>
 
     <h3>
         <%= Html.ActionLink("Add New Business Customer", "Add")%>

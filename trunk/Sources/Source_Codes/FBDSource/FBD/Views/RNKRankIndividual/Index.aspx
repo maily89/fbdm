@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.Models.CustomersIndividualRanking>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.RNKIndividualIndex>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Ranking for Individual Customer
@@ -11,10 +11,60 @@
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
-    <h3>
-    <%= Html.ActionLink("Rank for new customer", "Add") %>
-    </h3>
-    <table>
+    <hr/>
+		<h3><b>DISPLAY FILTER</b></h3>
+		<% using(Html.BeginForm()){ %>
+		<table width="100%">
+		<tr>
+		<td><b>Reporting Period</b></td>
+		<td> Html.Telerik().DatePickerFor(model => model.DateTime).Format("dd-MMM-yyyy")%>
+        </td>
+		</tr>
+		<tr>
+		<td><b>Branch</b></td>
+		<td> <%= Html.DropDownListFor(m=>m.BranchID, new SelectList(FBD.ViewModels.RNKRankingViewModel.SystemBranch as IEnumerable,
+                "BranchID", "BranchName",Model.BranchID))%></td>
+		</tr>
+		<tr>
+		<td><b>Số CIF</b></td>
+		<td><%= Html.TextBoxFor(m=>m.Cif) %></td>
+		</tr>
+		<tr>
+		<td></td><td><input type="submit" value="Search" /></td>
+		</tr>
+		</table>
+		<%} %>
+		<hr/>
+		<hr/>
+		<%
+        Html.Telerik().Grid(Model.CustomerRanking)
+            .Name("Grid")
+            .Columns(columns =>
+            {
+                columns.Template(c =>
+                    {%>
+                        <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID })%> |
+                        <%= Html.ActionLink("Remove", "Delete", new { id = c.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete item" + c.ID + "?');" })%>
+                        <%
+        }).Title("").Width(100);
+                columns.Bound(c => c.CustomersIndividuals.CIF).Title("CIF");
+                columns.Bound(c => c.CustomersIndividuals.CustomerName).Title("Name");
+                columns.Bound(c => c.Date).Title("Date");
+                columns.Bound(c => c.CreditDepartment).Title("Credit Department");
+                columns.Bound(c => c.TotalDebt).Title("Total Debt");
+                columns.Bound(c => c.CollateralIndexScore).Title("Collateral Index Score");
+                columns.Bound(c => c.BasicIndexScore).Title("Basic Index Score");                
+                columns.Template(c => {%><%= Html.Encode(c.IndividualSummaryRanks!=null?c.IndividualSummaryRanks.Evaluation:null) %><%})
+                    .Title("Rank");
+                columns.Bound(c => c.UserID)
+                    .Title("User ID");
+                columns.Bound(c=>c.DateModified).Title("Date Modified");
+            })
+            .Sortable()
+            .Pageable(p => p.PageSize(20))
+            .Render();
+    %>
+    <%--<table>
         <tr>
             <th></th>
             <th>
@@ -43,7 +93,8 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% if(Model!=null)
+        foreach (var item in Model) { %>
     
         <tr>
             <td>
@@ -82,7 +133,7 @@
 
     <h3>
     <%= Html.ActionLink("Rank for new customer", "Add") %>
-    </h3>
+    </h3>--%>
 
 </asp:Content>
 
