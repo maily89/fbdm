@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -46,7 +47,20 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var financialIndex = entities
                                 .CustomersBusinessFinancialIndex
-                                .Include("CustomersBusinessRanking")
+                                .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX)
+                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX_LEVELS)
+                                .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
+            return financialIndex;
+        }
+
+        public static List<CustomersBusinessFinancialIndex> SelectFinancialIndexByRankingID(int id, FBDEntities entities)
+        {
+            var financialIndex = entities
+                                .CustomersBusinessFinancialIndex
+                                .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX)
+                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
             return financialIndex;
         }
@@ -63,8 +77,8 @@ namespace FBD.Models
             {
                 var financialIndex = entities
                                     .CustomersBusinessFinancialIndex
-                                    .Include("CustomersBusinessRanking")
-                                    .Include("BusinessFinancialIndex")
+                                    .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                    .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX)
                                     .First(i => (i.CustomersBusinessRanking.ID == rankingID && i.BusinessFinancialIndex.IndexID == indexID));
                 return financialIndex;
             }

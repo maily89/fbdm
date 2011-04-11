@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -46,7 +47,20 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var nonFinancialIndex = entities
                                 .CustomersBusinessNonFinancialIndex
-                                .Include("CustomersBusinessRanking")
+                                .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX)
+                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS)
+                                .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
+            return nonFinancialIndex;
+        }
+
+        public static List<CustomersBusinessNonFinancialIndex> SelectNonFinancialIndexByRankingID(int id, FBDEntities entities)
+        {
+            var nonFinancialIndex = entities
+                                .CustomersBusinessNonFinancialIndex
+                                .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX)
+                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
             return nonFinancialIndex;
         }
@@ -63,8 +77,8 @@ namespace FBD.Models
             {
                 var nonFinancialIndex = entities
                                     .CustomersBusinessNonFinancialIndex
-                                    .Include("CustomersBusinessRanking")
-                                    .Include("BusinessNonFinancialIndex")
+                                    .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                    .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX)
                                     .First(i => (i.CustomersBusinessRanking.ID == rankingID && i.BusinessNonFinancialIndex.IndexID == indexID));
                 return nonFinancialIndex;
             }
