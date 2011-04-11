@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 namespace FBD.Models
 {
 
@@ -66,7 +67,9 @@ namespace FBD.Models
         public static List<CustomersBusinessScale> SelectBusinessScaleByRankingID(int id, FBDEntities entities)
         {
             
-            var scale = entities.CustomersBusinessScale.Include("CustomersBusinessRanking").Where(s => s.CustomersBusinessRanking.ID == id).ToList();
+            var scale = entities.CustomersBusinessScale.Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                                       .Include(Constants.TABLE_BUSINESS_SCALE_CRITERIA)
+                                                       .Where(s => s.CustomersBusinessRanking.ID == id).ToList();
 
             return scale;
         }

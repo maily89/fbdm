@@ -37,7 +37,9 @@ namespace FBD.Models
         public static List<Vector> SelectBusinessRankingToVector()
         {
             FBDEntities entities = new FBDEntities();
-            List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking.Include("CustomersBusinesses").Include("BusinessRanks").ToList();
+            List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
+                                                             .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
+                                                             .Include(Constants.TABLE_BUSINESS_RANKS).ToList();
             List<Vector> vList = new List<Vector>();
             foreach(CustomersBusinessRanking cbr in cbrList)
             {
@@ -59,7 +61,15 @@ namespace FBD.Models
         {
             if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+            var Business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
+                                                            .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
+                                                            .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
+                                                            .Include(Constants.TABLE_BUSINESS_TYPES)
+                                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
+                                                            .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
+                                                            .Include(Constants.TABLE_BUSINESS_SCALES)
+                                                            .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                            .First(i => i.ID == id);
 
             return Business;
         }
@@ -67,14 +77,14 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectRankingByPeriodAndCustomer(string periodID, int customerID)
         {
             FBDEntities entities = new FBDEntities();
-            var result = entities.CustomersBusinessRanking.Include("SystemReportingPeriods")
-                .Include("CustomersBusinesses")
+            var result = entities.CustomersBusinessRanking.Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
+                .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                 .Where(i => i.CustomersBusinesses.BusinessID == customerID && i.SystemReportingPeriods.PeriodID == periodID).Any();
             if (result)
             {
                 return entities.CustomersBusinessRanking
-                                .Include("SystemReportingPeriods")
-                                .Include("CustomersBusinesses")
+                                .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
+                                .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                                 .Where(i => i.CustomersBusinesses.BusinessID == customerID && i.SystemReportingPeriods.PeriodID == periodID).First();
             }
             return null;
@@ -88,7 +98,15 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectBusinessRankingByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+            var business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
+                                                            .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
+                                                            .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
+                                                            .Include(Constants.TABLE_BUSINESS_TYPES)
+                                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
+                                                            .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
+                                                            .Include(Constants.TABLE_BUSINESS_SCALES)
+                                                            .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                            .First(i => i.ID == id);
             return business;
         }
 
