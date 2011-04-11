@@ -12,9 +12,9 @@ namespace FBD.Controllers
         //
         // GET: /Error/
 
-        public ActionResult Index(Error error)
+        public ActionResult Index()
         {
-            return View(error);
+            return View();
         }
 
     }

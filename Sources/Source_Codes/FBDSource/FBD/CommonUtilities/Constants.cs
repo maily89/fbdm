@@ -67,6 +67,27 @@ namespace FBD.CommonUtilities
         public const string INV_COLL_RANK = "Individual Collateral Rank";
         
 
+        /****************** TABLE NAMES *******************/
+
+        public const string TABLE_BUSINESS_SCALES = "BusinessScales";
+        public const string TABLE_BUSINESS_RANKS = "BusinessRanks";
+        public const string TABLE_BUSINESS_INDUSTRIES = "BusinessIndustries";
+        public const string TABLE_BUSINESS_TYPES = "BusinessTypes";
+        public const string TABLE_BUSINESS_SCALE_CRITERIA = "BusinessScaleCriteria";
+        public const string TABLE_BUSINESS_FINANCIAL_INDEX = "BusinessFinancialIndex";
+        public const string TABLE_BUSINESS_FINANCIAL_INDEX_LEVELS = "BusinessFinancialIndexLevels";
+        public const string TABLE_BUSINESS_NONFINANCIAL_INDEX = "BusinessNonFinancialIndex";
+        public const string TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS = "BusinessNonFinancialIndexLevels";
+
+        public const string TABLE_CUSTOMERS_BUSINESSES = "CustomersBusinesses";
+        public const string TABLE_CUSTOMERS_LOAN_TERM = "CustomersLoanTerm";
+        public const string TABLE_CUSTOMERS_BUSINESS_RANKING = "CustomersBusinessRanking";
+
+        public const string TABLE_SYSTEM_CUSTOMER_TYPE = "SystemCustomerTypes";
+        public const string TABLE_SYSTEM_USERS = "SystemUsers";
+        public const string TABLE_SYSTEM_REPORTING_PERIODS = "SystemReportingPeriods";
+        public const string TABLE_SYSTEM_BRANCHES = "SystemBranches";
+
 
         /****************** SYSTEM RIGHTS ******************/
 
@@ -75,6 +96,11 @@ namespace FBD.CommonUtilities
         public const string RIGHT_RANKING = "003";
         public const string RIGHT_SYSTEM_VIEW = "004";
         public const string RIGHT_SYSTEM_UPDATE = "005";
+
+        
+        /****************** REPORTING ********************/
+
+        public const string RPT_MISSING_VALUE = "?";
 
 
         /***************** MESSAGE TYPES *****************/
@@ -113,6 +139,13 @@ namespace FBD.CommonUtilities
         public const string ERR_CHANGE_PASS_MATCH = "The old password is invalid or confirm password does not match. Please input again";
         public const string ERR_CHANGE_PASS_INPUT = "Unable to change pass at this time. Please come back a bit later";
         public const string ERR_RESET_PASS = "Cannot reset this password. Plz come back later";
+
+        // REPORTING ERRORS
+        public const string ERR_RPT_GENERAL_INFO = "Error when exporting general information";
+        public const string ERR_RPT_SCALE_INFO = "Error when exporting scale information";
+        public const string ERR_RPT_FINANCIAL_INFO = "Error when exporting financial information";
+        public const string ERR_RPT_NONFINANCIAL_INFO = "Error when exporting non-financial information";
+        public const string ERR_RPT_REPORT = "Some undefined problems have occurred when exporting data in Report Service or Controller";
 
         //COMMON
         public const string ERR_TO_DATE_LESS_THAN_FROM_DATE = "To date must be greater than from date. Please input again";

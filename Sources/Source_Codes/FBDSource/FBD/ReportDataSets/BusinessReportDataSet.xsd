@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BusinessReportDataSet" targetNamespace="http://tempuri.org/BusinessReportDataSet.xsd" xmlns:mstns="http://tempuri.org/BusinessReportDataSet.xsd" xmlns="http://tempuri.org/BusinessReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BusinessReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="BusinessReportDataSet" msprop:Generator_UserDSName="BusinessReportDataSet" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GeneralInfo" msprop:Generator_UserTableName="GeneralInfo" msprop:Generator_RowDeletedName="GeneralInfoRowDeleted" msprop:Generator_TableClassName="GeneralInfoDataTable" msprop:Generator_RowChangedName="GeneralInfoRowChanged" msprop:Generator_RowClassName="GeneralInfoRow" msprop:Generator_RowChangingName="GeneralInfoRowChanging" msprop:Generator_RowEvArgName="GeneralInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="GeneralInfoRowChangeEventHandler" msprop:Generator_TablePropName="GeneralInfo" msprop:Generator_TableVarName="tableGeneralInfo" msprop:Generator_RowDeletingName="GeneralInfoRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ErrReport" msprop:Generator_UserColumnName="ErrReport" msprop:Generator_ColumnPropNameInRow="ErrReport" msprop:Generator_ColumnVarNameInTable="columnErrReport" msprop:Generator_ColumnPropNameInTable="ErrReportColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrGeneralInfo" msprop:Generator_UserColumnName="ErrGeneralInfo" msprop:Generator_ColumnPropNameInRow="ErrGeneralInfo" msprop:Generator_ColumnVarNameInTable="columnErrGeneralInfo" msprop:Generator_ColumnPropNameInTable="ErrGeneralInfoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrScaleInfo" msprop:Generator_UserColumnName="ErrScaleInfo" msprop:Generator_ColumnPropNameInRow="ErrScaleInfo" msprop:Generator_ColumnVarNameInTable="columnErrScaleInfo" msprop:Generator_ColumnPropNameInTable="ErrScaleInfoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrFinancialInfo" msprop:Generator_UserColumnName="ErrFinancialInfo" msprop:Generator_ColumnPropNameInRow="ErrFinancialInfo" msprop:Generator_ColumnVarNameInTable="columnErrFinancialInfo" msprop:Generator_ColumnPropNameInTable="ErrFinancialInfoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrNonFinancialInfo" msprop:Generator_UserColumnName="ErrNonFinancialInfo" msprop:Generator_ColumnPropNameInRow="ErrNonFinancialInfo" msprop:Generator_ColumnVarNameInTable="columnErrNonFinancialInfo" msprop:Generator_ColumnPropNameInTable="ErrNonFinancialInfoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNumber" msprop:Generator_UserColumnName="CIFNumber" msprop:Generator_ColumnPropNameInRow="CIFNumber" msprop:Generator_ColumnVarNameInTable="columnCIFNumber" msprop:Generator_ColumnPropNameInTable="CIFNumberColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_UserColumnName="CustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Industry" msprop:Generator_UserColumnName="Industry" msprop:Generator_ColumnPropNameInRow="Industry" msprop:Generator_ColumnVarNameInTable="columnIndustry" msprop:Generator_ColumnPropNameInTable="IndustryColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BusinessType" msprop:Generator_UserColumnName="BusinessType" msprop:Generator_ColumnPropNameInRow="BusinessType" msprop:Generator_ColumnVarNameInTable="columnBusinessType" msprop:Generator_ColumnPropNameInTable="BusinessTypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TaxCode" msprop:Generator_UserColumnName="TaxCode" msprop:Generator_ColumnPropNameInRow="TaxCode" msprop:Generator_ColumnVarNameInTable="columnTaxCode" msprop:Generator_ColumnPropNameInTable="TaxCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Branch" msprop:Generator_UserColumnName="Branch" msprop:Generator_ColumnPropNameInRow="Branch" msprop:Generator_ColumnVarNameInTable="columnBranch" msprop:Generator_ColumnPropNameInTable="BranchColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ReportingPeriod" msprop:Generator_UserColumnName="ReportingPeriod" msprop:Generator_ColumnPropNameInRow="ReportingPeriod" msprop:Generator_ColumnVarNameInTable="columnReportingPeriod" msprop:Generator_ColumnPropNameInTable="ReportingPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Scale" msprop:Generator_UserColumnName="Scale" msprop:Generator_ColumnPropNameInRow="Scale" msprop:Generator_ColumnVarNameInTable="columnScale" msprop:Generator_ColumnPropNameInTable="ScaleColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FinancialScore" msprop:Generator_UserColumnName="FinancialScore" msprop:Generator_ColumnPropNameInRow="FinancialScore" msprop:Generator_ColumnVarNameInTable="columnFinancialScore" msprop:Generator_ColumnPropNameInTable="FinancialScoreColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NonFinancialScore" msprop:Generator_UserColumnName="NonFinancialScore" msprop:Generator_ColumnPropNameInRow="NonFinancialScore" msprop:Generator_ColumnVarNameInTable="columnNonFinancialScore" msprop:Generator_ColumnPropNameInTable="NonFinancialScoreColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Rank" msprop:Generator_UserColumnName="Rank" msprop:Generator_ColumnPropNameInRow="Rank" msprop:Generator_ColumnVarNameInTable="columnRank" msprop:Generator_ColumnPropNameInTable="RankColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Evaluation" msprop:Generator_UserColumnName="Evaluation" msprop:Generator_ColumnPropNameInRow="Evaluation" msprop:Generator_ColumnVarNameInTable="columnEvaluation" msprop:Generator_ColumnPropNameInTable="EvaluationColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ScaleInfo" msprop:Generator_UserTableName="ScaleInfo" msprop:Generator_RowDeletedName="ScaleInfoRowDeleted" msprop:Generator_TableClassName="ScaleInfoDataTable" msprop:Generator_RowChangedName="ScaleInfoRowChanged" msprop:Generator_RowClassName="ScaleInfoRow" msprop:Generator_RowChangingName="ScaleInfoRowChanging" msprop:Generator_RowEvArgName="ScaleInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="ScaleInfoRowChangeEventHandler" msprop:Generator_TablePropName="ScaleInfo" msprop:Generator_TableVarName="tableScaleInfo" msprop:Generator_RowDeletingName="ScaleInfoRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Index" msprop:Generator_UserColumnName="Index" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInTable="IndexColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_UserColumnName="Value" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInTable="ValueColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Score" msprop:Generator_UserColumnName="Score" msprop:Generator_ColumnPropNameInRow="Score" msprop:Generator_ColumnVarNameInTable="columnScore" msprop:Generator_ColumnPropNameInTable="ScoreColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FinancialInfo" msprop:Generator_UserTableName="FinancialInfo" msprop:Generator_RowDeletedName="FinancialInfoRowDeleted" msprop:Generator_TableClassName="FinancialInfoDataTable" msprop:Generator_RowChangedName="FinancialInfoRowChanged" msprop:Generator_RowClassName="FinancialInfoRow" msprop:Generator_RowChangingName="FinancialInfoRowChanging" msprop:Generator_RowEvArgName="FinancialInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="FinancialInfoRowChangeEventHandler" msprop:Generator_TablePropName="FinancialInfo" msprop:Generator_TableVarName="tableFinancialInfo" msprop:Generator_RowDeletingName="FinancialInfoRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Index" msprop:Generator_UserColumnName="Index" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInTable="IndexColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_UserColumnName="Value" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInTable="ValueColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Score" msprop:Generator_UserColumnName="Score" msprop:Generator_ColumnPropNameInRow="Score" msprop:Generator_ColumnVarNameInTable="columnScore" msprop:Generator_ColumnPropNameInTable="ScoreColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NonFinancialInfo" msprop:Generator_UserTableName="NonFinancialInfo" msprop:Generator_RowDeletedName="NonFinancialInfoRowDeleted" msprop:Generator_TableClassName="NonFinancialInfoDataTable" msprop:Generator_RowChangedName="NonFinancialInfoRowChanged" msprop:Generator_RowClassName="NonFinancialInfoRow" msprop:Generator_RowChangingName="NonFinancialInfoRowChanging" msprop:Generator_RowEvArgName="NonFinancialInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="NonFinancialInfoRowChangeEventHandler" msprop:Generator_TablePropName="NonFinancialInfo" msprop:Generator_TableVarName="tableNonFinancialInfo" msprop:Generator_RowDeletingName="NonFinancialInfoRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Index" msprop:Generator_UserColumnName="Index" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInTable="IndexColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_UserColumnName="Value" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInTable="ValueColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Score" msprop:Generator_UserColumnName="Score" msprop:Generator_ColumnPropNameInRow="Score" msprop:Generator_ColumnVarNameInTable="columnScore" msprop:Generator_ColumnPropNameInTable="ScoreColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

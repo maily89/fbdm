@@ -44,14 +44,14 @@ namespace FBD.ViewModels
         /// <summary>
         /// The proportion of the financial index with specified industry
         /// </summary>
-        public decimal Proportion;
+        public decimal Proportion { get; set; }
 
         /// <summary>
         /// Metadata class to validate the proportion
         /// </summary>
         public class FIProportionRowViewModelMetaData
         {
-            public decimal Proportion;
+            public decimal Proportion { get; set; }
         }
     }
 }
