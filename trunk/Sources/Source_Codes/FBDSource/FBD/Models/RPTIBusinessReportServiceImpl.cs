@@ -46,7 +46,7 @@ namespace FBD.Models
                 foreach (var item in scaleInfo)
                 {
                     RPTScaleReportModel scaleRow = new RPTScaleReportModel();
-                    scaleRow.Index = item.BusinessScaleCriteria.CriteriaID;
+                    scaleRow.Index = item.BusinessScaleCriteria.CriteriaName;
                     scaleRow.Value = (decimal)item.Value;
                     scaleRow.Score = (decimal)item.Score;
 
@@ -70,7 +70,7 @@ namespace FBD.Models
                 foreach (var item in financialInfo)
                 {
                     RPTFinancialReportModel financialRow = new RPTFinancialReportModel();
-                    financialRow.Index = item.BusinessFinancialIndex.IndexID;
+                    financialRow.Index = item.BusinessFinancialIndex.IndexName;
                     financialRow.Value = item.Value;
                     financialRow.Score = (decimal)item.BusinessFinancialIndexLevels.Score;
 
@@ -94,7 +94,7 @@ namespace FBD.Models
                 foreach (var item in nonFinancialInfo)
                 {
                     RPTNonFinancialReportModel nonFinancialRow = new RPTNonFinancialReportModel();
-                    nonFinancialRow.Index = item.BusinessNonFinancialIndex.IndexID;
+                    nonFinancialRow.Index = item.BusinessNonFinancialIndex.IndexName;
                     nonFinancialRow.Value = item.Value;
                     nonFinancialRow.Score = (decimal)item.BusinessNonFinancialIndexLevels.Score;
 

@@ -98,10 +98,19 @@ namespace FBD.CommonUtilities
         public const string TABLE_BUSINESS_NONFINANCIAL_INDEX = "BusinessNonFinancialIndex";
         public const string TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS = "BusinessNonFinancialIndexLevels";
 
-        public const string TABLE_CUSTOMERS_BUSINESSES = "CustomersBusinesses";
-        public const string TABLE_CUSTOMERS_LOAN_TERM = "CustomersLoanTerm";
-        public const string TABLE_CUSTOMERS_BUSINESS_RANKING = "CustomersBusinessRanking";
+        public const string TABLE_INDIVIDUAL_BORROWING_PURPOSES = "IndividualBorrowingPurposes";
+        public const string TABLE_INDIVIDUAL_BASIC_INDEX = "IndividualBasicIndex";
+        public const string TABLE_INDIVIDUAL_BASIC_INDEX_LEVELS = "IndividualBasicIndexLevels";
+        public const string TABLE_INDIVIDUAL_COLLATERAL_INDEX = "IndividualCollateralIndex";
+        public const string TABLE_INDIVIDUAL_COLLATERAL_INDEX_LEVELS = "IndividualCollateralIndexLevels";
+        public const string TABLE_INDIVIDUAL_SUMMARY_RANKS = "IndividualSummaryRanks";
 
+        public const string TABLE_CUSTOMERS_LOAN_TERM = "CustomersLoanTerm";
+        public const string TABLE_CUSTOMERS_BUSINESSES = "CustomersBusinesses";
+        public const string TABLE_CUSTOMERS_BUSINESS_RANKING = "CustomersBusinessRanking";
+        public const string TABLE_CUSTOMERS_INDIVIDUAL_RANKING = "CustomersIndividualRanking";
+        public const string TABLE_CUSTOMERS_INDIVIDUALS = "CustomersIndividuals";     
+        
         public const string TABLE_SYSTEM_CUSTOMER_TYPE = "SystemCustomerTypes";
         public const string TABLE_SYSTEM_USERS = "SystemUsers";
         public const string TABLE_SYSTEM_REPORTING_PERIODS = "SystemReportingPeriods";
@@ -120,6 +129,17 @@ namespace FBD.CommonUtilities
         /****************** REPORTING ********************/
 
         public const string RPT_MISSING_VALUE = "?";
+        public const string RPT_DSP_OPT_IN_WEB = "application/pdf";
+        public const string RPT_DSP_OPT_SAVE_TO_LOCAL = "FBDApplication/pdf";
+
+        public const string RPT_NAME_BUSINESS_GENERAL_REPORT = "BusinessGeneralReport.rpt";
+        public const string RPT_NAME_BUSINESS_SCALE_REPORT = "BusinessScaleReport.rpt";
+        public const string RPT_NAME_BUSINESS_FINANCIAL_REPORT = "BusinessFinancialReport.rpt";
+        public const string RPT_NAME_BUSINESS_NONFINANCIAL_REPORT = "BusinessNonFinancialReport.rpt";
+
+        public const string RPT_NAME_INDIVIDUAL_GENERAL_REPORT = "IndividualGeneralReport.rpt";
+        public const string RPT_NAME_INDIVIDUAL_BASIC_REPORT = "IndividualBasicInfoReport.rpt";
+        public const string RPT_NAME_INDIVIDUAL_COLLATERAL_REPORT = "IndividualCollateralInfoReport.rpt";
 
 
         /***************** MESSAGE TYPES *****************/
@@ -165,6 +185,8 @@ namespace FBD.CommonUtilities
         public const string ERR_RPT_FINANCIAL_INFO = "Error when exporting financial information";
         public const string ERR_RPT_NONFINANCIAL_INFO = "Error when exporting non-financial information";
         public const string ERR_RPT_REPORT = "Some undefined problems have occurred when exporting data in Report Service or Controller";
+        public const string ERR_RPT_BASIC_INFO = "Error when exporting basic index information";
+        public const string ERR_RPT_COLLATERAL_INFO = "Error when exporting collateral index information";
 
         //COMMON
         public const string ERR_TO_DATE_LESS_THAN_FROM_DATE = "To date must be greater than from date. Please input again";
