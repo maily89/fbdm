@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -59,7 +60,20 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var collateralIndex = entities
                                 .CustomersIndividualCollateralIndex
-                                .Include("CustomersIndividualRanking")
+                                .Include(Constants.TABLE_CUSTOMERS_INDIVIDUAL_RANKING)
+                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX)
+                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX_LEVELS)
+                                .Where(i => i.CustomersIndividualRanking.ID == id).ToList();
+            return collateralIndex;
+        }
+
+        public static List<CustomersIndividualCollateralIndex> SelectCollateralIndexByRankingID(int id, FBDEntities entities)
+        {
+            var collateralIndex = entities
+                                .CustomersIndividualCollateralIndex
+                                .Include(Constants.TABLE_CUSTOMERS_INDIVIDUAL_RANKING)
+                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX)
+                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersIndividualRanking.ID == id).ToList();
             return collateralIndex;
         }

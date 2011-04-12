@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -59,7 +60,20 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var basicIndex = entities
                                 .CustomersIndividualBasicIndex
-                                .Include("CustomersIndividualRanking")
+                                .Include(Constants.TABLE_CUSTOMERS_INDIVIDUAL_RANKING)
+                                .Include(Constants.TABLE_INDIVIDUAL_BASIC_INDEX)
+                                .Include(Constants.TABLE_INDIVIDUAL_BASIC_INDEX_LEVELS)
+                                .Where(i => i.CustomersIndividualRanking.ID == id).ToList();
+            return basicIndex;
+        }
+
+        public static List<CustomersIndividualBasicIndex> SelectBasicIndexByRankingID(int id, FBDEntities entities)
+        {
+            var basicIndex = entities
+                                .CustomersIndividualBasicIndex
+                                .Include(Constants.TABLE_CUSTOMERS_INDIVIDUAL_RANKING)
+                                .Include(Constants.TABLE_INDIVIDUAL_BASIC_INDEX)
+                                .Include(Constants.TABLE_INDIVIDUAL_BASIC_INDEX_LEVELS)
                                 .Where(i => i.CustomersIndividualRanking.ID == id).ToList();
             return basicIndex;
         }
