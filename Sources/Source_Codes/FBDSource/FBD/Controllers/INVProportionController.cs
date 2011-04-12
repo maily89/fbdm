@@ -124,16 +124,17 @@ namespace FBD.Controllers
                         // Assign the proportion value to the row
                         if (formCollection["ProportionRows[" + i + "].Proportion"] != null)
                         {
-                            try
-                            {
-                                rowForSavingProportion.Proportion = decimal.
-                                                        Parse(formCollection["ProportionRows[" + i + "].Proportion"].ToString());
+                            rowForSavingProportion.strProportion = formCollection["ProportionRows[" + i + "].Proportion"].ToString();
+                            //try
+                            //{
+                            //    rowForSavingProportion.Proportion = decimal.
+                            //                            Parse(formCollection["ProportionRows[" + i + "].Proportion"].ToString());
 
-                            }
-                            catch (Exception)
-                            {
-                                rowForSavingProportion.Proportion = 0;
-                            }
+                            //}
+                            //catch (Exception)
+                            //{
+                            //    rowForSavingProportion.Proportion = 0;
+                            //}
                         }
 
                         // Assign the proportion ID to the row

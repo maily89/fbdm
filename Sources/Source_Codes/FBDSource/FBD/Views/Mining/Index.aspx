@@ -70,9 +70,11 @@
     Chart2.Width = 800;
     Chart2.Height = 500;
     Chart2.RenderType = RenderType.ImageTag;
-
-
+    
     //customize chart display:
+    Chart2.Palette = ChartColorPalette.Bright;
+    Title t = new Title("Final result", Docking.Top, new System.Drawing.Font("Trebuchet MS", 14, System.Drawing.FontStyle.Bold), System.Drawing.Color.FromArgb(26, 59, 105));
+    Chart2.Titles.Add(t);
     Chart2.BackGradientStyle = GradientStyle.TopBottom;
     Chart2.BackColor = System.Drawing.Color.White;
     Chart2.BackSecondaryColor = System.Drawing.Color.FromArgb(211, 223, 240);
@@ -84,10 +86,13 @@
     Chart2.ChartAreas["Series 1"].BackColor = System.Drawing.Color.White;
     Chart2.ChartAreas["Series 1"].BackSecondaryColor = System.Drawing.Color.FromArgb(211, 223, 240);
     Chart2.ChartAreas["Series 1"].BorderDashStyle = ChartDashStyle.Solid;
-    
 
-   // Chart2.ChartAreas["Series 1"].AxisX.ScaleView.IsZoomed = true;
+    Chart2.ChartAreas["Series 1"].Area3DStyle.Enable3D = true;
+    //Chart2.Series["Default"]["DrawingStyle"]="
+    Chart2.ChartAreas["Series 1"].Area3DStyle.Inclination = 10;
+    Chart2.ChartAreas["Series 1"].Area3DStyle.IsClustered = true;
     
+        
     //Work with legends
     Chart2.Legends.Add("Default");
     Chart2.Legends["Default"].CustomItems.Clear();
@@ -97,9 +102,8 @@
     Chart2.Legends["Default"].CustomItems[0].Cells.Add(new LegendCell(LegendCellType.Text, "Central", System.Drawing.ContentAlignment.MiddleLeft));        
     Chart2.Legends["Default"].CustomItems[0].Cells[0].Text = "Central";
 
-    Chart2.Palette = ChartColorPalette.BrightPastel;
-    Title t = new Title("Final result", Docking.Top, new System.Drawing.Font("Trebuchet MS", 14, System.Drawing.FontStyle.Bold), System.Drawing.Color.FromArgb(26, 59, 105));
-    Chart2.Titles.Add(t);
+   
+    
     
     //Customize legends
     //LegendCellColumn column2 = new LegendCellColumn();
@@ -124,25 +128,36 @@
     
    
   //  Chart2.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Blue;
-
+    int index = 1;
     
     for (int i = 0; i < 10; i++)
     {   //Create series and config them
         Chart2.Series.Add(i.ToString());
-        Chart2.Series[i.ToString()].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Point;
+        Chart2.Series[i.ToString()].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.SplineArea;
         Chart2.Series[i.ToString()].MarkerSize = 10;
+        Chart2.Series[i.ToString()]["PointWidth"] = "0.2";
         // add points to series    
+        Random r = new Random();
         List<FBD.CommonUtilities.Vector> listResult= (List<FBD.CommonUtilities.Vector>)ViewData[i.ToString()];
-        for (int k = 0; k < listResult.Count;k++ )
+        int numberMember = listResult.Count;
+        for (int k = 0; k < numberMember;k++ )
         {
-            Chart2.Series[i.ToString()].Points.AddXY(listResult[k].ID, listResult[k].x);
-            Chart2.Series[i.ToString()].XAxisType = AxisType.Primary;
+            Chart2.Series[i.ToString()].Points.AddXY( index,listResult[k].x);
+            Chart2.Series[i.ToString()]["LineTension"] = "2.0";
             
-            Chart2.Series[i.ToString()].Points[k].ToolTip =FBD.CommonUtilities.StringHelper.removeUtf8Character(listResult[k].CustomerName.ToString()) + " : "+listResult[k].x ;
+            //Chart2.Series[i.ToString()].IsValueShownAsLabel = true;
+            //Chart2.Series[i.ToString()]["DrawingStyle"] = "Cylinder";
+            //Chart2.Series[i.ToString()].XAxisType = AxisType.Primary;
+            
+            Chart2.Series[i.ToString()].Points[k].ToolTip =listResult[k].CustomerName.ToString() + " : "+listResult[k].x ;
+            index++;
         }
         //get info from this chart
-        DataPoint minPoint = Chart2.Series[i.ToString()].Points.FindMinByValue();
         DataPoint MaxPoint = Chart2.Series[i.ToString()].Points.FindMaxByValue();
+        MaxPoint.IsValueShownAsLabel = true;
+        DataPoint minPoint = Chart2.Series[i.ToString()].Points.FindMinByValue();
+        //minPoint.IsValueShownAsLabel = true;
+        
         int num = Chart2.Series[i.ToString()].Points.Count() + 1;
         //legend text
         

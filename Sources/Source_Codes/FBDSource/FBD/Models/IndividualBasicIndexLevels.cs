@@ -125,6 +125,7 @@ namespace FBD.Models
         {
             [DisplayName("Level ID")]
             [Required(ErrorMessage = "Level ID is required")]
+            [StringLength(10,ErrorMessage="Maximum 10 charater for Level ID")]
             public String LevelID { get; set; }
 
             [DisplayName("Score")]

@@ -110,24 +110,26 @@ namespace FBD.Controllers
                         }
 
                         rowForSavingScore.LevelID = decimal.Parse(formCollection["ScoreRows[" + i + "].LevelID"].ToString());
+                        rowForSavingScore.strFromValue = formCollection["ScoreRows[" + i + "].FromValue"].ToString();
+                        rowForSavingScore.strToValue = formCollection["ScoreRows[" + i + "].ToValue"].ToString();
+                        //try
+                        //{
+                        //    rowForSavingScore.FromValue = decimal.Parse(formCollection["ScoreRows[" + i + "].FromValue"].ToString());
+                        //}
+                        //catch (Exception)
+                        //{
+                        //   rowForSavingScore.FromValue = 0;
+                        //}
 
-                        try
-                        {
-                            rowForSavingScore.FromValue = decimal.Parse(formCollection["ScoreRows[" + i + "].FromValue"].ToString());
-                        }
-                        catch (Exception)
-                        {
-                            rowForSavingScore.FromValue = 0;
-                        }
-
-                        try
-                        {
-                            rowForSavingScore.ToValue = decimal.Parse(formCollection["ScoreRows[" + i + "].ToValue"].ToString());
-                        }
-                        catch (Exception)
-                        {
-                            rowForSavingScore.ToValue = 0;
-                        }
+                        //try
+                        //{
+                        //    rowForSavingScore.ToValue = decimal.Parse(formCollection["ScoreRows[" + i + "].ToValue"].ToString());
+                        //}
+                        //catch (Exception)
+                        //{
+                        //    rowForSavingScore.ToValue = 0;
+                            
+                        //}
 
                         rowForSavingScore.FixedValue = formCollection["ScoreRows[" + i + "].FixedValue"].ToString();
                         rowForSavingScore.ScoreID = int.Parse(formCollection["ScoreRows[" + i + "].ScoreID"].ToString());
