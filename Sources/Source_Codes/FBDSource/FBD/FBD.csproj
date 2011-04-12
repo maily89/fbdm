@@ -96,6 +96,7 @@
     <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
     <Compile Include="Controllers\RPTBusinessReportController.cs" />
+    <Compile Include="Controllers\RPTIndividualReportController.cs" />
     <Compile Include="Controllers\SYSAuthsController.cs" />
     <Compile Include="Controllers\BSNIndustryController.cs" />
     <Compile Include="Controllers\BSNLineController.cs" />
@@ -194,10 +195,15 @@
     <Compile Include="Models\DatabaseHelper.cs" />
     <Compile Include="Models\RNKRankMarking.cs" />
     <Compile Include="Models\RNKScaleMarking.cs" />
+    <Compile Include="Models\RPTBasicInfoReportModel.cs" />
     <Compile Include="Models\RPTBusinessReportModel.cs" />
+    <Compile Include="Models\RPTCollateralInfoReportModel.cs" />
     <Compile Include="Models\RPTFinancialReportModel.cs" />
     <Compile Include="Models\RPTIBusinessReportService.cs" />
     <Compile Include="Models\RPTIBusinessReportServiceImpl.cs" />
+    <Compile Include="Models\RPTIIndividualReportService.cs" />
+    <Compile Include="Models\RPTIIndividualReportServiceImpl.cs" />
+    <Compile Include="Models\RPTIndividualReportModel.cs" />
     <Compile Include="Models\RPTNonFinancialReportModel.cs" />
     <Compile Include="Models\RPTScaleReportModel.cs" />
     <Compile Include="Models\SYSChangePassModel.cs" />
@@ -214,6 +220,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDataSets\IndividualReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Report\BusinessFinancialReport.cs">
       <AutoGen>True</AutoGen>
@@ -237,6 +248,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScaleReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IndividualBasicInfoReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndividualBasicInfoReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IndividualCollateralInfoReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndividualCollateralInfoReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IndividualGeneralReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndividualGeneralReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ViewModels\BSNLineIndexViewModel.cs" />
@@ -573,6 +602,17 @@
     <None Include="ReportDataSets\BusinessReportDataSet.xss">
       <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ReportDataSets\IndividualReportDataSet.xsc">
+      <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ReportDataSets\IndividualReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IndividualReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportDataSets\IndividualReportDataSet.xss">
+      <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
+    </None>
     <EntityDeploy Include="Models\FBDModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
@@ -630,6 +670,18 @@
     <EmbeddedResource Include="Report\BusinessScaleReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BusinessScaleReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IndividualBasicInfoReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IndividualBasicInfoReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IndividualCollateralInfoReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IndividualCollateralInfoReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IndividualGeneralReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IndividualGeneralReport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

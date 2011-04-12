@@ -30,12 +30,12 @@ namespace FBD.Controllers
                 BusinessGeneralReport mainReport = new BusinessGeneralReport();
                 mainReport.SetDataSource(mainReportDataSource);
 
-                mainReport.OpenSubreport("BusinessScaleReport.rpt").SetDataSource(businessReportModel.ScaleInfo);
-                mainReport.OpenSubreport("BusinessFinancialReport.rpt").SetDataSource(businessReportModel.FinancialInfo);
-                mainReport.OpenSubreport("BusinessNonFinancialReport.rpt").SetDataSource(businessReportModel.NonFinancialInfo);
+                mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_SCALE_REPORT).SetDataSource(businessReportModel.ScaleInfo);
+                mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_FINANCIAL_REPORT).SetDataSource(businessReportModel.FinancialInfo);
+                mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_NONFINANCIAL_REPORT).SetDataSource(businessReportModel.NonFinancialInfo);
                 
                 Stream stream = mainReport.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                return File(stream, "application/pdf");
+                return File(stream, Constants.RPT_DSP_OPT_IN_WEB);
             }
             catch (Exception)
             {
