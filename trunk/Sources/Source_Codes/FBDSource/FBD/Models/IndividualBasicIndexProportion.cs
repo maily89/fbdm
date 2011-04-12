@@ -173,6 +173,9 @@ namespace FBD.Models
                     // If the row is checked in the checkbox
                     if (row.Checked == true)
                     {
+                        row.Proportion = decimal.Parse(row.strProportion);
+                        if(row.Proportion>100)
+                            throw new Exception();
                         // The proportion id less than 0 means that row does not
                         // exist in the existing table of database.
                         // With this situation, we add new a row to the table

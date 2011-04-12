@@ -136,6 +136,10 @@ namespace FBD.Models
 
                     if (row.Checked == true)
                     {
+                        row.FromValue = decimal.Parse(row.strFromValue);
+                        row.ToValue = decimal.Parse(row.strToValue);
+                        if (row.FromValue > row.ToValue || row.strToValue.Length > 18 || row.strFromValue.Length > 18)
+                            throw new Exception();
                         if (row.ScoreID < 0)
                         {
                             AddBasicIndexScore(FBDModel, viewModel, row);
@@ -207,7 +211,7 @@ namespace FBD.Models
                 }
             }
 
-            viewModelResult.basicIndex = FBDModel.IndividualBasicIndex.ToList();
+            viewModelResult.basicIndex = IndividualBasicIndex.SelectLeafBasicIndex(FBDModel);//FBDModel.IndividualBasicIndex.ToList();
             viewModelResult.BorrowingPP = FBDModel.IndividualBorrowingPurposes.ToList();
            
 

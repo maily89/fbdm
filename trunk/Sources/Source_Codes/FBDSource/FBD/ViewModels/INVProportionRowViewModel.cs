@@ -45,10 +45,16 @@ namespace FBD.ViewModels
         /// The proportion of the financial index with specified industry
         /// </summary>
         public decimal Proportion;
+        
+        /// <summary>
+        /// string format of proportion
+        /// </summary>
+        public string strProportion;
 
         /// <summary>
         /// Metadata class to validate the proportion
         /// </summary>
+
         public class INVProportionRowViewModelMetaData
         {
             public decimal Proportion;

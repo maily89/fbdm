@@ -3,6 +3,7 @@
 <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
+<script src="/Scripts/CheckProportion.js" type="text/javascript"></script> 
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -96,6 +97,7 @@
             
             <td>
                 <input type="submit" name="Save" value="Save" />
+                <input type="button" value="Check Total Proportion" onclick="javascript:alert(CheckTotalFIProportion());" />
             </td>
         </tr>
         <% } %>    

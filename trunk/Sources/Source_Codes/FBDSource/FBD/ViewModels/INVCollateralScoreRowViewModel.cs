@@ -36,5 +36,15 @@ namespace FBD.ViewModels
         /// The string value to type
         /// </summary>
         public string FixedValue;
+
+        /// <summary>
+        /// the string format of FromValue. Use for check valid input
+        /// </summary>
+        public string strFromValue;
+
+        /// <summary>
+        /// the string format of ToValue. Use for check valid input
+        /// </summary>
+        public string strToValue;
     }
 }

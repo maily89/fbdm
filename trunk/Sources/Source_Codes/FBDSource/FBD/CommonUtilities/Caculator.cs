@@ -54,5 +54,56 @@ namespace FBD.CommonUtilities
                 return true;
             }
         }
+
+        public static List<Vector> bubbleSort(List<Vector> lst)
+        {
+            int n =lst.Count;
+            //do
+            //{
+            //    int newn = 0;
+                for (int i = n-1; i > 0; i--)
+                {
+                    for (int j = 0; j < i;j++ )
+                        if (lst.ElementAt(j).x > lst.ElementAt(j + 1).x)
+                        {
+                            Vector temp = lst[j];
+                            lst[j] = lst[j + 1];
+                            lst[j+1] = temp;
+                        }
+                }
+            //    n = newn;
+            //}
+            //while (n > 1);
+            return (lst);
+        }
+
+        public static List<Vector>[] bubbleSort(List<Vector>[] lst)
+        {
+            int n = lst.Length;
+            //do
+            //{
+            //    int newn = 0;
+            for (int i = n - 1; i > 0; i--)
+            {
+                for (int j = 0; j < i; j++)
+                    if (Caculator.centroid(lst[j]).x > Caculator.centroid(lst[j+1]).x)
+                    {
+                        List<Vector> temp = lst[j];
+                        lst[j] = lst[j + 1];
+                        lst[j + 1] = temp;
+                    }
+            }
+            //    n = newn;
+            //}
+            //while (n > 1);
+            return (lst);
+        }
+
+        public static void swap(Vector x,  Vector y)
+        {
+            Vector temp = x;
+            x = y;
+            y = temp;
+        }
     }
 }

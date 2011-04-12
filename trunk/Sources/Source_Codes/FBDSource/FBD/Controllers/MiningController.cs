@@ -41,8 +41,8 @@ namespace FBD.Controllers
                 //b. Create list result to save result
             List<Vector>[] result = new List<Vector>[centroidList.Count];
 
-            result = KMean.Clustering(centroidList.Count, vList, centroidList);
-
+            result = KMean.Clustering(centroidList.Count, vList, null);
+            result = Caculator.bubbleSort(result);
             //2. updating
             //this process will process by user. They can choose update or not
 
@@ -68,9 +68,11 @@ namespace FBD.Controllers
             //chartList.Add(6);
             //chartList.Add(5);
             //chartList.Add(4);
-            for (int i = 0; i < centroidList.Count; i++)
+            int nCen =centroidList.Count;
+            for (int i = 0; i < nCen; i++)
             {
-                ViewData[i.ToString()] = result[i];
+                List<Vector> listV = Caculator.bubbleSort(result[i]);
+                ViewData[i.ToString()] = listV;
             }
             
             return View();

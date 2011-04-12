@@ -35,6 +35,20 @@ namespace FBD.Models
             lstCollateralIndex = FBDModel.IndividualCollateralIndex.ToList();
             return lstCollateralIndex;
         }
+
+        /// <summary>
+        /// Select all the Individual Collateral Index in the table Business.CollateralIndex which is leaf
+        /// </summary>
+        /// <returns>List of Individual Collateral Index</returns>
+        public static List<IndividualCollateralIndex> SelectCollateralLeafIndex(FBDEntities FBDModel)
+        {
+
+
+            List<IndividualCollateralIndex> lstCollateralIndex = null;
+            lstCollateralIndex = FBDModel.IndividualCollateralIndex.Where(c=>c.LeafIndex).ToList();
+            return lstCollateralIndex;
+        }
+
         /// <summary>
         /// Select the Individual Collateral Index in the table Business.CollateralIndex with input ID
         /// </summary>
@@ -119,6 +133,23 @@ namespace FBD.Models
         }
         public class IndividualCollateralIndexMetaData
         {
+            [Required(ErrorMessage = "Index ID is require")]
+            [StringLength(20, ErrorMessage = "Index ID Maximum 20 character")]
+            [RegularExpression("[0-9]*",ErrorMessage="Index ID must be numberic")]
+            public string IndexID { set; get; }
+
+            [Required(ErrorMessage = "Index Name is required")]
+            [StringLength(225, ErrorMessage = "Index name maximu 255 charater")]
+            public string IndexName { set; get; }
+
+            [StringLength(50, ErrorMessage = "Unit maximu 50 charater")]
+            public string Unit { set; get; }
+
+            [StringLength(255, ErrorMessage = "Unit maximu 50 charater")]
+            public string Formula { set; get; }
+
+            [Required(ErrorMessage = "Value type is require")]
+             public string ValueType { set; get; }
 
         }
     }
