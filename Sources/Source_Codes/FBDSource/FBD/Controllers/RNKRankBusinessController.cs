@@ -212,6 +212,7 @@ namespace FBD.Controllers
                 if(customer.SystemBranches!=null)
                 temp.Branch = customer.SystemBranches.BranchName;
                 data.CustomerInfo = temp;
+                if(data.BusinessRanking!=null)
                 ViewData["RankID"] = data.BusinessRanking.ID;
                 return View(data);
             }
@@ -371,14 +372,14 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = id;
-                if (Edit != null) ViewData["Edit"] = true;
-                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id,Edit==null? true:false);
+                if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = true;
+                List<RNKFinancialRow> financial = CustomersBusinessFinancialIndex.LoadFinancialIndex(id,string.IsNullOrEmpty(Edit)? true:false);
                 return View(financial);
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Edit == null ? Constants.ERR_ADD_POST : Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
-                if(Edit!=null) return RedirectToAction("DetailFinancial",new{id=id});
+                TempData[Constants.ERR_MESSAGE] = string.Format(string.IsNullOrEmpty(Edit) ? Constants.ERR_ADD_POST : Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
+                if(!string.IsNullOrEmpty(Edit)) return RedirectToAction("DetailFinancial",new{id=id});
                 return RedirectToAction("Index");
             }
         }
@@ -397,12 +398,12 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = rankID.ToString();
-                if(Edit!=null){
+                if(!string.IsNullOrEmpty(Edit)){
                     ViewData["Edit"]=Edit;
                 }
-                if (Back != null && Edit==null) return View("AddFinancialScore", CustomersBusinessFinancialIndex.Reload(rnkFinancialRow));
+                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddFinancialScore", CustomersBusinessFinancialIndex.Reload(rnkFinancialRow));
 
-                if(Edit==null)
+                if(string.IsNullOrEmpty(Edit))
                 {
                     int ranking = AddFinancialList(rnkFinancialRow, rankID);
                 }
@@ -416,7 +417,7 @@ namespace FBD.Controllers
 
                 if(SaveRerank!=null)
                     return RedirectToAction("Rerank",new{id=rankID,redirectAction="DetailFinancial"});
-                if(Edit!=null)
+                if(!string.IsNullOrEmpty(Edit))
                 {
                     return RedirectToAction("DetailFinancial",new {id=rankID});
                 }
@@ -456,7 +457,7 @@ namespace FBD.Controllers
         {
             //return viewdata state
             ViewData["RankID"] = rankID;
-            if(Edit!=null) ViewData["Edit"]=Edit;
+            if(!string.IsNullOrEmpty(Edit)) ViewData["Edit"]=Edit;
             if (rnkFinancialRow == null || rnkFinancialRow.Count <= 0) return View(rnkFinancialRow);
 
             var rankingID = System.Convert.ToInt16(rankID);
@@ -480,17 +481,17 @@ namespace FBD.Controllers
         {
             try
             {
-                if(Edit!=null){
+                if(!string.IsNullOrEmpty(Edit)){
                 ViewData["Edit"] = Edit;
                 }
                 ViewData["RankID"] = id.ToString();
-                List<RNKNonFinancialRow> nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id,Edit==null? true:false );
+                List<RNKNonFinancialRow> nonFinancial = CustomersBusinessNonFinancialIndex.LoadNonFinancialIndex(id,string.IsNullOrEmpty(Edit)? true:false );
 
                 return View(nonFinancial);
             }
             catch (Exception)
             {
-                if (Edit != null) return RedirectToAction("DetailNonFinancial", new { id = id });
+                if (!string.IsNullOrEmpty(Edit)) return RedirectToAction("DetailNonFinancial", new { id = id });
 
                 return RedirectToAction("Index");
             }
@@ -510,13 +511,13 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = rankID.ToString();
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     ViewData["Edit"] = Edit;
                 }
-                if (Back != null && Edit == null) return View("AddNonFinancialScore", CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow));
+                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddNonFinancialScore", CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow));
 
-                if (Edit == null)
+                if (string.IsNullOrEmpty(Edit))
                 {
                     AddNonFinancialList(rnkNonFinancialRow, rankID);
                 }
@@ -529,7 +530,7 @@ namespace FBD.Controllers
 
                 if (SaveRerank != null)
                     return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailNonFinancial" });
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     return RedirectToAction("DetailNonFinancial", new { id = rankID });
                 }
@@ -567,7 +568,7 @@ namespace FBD.Controllers
         public ActionResult AddNonFinancialCalculate(List<RNKNonFinancialRow> rnkNonFinancialRow, string rankID,string Edit)
         {
             ViewData["RankID"] = rankID;
-            if (Edit != null) ViewData["Edit"] = Edit;
+            if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
 
             if (rnkNonFinancialRow == null || rnkNonFinancialRow.Count <= 0) return View(rnkNonFinancialRow);
 
@@ -995,7 +996,7 @@ namespace FBD.Controllers
                 ViewData["RankID"] = id.ToString();
                 ViewData["redirectAction"] = redirectAction;
                 ViewData["Edit"] = true;
-                RNKRankMarking.RemarkAll(id);
+                RNKRankMarking.RemarkAllBusinessRanking(id);
                 
                 LoadRankingViewModel(id, model);
                 TempData["Dialog"] = "Rank was saved successfully";

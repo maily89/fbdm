@@ -10,7 +10,6 @@
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     <%Html.RenderPartial("IndividualStep",FBD.CommonUtilities.Constants.IndividualRankStep.General); %>
-    <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
 
     <% using (Html.BeginForm())
                        { %>

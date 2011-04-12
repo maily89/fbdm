@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.ViewModels.RNKFinancialRow>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.ViewModels.RNKCollateralRow>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Detail Financial
@@ -17,7 +17,8 @@
 	<table>
 	<tr>
 	<td><input type="button" value="EDIT THIS INFORMATION" onclick="window.location.href='<%= Url.Action("AddCollateralScore", new { id = ViewData["RankID"], Edit="Edit" } ) %>';"/></td>
-	<% using(Html.BeginForm("Rerank","RNKRankBusiness",new {id=ViewData["RankID"]})){ %>
+	<% using (Html.BeginForm("Rerank", "RNKRankIndividual", new { id = ViewData["RankID"] }))
+    { %>
 	<td>
 	<%=Html.Hidden("redirectAction","DetailGeneral") %>
 	<input type="submit" value="RE-CALCULATE RANK" />

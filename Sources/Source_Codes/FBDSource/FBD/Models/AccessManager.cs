@@ -18,6 +18,7 @@ namespace FBD.Models
         /// <returns>decision of allowing archieve the input action</returns>
         public static bool AllowAccess(string actionName, object userID)
         {
+            
             // If invalid input, not allow to access
             if (userID == null || string.IsNullOrEmpty(actionName))
             {

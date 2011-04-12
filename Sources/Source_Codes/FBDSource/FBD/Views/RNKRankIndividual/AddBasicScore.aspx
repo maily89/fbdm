@@ -9,7 +9,7 @@
     <h2><%=ViewData["Edit"] != null ? "Edit Basic Score" : "Add Basic Score"%></h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-    <% if (ViewData["Edit"] != null){ %>
+    <% if (ViewData["Edit"] == null){ %>
     <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.Basic); %>
     <%} %>
     <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetIndividualRankingInfo(System.Convert.ToInt16(ViewData["RankID"])));%>
@@ -36,9 +36,11 @@
             <td>
                 <%= Html.Encode(Model[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
+                <%= Html.HiddenFor(m=>m[i].Index.IndexName) %>
+                <%= Html.HiddenFor(m=>m[i].Index.ValueType) %>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
-                <%= Html.HiddenFor(m=>m[i].LeafIndex) %>
-                <%= Html.HiddenFor(m=>m[i].CustomerScoreID) %>
+                <%= Html.HiddenFor(m => m[i].LeafIndex)%>
+                <%= Html.HiddenFor(m => m[i].CustomerScoreID)%>
                 <%= Html.Hidden("Index", i)%>
             </td>
             <td>

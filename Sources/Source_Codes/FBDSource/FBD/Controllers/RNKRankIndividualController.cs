@@ -113,7 +113,7 @@ namespace FBD.Controllers
                     {
                         ranking = new CustomersIndividualRanking();
                     }
-                    else return View("Edit", ranking.ID);
+                    else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     ranking.Date = model.Date;
                     ranking.DateModified = DateTime.Now;
                     model.IndividualRanking = ranking;
@@ -162,9 +162,10 @@ namespace FBD.Controllers
             if (model == null) return null;
             try
             {
+                if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
                 if (ModelState.IsValid)
                 {
-                    if (Edit == null)
+                    if (String.IsNullOrEmpty(Edit))
                     {
                         //this is the actual rankID get from database. After this step, we use rankID to manage.
                         rankID = CopyModelToRanking(model, true);
@@ -176,10 +177,10 @@ namespace FBD.Controllers
                 }
                 else throw new Exception();
 
-                if (Edit == null)
+                if (string.IsNullOrEmpty(Edit))
                 {
                     TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_INDIVIDUAL_RANKING);
-                    return RedirectToAction("AddBasic", new { id = rankID });
+                    return RedirectToAction("AddBasicScore", new { id = rankID });
                 }
                 else
                 {
@@ -191,8 +192,23 @@ namespace FBD.Controllers
             }
             catch
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Edit==null?Constants.ERR_ADD_POST:Constants.ERR_EDIT_POST, Constants.CUSTOMER_INDIVIDUAL_RANKING);
+                TempData[Constants.ERR_MESSAGE] = string.Format(string.IsNullOrEmpty(Edit)?Constants.ERR_ADD_POST:Constants.ERR_EDIT_POST, Constants.CUSTOMER_INDIVIDUAL_RANKING);
 
+                RNKCustomerInfo temp = new RNKCustomerInfo();
+                var customer = CustomersIndividuals.SelectIndividualByID(model.CustomerID);
+                temp.CIF = customer.CIF;
+                temp.CustomerName = customer.CustomerName;
+
+                temp.Date = model.Date;
+
+                customer.SystemBranchesReference.Load();
+                if (customer.SystemBranches != null)
+                    temp.Branch = customer.SystemBranches.BranchName;
+
+                model.CustomerInfo = temp;
+
+                if (model.IndividualRanking != null)
+                    ViewData["RankID"] = model.IndividualRanking.ID;
                 return View(model);
             }
         }
@@ -203,10 +219,10 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = id;
-                if (Edit != null) ViewData["Edit"] = true;
+                if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = true;
 
                 List<RNKBasicRow> financial=null;
-                if (Edit == null)
+                if (string.IsNullOrEmpty(Edit))
                 {
                     financial = CustomersIndividualBasicIndex.LoadBasicIndex(id, true);
                 }
@@ -228,7 +244,7 @@ namespace FBD.Controllers
         {
             //return viewdata state
             ViewData["RankID"] = rankID;
-            if (Edit != null) ViewData["Edit"] = Edit;
+            if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
             if (rnkBasicRow == null || rnkBasicRow.Count <= 0) return View(rnkBasicRow);
 
             var rankingID = System.Convert.ToInt32(rankID);
@@ -238,6 +254,7 @@ namespace FBD.Controllers
 
             var basicRank = RNKBasicMarking.GetRank(final);
             ViewData["BasicScore"] = final;
+            if(basicRank!=null)
             ViewData["BasicRank"] = basicRank.Rank;
             return View(rnkBasicRow);
         }
@@ -247,14 +264,14 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = rankID.ToString();
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     ViewData["Edit"] = Edit;
                 }
 
-                if (Back != null && Edit == null) return View("AddBasicScore", CustomersIndividualBasicIndex.Reload(rnkBasicRow));
+                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddBasicScore", CustomersIndividualBasicIndex.Reload(rnkBasicRow));
 
-                if (Edit == null)
+                if (string.IsNullOrEmpty(Edit))
                 {
                     AddBasicList(rnkBasicRow, rankID);
                 }
@@ -268,7 +285,7 @@ namespace FBD.Controllers
 
                 if (SaveRerank != null)
                     return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailBasic" });
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     return RedirectToAction("DetailBasic", new { id = rankID });
                 }
@@ -278,7 +295,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                TempData[Constants.ERR_MESSAGE] = string.Format(Edit==null?Constants.ERR_ADD_POST:Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(string.IsNullOrEmpty(Edit)?Constants.ERR_ADD_POST:Constants.ERR_EDIT_POST, Constants.INV_BASIC_INDEX);
                 CustomersIndividualBasicIndex.Reload(rnkBasicRow);
 
                 return View("AddBasicScore", rnkBasicRow);
@@ -306,9 +323,9 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = id;
-                if (Edit != null) ViewData["Edit"] = true;
+                if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = true;
 
-                List<RNKCollateralRow> financial = CustomersIndividualCollateralIndex.LoadCollateralIndex(id,Edit==null? true:false);
+                List<RNKCollateralRow> financial = CustomersIndividualCollateralIndex.LoadCollateralIndex(id,string.IsNullOrEmpty(Edit)? true:false);
                 return View(financial);
             }
             catch (Exception)
@@ -323,7 +340,7 @@ namespace FBD.Controllers
         {
             //return viewdata state
             ViewData["RankID"] = rankID;
-            if (Edit != null) ViewData["Edit"] = Edit;
+            if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
             if (rnkCollateralRow == null || rnkCollateralRow.Count <= 0) return View(rnkCollateralRow);
 
             var rankingID = System.Convert.ToInt32(rankID);
@@ -333,6 +350,7 @@ namespace FBD.Controllers
 
             var collateralRank = RNKCollateralMarking.GetRank(final);
             ViewData["CollateralScore"] = final;
+            if(collateralRank!=null)
             ViewData["CollateralRank"] = collateralRank.Rank;
             return View(rnkCollateralRow);
         }
@@ -343,14 +361,14 @@ namespace FBD.Controllers
             try
             {
                 ViewData["RankID"] = rankID.ToString();
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     ViewData["Edit"] = Edit;
                 }
 
-                if (Back != null && Edit == null) return View("AddCollateralScore", CustomersIndividualCollateralIndex.Reload(rnkCollateralRow));
+                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddCollateralScore", CustomersIndividualCollateralIndex.Reload(rnkCollateralRow));
 
-                if (Edit == null)
+                if (string.IsNullOrEmpty(Edit))
                 {
                     AddCollateralList(rnkCollateralRow, rankID);
                 }
@@ -365,7 +383,7 @@ namespace FBD.Controllers
 
                 if (SaveRerank != null)
                     return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailCollateral" });
-                if (Edit != null)
+                if (!string.IsNullOrEmpty(Edit))
                 {
                     return RedirectToAction("DetailCollateral", new { id = rankID });
                 }
@@ -375,7 +393,7 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 //TODO: define error message
-                TempData[Constants.ERR_MESSAGE] = string.Format(Edit == null ? Constants.ERR_ADD_POST : Constants.ERR_EDIT_POST, Constants.INV_COLLATERAL_INDEX);
+                TempData[Constants.ERR_MESSAGE] = string.Format(string.IsNullOrEmpty(Edit) ? Constants.ERR_ADD_POST : Constants.ERR_EDIT_POST, Constants.INV_COLLATERAL_INDEX);
                 CustomersIndividualCollateralIndex.Reload(rnkCollateralRow);
 
                 return View("AddCollateralScore",rnkCollateralRow);
@@ -423,13 +441,15 @@ namespace FBD.Controllers
 
             ranking.CustomersIndividualsReference.Load();
             var customer = ranking.CustomersIndividuals;
+            addModel.IndividualRanking = ranking;
             addModel.CustomerID = customer.IndividualID;
             addModel.CIF = customer.CIF;
 
+            addModel.CustomerInfo = RNKCustomerInfo.GetIndividualRankingInfo(id);
 
             ViewData["RankID"] = id;
             ViewData["Edit"] = "Edit";
-            return View("Add", addModel);
+            return View("AddInfo", addModel);
 
         }
 
@@ -584,13 +604,18 @@ namespace FBD.Controllers
             int rankID;
             var entity = new FBDEntities();
             var ranking = model.IndividualRanking;
+            if(!isAdd)
             DatabaseHelper.AttachToOrGet<CustomersIndividualRanking>(entity, ranking.GetType().Name,ref ranking);
-
+            
             ranking.CustomersIndividuals = CustomersIndividuals.SelectIndividualByID(model.CustomerID, entity);
             ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID,entity);
             ranking.IndividualBorrowingPurposes = IndividualBorrowingPurposes.SelectBorrowingPPByID(model.PurposeID,entity);
+
             if (isAdd)
+            {
+                ranking.Date = model.Date;
                 CustomersIndividualRanking.AddIndividualRanking(ranking, entity);
+            }
             else
             {
                 CustomersIndividualRanking.EditIndividualRanking(ranking, entity);
@@ -642,6 +667,29 @@ namespace FBD.Controllers
             return View(model);
 
         }
+
+        public ActionResult Rerank(int id, string redirectAction)
+        {
+            RNKRankIndividualFinal model = new RNKRankIndividualFinal();
+
+            try
+            {
+                ViewData["RankID"] = id.ToString();
+                ViewData["redirectAction"] = redirectAction;
+                ViewData["Edit"] = true;
+                RNKRankMarking.RemarkAllIndividualRanking(id);
+
+                LoadRankingViewModel(id, model);
+                TempData["Dialog"] = "Rank was saved successfully";
+                return View("Ranking", model);
+            }
+            catch
+            {
+                //TODO: ERROR message here
+            }
+            return View("Ranking", model);
+        }
+
 
         private void LoadRankingViewModel(int id, RNKRankIndividualFinal model)
         {
