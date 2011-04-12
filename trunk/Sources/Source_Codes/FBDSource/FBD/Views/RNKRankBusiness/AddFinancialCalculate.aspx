@@ -19,7 +19,9 @@
 
     <% using (Html.BeginForm("SaveFinancialScore","RNKRankBusiness"))
        { %>
-    <%=Html.Hidden("Edit",ViewData["Edit"]) %>
+    <% if (ViewData["Edit"]!=null){ %>
+        <%= Html.Hidden("Edit", ViewData["Edit"])%>
+           <%} %>
     <%=Html.Hidden("rankID", ViewData["RankID"])%>
     <%Html.RenderPartial("PartFinancial", Model); %>
 	<table>

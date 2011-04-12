@@ -11,16 +11,18 @@
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-    <% if (ViewData["Edit"] != null)
+    <% if (ViewData["Edit"] == null)
        { %>
     <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.General); %>
     <%} %>
     <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
 
-    <% using (Html.BeginForm())
+    <% using (Html.BeginForm("AddInfo","RNKRankIndividual"))
        {%>
-        <%= Html.ValidationSummary(true) %>
-        <%= Html.Hidden("Edit",ViewData["Edit"] %>
+        <%= Html.ValidationSummary(false) %>
+        <% if (ViewData["Edit"]!=null){ %>
+        <%= Html.Hidden("Edit", ViewData["Edit"])%>
+           <%} %>
         <%= Html.Hidden("rankID",ViewData["RankID"]) %>
         <fieldset>
             <legend>Fields</legend>
@@ -35,6 +37,7 @@
                 <td>
                     <div class="editor-field">
                         <%= Html.TextBoxFor(model => model.IndividualRanking.CreditDepartment)%>
+                        <%= Html.HiddenFor(model=>model.IndividualRanking.ID)%>
                         <%= Html.HiddenFor(model => model.Date) %>
                         <%= Html.HiddenFor(model => model.CIF)%>
                         <%= Html.HiddenFor(model => model.CustomerID) %>

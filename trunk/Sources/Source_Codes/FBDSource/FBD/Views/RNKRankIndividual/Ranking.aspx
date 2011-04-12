@@ -39,7 +39,7 @@
     <%if (ViewData["Edit"]==null){ %>
     <input type="button" value="OK" onclick="window.location.href='<%= Url.Action("Index" ) %>';"/>   
     <%} else{ %>
-    <input type="button" value="OK" onclick="window.location.href='<%= Url.Action(ViewData["redirectAction"].ToString(), new { id = ViewData["RankID"] })%>';"/>  
+    <input type="button" value="OK" onclick="window.location.href='<%= Url.Action(ViewData["redirectAction"]!=null?ViewData["redirectAction"].ToString():"Index", new { id = ViewData["RankID"] })%>';"/>  
     <%} %>
 
 </asp:Content>

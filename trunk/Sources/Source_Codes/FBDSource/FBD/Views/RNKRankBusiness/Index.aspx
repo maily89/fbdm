@@ -16,7 +16,7 @@
 		<% using(Html.BeginForm()){ %>
 		<table width="100%">
 		<tr>
-		<td><b>Date</b></td>
+		<td><b>Reporting Period</b></td>
 		<td> <%= Html.DropDownListFor(m=>m.PeriodID, new SelectList(FBD.ViewModels.RNKRankingViewModel.ReportingPeriods as IEnumerable,
                 "PeriodID", "PeriodName",Model.PeriodID))%></td>
 		</tr>

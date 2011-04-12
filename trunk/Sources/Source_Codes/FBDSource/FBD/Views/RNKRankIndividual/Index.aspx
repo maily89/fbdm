@@ -16,8 +16,8 @@
 		<% using(Html.BeginForm()){ %>
 		<table width="100%">
 		<tr>
-		<td><b>Reporting Period</b></td>
-		<td> Html.Telerik().DatePickerFor(model => model.DateTime).Format("dd-MMM-yyyy")%>
+		<td><b>Date</b></td>
+		<td> <%=Html.Telerik().DatePickerFor(model => model.DateTime).Format("dd-MMM-yyyy")%>
         </td>
 		</tr>
 		<tr>
@@ -64,6 +64,9 @@
             .Pageable(p => p.PageSize(20))
             .Render();
     %>
+    <hr />
+        <input type="button" value="RANK NEW CUSTOMER" onclick="window.location.href='<%= Url.Action("Add" ) %>';"/>
+
     <%--<table>
         <tr>
             <th></th>
@@ -134,7 +137,7 @@
     <h3>
     <%= Html.ActionLink("Rank for new customer", "Add") %>
     </h3>--%>
-
+    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

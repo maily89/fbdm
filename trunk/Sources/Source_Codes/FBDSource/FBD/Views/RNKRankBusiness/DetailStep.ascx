@@ -1,14 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<FBD.CommonUtilities.Constants.BusinessRankStep>" %>
-<%--    <% if (TempData["Dialog"] != null)
-       { 
-           %>
-           <input type="hidden" id="alert" value="<%= TempData["Dialog"] %>" />
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function() {
-        alert($("#alert").val());
-        });
-    </script>
-    <%} %>--%>
+
 <table>
 		<tbody>
 		<tr>

@@ -32,14 +32,24 @@ namespace FBD.Models
             return null;
         }
 
-        public static int RemarkAll(int id)
+        public static int RemarkAllBusinessRanking(int id)
         {
             FBDEntities entities=new FBDEntities();
             RNKScaleMarking.SaveScaleScore(id,entities);
             RNKFinancialMarking.CalculateFinancialScore(id, false, entities);
             RNKNonFinancialMarking.CalculateNonFinancialScore(id, false, entities);
-
+            
             return SaveBusinessRank(id);
+        }
+
+        public static int RemarkAllIndividualRanking(int id)
+        {
+            
+            FBDEntities entities = new FBDEntities();
+            RNKBasicMarking.CalculateBasicScore(id,false, entities);
+            RNKCollateralMarking.CalculateCollateralScore(id,false,entities);
+
+            return SaveIndividualRank(id,entities)!=null?1:0;
         }
 
         public static int SaveBusinessRank(int id)
@@ -68,6 +78,7 @@ namespace FBD.Models
             var basicRank = GetBasicRank(ranking.BasicIndexScore.Value);
             var collateralRank = GetCollateralRank(ranking.CollateralIndexScore.Value);
 
+            if (basicRank == null || collateralRank == null) return null; // neu 1 trong 2 rank k0 duoc tinh => tra luon ve gia tri null
             var rankValid = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(entities, basicRank.RankID, collateralRank.RankID);
 
             if (rankValid.Count <= 0) return null;
@@ -85,7 +96,7 @@ namespace FBD.Models
 
         private static bool IsInRank(decimal score, IRanks item)
         {
-            if (item.FromValue.Value != null && item.ToValue != null)
+            if (item.FromValue!= null && item.ToValue != null)
             {
                 if (score >= item.FromValue.Value && score <= item.ToValue.Value)
                 {
