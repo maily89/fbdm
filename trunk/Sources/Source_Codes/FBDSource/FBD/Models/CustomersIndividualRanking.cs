@@ -32,10 +32,6 @@ namespace FBD.Models
             if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
             var Individual = entities.CustomersIndividualRanking
-                                            .Include(Constants.TABLE_CUSTOMERS_INDIVIDUALS)
-                                            .Include(Constants.TABLE_INDIVIDUAL_BORROWING_PURPOSES)
-                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
-                                            .Include(Constants.TABLE_INDIVIDUAL_SUMMARY_RANKS)
                                             .First(i => i.ID == id);
 
             return Individual;
@@ -79,6 +75,13 @@ namespace FBD.Models
         public static CustomersIndividualRanking SelectIndividualRankingByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
+            var individual = entities.CustomersIndividualRanking.First(i => i.ID == id);
+            return individual;
+        }
+
+        public static CustomersIndividualRanking SelectIndividualRankingByIDWithReference(int id, FBDEntities entities)
+        {
+            if (entities == null) return null;
             var individual = entities.CustomersIndividualRanking
                                             .Include(Constants.TABLE_CUSTOMERS_INDIVIDUALS)
                                             .Include(Constants.TABLE_INDIVIDUAL_BORROWING_PURPOSES)
@@ -87,7 +90,6 @@ namespace FBD.Models
                                             .First(i => i.ID == id);
             return individual;
         }
-
 
         /// <summary>
         /// add new Individual

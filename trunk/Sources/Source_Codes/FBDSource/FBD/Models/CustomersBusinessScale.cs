@@ -68,11 +68,21 @@ namespace FBD.Models
         {
             
             var scale = entities.CustomersBusinessScale.Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
+                                                       .Where(s => s.CustomersBusinessRanking.ID == id).ToList();
+
+            return scale;
+        }
+
+        public static List<CustomersBusinessScale> SelectBusinessScaleByRankingIDWithReference(int id, FBDEntities entities)
+        {
+
+            var scale = entities.CustomersBusinessScale.Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
                                                        .Include(Constants.TABLE_BUSINESS_SCALE_CRITERIA)
                                                        .Where(s => s.CustomersBusinessRanking.ID == id).ToList();
 
             return scale;
         }
+
         /// <summary>
         /// return the business specified by rankingID
         /// </summary>

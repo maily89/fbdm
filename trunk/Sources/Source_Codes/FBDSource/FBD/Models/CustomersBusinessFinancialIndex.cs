@@ -48,13 +48,11 @@ namespace FBD.Models
             var financialIndex = entities
                                 .CustomersBusinessFinancialIndex
                                 .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
-                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX)
-                                .Include(Constants.TABLE_BUSINESS_FINANCIAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
             return financialIndex;
         }
 
-        public static List<CustomersBusinessFinancialIndex> SelectFinancialIndexByRankingID(int id, FBDEntities entities)
+        public static List<CustomersBusinessFinancialIndex> SelectFinancialIndexByRankingIDWithReference(int id, FBDEntities entities)
         {
             var financialIndex = entities
                                 .CustomersBusinessFinancialIndex

@@ -61,15 +61,7 @@ namespace FBD.Models
         {
             if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
-                                                            .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
-                                                            .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
-                                                            .Include(Constants.TABLE_BUSINESS_TYPES)
-                                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
-                                                            .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
-                                                            .Include(Constants.TABLE_BUSINESS_SCALES)
-                                                            .Include(Constants.TABLE_BUSINESS_RANKS)
-                                                            .First(i => i.ID == id);
+            var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
 
             return Business;
         }
@@ -110,6 +102,13 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectBusinessRankingByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
+            var business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+            return business;
+        }
+
+        public static CustomersBusinessRanking SelectBusinessRankingByIDWithReference(int id, FBDEntities entities)
+        {
+            if (entities == null) return null;
             var business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                                                             .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
                                                             .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
@@ -121,7 +120,6 @@ namespace FBD.Models
                                                             .First(i => i.ID == id);
             return business;
         }
-
 
         /// <summary>
         /// add new Business

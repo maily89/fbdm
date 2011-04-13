@@ -23,7 +23,7 @@ namespace FBD.Models
         {
             try
             {
-                var generalInfo = CustomersBusinessRanking.SelectBusinessRankingByID(ID, FBDModel);
+                var generalInfo = CustomersBusinessRanking.SelectBusinessRankingByIDWithReference(ID, FBDModel);
 
                 businessInfo.CIFNumber = generalInfo.CustomersBusinesses.CIF;
                 businessInfo.CustomerName = generalInfo.CustomersBusinesses.CustomerName;
@@ -61,7 +61,7 @@ namespace FBD.Models
         {
             try
             {
-                var scaleInfo = CustomersBusinessScale.SelectBusinessScaleByRankingID(RankingID, FBDModel);
+                var scaleInfo = CustomersBusinessScale.SelectBusinessScaleByRankingIDWithReference(RankingID, FBDModel);
 
                 foreach (var item in scaleInfo)
                 {
@@ -94,7 +94,7 @@ namespace FBD.Models
         {
             try
             {
-                var financialInfo = CustomersBusinessFinancialIndex.SelectFinancialIndexByRankingID(RankingID, FBDModel);
+                var financialInfo = CustomersBusinessFinancialIndex.SelectFinancialIndexByRankingIDWithReference(RankingID, FBDModel);
 
                 foreach (var item in financialInfo)
                 {
@@ -127,7 +127,7 @@ namespace FBD.Models
         {
             try
             {
-                var nonFinancialInfo = CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByRankingID(RankingID, FBDModel);
+                var nonFinancialInfo = CustomersBusinessNonFinancialIndex.SelectNonFinancialIndexByRankingIDWithReference(RankingID, FBDModel);
 
                 foreach (var item in nonFinancialInfo)
                 {
