@@ -21,20 +21,26 @@ namespace FBD.Controllers
             try
             {
                 FBDEntities FBDModel = new FBDEntities();
+                // Service used to implement exporting business report
                 RPTIBusinessReportService businessReportService = new RPTIBusinessReportServiceImpl();
+                // Model containing information to be displayed in report
                 RPTBusinessReportModel businessReportModel = businessReportService.SelectBusinessInfo(FBDModel, ID);
 
+                // DataSource of report must be a list, ienumerable or datatable, dataset... so there is a need for a list below
+                // although it has only 1 element
                 List<RPTBusinessReportModel> mainReportDataSource = new List<RPTBusinessReportModel>();
                 mainReportDataSource.Add(businessReportModel);
 
                 BusinessGeneralReport mainReport = new BusinessGeneralReport();
                 mainReport.SetDataSource(mainReportDataSource);
 
+                // Open three subreports: scale, financial, non-financial
                 mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_SCALE_REPORT).SetDataSource(businessReportModel.ScaleInfo);
                 mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_FINANCIAL_REPORT).SetDataSource(businessReportModel.FinancialInfo);
                 mainReport.OpenSubreport(Constants.RPT_NAME_BUSINESS_NONFINANCIAL_REPORT).SetDataSource(businessReportModel.NonFinancialInfo);
                 
                 Stream stream = mainReport.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                // The report will be displayed on web interface before printing instead of downloading only
                 return File(stream, Constants.RPT_DSP_OPT_IN_WEB);
             }
             catch (Exception)
