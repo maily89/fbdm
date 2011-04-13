@@ -73,7 +73,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("FBDModel", "SystemUsers_SystemUserGroups_Delete", "SystemUserGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(FBD.Models.SystemUserGroups), "SystemUsers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(FBD.Models.SystemUsers))]
 
 // Original file name:
-// Generation date: 4/11/2011 11:26:49 PM
+// Generation date: 4/13/2011 10:48:59 PM
 namespace FBD.Models
 {
     
@@ -7821,7 +7821,7 @@ namespace FBD.Models
     /// There are no comments for FBDModel.IndividualClusterRanks in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// ID
+    /// RankID
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="FBDModel", Name="IndividualClusterRanks")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -7831,36 +7831,36 @@ namespace FBD.Models
         /// <summary>
         /// Create a new IndividualClusterRanks object.
         /// </summary>
-        /// <param name="id">Initial value of ID.</param>
-        public static IndividualClusterRanks CreateIndividualClusterRanks(int id)
+        /// <param name="rankID">Initial value of RankID.</param>
+        public static IndividualClusterRanks CreateIndividualClusterRanks(string rankID)
         {
             IndividualClusterRanks individualClusterRanks = new IndividualClusterRanks();
-            individualClusterRanks.ID = id;
+            individualClusterRanks.RankID = rankID;
             return individualClusterRanks;
         }
         /// <summary>
-        /// There are no comments for Property ID in the schema.
+        /// There are no comments for Property RankID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID
+        public string RankID
         {
             get
             {
-                return this._ID;
+                return this._RankID;
             }
             set
             {
-                this.OnIDChanging(value);
-                this.ReportPropertyChanging("ID");
-                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ID");
-                this.OnIDChanged();
+                this.OnRankIDChanging(value);
+                this.ReportPropertyChanging("RankID");
+                this._RankID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("RankID");
+                this.OnRankIDChanged();
             }
         }
-        private int _ID;
-        partial void OnIDChanging(int value);
-        partial void OnIDChanged();
+        private string _RankID;
+        partial void OnRankIDChanging(string value);
+        partial void OnRankIDChanged();
         /// <summary>
         /// There are no comments for Property Rank in the schema.
         /// </summary>
