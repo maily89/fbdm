@@ -29,7 +29,7 @@ namespace FBD.Models
         {
             try
             {
-                var generalInfo = CustomersIndividualRanking.SelectIndividualRankingByID(ID, FBDModel);
+                var generalInfo = CustomersIndividualRanking.SelectIndividualRankingByIDWithReference(ID, FBDModel);
 
                 individualInfo.CIFNumber = generalInfo.CustomersIndividuals.CIF;
                 individualInfo.CustomerName = generalInfo.CustomersIndividuals.CustomerName;
@@ -63,7 +63,7 @@ namespace FBD.Models
         {
             try
             {
-                var basicInfo = CustomersIndividualBasicIndex.SelectBasicIndexByRankingID(RankingID, FBDModel);
+                var basicInfo = CustomersIndividualBasicIndex.SelectBasicIndexByRankingIDWithReference(RankingID, FBDModel);
 
                 foreach (var item in basicInfo)
                 {
@@ -96,7 +96,7 @@ namespace FBD.Models
         {
             try
             {
-                var collateralInfo = CustomersIndividualCollateralIndex.SelectCollateralIndexByRankingID(RankingID, FBDModel);
+                var collateralInfo = CustomersIndividualCollateralIndex.SelectCollateralIndexByRankingIDWithReference(RankingID, FBDModel);
 
                 foreach (var item in collateralInfo)
                 {

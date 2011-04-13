@@ -60,14 +60,11 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var collateralIndex = entities
                                 .CustomersIndividualCollateralIndex
-                                .Include(Constants.TABLE_CUSTOMERS_INDIVIDUAL_RANKING)
-                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX)
-                                .Include(Constants.TABLE_INDIVIDUAL_COLLATERAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersIndividualRanking.ID == id).ToList();
             return collateralIndex;
         }
 
-        public static List<CustomersIndividualCollateralIndex> SelectCollateralIndexByRankingID(int id, FBDEntities entities)
+        public static List<CustomersIndividualCollateralIndex> SelectCollateralIndexByRankingIDWithReference(int id, FBDEntities entities)
         {
             var collateralIndex = entities
                                 .CustomersIndividualCollateralIndex

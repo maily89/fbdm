@@ -48,13 +48,11 @@ namespace FBD.Models
             var nonFinancialIndex = entities
                                 .CustomersBusinessNonFinancialIndex
                                 .Include(Constants.TABLE_CUSTOMERS_BUSINESS_RANKING)
-                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX)
-                                .Include(Constants.TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS)
                                 .Where(i => i.CustomersBusinessRanking.ID == id).ToList();
             return nonFinancialIndex;
         }
 
-        public static List<CustomersBusinessNonFinancialIndex> SelectNonFinancialIndexByRankingID(int id, FBDEntities entities)
+        public static List<CustomersBusinessNonFinancialIndex> SelectNonFinancialIndexByRankingIDWithReference(int id, FBDEntities entities)
         {
             var nonFinancialIndex = entities
                                 .CustomersBusinessNonFinancialIndex
