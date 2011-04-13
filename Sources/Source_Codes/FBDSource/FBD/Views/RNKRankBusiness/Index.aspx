@@ -44,7 +44,8 @@
             {
                 columns.Template(c =>
                     {%>
-                        <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID })%> |
+                        <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID },null)%> |
+                        <%= Html.ActionLink("Print Report","ExportBusinessInfo","RPTBusinessReport",  new { id = c.ID })%> |
                         <%= Html.ActionLink("Remove", "Delete", new { id = c.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete item" + c.ID + "?');" })%>
                         <%
         }).Title("").Width(100);

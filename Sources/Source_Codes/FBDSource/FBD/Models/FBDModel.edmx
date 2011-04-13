@@ -580,7 +580,7 @@
           <Property Name="BasicIndexScore" Type="decimal" Precision="10" Scale="3" />
           <Property Name="CollateralIndexScore" Type="decimal" Precision="10" Scale="3" />
           <Property Name="RankID" Type="int" />
-          <Property Name="ClusterRankID" Type="int" />
+          <Property Name="ClusterRankID" Type="varchar" MaxLength="3" />
           <Property Name="UserID" Type="varchar" MaxLength="10" />
           <Property Name="DateModified" Type="datetime" />
         </EntityType>
@@ -658,9 +658,9 @@
         </EntityType>
         <EntityType Name="IndividualClusterRanks">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="RankID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RankID" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="Rank" Type="nvarchar" MaxLength="100" />
           <Property Name="CentroidX" Type="decimal" Precision="10" Scale="2" />
           <Property Name="CentroidY" Type="decimal" Precision="10" Scale="2" />
@@ -1423,7 +1423,7 @@
           <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IndividualClusterRanks">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="RankID" />
             </Principal>
             <Dependent Role="CustomersIndividualRanking">
               <PropertyRef Name="ClusterRankID" />
@@ -2338,7 +2338,7 @@
         <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
         <ReferentialConstraint>
           <Principal Role="IndividualClusterRanks">
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="RankID" />
           </Principal>
           <Dependent Role="CustomersIndividualRanking">
             <PropertyRef Name="ClusterRankID" />
@@ -3275,9 +3275,9 @@
         </EntityType>
         <EntityType Name="IndividualClusterRanks">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="RankID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RankID" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
           <Property Name="Rank" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="CentroidX" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="CentroidY" Type="Decimal" Precision="10" Scale="2" />
@@ -4119,7 +4119,7 @@
           <EntitySetMapping Name="IndividualClusterRanks">
             <EntityTypeMapping TypeName="IsTypeOf(FBDModel.IndividualClusterRanks)">
               <MappingFragment StoreEntitySet="IndividualClusterRanks">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RankID" ColumnName="RankID" />
                 <ScalarProperty Name="Rank" ColumnName="Rank" />
                 <ScalarProperty Name="CentroidX" ColumnName="CentroidX" />
                 <ScalarProperty Name="CentroidY" ColumnName="CentroidY" />
@@ -4643,7 +4643,7 @@
           </AssociationSetMapping>
           <AssociationSetMapping Name="CustomersIndividualRanking_IndividualClusterRanks_Delete" TypeName="FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete" StoreEntitySet="CustomersIndividualRanking">
             <EndProperty Name="IndividualClusterRanks">
-              <ScalarProperty Name="ID" ColumnName="ClusterRankID" />
+              <ScalarProperty Name="RankID" ColumnName="ClusterRankID" />
             </EndProperty>
             <EndProperty Name="CustomersIndividualRanking">
               <ScalarProperty Name="ID" ColumnName="ID" />
@@ -4886,12 +4886,12 @@
           <ConnectorPoint PointX="8.4791666666666661" PointY="17.25" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="17.25" />
           <ConnectorPoint PointX="8.75" PointY="17.25" />
-          <ConnectorPoint PointX="8.75" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="8.7916666666666661" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="10.666666666666666" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="11" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="8.75" PointY="19" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="19" />
+          <ConnectorPoint PointX="8.9583333333333339" PointY="19" />
+          <ConnectorPoint PointX="10.666666666666666" PointY="19" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="19" />
+          <ConnectorPoint PointX="11" PointY="19" />
           <ConnectorPoint PointX="11" PointY="17.375" />
           <ConnectorPoint PointX="11.541667166666665" PointY="17.375" />
           <ConnectorPoint PointX="11.708333833333333" PointY="17.375" />
@@ -5095,8 +5095,8 @@
           <ConnectorPoint PointX="8.2916666666666661" PointY="11.18219075520833" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="11.182190755208332" />
           <ConnectorPoint PointX="8.75" PointY="11.182190755208332" />
-          <ConnectorPoint PointX="8.75" PointY="12.625" />
-          <ConnectorPoint PointX="9.75" PointY="12.625" />
+          <ConnectorPoint PointX="8.75" PointY="11.787985026041667" />
+          <ConnectorPoint PointX="9.75" PointY="11.787985026041667" />
           <ConnectorPoint PointX="9.75" PointY="13" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_BusinessTypes_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="5.1093775" PointY="20.75" />

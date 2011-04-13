@@ -591,6 +591,10 @@
     </None>
     <None Include="CodeTemplates\AddView\Edit.tt">
     </None>
+    <EntityDeploy Include="Models\FBDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="ReportDataSets\BusinessReportDataSet.xsc">
       <DependentUpon>BusinessReportDataSet.xsd</DependentUpon>
     </None>
@@ -613,10 +617,6 @@
     <None Include="ReportDataSets\IndividualReportDataSet.xss">
       <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
     </None>
-    <EntityDeploy Include="Models\FBDModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FBDModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="Report.sitemap" />
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />

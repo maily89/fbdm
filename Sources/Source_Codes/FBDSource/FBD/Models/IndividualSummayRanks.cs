@@ -104,8 +104,8 @@ namespace FBD.Models
         {
             List<IndividualSummaryRanks> summaryRanks = FBDModel.IndividualSummaryRanks.Include("IndividualBasicRanks").
                                                                                   Include("IndividualCollateralRanks").
-                                                                                  Where(s => s.IndividualBasicRanks.Equals(pmrBasicID)
-                                                                                      && s.IndividualCollateralRanks.Equals(prmCollateralID)).ToList();
+                                                                                  Where(s => s.IndividualBasicRanks.RankID.Equals(pmrBasicID)
+                                                                                      && s.IndividualCollateralRanks.RankID.Equals(prmCollateralID)).ToList();
             return summaryRanks;
         }
         public static INVSummaryRankViewModel selectSummaryRankByBasicAndCollateral(FBDEntities FBDModel, int pmrID)
