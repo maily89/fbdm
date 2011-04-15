@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <h2>Ranking for Individual Customer</h2>
 
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
@@ -17,10 +16,10 @@
 		<table width="100%">
 		<tr>
 		<td><b>FromDate</b></td>
-		<td> <%=Html.Telerik().DatePickerFor(model => model.FromDate).Format("dd-MMM-yyyy")%>
+		<td> <%=Html.Telerik().DatePickerFor(model => model.FromDate).Format("dd-MMM-yyyy").InputHtmlAttributes(new { @readonly = "true" })%>
         </td>
         <td><b>ToDate</b></td>
-		<td> <%=Html.Telerik().DatePickerFor(model => model.ToDate).Format("dd-MMM-yyyy")%>
+		<td> <%=Html.Telerik().DatePickerFor(model => model.ToDate).Format("dd-MMM-yyyy").InputHtmlAttributes(new { @readonly = "true" })%>
         </td>
 		</tr>
 		<tr>
@@ -145,5 +144,9 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
 </asp:Content>
 

@@ -70,7 +70,7 @@ namespace FBD.Controllers
             }
             
             data.CustomerRanking = customerRankList;
-           
+
             return View(data);
         }
 

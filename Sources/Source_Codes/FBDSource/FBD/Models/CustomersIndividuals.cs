@@ -11,6 +11,10 @@ namespace FBD.Models
     [MetadataType(typeof(CustomersIndividualsMetaData))]
     public partial class CustomersIndividuals
     {
+        public string DropdownDisplay
+        {
+            get { return string.Format("{0} {1}", _CIF, _CustomerName); }
+        }
         /// <summary>
         /// list of CustomersIndividuals
         /// </summary>
