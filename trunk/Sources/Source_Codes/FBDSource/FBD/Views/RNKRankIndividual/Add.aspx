@@ -9,7 +9,7 @@
     <h2>Add Individual Ranking</h2>
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-    <%Html.RenderPartial("IndividualStep",FBD.CommonUtilities.Constants.IndividualRankStep.General); %>
+    <%Html.RenderPartial("IndividualStep",FBD.CommonUtilities.Constants.IndividualRankStep.ChooseCustomer); %>
 
     <% using (Html.BeginForm())
                        { %>
@@ -17,13 +17,13 @@
         <tr>
         <td><b>Date</b></td>
         <td>
-        <%= Html.Telerik().DatePickerFor(model => model.Date).Format("dd-MMM-yyyy")%>
+        <%= Html.Telerik().DatePickerFor(model => model.Date).Format("dd-MMM-yyyy").InputHtmlAttributes(new { @readonly = "true" })%>
         </td>
         </tr>
         <tr>
         <td><b>Customer List</b></td>
         <td><%= Html.DropDownList("CustomerID", new SelectList(Model.IndividualCustomer as IEnumerable,
-                                        "IndividualID", "CustomerName", Model != null ? Model.CustomerID : 0))%>
+                                "IndividualID", "DropdownDisplay", Model != null ? Model.CustomerID : 0))%>
         </td>
         </tr>
         <tr>

@@ -20,7 +20,7 @@
 			<b>Branch: <span class="brownText"><%=Model.CustomerInfo.Branch %></span></b><br/>
 			<b>CIF: <span class="brownText"><%=Model.CustomerInfo.CIF  %></span></b><br/>
 			<b>Name: <span class="brownText"><%=Model.CustomerInfo.CustomerName  %></span></b><br/>
-			<b>Credit department: <span class="brownText"><%=Model.IndividualRanking.CreditDepartment %></span></b>
+			<b>Credit department: <span class="brownText"><%=Model.IndividualRanking.CreditDepartment %></span></b><br />
 			<b>Purpose: <span class="brownText"><%=Model.IndividualRanking.IndividualBorrowingPurposes.Purpose %></span></b><br/>
 		</td>
 		<td valign="top">

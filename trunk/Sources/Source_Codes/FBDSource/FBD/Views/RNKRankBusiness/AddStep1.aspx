@@ -22,7 +22,7 @@
 		<tr>
 		<td><b>Business customer</b></td>
 		<td><%= Html.DropDownList("CustomerID", new SelectList(Model.BusinessCustomer as IEnumerable,
-        "BusinessID", "CustomerName", Model != null ? Model.CustomerID : 0))%></td>
+                        "BusinessID", "DropdownDisplay", Model != null ? Model.CustomerID : 0))%></td>
 		</tr>
 		<tr>
 		<td></td>

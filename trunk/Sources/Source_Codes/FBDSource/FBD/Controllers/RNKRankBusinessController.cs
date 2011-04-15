@@ -116,6 +116,7 @@ namespace FBD.Controllers
 
                         addModel.IsNew = true;
                     }
+                    else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     addModel.BusinessRanking = ranking;
                     ranking.DateModified = DateTime.Now;
                     addModel.PeriodID = data.PeriodID;
