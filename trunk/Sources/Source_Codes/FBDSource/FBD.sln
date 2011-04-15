@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBD", "FBD\FBD.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBD.Tests", "FBD.Tests\FBD.Tests.csproj", "{5CA848EF-03C6-4C1A-8DF0-F9B161F1157F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54AB6321-D043-4DBF-A7E9-753C499DD938}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Design\Detailed_Design\RNK\FBD.vsd = ..\..\..\Design\Detailed_Design\RNK\FBD.vsd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

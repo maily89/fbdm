@@ -44,7 +44,7 @@ namespace FBD.Models
             var result = entities.CustomersIndividualRanking
                         .Include("CustomersIndividual")
                         .Include("Date")
-                        .Where(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value == date)
+                        .Where(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value <= date)
                         .Any();
             if (result)
             {
@@ -56,13 +56,23 @@ namespace FBD.Models
             return null;
         }
 
-        public static List<CustomersIndividualRanking> SelectRankingByDateAndCifAndBranch(DateTime date, string Cif, string BranchID)
+        public static List<CustomersIndividualRanking> SelectRankingByDateAndCifAndBranch(Nullable<DateTime> fromDate, Nullable<DateTime> toDate, string Cif, string BranchID)
         {
             FBDEntities entities = new FBDEntities();
+            bool isFromDateTested = fromDate != null ? true : false;
+            bool isToDateTested = toDate != null ? true : false;
+            bool isCifTested = !string.IsNullOrEmpty(Cif) ? true : false;
+            bool isBranchIDTested = !string.IsNullOrEmpty(BranchID) ? true : false;
+
+            if (!isFromDateTested && !isToDateTested && !isCifTested && !isBranchIDTested)
+                return SelectIndividualRankings();
+
             var result = entities.CustomersIndividualRanking
                 .Include("CustomersIndividuals")
                 .Include("CustomersIndividuals.SystemBranches")
-                .Where(i => i.CustomersIndividuals.CIF.StartsWith(Cif) && i.CustomersIndividuals.SystemBranches.BranchID == BranchID && i.Date == date).ToList();
+                .Where(i =>(!isCifTested || i.CustomersIndividuals.CIF.StartsWith(Cif)) 
+                    && (!isBranchIDTested || i.CustomersIndividuals.SystemBranches.BranchID == BranchID) 
+                    && (!isFromDateTested || i.Date >= fromDate) && (!isToDateTested || i.Date<=toDate)) .ToList();
             return result;
         }
 
