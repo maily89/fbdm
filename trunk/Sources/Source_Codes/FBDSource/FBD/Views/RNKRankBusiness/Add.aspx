@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.RNKBusinessRankingViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= TempData["EditMode"]!=null?"Edit":"Add" %>
+	<%= ViewData["Edit"]!=null?"Edit Business Info":"Add Business Info" %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%= TempData["EditMode"]!=null?"Edit":"Add" %></h2>
+    <h2><%= ViewData["Edit"]!=null?"Edit Business Info":"Add Business Info" %></h2>
     <% Html.EnableClientValidation(); %>
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
@@ -14,12 +14,10 @@
     
     <%Html.RenderPartial("BusinessStep",FBD.CommonUtilities.Constants.BusinessRankStep.General); %>
     <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
-    <% using (Html.BeginForm(TempData["EditMode"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
+    <% using (Html.BeginForm(ViewData["Edit"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
        {%>
         <%= Html.ValidationSummary(true) %>
 
-        <fieldset>
-            <legend>Fields</legend>
             <table>
             
             <tr>
@@ -168,22 +166,26 @@
                     </div>
                </td>
            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Save" />
-                </td>
-                <td>
-                    <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
-                </td>
-            </tr>
         </table>
-        </fieldset>
+        <hr />
+        <hr />
+        <table>
+	    <tr>
+	    <td><input value="Save only" type="submit" name="Save"/></td>
+	    <% if (ViewData["Edit"] == null)
+        { %>
+	    <td><input value="Save then process next" type="submit" name="SaveNext"/></td>
+	    <%} %>
+	    <td><input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" /></td>
+	    </tr>
+	    </table>
+	    <br />
+	    <b>*Save only:</b> Information will be saved and stop process<br />
+	    <b>*Save then process next:</b> Information will be saved and continue process<br />
+	    <b>*Cancel:</b> Discard the ranking process
 
     <% } %>
 
-    <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 
