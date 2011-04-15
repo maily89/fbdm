@@ -157,7 +157,7 @@ namespace FBD.Controllers
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(RNKBusinessRankingViewModel data)
+        public ActionResult Add(RNKBusinessRankingViewModel data,string SaveNext)
         {
             int id;
             if (data == null) return null;
@@ -195,7 +195,14 @@ namespace FBD.Controllers
                 else throw new Exception();
 
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.CUSTOMER_BUSINESS_RANKING);
-                return View("AddScore", CustomersBusinessScale.LoadScaleRow(id));
+                if (SaveNext != null)
+                {
+                    return View("AddScore", CustomersBusinessScale.LoadScaleRow(id));
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception)
             {
@@ -402,7 +409,7 @@ namespace FBD.Controllers
                 if(!string.IsNullOrEmpty(Edit)){
                     ViewData["Edit"]=Edit;
                 }
-                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddFinancialScore", CustomersBusinessFinancialIndex.Reload(rnkFinancialRow));
+                if (Back != null) return View("AddFinancialScore", CustomersBusinessFinancialIndex.Reload(rnkFinancialRow));
 
                 if(string.IsNullOrEmpty(Edit))
                 {
@@ -516,7 +523,7 @@ namespace FBD.Controllers
                 {
                     ViewData["Edit"] = Edit;
                 }
-                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddNonFinancialScore", CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow));
+                if (Back != null) return View("AddNonFinancialScore", CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow));
 
                 if (string.IsNullOrEmpty(Edit))
                 {
@@ -624,7 +631,8 @@ namespace FBD.Controllers
             addModel.CIF = customer.CIF;
 
             addModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(ranking.ID);
-            return View(addModel);
+            ViewData["Edit"] = "Edit";
+            return View("Add",addModel);
 
         }
 
@@ -657,9 +665,10 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
+                ViewData["Edit"] = "Edit";
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.CUSTOMER_BUSINESS_RANKING);
                 rknBusinessRankingViewModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(rknBusinessRankingViewModel.BusinessRanking.ID);
-                return View(rknBusinessRankingViewModel);
+                return View("Add",rknBusinessRankingViewModel);
             }
         }
 

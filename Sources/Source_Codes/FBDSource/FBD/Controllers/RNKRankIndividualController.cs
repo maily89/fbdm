@@ -270,7 +270,7 @@ namespace FBD.Controllers
                     ViewData["Edit"] = Edit;
                 }
 
-                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddBasicScore", CustomersIndividualBasicIndex.Reload(rnkBasicRow));
+                if (Back != null) return View("AddBasicScore", CustomersIndividualBasicIndex.Reload(rnkBasicRow));
 
                 if (string.IsNullOrEmpty(Edit))
                 {
@@ -367,7 +367,7 @@ namespace FBD.Controllers
                     ViewData["Edit"] = Edit;
                 }
 
-                if (Back != null && string.IsNullOrEmpty(Edit)) return View("AddCollateralScore", CustomersIndividualCollateralIndex.Reload(rnkCollateralRow));
+                if (Back != null) return View("AddCollateralScore", CustomersIndividualCollateralIndex.Reload(rnkCollateralRow));
 
                 if (string.IsNullOrEmpty(Edit))
                 {
