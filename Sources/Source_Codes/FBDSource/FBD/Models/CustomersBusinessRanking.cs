@@ -85,13 +85,34 @@ namespace FBD.Models
         public static List<CustomersBusinessRanking> SelectRankingByPeriodAndCifAndBranch(string periodID, string cif, string branchID)
         {
             FBDEntities entities = new FBDEntities();
+            bool isCifTested=false;
+            bool isPeriodTested=false;
+            bool isBranchTested=false;
+
+            if (!string.IsNullOrEmpty(cif)) // neu cif khong null
+            {
+                isCifTested=true;
+            }
+            if (!string.IsNullOrEmpty(periodID)) // neu period id k0 null
+            {
+                isPeriodTested=true;
+            }
+            if (!string.IsNullOrEmpty(branchID)) // neu branchID k0 null
+            {
+                isBranchTested=true;
+            }
+
+            if (!isCifTested && !isBranchTested && !isPeriodTested) // neu ca 3 gia tri deu k0 dc test
+                return SelectBusinessRankings();
+
             var result = entities.CustomersBusinessRanking
                 .Include("SystemReportingPeriods")
                 .Include("CustomersBusinesses")
                 .Include("CustomersBusinesses.SystemBranches")
-                .Where(i => i.CustomersBusinesses.CIF.StartsWith(cif) && i.SystemReportingPeriods.PeriodID == periodID && i.CustomersBusinesses.SystemBranches.BranchID == branchID).ToList();
-            
-            return result;
+                .Where(i => (!isCifTested || i.CustomersBusinesses.CIF.StartsWith(cif)) && (!isPeriodTested || i.SystemReportingPeriods.PeriodID == periodID) && (!isBranchTested || i.CustomersBusinesses.SystemBranches.BranchID == branchID));
+
+
+            return result.ToList();
         }
         /// <summary>
         /// return the Business specified by id

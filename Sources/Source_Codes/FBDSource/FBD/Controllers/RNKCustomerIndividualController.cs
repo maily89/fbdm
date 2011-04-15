@@ -13,6 +13,10 @@ namespace FBD.Controllers
         //
         // GET: /RNKCustomerIndividuals/
 
+        /// <summary>
+        /// Display List of individual customers
+        /// </summary>
+        /// <returns>View of Index</returns>
         public ActionResult Index()
         {
             List<CustomersIndividuals> model = null;
@@ -34,8 +38,11 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /RNKCustomerIndividuals/Create
-
+        // GET: /RNKCustomerIndividuals/Add
+        /// <summary>
+        /// Display Add new customer view
+        /// </summary>
+        /// <returns>Add view</returns>
         public ActionResult Add()
         {
             var model = new RNKCustomerIndividualsViewModel();
@@ -44,8 +51,12 @@ namespace FBD.Controllers
         } 
 
         //
-        // POST: /RNKCustomerIndividuals/Create
-
+        // POST: /RNKCustomerIndividuals/Add
+        /// <summary>
+        /// Add new customer
+        /// </summary>
+        /// <param name="data">Info of new customer</param>
+        /// <returns>Index if Add success/Add with error otherwise</returns>
         [HttpPost]
         public ActionResult Add(RNKCustomerIndividualsViewModel data)
         {
@@ -93,7 +104,11 @@ namespace FBD.Controllers
 
         //
         // POST: /RNLCustomerIndividuals/Edit/5
-
+        /// <summary>
+        /// Display Edit View
+        /// </summary>
+        /// <param name="id">id of item to be edited</param>
+        /// <returns>Index if edit sucess, Edit view with error other wise</returns>
         [HttpPost]
         public ActionResult Edit(int id, RNKCustomerIndividualsViewModel data)
         {
@@ -125,8 +140,12 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /RNLCustomerIndividuals/Delete/5
-
+        // GET: /RNKCustomerIndividuals/Delete/5
+        /// <summary>
+        /// delete item
+        /// </summary>
+        /// <param name="id">item to be delete</param>
+        /// <returns>redirect ot index</returns>
         public ActionResult Delete(int id)
         {
             try

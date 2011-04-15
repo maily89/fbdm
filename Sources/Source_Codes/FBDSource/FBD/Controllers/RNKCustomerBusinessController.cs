@@ -12,7 +12,10 @@ namespace FBD.Controllers
     {
         //
         // GET: /RNKCustomerBusiness/
-
+        /// <summary>
+        /// Display List of business customers
+        /// </summary>
+        /// <returns>View of Index</returns>
         public ActionResult Index()
         {
             List<CustomersBusinesses> model = null;
@@ -35,7 +38,10 @@ namespace FBD.Controllers
 
         //
         // GET: /RNKCustomerBusiness/Create
-
+        /// <summary>
+        /// Display Add new customer view
+        /// </summary>
+        /// <returns>Add view</returns>
         public ActionResult Add()
         {
             var model = new RNKCustomerBusinessViewModel();
@@ -44,8 +50,12 @@ namespace FBD.Controllers
         } 
 
         //
-        // POST: /RNKCustomerBusiness/Create
-
+        // POST: /RNKCustomerBusiness/Add
+        /// <summary>
+        /// Add new customer
+        /// </summary>
+        /// <param name="data">Info of new customer</param>
+        /// <returns>Index if Add success/Add with error otherwise</returns>
         [HttpPost]
         public ActionResult Add(RNKCustomerBusinessViewModel data)
         {
@@ -72,7 +82,11 @@ namespace FBD.Controllers
 
         //
         // GET: /RNLCustomerBusiness/Edit/5
-
+        /// <summary>
+        /// Display Edit View
+        /// </summary>
+        /// <param name="id">id of item to be edited</param>
+        /// <returns>Index if edit sucess, Edit view with error other wise</returns>
         public ActionResult Edit(int id)
         {
             var model = new RNKCustomerBusinessViewModel();
@@ -92,8 +106,13 @@ namespace FBD.Controllers
         }
 
         //
-        // POST: /RNLCustomerBusiness/Edit/5
-
+        // POST: /RNKCustomerBusiness/Edit/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int id, RNKCustomerBusinessViewModel data)
         {
@@ -125,18 +144,26 @@ namespace FBD.Controllers
         }
 
         //
-        // GET: /RNLCustomerBusiness/Delete/5
-
+        // GET: /RNKCustomerBusiness/Delete/5
+        /// <summary>
+        /// delete item
+        /// </summary>
+        /// <param name="id">item to be delete</param>
+        /// <returns>redirect ot index</returns>
         public ActionResult Delete(int id)
         {
             try
             {
+                //if unable to delete, throw exception
                 if (CustomersBusinesses.DeleteBusiness(id) != 1) throw new Exception();
+
+                //otherwise, return index with success message
                 TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_DELETE, Constants.CUSTOMER_BUSINESS);
                 return RedirectToAction("Index");
             }
             catch
             {
+                //return index with unsuccess message
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.CUSTOMER_BUSINESS);
                 return RedirectToAction("Index");
             }

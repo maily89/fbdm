@@ -48,7 +48,7 @@ namespace FBD.Controllers
             List<CustomersBusinessRanking> model = null;
             try
             {
-                if (data.Cif == null) data.Cif = "";
+                
                 model = CustomersBusinessRanking.SelectRankingByPeriodAndCifAndBranch(data.PeriodID,data.Cif,data.BranchID);
                 if (model == null)
                 {

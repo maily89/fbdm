@@ -51,8 +51,8 @@ namespace FBD.Controllers
             List<CustomersIndividualRanking> customerRankList = null;
             try
             {
-                if (data.Cif == null) data.Cif = "";
-                customerRankList = CustomersIndividualRanking.SelectRankingByDateAndCifAndBranch(data.DateTime, data.Cif, data.BranchID);
+
+                customerRankList = CustomersIndividualRanking.SelectRankingByDateAndCifAndBranch(data.FromDate,data.ToDate, data.Cif, data.BranchID);
                 foreach (CustomersIndividualRanking item in customerRankList)
                 {
                     item.CustomersIndividualsReference.Load();
@@ -68,9 +68,10 @@ namespace FBD.Controllers
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_INDIVIDUAL_RANKING);
             }
-            RNKIndividualIndex index = new RNKIndividualIndex();
-            index.CustomerRanking = customerRankList;
-            return View(index);
+            
+            data.CustomerRanking = customerRankList;
+           
+            return View(data);
         }
 
         /// <summary>

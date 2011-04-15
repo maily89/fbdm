@@ -16,8 +16,11 @@
 		<% using(Html.BeginForm()){ %>
 		<table width="100%">
 		<tr>
-		<td><b>Date</b></td>
-		<td> <%=Html.Telerik().DatePickerFor(model => model.DateTime).Format("dd-MMM-yyyy")%>
+		<td><b>FromDate</b></td>
+		<td> <%=Html.Telerik().DatePickerFor(model => model.FromDate).Format("dd-MMM-yyyy")%>
+        </td>
+        <td><b>ToDate</b></td>
+		<td> <%=Html.Telerik().DatePickerFor(model => model.ToDate).Format("dd-MMM-yyyy")%>
         </td>
 		</tr>
 		<tr>
