@@ -256,7 +256,14 @@ namespace FBD.Models
                     if (item.BusinessFinancialIndex.IndexID.Equals(row.IndexID))
                     {
                         row.Checked = true;
-                        row.Proportion = (decimal)item.Proportion;
+                        if (item.Proportion != null)
+                        {
+                            row.Proportion = (decimal)item.Proportion;
+                        }
+                        else
+                        {
+                            row.Proportion = 0;
+                        }
                         row.ProportionID = item.ProportionID;
 
                         break;

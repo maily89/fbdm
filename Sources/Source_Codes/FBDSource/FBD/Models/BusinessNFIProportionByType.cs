@@ -239,7 +239,14 @@ namespace FBD.Models
                 {
                     if (item.BusinessNonFinancialIndex.IndexID.Equals(row.IndexID))
                     {
-                        row.Proportion = (decimal)item.Proportion;
+                        if (item.Proportion != null)
+                        {
+                            row.Proportion = (decimal)item.Proportion;
+                        }
+                        else
+                        {
+                            row.Proportion = 0;
+                        }
                         row.ProportionID = item.ProportionID;
 
                         break;
