@@ -200,8 +200,22 @@ namespace FBD.Models
                     if (item.BusinessNonFinancialIndexLevels.LevelID.Equals(row.LevelID))
                     {
                         row.Checked = true;
-                        row.FromValue = (decimal)item.FromValue;
-                        row.ToValue = (decimal)item.ToValue;
+                        if (item.FromValue != null)
+                        {
+                            row.FromValue = (decimal)item.FromValue;
+                        }
+                        else 
+                        {
+                            row.FromValue = 0;    
+                        }
+                        if (item.ToValue != null)
+                        {
+                            row.ToValue = (decimal)item.ToValue;
+                        }
+                        else
+                        {
+                            row.ToValue = 0;
+                        }
                         row.FixedValue = item.FixedValue;
                         row.ScoreID = item.ScoreID;
 
