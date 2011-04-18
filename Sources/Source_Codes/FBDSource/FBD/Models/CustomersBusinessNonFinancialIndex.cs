@@ -204,10 +204,10 @@ namespace FBD.Models
                         if (score.FixedValue.Equals(customerNonFinancial.Value))
                         {
                             temp.ScoreID = score.ScoreID;
-                            temp.Value = score.FixedValue;
                             break;
                         }
                     }
+                    temp.Value = customerNonFinancial.Value;
                 }
                 else
                     try

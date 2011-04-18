@@ -18,6 +18,8 @@
 		<td><b>FromDate</b></td>
 		<td> <%=Html.Telerik().DatePickerFor(model => model.FromDate).Format("dd-MMM-yyyy").InputHtmlAttributes(new { @readonly = "true" })%>
         </td>
+        </tr>
+        <tr>
         <td><b>ToDate</b></td>
 		<td> <%=Html.Telerik().DatePickerFor(model => model.ToDate).Format("dd-MMM-yyyy").InputHtmlAttributes(new { @readonly = "true" })%>
         </td>
@@ -46,22 +48,22 @@
                 columns.Template(c =>
                     {%>
                         <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID })%> |
-                        <%= Html.ActionLink("Print Report", "ExportIndividualInfo", "RPTIndividualReport", new { id = c.ID },null)%> |
+                        <%= Html.ActionLink("Print", "ExportIndividualInfo", "RPTIndividualReport", new { id = c.ID },null)%> |
                         <%= Html.ActionLink("Remove", "Delete", new { id = c.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete item" + c.ID + "?');" })%>
                         <%
         }).Title("").Width(100);
                 columns.Bound(c => c.CustomersIndividuals.CIF).Title("CIF");
                 columns.Bound(c => c.CustomersIndividuals.CustomerName).Title("Name");
-                columns.Bound(c => c.Date).Title("Date");
-                columns.Bound(c => c.CreditDepartment).Title("Credit Department");
-                columns.Bound(c => c.TotalDebt).Title("Total Debt");
-                columns.Bound(c => c.CollateralIndexScore).Title("Collateral Index Score");
-                columns.Bound(c => c.BasicIndexScore).Title("Basic Index Score");                
+                columns.Template(c => {%><%=c.Date!=null?c.Date.Value.ToShortDateString():""%><%})
+                                .Title("Date");
+                columns.Bound(c => c.CreditDepartment).Title("Credit Dept.");
+                columns.Bound(c => c.TotalDebt).Title("Debt");
+                columns.Bound(c => c.CollateralIndexScore).Title("Collateral Score");
+                columns.Bound(c => c.BasicIndexScore).Title("Basic Score");                
                 columns.Template(c => {%><%= Html.Encode(c.IndividualSummaryRanks!=null?c.IndividualSummaryRanks.Evaluation:null) %><%})
                     .Title("Rank");
                 columns.Bound(c => c.UserID)
                     .Title("User ID");
-                columns.Bound(c=>c.DateModified).Title("Date Modified");
             })
             .Sortable()
             .Pageable(p => p.PageSize(20))

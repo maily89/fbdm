@@ -10,9 +10,9 @@
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
-    <%if (ViewData["Edit"] != null)
+    <%if (ViewData["Edit"] == null)
       { %>
-    <%Html.RenderPartial("BusinessStep", FBD.CommonUtilities.Constants.BusinessRankStep.Financial);
+    <%Html.RenderPartial("BusinessStep", FBD.CommonUtilities.Constants.BusinessRankStep.NonFinancial);
       } %>
     <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetBusinessRankingInfo(System.Convert.ToInt32(ViewData["RankID"] ))); %>
 

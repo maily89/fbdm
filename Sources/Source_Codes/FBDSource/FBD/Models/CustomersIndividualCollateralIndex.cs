@@ -203,6 +203,7 @@ namespace FBD.Models
                             break;
                         }
                     }
+                    temp.Value = customerCollateral.Value;
                 }
                 else
                     try

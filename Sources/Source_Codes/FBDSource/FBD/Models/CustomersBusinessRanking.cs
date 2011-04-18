@@ -183,7 +183,6 @@ namespace FBD.Models
             if (ranking == null || entities == null) return 0;
 
             DatabaseHelper.AttachToOrGet<CustomersBusinessRanking>(entities, ranking.GetType().Name, ref ranking);
-
             
             ObjectStateManager stateMgr = entities.ObjectStateManager;
             ObjectStateEntry stateEntry = stateMgr.GetObjectStateEntry(ranking);

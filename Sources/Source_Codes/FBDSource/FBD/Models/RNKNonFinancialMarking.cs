@@ -29,7 +29,8 @@ namespace FBD.Models
 
             ranking.CustomersBusinessNonFinancialIndex.Load();
             ranking.BusinessTypesReference.Load();
-            if (ranking.BusinessTypes == null) return 0;
+
+            if (ranking.BusinessTypes == null || ranking.BusinessIndustries==null) return 0;
 
             string typeID = ranking.BusinessTypes.TypeID;
             //List<ParentIndex> parentList = new List<ParentIndex>();
@@ -123,9 +124,11 @@ namespace FBD.Models
 
         public static BusinessNonFinancialIndexLevels GetLevel(CustomersBusinessNonFinancialIndex indexScore,CustomersBusinessRanking ranking,FBDEntities entities)
         {
+            if (indexScore == null || ranking == null || entities == null) return null;
             indexScore.BusinessNonFinancialIndexReference.Load();
             var index=indexScore.BusinessNonFinancialIndex;
 
+            if (ranking.BusinessIndustries == null || index == null) return null;
 
             List<BusinessNonFinancialIndexScore> scoreList = BusinessNonFinancialIndexScore
                 .SelectScoreByIndustryByNonFinancialIndex(entities, ranking.BusinessIndustries.IndustryID, index.IndexID);
@@ -144,6 +147,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) break;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         item.BusinessNonFinancialIndexLevelsReference.Load();
@@ -152,17 +156,31 @@ namespace FBD.Models
                     }
                 }
             }
+
+            indexScore.BusinessNonFinancialIndexLevels = null;
             return null;
         }
 
 
         public static void CalculateTempNonFinancial(int rankingID, List<FBD.ViewModels.RNKNonFinancialRow> rnkNonFinancial, out decimal totalScore, out decimal totalProportion)
         {
+            
             totalScore = 0;
             totalProportion = 0;
+
+            if (rnkNonFinancial == null) return;
+
             //Step1: Load all nonFinancial score saved.
             FBDEntities entities = new FBDEntities();
-            CustomersBusinessRanking ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID, entities);
+            CustomersBusinessRanking ranking=null;
+            try
+            {
+                ranking = CustomersBusinessRanking.SelectBusinessRankingByID(rankingID, entities);
+            }
+            catch
+            {
+                return;
+            }
             ranking.BusinessIndustriesReference.Load();
             ranking.BusinessTypesReference.Load();
 
@@ -186,19 +204,18 @@ namespace FBD.Models
                 {
                     GetScore(indexScore, ranking);
 
-                    if (indexScore.CalculatedScore != null)
-                    {
-                        var proportion = BusinessNFIProportionCalculated.SelectNFIProportionCalculatedByTypeByIndustryByIndex(entities, ranking.BusinessTypes.TypeID, ranking.BusinessIndustries.IndustryID, indexScore.Index.IndexID);
 
-                        Nullable<decimal> score = indexScore.CalculatedScore;
-                        if (score != null && proportion != null && proportion.Proportion != null)
-                        {
-                            
-                            indexScore.Proportion = proportion.Proportion.Value;
-                            indexScore.Result=score.Value * proportion.Proportion.Value/100;
-                            totalScore += indexScore.Result;
-                        }
+                    var proportion = BusinessNFIProportionCalculated.SelectNFIProportionCalculatedByTypeByIndustryByIndex(entities, ranking.BusinessTypes.TypeID, ranking.BusinessIndustries.IndustryID, indexScore.Index.IndexID);
+
+                    Nullable<decimal> score = indexScore.CalculatedScore;
+                    if (score != null && proportion != null && proportion.Proportion != null)
+                    {
+                        
+                        indexScore.Proportion = proportion.Proportion.Value;
+                        indexScore.Result=score.Value * proportion.Proportion.Value/100;
+                        totalScore += indexScore.Result;
                     }
+
 
                     //var proportion = BusinessNFIProportionByIndustry.SelectNonFinancialIndexProportionByIndustryAndIndex
                     //        (entities, ranking.BusinessIndustries.IndustryID, indexScore.Index.IndexID);
@@ -223,8 +240,20 @@ namespace FBD.Models
         public static decimal GetScore(RNKNonFinancialRow indexScore, CustomersBusinessRanking ranking)
         {
             if (!indexScore.LeafIndex) return 0;
+            if (indexScore == null || ranking == null || indexScore.Index==null) return 0;
             FBDEntities entities = new FBDEntities();
-            var index = BusinessNonFinancialIndex.SelectNonFinancialIndexByID(entities, indexScore.Index.IndexID);
+
+            BusinessNonFinancialIndex index=null;
+            try
+            {
+                index = BusinessNonFinancialIndex.SelectNonFinancialIndexByID(entities, indexScore.Index.IndexID);
+            }
+            catch
+            {
+                return 0;
+            }
+
+            if (ranking.BusinessIndustries == null) return 0;
             if (indexScore.Index.ValueType == "N")
             {
 

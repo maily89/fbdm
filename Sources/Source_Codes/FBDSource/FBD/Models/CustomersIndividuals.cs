@@ -41,6 +41,21 @@ namespace FBD.Models
             return Individual;
         }
 
+        /// <summary>
+        /// return the Individual specified by id
+        /// </summary>
+        /// <param name="id">id of the Individual</param>
+        /// <returns>Individual</returns>
+        public static List<CustomersIndividuals> SelectIndividualByBranchID(string branchID)
+        {
+
+            FBDEntities entities = new FBDEntities();
+            var Individual = entities.CustomersIndividuals
+                                            .Include(Constants.TABLE_SYSTEM_BRANCHES)
+                                            .Where(i => i.SystemBranches.BranchID==branchID).ToList();
+
+            return Individual;
+        }
 
         /// <summary>
         /// return the Individual specified by id

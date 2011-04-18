@@ -118,7 +118,10 @@ namespace FBD.Controllers
                     }
                     else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     addModel.BusinessRanking = ranking;
+
+                    ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
                     ranking.DateModified = DateTime.Now;
+
                     addModel.PeriodID = data.PeriodID;
                     addModel.CustomerID = data.CustomerID;
 
@@ -258,6 +261,8 @@ namespace FBD.Controllers
                 }
                 // Mark Scale ScoreList.
                 if (rankingID > 0) RNKScaleMarking.SaveScaleScore(rankingID, entity);
+                if (Back != null) return View("EditScore", rknScaleRow);
+
                 if(SaveNext!=null)
                     return RedirectToAction("AddFinancialScore", new { id = rankID!=null?rankID:rankingID.ToString() });
                 return RedirectToAction("Index");
@@ -533,8 +538,8 @@ namespace FBD.Controllers
                 {
                     EditNonFinancialList(rnkNonFinancialRow, rankID);
                 }
-                if(SaveBack!=null)
-                return RedirectToAction("Index");
+                if (SaveNext != null)
+                    return RedirectToAction("Ranking", new { id = rankID });
 
                 if (SaveRerank != null)
                     return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailNonFinancial" });
@@ -543,7 +548,7 @@ namespace FBD.Controllers
                     return RedirectToAction("DetailNonFinancial", new { id = rankID });
                 }
                 else
-                return RedirectToAction("Ranking", new { id = rankID });
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
@@ -619,7 +624,7 @@ namespace FBD.Controllers
             ranking.CustomersLoanTermReference.Load();
             if (ranking.CustomersLoanTerm != null)
                 addModel.LoanID = ranking.CustomersLoanTerm.LoanTermID;
-
+            ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
             ranking.SystemCustomerTypesReference.Load();
             if (ranking.SystemCustomerTypes != null)
                 addModel.CustomerTypeID = ranking.SystemCustomerTypes.TypeID;
@@ -629,6 +634,7 @@ namespace FBD.Controllers
 
             addModel.CustomerID = customer.BusinessID;
             addModel.CIF = customer.CIF;
+            addModel.BusinessRanking = ranking;
 
             addModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(ranking.ID);
             ViewData["Edit"] = "Edit";
@@ -647,7 +653,7 @@ namespace FBD.Controllers
                 {
                     var entity = new FBDEntities();
                     var ranking = rknBusinessRankingViewModel.BusinessRanking;
-
+                    
                     ranking.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(rknBusinessRankingViewModel.CustomerID, entity);
                     ranking.BusinessIndustries = BusinessIndustries.SelectIndustryByID(rknBusinessRankingViewModel.IndustryID, entity);
                     ranking.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entity);
@@ -696,8 +702,9 @@ namespace FBD.Controllers
             {
                 FBDEntities entity = new FBDEntities();
                 int rankID = id;
+                ViewData["RankID"]=id;
+                if (Back != null) return View("EditScore", rnkScaleRow);
 
-                
                 foreach (RNKScaleRow item in rnkScaleRow)
                 {
                     var temp = CustomersBusinessScale.SelectBusinessScaleByID(item.CustomerScaleID,entity);
@@ -712,7 +719,6 @@ namespace FBD.Controllers
                 }
                 // Mark Scale ScoreList.
                 if (rankID > 0) RNKScaleMarking.SaveScaleScore(rankID, entity);
-                if (Back != null) return View("EditScore", rnkScaleRow);
 
                 if (SaveRerank != null)
                     return RedirectToAction("Rerank", new { id = rankID, redirectAction = "DetailScale" });
@@ -868,6 +874,9 @@ namespace FBD.Controllers
 
                 RNKBusinessRankingViewModel model = new RNKBusinessRankingViewModel();
                 model.BusinessRanking = ranking;
+                model.TotalScore = 0;
+                if (ranking.FinancialScore != null) model.TotalScore += ranking.FinancialScore.Value;
+                if (ranking.NonFinancialScore != null) model.TotalScore += ranking.NonFinancialScore.Value;
                 model.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(id);
                 return View(model);
             }

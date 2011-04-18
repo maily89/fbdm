@@ -21,6 +21,11 @@ namespace FBD.Models
             ranking.BusinessIndustriesReference.Load();
             ranking.BusinessScalesReference.Load();
 
+            totalScore = 0;
+            totalProportion = 0;
+
+            if (ranking.BusinessScales == null || ranking.BusinessIndustries == null) return;
+
             decimal total = 0;
 
             foreach (RNKFinancialRow indexScore in rnkFinancial)
@@ -64,6 +69,11 @@ namespace FBD.Models
             ranking.BusinessScalesReference.Load();
 
             ranking.CustomersBusinessFinancialIndex.Load();
+
+            if (ranking.BusinessIndustries == null || ranking.BusinessScales == null || ranking.CustomersBusinessFinancialIndex == null)
+            {
+                return 0;
+            }
             decimal finalScore = 0;
             //Step2: calculate LevelID for each financial score.
             foreach (CustomersBusinessFinancialIndex indexScore in ranking.CustomersBusinessFinancialIndex)
@@ -104,6 +114,9 @@ namespace FBD.Models
             if (!indexScore.LeafIndex) return 0;
             FBDEntities entities = new FBDEntities();
             var index = BusinessFinancialIndex.SelectFinancialIndexByID(entities,indexScore.Index.IndexID);
+
+            if (ranking.BusinessIndustries == null || ranking.BusinessScales == null) return 0;
+
             if (indexScore.Index.ValueType == "N")
             {
 
@@ -127,6 +140,7 @@ namespace FBD.Models
             indexScore.BusinessFinancialIndexReference.Load();
             var index=indexScore.BusinessFinancialIndex;
             if (!indexScore.BusinessFinancialIndex.LeafIndex) return null;
+            if (ranking.BusinessIndustries == null || ranking.BusinessScales == null) return null;
             List<BusinessFinancialIndexScore> scoreList = BusinessFinancialIndexScore
                 .SelectScoreByIndustryByScaleByFinancialIndex(entities, ranking.BusinessIndustries.IndustryID, ranking.BusinessScales.ScaleID, index.IndexID);
 
@@ -149,6 +163,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) break;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         item.BusinessFinancialIndexLevelsReference.Load();
@@ -157,6 +172,8 @@ namespace FBD.Models
                     }
                 }
             }
+
+            indexScore.BusinessFinancialIndexLevels = null;
             return null;
         }
 

@@ -34,7 +34,7 @@
        { %>
     
         <tr>
-            <td>
+            <td class="<%=!Model[i].LeafIndex?"brownText":"" %>">
 
                 <%= Html.Encode(Model[i].Index.IndexID)%>
                 
@@ -47,7 +47,7 @@
                 <%= Html.HiddenFor(m => m[i].CustomerScoreID)%>
                 <%= Html.Hidden("Index", i)%>
             </td>
-            <td>
+            <td class="<%=!Model[i].LeafIndex?"brownText":"" %>">
 
                 <%= Html.Encode(Model[i].Index.IndexName)%>
 

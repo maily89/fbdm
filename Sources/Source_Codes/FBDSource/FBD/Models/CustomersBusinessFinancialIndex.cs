@@ -211,10 +211,10 @@ namespace FBD.Models
                         if (score.FixedValue.Equals(customerFinancial.Value))
                         {
                             temp.ScoreID = score.ScoreID;
-                            temp.Value = score.FixedValue;
                             break;
                         }
                     }
+                    temp.Value = customerFinancial.Value;
                 }
                 else
                     try
@@ -240,7 +240,7 @@ namespace FBD.Models
         {
             int rankID = item.RankingID;
 
-
+            // load index business financial index 
             indexScore.BusinessFinancialIndex = BusinessFinancialIndex.SelectFinancialIndexByID(entities, item.Index.IndexID);
 
             indexScore.Value = item.Score.ToString();

@@ -208,6 +208,7 @@ namespace FBD.Models
                             break;
                         }
                     }
+                    temp.Value = customerBasic.Value;
                 }
                 else
                     try

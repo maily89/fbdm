@@ -93,8 +93,7 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.IndividualRanking.UserID)%>
-                        <%= Html.ValidationMessageFor(model => model.IndividualRanking.UserID)%>
+                        <%= Html.TextBoxFor(model => model.IndividualRanking.UserID,new{@readonly="true"})%>
                     </div>
                </td>
            </tr>

@@ -79,6 +79,7 @@ namespace FBD.Models
             indexScore.IndividualBasicIndexReference.Load();
             var index=indexScore.IndividualBasicIndex;
 
+            if (index == null || ranking.IndividualBorrowingPurposes == null) return null;
 
             List<IndividualBasicIndexScore> scoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities,index.IndexID,ranking.IndividualBorrowingPurposes.PurposeID);
 
@@ -96,6 +97,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) break;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         item.IndividualBasicIndexLevelsReference.Load();
@@ -104,6 +106,7 @@ namespace FBD.Models
                     }
                 }
             }
+            indexScore.IndividualBasicIndexLevels = null;
             return null;
         }
 
@@ -154,6 +157,7 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             var index = indexScore.Index;
 
+            if (index == null || ranking.IndividualBorrowingPurposes == null) return ;
 
             List<IndividualBasicIndexScore> scoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, index.IndexID, ranking.IndividualBorrowingPurposes.PurposeID);
 
@@ -175,6 +179,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) return;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         item.IndividualBasicIndexLevelsReference.Load();

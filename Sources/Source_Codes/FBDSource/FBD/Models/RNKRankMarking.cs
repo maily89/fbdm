@@ -57,7 +57,7 @@ namespace FBD.Models
             FBDEntities entities=new FBDEntities();
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id, entities);
             ranking.BusinessRanks = GetBusinessRank(ranking.FinancialScore.Value + ranking.NonFinancialScore.Value, entities);
-            return entities.SaveChanges() == 1 ? 0 : 1;
+            return entities.SaveChanges() == 1 ? 1 : 0;
         }
 
         public static BusinessRanks GetBusinessRank(decimal score, FBDEntities entities)
