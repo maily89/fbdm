@@ -142,6 +142,7 @@ namespace FBD.Models
                     {
                         decimal prop = proportion.Proportion.Value;
                         indexScore.Proportion = prop;
+                        indexScore.Result = score * prop / 100;
                         finalScore += score * prop;
                     }
 
@@ -159,38 +160,49 @@ namespace FBD.Models
 
             if (index == null || ranking.IndividualBorrowingPurposes == null) return ;
 
-            List<IndividualBasicIndexScore> scoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, index.IndexID, ranking.IndividualBorrowingPurposes.PurposeID);
+            if (index.ValueType == "C")
+            {
+                GetScoreForCharacter(indexScore, entities);
+                return;
 
+            }
+            else
+            {
+                GetScoreForNumeric(indexScore, ranking, entities, index);
+            }
+        }
+
+        private static void GetScoreForCharacter(RNKBasicRow indexScore, FBDEntities entities)
+        {
+            IndividualBasicIndexScore score = IndividualBasicIndexScore.SelectIndividualBasicIndexScoreByScoreID(entities, indexScore.ScoreID);
+            score.IndividualBasicIndexLevelsReference.Load();
+            if (score.IndividualBasicIndexLevels == null) return;
+            indexScore.CalculatedScore = score.IndividualBasicIndexLevels.Score;
+            indexScore.Value = score.FixedValue;
+            return;
+        }
+
+        private static void GetScoreForNumeric(RNKBasicRow indexScore, CustomersIndividualRanking ranking, FBDEntities entities, IndividualBasicIndex index)
+        {
+            List<IndividualBasicIndexScore> scoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, index.IndexID, ranking.IndividualBorrowingPurposes.PurposeID);
+            if (indexScore.Score == null) return;
+            decimal score = indexScore.Score.Value;
             foreach (IndividualBasicIndexScore item in scoreList)
             {
-                if (index.ValueType == "N") //numeric type
+
+                
+                if (score >= item.FromValue && score <= item.ToValue)
                 {
-                    decimal score = System.Convert.ToDecimal(indexScore.Value);
-                    if (score >= item.FromValue && score <= item.ToValue)
+                    item.IndividualBasicIndexLevelsReference.Load();
+                    if (item.IndividualBasicIndexLevels != null)
                     {
-                        item.IndividualBasicIndexLevelsReference.Load();
-                        if (item.IndividualBasicIndexLevels != null)
-                        {
-                            indexScore.CalculatedScore = item.IndividualBasicIndexLevels.Score;
-                        }
-                        else indexScore.CalculatedScore = 0;
-                        return;
+                        indexScore.CalculatedScore = item.IndividualBasicIndexLevels.Score;
                     }
+                    else indexScore.CalculatedScore = 0;
+                    return;
                 }
-                else // character type
-                {
-                    if (indexScore.Value == null) return;
-                    if (indexScore.Value.Equals(item.FixedValue))
-                    {
-                        item.IndividualBasicIndexLevelsReference.Load();
-                        if (item.IndividualBasicIndexLevels != null)
-                        {
-                            indexScore.CalculatedScore = item.IndividualBasicIndexLevels.Score;
-                        }
-                        else indexScore.CalculatedScore = 0;
-                        return;
-                    }
-                }
+
+
             }
             return;
         }

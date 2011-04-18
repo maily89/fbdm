@@ -16,9 +16,9 @@
 	<table width="100%">
 		<tr>
 		<td valign="top">
-			<b>Date<span class="brownText"><%=Model.CustomerInfo.Date.ToShortDateString() %></span></b><br/>
+			<b>Ranked Date:<span class="brownText"><%=Model.CustomerInfo.Date.ToShortDateString() %></span></b><br/>
 			<b>Branch: <span class="brownText"><%=Model.CustomerInfo.Branch %></span></b><br/>
-			<b>CIF: <span class="brownText"><%=Model.CustomerInfo.CIF  %></span></b><br/>
+			<b>CIF Number: <span class="brownText"><%=Model.CustomerInfo.CIF  %></span></b><br/>
 			<b>Name: <span class="brownText"><%=Model.CustomerInfo.CustomerName  %></span></b><br/>
 			<b>Credit department: <span class="brownText"><%=Model.IndividualRanking.CreditDepartment %></span></b><br />
 			<b>Purpose: <span class="brownText"><%=Model.IndividualRanking.IndividualBorrowingPurposes.Purpose %></span></b><br/>
@@ -29,7 +29,7 @@
 			<b>Basic Score: <span class="brownText"><%=Model.IndividualRanking.BasicIndexScore%></span></b><br/>
 			<b>Collateral Score: <span class="brownText"><%=Model.IndividualRanking != null ? Model.IndividualRanking.CollateralIndexScore : null%></span></b><br/>
 			<b>Rank: <span class="brownText"><%=Model.IndividualRanking.IndividualSummaryRanks != null ? Model.IndividualRanking.IndividualSummaryRanks.Evaluation : null%></span></b><br/>
-			<b>User: <span class="brownText"><%=Model.IndividualRanking.UserID  %></span></b><br/>
+			<b>User Modified: <span class="brownText"><%=Model.IndividualRanking.UserID  %></span></b><br/>
 			<b>Last modified: <span class="brownText"><%=Model.IndividualRanking.DateModified %></span></b><br/>
 		</td>
 		</tr>

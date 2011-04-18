@@ -134,16 +134,21 @@ namespace FBD.Models
         /// edit new individual ranking
         /// </summary>
         /// <param name="individual">the individual to add</param>
-        public static int EditIndividualRanking(CustomersIndividualRanking ranking, FBDEntities entities)
+        public static int EditIndividualRanking(CustomersIndividualRanking ranking,FBD.ViewModels.RNKIndividualViewModel model, FBDEntities entities)
         {
             if (ranking == null || entities == null) return 0;
 
-            DatabaseHelper.AttachToOrGet<CustomersIndividualRanking>(entities, ranking.GetType().Name, ref ranking);
+            var temp = CustomersIndividualRanking.SelectIndividualRankingByID(ranking.ID,entities);
+            temp.CustomersIndividuals = CustomersIndividuals.SelectIndividualByID(model.CustomerID, entities);
+            temp.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID, entities);
+            temp.IndividualBorrowingPurposes = IndividualBorrowingPurposes.SelectBorrowingPPByID(model.PurposeID, entities);
 
-
-            ObjectStateManager stateMgr = entities.ObjectStateManager;
-            ObjectStateEntry stateEntry = stateMgr.GetObjectStateEntry(ranking);
-            stateEntry.SetModified();
+            temp.Date = ranking.Date;
+            temp.CreditDepartment = ranking.CreditDepartment;
+            temp.TotalDebt = ranking.TotalDebt;
+            temp.UserID = ranking.UserID;
+            temp.DateModified = ranking.DateModified;
+           
 
             int result = entities.SaveChanges();
 

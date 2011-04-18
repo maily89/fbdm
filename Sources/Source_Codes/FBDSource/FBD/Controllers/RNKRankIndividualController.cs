@@ -116,6 +116,8 @@ namespace FBD.Controllers
                     }
                     else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     ranking.Date = model.Date;
+
+                    if(Session[Constants.SESSION_USER_ID]!=null)
                     ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
 
                     ranking.DateModified = DateTime.Now;
@@ -187,7 +189,7 @@ namespace FBD.Controllers
                 }
                 else
                 {
-                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.CUSTOMER_INDIVIDUAL_RANKING);
+                    TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.CUSTOMER_INDIVIDUAL_RANKING,rankID);
                     return RedirectToAction("DetailGeneral", new { id = rankID });
 
                 }
@@ -432,7 +434,11 @@ namespace FBD.Controllers
             var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id);
             RNKIndividualViewModel addModel = new RNKIndividualViewModel();
 
+
             ranking.DateModified = DateTime.Now;
+            if (Session[Constants.SESSION_USER_ID] != null)
+                ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
+
 
             ranking.CustomersLoanTermReference.Load();
             if (ranking.CustomersLoanTerm != null)
@@ -608,18 +614,19 @@ namespace FBD.Controllers
             var entity = new FBDEntities();
             var ranking = model.IndividualRanking;
             
-            ranking.CustomersIndividuals = CustomersIndividuals.SelectIndividualByID(model.CustomerID, entity);
-            ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID,entity);
-            ranking.IndividualBorrowingPurposes = IndividualBorrowingPurposes.SelectBorrowingPPByID(model.PurposeID,entity);
 
             if (isAdd)
             {
+                ranking.CustomersIndividuals = CustomersIndividuals.SelectIndividualByID(model.CustomerID, entity);
+                ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID, entity);
+                ranking.IndividualBorrowingPurposes = IndividualBorrowingPurposes.SelectBorrowingPPByID(model.PurposeID, entity);
+
                 ranking.Date = model.Date;
                 CustomersIndividualRanking.AddIndividualRanking(ranking, entity);
             }
             else
             {
-                CustomersIndividualRanking.EditIndividualRanking(ranking, entity);
+                CustomersIndividualRanking.EditIndividualRanking(ranking,model, entity);
             }
             rankID = ranking.ID;
             return rankID;
@@ -744,7 +751,7 @@ namespace FBD.Controllers
         {
             try
             {
-                TempData["DetailView"] = "true";
+                ViewData["DetailView"] = "true";
                 ViewData["RankID"] = id.ToString();
                 List<RNKBasicRow> basic = CustomersIndividualBasicIndex.LoadBasicIndex(id, false);
                 var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id);
@@ -772,7 +779,7 @@ namespace FBD.Controllers
         {
             try
             {
-                TempData["DetailView"] = "true";
+                ViewData["DetailView"] = "true";
                 ViewData["RankID"] = id.ToString();
                 List<RNKCollateralRow> collateral = CustomersIndividualCollateralIndex.LoadCollateralIndex(id, false);
                 var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id);

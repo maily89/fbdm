@@ -119,7 +119,7 @@
                     <%if (ViewData["Edit"]==null){ %>
                         <input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" />
                     <%}else { %>
-                        <input type='button' onclick="window.location.href='<%= Url.Action("DetailGeneral") %>';" value="Cancel" />
+                        <input type='button' onclick="window.location.href='<%= Url.Action("DetailGeneral", new {id = ViewData["RankID"] }) %>';" value="Cancel" />
                     <% }%>
                 </td>
             </tr>
