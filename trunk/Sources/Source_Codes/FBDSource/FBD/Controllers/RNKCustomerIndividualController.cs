@@ -37,6 +37,30 @@ namespace FBD.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult Index(string BranchID)
+        {
+            List<CustomersIndividuals> model = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(BranchID))
+                {
+                    ViewData["BranchID"] = BranchID;
+                    model = CustomersIndividuals.SelectIndividualByBranchID(BranchID);
+                }
+                else model = CustomersIndividuals.SelectIndividuals();
+
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_INDIVIDUAL);
+            }
+            return View(model);
+        }
         //
         // GET: /RNKCustomerIndividuals/Add
         /// <summary>

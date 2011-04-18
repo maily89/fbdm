@@ -25,7 +25,9 @@
 	<%} %>
 	</tr>
 	</table>
-
+    <div>
+        <%= Html.ActionLink("Back to List", "Index") %>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

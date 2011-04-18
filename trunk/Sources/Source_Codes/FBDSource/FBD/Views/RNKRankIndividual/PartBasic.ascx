@@ -3,7 +3,7 @@
     <table>
         <tr>
             <th>
-                ScoreID
+                Index ID
             </th>
             <th>
                 Index

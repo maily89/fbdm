@@ -56,9 +56,9 @@ namespace FBD.Models
                 }
                 
             }
-            ranking.CollateralIndexScore = finalScore/100;
+            ranking.CollateralIndexScore = finalScore;
             entities.SaveChanges();
-            return finalScore/100;
+            return finalScore;
 
 
         }
@@ -87,6 +87,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) break;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         item.IndividualCollateralIndexLevelsReference.Load();
@@ -95,6 +96,8 @@ namespace FBD.Models
                     }
                 }
             }
+
+            indexScore.IndividualCollateralIndexLevels = null;
             return null;
         }
 
@@ -116,9 +119,9 @@ namespace FBD.Models
                     finalScore += indexScore.CalculatedScore;
 
             }
-            ranking.CollateralIndexScore = finalScore / 100;
+            ranking.CollateralIndexScore = finalScore ;
             entities.SaveChanges();
-            return finalScore / 100;
+            return finalScore ;
         }
 
         private static void GetLevel(RNKCollateralRow indexScore, CustomersIndividualRanking ranking, FBDEntities entities)
@@ -149,6 +152,7 @@ namespace FBD.Models
                 }
                 else // character type
                 {
+                    if (indexScore.Value == null) return;
                     if (indexScore.Value.Equals(item.FixedValue))
                     {
                         if (item.IndividualCollateralIndexLevels != null)

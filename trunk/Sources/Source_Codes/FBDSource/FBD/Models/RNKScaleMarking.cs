@@ -116,6 +116,7 @@ namespace FBD.Models
             var scaleList = entities.BusinessScales.ToList();
             foreach (BusinessScales item in scaleList)
             {
+                if ((item.FromValue!=null) && (item.ToValue != null))
                 if (score >= item.FromValue && score <= item.ToValue)
                 {
                     return item;
@@ -146,6 +147,7 @@ namespace FBD.Models
             decimal value=System.Convert.ToDecimal(scale.Value);
             foreach (BusinessScaleScore item in scaleList)
             {
+                if ((item.FromValue != null) && (item.ToValue != null))
                 if (value >= item.FromValue && value <= item.ToValue)
                 {
                     Nullable<decimal> scoreValue = item.Score;

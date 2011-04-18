@@ -41,19 +41,16 @@ namespace FBD.Models
         {
             
             FBDEntities entities = new FBDEntities();
-            var result = entities.CustomersIndividualRanking
-                        .Include("CustomersIndividual")
-                        .Include("Date")
-                        .Where(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value <= date)
-                        .Any();
-            if (result)
+            try
             {
-                return  entities.CustomersIndividualRanking
-                        .Include("CustomersIndividual")
-                        .Include("Date")
+                return entities.CustomersIndividualRanking
+                        .Include("CustomersIndividuals")
                         .First(i => i.CustomersIndividuals.IndividualID == customerID && i.Date.Value == date);
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
 
         public static List<CustomersIndividualRanking> SelectRankingByDateAndCifAndBranch(Nullable<DateTime> fromDate, Nullable<DateTime> toDate, string Cif, string BranchID)
@@ -72,7 +69,7 @@ namespace FBD.Models
                 .Include("CustomersIndividuals.SystemBranches")
                 .Where(i =>(!isCifTested || i.CustomersIndividuals.CIF.StartsWith(Cif)) 
                     && (!isBranchIDTested || i.CustomersIndividuals.SystemBranches.BranchID == BranchID) 
-                    && (!isFromDateTested || i.Date >= fromDate) && (!isToDateTested || i.Date<=toDate)) .ToList();
+                    && (!isFromDateTested || i.Date >= fromDate) && (!isToDateTested || i.Date<=toDate)).ToList();
             return result;
         }
 

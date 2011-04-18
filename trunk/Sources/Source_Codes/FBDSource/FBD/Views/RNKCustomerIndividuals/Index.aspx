@@ -10,7 +10,17 @@
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
-
+        <h3><b>DISPLAY FILTER</b></h3>
+		<% using(Html.BeginForm()){ %>
+		<table width="100%">
+		<tr>
+		<td><b>Branch</b></td>
+		<td> <%= Html.DropDownList("BranchID", new SelectList(FBD.ViewModels.RNKRankingViewModel.SystemBranch as IEnumerable,
+                                 "BranchID", "BranchName", ViewData["BranchID"]),"All Branches", new { onchange = "this.form.submit();" })%></td>
+		</tr>
+		</table>
+		<%} %>
+		<hr/>
     <h3>
     <%= Html.ActionLink("Add New Individual Customer", "Add") %>
     </h3>

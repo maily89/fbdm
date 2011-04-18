@@ -36,6 +36,36 @@ namespace FBD.Controllers
             return View(model);
         }
 
+        // GET: /RNKCustomerBusiness/
+        /// <summary>
+        /// Display List of business customers
+        /// </summary>
+        /// <returns>View of Index</returns>
+        [HttpPost]
+        public ActionResult Index(string BranchID)
+        {
+            List<CustomersBusinesses> model = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(BranchID))
+                {
+                    ViewData["BranchID"] = BranchID;
+                    model = CustomersBusinesses.SelectBusinessByBranchID(BranchID);
+                }
+                else model = CustomersBusinesses.SelectBusinesses();
+
+                if (model == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS);
+            }
+            return View(model);
+        }
+
         //
         // GET: /RNKCustomerBusiness/Create
         /// <summary>

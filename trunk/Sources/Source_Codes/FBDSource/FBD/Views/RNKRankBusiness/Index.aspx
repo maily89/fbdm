@@ -44,11 +44,11 @@
             {
                 columns.Template(c =>
                     {%>
-                        <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID },null)%> |
-                        <%= Html.ActionLink("Print Report","ExportBusinessInfo","RPTBusinessReport",  new { id = c.ID })%> |
+                        <%= Html.ActionLink("Detail", "DetailGeneral", new { id = c.ID },null)%>|
+                        <%= Html.ActionLink("Print","ExportBusinessInfo","RPTBusinessReport",  new { id = c.ID },null)%>|
                         <%= Html.ActionLink("Remove", "Delete", new { id = c.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete item" + c.ID + "?');" })%>
                         <%
-        }).Title("").Width(100);
+        }).Title("").Width(150);
                 columns.Bound(c => c.CustomersBusinesses.CIF).Title("CIF");
                 columns.Bound(c => c.CustomersBusinesses.CustomerName).Title("Name");
                 columns.Template(c => {%><%=Html.Encode(String.Format("{0:F}", c.BusinessScales!=null?c.BusinessScales.Scale:null)) %><%})
@@ -59,7 +59,6 @@
                     .Title("Rank");
                 columns.Bound(c => c.UserID)
                     .Title("User ID");
-                columns.Bound(c=>c.DateModified).Title("Date Modified");
             })
             .Sortable()
             .Pageable(p => p.PageSize(20))

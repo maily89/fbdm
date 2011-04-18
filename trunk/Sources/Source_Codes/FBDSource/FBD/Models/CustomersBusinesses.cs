@@ -39,6 +39,21 @@ namespace FBD.Models
             return Business;
         }
 
+        /// <summary>
+        /// return the Business specified by id
+        /// </summary>
+        /// <param name="id">id of the Business</param>
+        /// <returns>Business</returns>
+        public static List<CustomersBusinesses> SelectBusinessByBranchID(string branchID)
+        {
+
+            FBDEntities entities = new FBDEntities();
+            var Business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES)
+                .Where(i => i.SystemBranches.BranchID == branchID).ToList();
+
+            return Business;
+        }
+
 
         /// <summary>
         /// return the Business specified by id

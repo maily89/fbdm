@@ -16,7 +16,7 @@
     <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
     <% using (Html.BeginForm(ViewData["Edit"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
        {%>
-        <%= Html.ValidationSummary(true) %>
+        <%= Html.ValidationSummary(false) %>
 
             <table>
             
@@ -26,6 +26,7 @@
                         <%= Html.HiddenFor(m=>m.IsNew) %>
                         <%= Html.HiddenFor(model => model.PeriodID)%>
                         <%= Html.HiddenFor(model=>model.CustomerID) %>
+                        <%= Html.HiddenFor(model=>model.BusinessRanking.ID) %>
                         <%= Html.LabelFor(model => model.BusinessRanking.CreditDepartment) %>
                     </div>
                 </td>
@@ -150,7 +151,8 @@
                 </td>
                 <td>
                     <div class="editor-field">
-                        Unknown
+                       <%= Html.TextBoxFor(model => model.BusinessRanking.UserID,new{@readonly="true"})%>
+
                     </div>
                </td>
            </tr>

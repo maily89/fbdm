@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit Score%></h2>
+    <h2>Edit Score</h2>
     
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
@@ -58,7 +58,7 @@
 	<table>
 	<tr>
 	<td><input value="Calculate Score" type="submit"/></td>
-	<td><input value="Cancel" type="button" onclick="window.location.href='<%= Url.Action("DetailScale", new { id = Url.RequestContext.RouteData.Values["id"] } ) %>';"/></td>
+	<td><input value="Cancel" type="button" onclick="window.location.href='<%= Url.Action("DetailScale", new { id = ViewData["RankID"] } ) %>';"/></td>
 	</tr>
 	</table>
 	<br />

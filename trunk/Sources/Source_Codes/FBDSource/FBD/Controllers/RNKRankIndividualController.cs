@@ -116,6 +116,8 @@ namespace FBD.Controllers
                     }
                     else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     ranking.Date = model.Date;
+                    ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
+
                     ranking.DateModified = DateTime.Now;
                     model.IndividualRanking = ranking;
 
@@ -605,8 +607,6 @@ namespace FBD.Controllers
             int rankID;
             var entity = new FBDEntities();
             var ranking = model.IndividualRanking;
-            if(!isAdd)
-            DatabaseHelper.AttachToOrGet<CustomersIndividualRanking>(entity, ranking.GetType().Name,ref ranking);
             
             ranking.CustomersIndividuals = CustomersIndividuals.SelectIndividualByID(model.CustomerID, entity);
             ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID,entity);
