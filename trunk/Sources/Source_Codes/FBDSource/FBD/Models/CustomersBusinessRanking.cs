@@ -178,15 +178,26 @@ namespace FBD.Models
         /// edit new business ranking
         /// </summary>
         /// <param name="business">the business to add</param>
-        public static int EditBusinessRanking(CustomersBusinessRanking ranking, FBDEntities entities)
+        public static int EditBusinessRanking(CustomersBusinessRanking ranking,FBD.ViewModels.RNKBusinessRankingViewModel rknBusinessRankingViewModel, FBDEntities entities)
         {
             if (ranking == null || entities == null) return 0;
 
-            DatabaseHelper.AttachToOrGet<CustomersBusinessRanking>(entities, ranking.GetType().Name, ref ranking);
-            
-            ObjectStateManager stateMgr = entities.ObjectStateManager;
-            ObjectStateEntry stateEntry = stateMgr.GetObjectStateEntry(ranking);
-            stateEntry.SetModified();
+            var temp = SelectBusinessRankingByID(ranking.ID, entities);
+
+            temp.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(rknBusinessRankingViewModel.CustomerID, entities);
+            temp.BusinessIndustries = BusinessIndustries.SelectIndustryByID(rknBusinessRankingViewModel.IndustryID, entities);
+            temp.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entities);
+            temp.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entities);
+            temp.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(rknBusinessRankingViewModel.PeriodID, entities);
+            temp.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(rknBusinessRankingViewModel.CustomerTypeID, entities);
+
+            temp.CreditDepartment = ranking.CreditDepartment;
+            temp.TaxCode = ranking.TaxCode;
+            temp.CustomerGroup = ranking.CustomerGroup;
+            temp.AuditedStatus = ranking.AuditedStatus;
+            temp.TotalDebt = ranking.TotalDebt;
+            temp.UserID = ranking.UserID;
+            temp.DateModified = ranking.DateModified;
 
             int result=entities.SaveChanges();
 

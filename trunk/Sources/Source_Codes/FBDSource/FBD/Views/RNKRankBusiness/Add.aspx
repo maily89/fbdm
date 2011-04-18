@@ -12,7 +12,9 @@
     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
     <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
     
+    <%if (ViewData["Edit"]==null){ %>
     <%Html.RenderPartial("BusinessStep",FBD.CommonUtilities.Constants.BusinessRankStep.General); %>
+    <%} %>
     <%Html.RenderPartial("CustomerInfo", Model.CustomerInfo);%>
     <% using (Html.BeginForm(ViewData["Edit"] != null ? "EditInfo" : "Add", "RNKRankBusiness"))
        {%>
@@ -173,18 +175,28 @@
         <hr />
         <table>
 	    <tr>
-	    <td><input value="Save only" type="submit" name="Save"/></td>
+	    <%if (ViewData["Edit"] != null)
+       { %>
+	    <td><input value="Save" type="submit" name="Save"/></td>
+	    <td><input type='button' onclick="window.location.href='<%= Url.Action("DetailGeneral", new {id = ViewData["RankID"] } ) %>';" value="Cancel" /></td>
+	    <%} %>
 	    <% if (ViewData["Edit"] == null)
         { %>
+        <td><input value="Save only" type="submit" name="Save"/></td>
 	    <td><input value="Save then process next" type="submit" name="SaveNext"/></td>
-	    <%} %>
+	    
 	    <td><input type='button' onclick="window.location.href='<%= Url.Action("Index") %>';" value="Cancel" /></td>
+	    <%}
+            %>
 	    </tr>
 	    </table>
 	    <br />
+	    <% if (ViewData["Edit"] == null)
+        {%>
 	    <b>*Save only:</b> Information will be saved and stop process<br />
 	    <b>*Save then process next:</b> Information will be saved and continue process<br />
 	    <b>*Cancel:</b> Discard the ranking process
+	    <%} %>
 
     <% } %>
 

@@ -17,12 +17,6 @@
             <th>
             Score
             </th>
-            <th>
-            x Proportion
-            </th>
-            <th>
-            = Result
-            </th>
             <%} %>
         </tr>
 
@@ -56,12 +50,7 @@
                           <td>
                 <%= Html.Encode(Model.ElementAt(i).CalculatedScore)%>
             </td>
-            <td>
-                <%= Html.Encode(Model.ElementAt(i).Proportion)%>
-            </td>
-            <td>
-                <%= Html.Encode(Model.ElementAt(i).Result)%>
-            </td>
+
             <%}
                }
                else
@@ -87,8 +76,7 @@
             <%if (ViewData["DetailView"] == null)
               {%>
               <td />
-            <td />
-            <td />
+
             <%}
                } %>
         </tr>

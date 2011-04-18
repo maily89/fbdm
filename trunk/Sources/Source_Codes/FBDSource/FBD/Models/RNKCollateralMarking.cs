@@ -116,6 +116,7 @@ namespace FBD.Models
                     GetLevel(indexScore, ranking, entities);
 
                 //calculate score
+                    
                     finalScore += indexScore.CalculatedScore;
 
             }
@@ -129,43 +130,55 @@ namespace FBD.Models
             
             var index = indexScore.Index;
 
+            if (index == null) return;
 
+            if (index.ValueType == "C")
+            {
+                GetScoreForCharacter(indexScore, entities);
+                return;
+            }
+            else
+            {
+                GetScoreForNumeric(indexScore, entities, index);
+            }
+            
+        }
+
+        private static void GetScoreForCharacter(RNKCollateralRow indexScore, FBDEntities entities)
+        {
+            IndividualCollateralIndexScore score = IndividualCollateralIndexScore.SelectIndividualCollateralIndexScoreByScoreID(entities, indexScore.ScoreID);
+
+            score.IndividualCollateralIndexLevelsReference.Load();
+            if (score.IndividualCollateralIndexLevels == null) return;
+            indexScore.CalculatedScore = score.IndividualCollateralIndexLevels.Score;
+            indexScore.Value = score.FixedValue;
+            return;
+        }
+
+        private static void GetScoreForNumeric(RNKCollateralRow indexScore, FBDEntities entities, IndividualCollateralIndex index)
+        {
             List<IndividualCollateralIndexScore> scoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities, index.IndexID);
+            if (indexScore.Score == null) return;
+            decimal score = indexScore.Score.Value;
 
             foreach (IndividualCollateralIndexScore item in scoreList)
             {
-                if (index.ValueType == "N") //numeric type
-                {
-                    decimal score = System.Convert.ToDecimal(indexScore.Value);
-                    if (score >= item.FromValue && score <= item.ToValue)
-                    {
-                        item.IndividualCollateralIndexLevelsReference.Load();
 
-                        if (item.IndividualCollateralIndexLevels != null)
-                            indexScore.CalculatedScore = item.IndividualCollateralIndexLevels.Score;
-                        else
-                        {
-                            indexScore.CalculatedScore = 0;
-                        }
-                        return;
-                    }
-                }
-                else // character type
+                
+                if (score >= item.FromValue && score <= item.ToValue)
                 {
-                    if (indexScore.Value == null) return;
-                    if (indexScore.Value.Equals(item.FixedValue))
+                    item.IndividualCollateralIndexLevelsReference.Load();
+
+                    if (item.IndividualCollateralIndexLevels != null)
+                        indexScore.CalculatedScore = item.IndividualCollateralIndexLevels.Score;
+                    else
                     {
-                        if (item.IndividualCollateralIndexLevels != null)
-                            indexScore.CalculatedScore = item.IndividualCollateralIndexLevels.Score;
-                        else
-                        {
-                            indexScore.CalculatedScore = 0;
-                        }
-                        return;
+                        indexScore.CalculatedScore = 0;
                     }
+                    return;
                 }
+
             }
-            
         }
     }
 }

@@ -266,6 +266,7 @@ namespace FBD.Models
             {
                 BusinessNonFinancialIndexScore score = BusinessNonFinancialIndexScore.SelectBusinessNonFinancialIndexScoreByScoreID(entities, indexScore.ScoreID);
                 score.BusinessNonFinancialIndexLevelsReference.Load();
+                if (score.BusinessNonFinancialIndexLevels == null) return 0;
                 indexScore.CalculatedScore = score.BusinessNonFinancialIndexLevels.Score;
                 indexScore.Value = score.FixedValue;
                 return indexScore.CalculatedScore;

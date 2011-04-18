@@ -118,7 +118,8 @@ namespace FBD.Controllers
                     }
                     else return RedirectToAction("DetailGeneral", new { id = ranking.ID });
                     addModel.BusinessRanking = ranking;
-
+                    
+                    if(Session[Constants.SESSION_USER_ID]!=null)
                     ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
                     ranking.DateModified = DateTime.Now;
 
@@ -187,9 +188,8 @@ namespace FBD.Controllers
                     if(data.CustomerTypeID!=null)
                     ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(data.CustomerTypeID, entity);
                     //line.BusinessIndustriesReference.EntityKey = new System.Data.EntityKey("FBDEntities.BusinessIndustries", "IndustryID", data.IndustryID);
-                    if (data.IsNew)
-                        CustomersBusinessRanking.AddBusinessRanking(ranking, entity);
-                    else CustomersBusinessRanking.EditBusinessRanking(ranking, entity);
+                    
+                    CustomersBusinessRanking.AddBusinessRanking(ranking, entity);
 
                     
                     id = ranking.ID;
@@ -624,6 +624,7 @@ namespace FBD.Controllers
             ranking.CustomersLoanTermReference.Load();
             if (ranking.CustomersLoanTerm != null)
                 addModel.LoanID = ranking.CustomersLoanTerm.LoanTermID;
+            if(Session[Constants.SESSION_USER_ID]!=null)
             ranking.UserID = Session[Constants.SESSION_USER_ID].ToString();
             ranking.SystemCustomerTypesReference.Load();
             if (ranking.SystemCustomerTypes != null)
@@ -638,6 +639,7 @@ namespace FBD.Controllers
 
             addModel.CustomerInfo = RNKCustomerInfo.GetBusinessRankingInfo(ranking.ID);
             ViewData["Edit"] = "Edit";
+            ViewData["RankID"] = id;
             return View("Add",addModel);
 
         }
@@ -651,22 +653,15 @@ namespace FBD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = new FBDEntities();
+                    var entities = new FBDEntities();
                     var ranking = rknBusinessRankingViewModel.BusinessRanking;
-                    
-                    ranking.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(rknBusinessRankingViewModel.CustomerID, entity);
-                    ranking.BusinessIndustries = BusinessIndustries.SelectIndustryByID(rknBusinessRankingViewModel.IndustryID, entity);
-                    ranking.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entity);
-                    ranking.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entity);
-                    ranking.SystemReportingPeriods = SystemReportingPeriods.SelectReportingPeriodByID(rknBusinessRankingViewModel.PeriodID, entity);
-                    ranking.SystemCustomerTypes = SystemCustomerTypes.SelectTypeByID(rknBusinessRankingViewModel.CustomerTypeID, entity);
 
-                    CustomersBusinessRanking.EditBusinessRanking(ranking, entity);
+                    CustomersBusinessRanking.EditBusinessRanking(ranking,rknBusinessRankingViewModel, entities);
                     rankingID = ranking.ID;
                 }
                 else throw new Exception();
 
-                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.CUSTOMER_BUSINESS_RANKING);
+                TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_EDIT_POST, Constants.CUSTOMER_BUSINESS_RANKING,rankingID);
                 return RedirectToAction("DetailGeneral", new { id = rankingID });
             }
             catch (Exception)
