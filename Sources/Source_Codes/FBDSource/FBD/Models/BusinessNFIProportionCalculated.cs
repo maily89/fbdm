@@ -116,7 +116,7 @@ namespace FBD.Models
                             // Calculate summary proportion from leaf index and parent index
                             try
                             {
-                                proportionToBeAdded = (decimal)((proByIndustry.Proportion / 100) * (proByType.Proportion / 100));
+                                proportionToBeAdded = (decimal)(proByIndustry.Proportion * (proByType.Proportion / 100));
                             }
                             catch (Exception)
                             {
@@ -191,7 +191,7 @@ namespace FBD.Models
                             typeToBeAdded = proByType.BusinessTypes;
                             try
                             {
-                                proportionToBeAdded = (decimal)((proByIndustry.Proportion / 100) * (proByType.Proportion / 100));
+                                proportionToBeAdded = (decimal)(proByIndustry.Proportion * (proByType.Proportion / 100));
                             }
                             catch (Exception)
                             {
