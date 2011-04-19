@@ -7,7 +7,7 @@ Create một cái wiki kiếm tra tiến trình, những cái cần làm và nh�
 
 = Details =
 ChinhPLQ
-|| Phải làm|| đã làm ||Độ ưu tiên
+|| Phải làm|| đã làm ||Độ ưu tiên||
 || can du lieu test INV Mining||--  ||
 || Tạo Trang cho user chọn kì báo cáo, time đánh giá|| -- ||
 ||code tich hợp cho chấm điểm cả inv lẫn bsn|| --||
