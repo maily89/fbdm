@@ -82,6 +82,18 @@ namespace FBD.Models
 
             return Individual;
         }
+        /// <summary>
+        /// Select all customer individual ranking by rankID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static List<CustomersIndividualRanking> SelectIndividualRankingByClusterRankID(string RankID,FBDEntities entities)
+        {
+            if (RankID.Length <= 0) return null;
+            List<CustomersIndividualRanking> cirList = new List<CustomersIndividualRanking>();
+            cirList = entities.CustomersIndividualRanking.Where(i => i.IndividualClusterRanks != null && RankID.Equals(i.IndividualClusterRanks.RankID)).ToList();
+            return cirList;
+        }
 
         public static CustomersIndividualRanking SelectRankingByDateAndCustomer(DateTime date, int customerID)
         {
@@ -217,18 +229,27 @@ namespace FBD.Models
 
             return temp <= 0 ? 0 : 1;
         }
-
+        /// <summary>
+        /// this code use for update customer individual ranking when we have customerindividualranking and individualClusterRank
+        /// </summary>
+        /// <param name="cir"></param>
+        /// <param name="icr"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public static int UpdateIndividualRanking(CustomersIndividualRanking cir, IndividualClusterRanks icr, FBDEntities entities)
+        {
+            cir.IndividualClusterRanks = icr;
+            int result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
+        }
         /// <summary>
         /// This code use for update business rank and centroid list
         /// </summary>
         /// <param name="ID">CustomerBusinessRankID: key of CustomerBusinessRank</param>
         /// <param name="rankID">RankID,key of IndividualClusterRank(1,...10)</param>
-        /// <param name="u">Vector u, which is centroid of cluster which rank RankID</param>
         /// <returns></returns>
-        public static int UpdateIndividualRanking(int ID, string rankID, IndividualClusterRanks icr)
+        public static int UpdateIndividualRanking(int ID, string rankID, IndividualClusterRanks icr,FBDEntities entities)
         {
-
-            FBDEntities entities = new FBDEntities();
             //declare the temp object, which is get customer business rank by id
             var temp = SelectIndividualRankingByID(ID, entities);//entities.CustomersIndividualRanking.First(i => i.ID.Equals(ID));
             int result = 1;
@@ -291,7 +312,7 @@ namespace FBD.Models
                 //update centroid of BusinessRank to new
                 IndividualClusterRanks.updateCentroid(GroupRankID,VNewCentroid,entity);
                 //Update this customrclusterRank to this groupRankID
-                CustomersIndividualRanking.UpdateIndividualRanking(cir.ID, GroupRankID, icrList.ElementAt(groupNo));
+                CustomersIndividualRanking.UpdateIndividualRanking(cir.ID, GroupRankID, icrList.ElementAt(groupNo),entity);
             }
             else
             {
@@ -307,7 +328,7 @@ namespace FBD.Models
                     IndividualClusterRanks.updateCentroid(icrList[i].RankID, centroid, entity);
                     //then update all customerbusinessrank in this group
                     foreach (Vector v in result[i])
-                        UpdateIndividualRanking(v.ID, v.RankID.ToString(), icrList[i]);
+                        UpdateIndividualRanking(v.ID, v.RankID.ToString(), icrList[i],entity);
                 }
 
             }

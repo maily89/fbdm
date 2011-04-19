@@ -122,7 +122,14 @@ namespace FBD.Models
             if (string.IsNullOrEmpty(id)) return 0;
 
             FBDEntities entities = new FBDEntities();
-           
+            //update all customerbusinessRanking have clusterRank referent to BusinessCluterRank
+            List<CustomersBusinessRanking> cbrList = Models.CustomersBusinessRanking.SelectBusinessRankingByClusterRankID(id,entities);
+            int finalResult = 1;
+            foreach (CustomersBusinessRanking cbr in cbrList)
+                finalResult*=  Models.CustomersBusinessRanking.UpdateBusinessRanking(cbr, null, entities);
+            //we check if all update success
+            if (finalResult == 0)
+                return 0;
 
             var rank = BusinessClusterRanks.SelectClusterRankByID(id, entities);
             entities.DeleteObject(rank);

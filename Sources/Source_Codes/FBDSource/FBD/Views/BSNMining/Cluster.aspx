@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.CommonUtilities.Vector>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/nullSite.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Index
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Index</h2>
+    <h4>Graph after mining:</h4>
         
     <%--<select id="selectPartial" onchange="loadPartial()">
     <option value="0">--select a partial view to load--</option>
@@ -131,10 +130,10 @@
     function ShowWaitIcon() {
         document.getElementById("cusomterResponse").innerHTML = "<img src='../../Content/images/wait.gif' />" ;
     }
-    function loadPartial() {
-        var name = $("#selectPartial").val();
+//    function loadPartial() {
+//        var name = $("#selectPartial").val();
 
-        $("#partial").load('/BSNMining/LoadPartial');
-    }
+//        $("#partial").load('/BSNMining/LoadPartial');
+//    }
 </script>
 </asp:Content>

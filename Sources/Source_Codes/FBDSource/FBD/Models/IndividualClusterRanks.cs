@@ -90,6 +90,14 @@ namespace FBD.Models
             if (string.IsNullOrEmpty(id)) return 0;
 
             FBDEntities entities = new FBDEntities();
+            List<CustomersIndividualRanking> cirList = Models.CustomersIndividualRanking.SelectIndividualRankingByClusterRankID(id, entities);
+            int finalResult = 1;
+            foreach (CustomersIndividualRanking cbr in cirList)
+                finalResult *= Models.CustomersIndividualRanking.UpdateIndividualRanking(cbr, null, entities);
+            //we check if all update success
+            if (finalResult == 0)
+                return 0;
+
             var rank = IndividualClusterRanks.SelectClusterRankByID(id, entities);
             entities.DeleteObject(rank);
             var result = entities.SaveChanges();
