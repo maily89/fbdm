@@ -10,7 +10,7 @@ using FBD.CommonUtilities;
 
 namespace FBD.Controllers
 {
-    
+
     //TODO: check rank name and id unique
     public class INVSummaryRankController : Controller
     {
@@ -78,15 +78,19 @@ namespace FBD.Controllers
             //summaryRank.Evaluation = form["summaryRanks.Evaluation"];
             //summaryRank.IndividualBasicRanks = IndividualBasicRanks.SelectRankByID(form["Basic Rank"],FBDmodel);
             //summaryRank.IndividualCollateralRanks = IndividualCollateralRanks.SelectRankByID(form["Collateral Rank"],FBDmodel);
-            summaryRank.Evaluation = data.Evaluation;
-            summaryRank.IndividualBasicRanks = IndividualBasicRanks.SelectRankByID(data.basicRankID, FBDmodel);
-            summaryRank.IndividualCollateralRanks = IndividualCollateralRanks.SelectRankByID(data.collateralRankID, FBDmodel);
-            
             try
             {
+                if (data.basicRankID == null || data.collateralRankID == null)
+                    throw new Exception();
+
+                summaryRank.Evaluation = data.Evaluation;
+                summaryRank.IndividualBasicRanks = IndividualBasicRanks.SelectRankByID(data.basicRankID, FBDmodel);
+                summaryRank.IndividualCollateralRanks = IndividualCollateralRanks.SelectRankByID(data.collateralRankID, FBDmodel);
+
+
                 if (ModelState.IsValid)
                 {
-                    if (IndividualSummaryRanks.AddRank(summaryRank,FBDmodel) == 1)
+                    if (IndividualSummaryRanks.AddRank(summaryRank, FBDmodel) == 1)
                     {
                         TempData[Constants.SCC_MESSAGE] = string.Format(Constants.SCC_ADD, Constants.INV_SUMMARY_RANK);
                         return RedirectToAction("Index");
@@ -96,7 +100,7 @@ namespace FBD.Controllers
                 throw new Exception();
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.INV_SUMMARY_RANK);
                 data.basicRanks = IndividualBasicRanks.SelectRanks();
@@ -121,22 +125,22 @@ namespace FBD.Controllers
             INVSummaryRankViewModel viewmodel = null;
             try
             {
-                
-                viewmodel  = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, id);
-                
+
+                viewmodel = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, id);
+
                 if (viewmodel == null)
                 {
                     throw new Exception();
                 }
                 //viewmodel.basicRankID = viewmodel.summaryRanks.IndividualBasicRanks.RankID;
                 //viewmodel.collateralRankID = viewmodel.summaryRanks.IndividualCollateralRanks.RankID;
-                
+
             }
-            catch (Exception )
+            catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT, Constants.INV_SUMMARY_RANK);
             }
-            
+
             return View(viewmodel);
         }
 
@@ -158,7 +162,7 @@ namespace FBD.Controllers
             try
             {
                 //IndividualSummaryRanks summaryRank = new IndividualSummaryRanks();
-                
+
 
                 if (ModelState.IsValid)
                 {
@@ -174,7 +178,7 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                
+
                 SummaryRankViewModel = IndividualSummaryRanks.selectSummaryRankByBasicAndCollateral(FBDmodel, id);
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_EDIT_POST, Constants.INV_SUMMARY_RANK);
                 return View(SummaryRankViewModel);

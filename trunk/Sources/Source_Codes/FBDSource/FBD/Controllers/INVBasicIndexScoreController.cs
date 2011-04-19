@@ -31,7 +31,7 @@ namespace FBD.Controllers
 
             try
             {
-                List<IndividualBasicIndex> lstbasicIndex = IndividualBasicIndex.SelectBasicIndex();
+                List<IndividualBasicIndex> lstbasicIndex = IndividualBasicIndex.SelectLeafBasicIndex(FBDModel);
                 List<IndividualBorrowingPurposes> lstBorrowingPP = IndividualBorrowingPurposes.SelectBorrowingPPList();
                 //List<BusinessFinancialIndex> lstFinancialIndexes = BusinessFinancialIndex.SelectFinancialIndex(FBDModel);
 

@@ -140,6 +140,7 @@ namespace FBD.Models
 
             [Required(ErrorMessage = "Index Name is required")]
             [StringLength(225, ErrorMessage = "Index name maximu 255 charater")]
+            [RegularExpression(".{10,}",ErrorMessage="Collateral Index Name has at least 10 character")]
             public string IndexName { set; get; }
 
             [StringLength(50, ErrorMessage = "Unit maximu 50 charater")]

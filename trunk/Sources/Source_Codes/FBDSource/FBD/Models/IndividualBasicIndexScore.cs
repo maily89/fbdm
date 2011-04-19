@@ -136,10 +136,13 @@ namespace FBD.Models
 
                     if (row.Checked == true)
                     {
-                        row.FromValue = decimal.Parse(row.strFromValue);
-                        row.ToValue = decimal.Parse(row.strToValue);
-                        if (row.FromValue > row.ToValue || row.strToValue.Length > 18 || row.strFromValue.Length > 18)
-                            throw new Exception();
+                        if (row.FixedValue.Length<1)
+                        {
+                            row.FromValue = decimal.Parse(row.strFromValue);
+                            row.ToValue = decimal.Parse(row.strToValue);
+                            if (row.FromValue > row.ToValue || row.FromValue < 0 || row.strToValue.Length > 18 || row.strFromValue.Length > 18)
+                                throw new Exception();
+                        }
                         if (row.ScoreID < 0)
                         {
                             AddBasicIndexScore(FBDModel, viewModel, row);

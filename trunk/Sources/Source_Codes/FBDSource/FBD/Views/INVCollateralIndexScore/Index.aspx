@@ -3,6 +3,25 @@
 <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
+<script src="/Scripts/Tooltip.js" type="text/javascript"></script>
+
+<style type="text/css">
+/*<![CDATA[*/
+
+#foo {
+     position:absolute;
+     width:230px;
+     border:solid 1px #000000;
+     background:#5C87B2;
+     color:Yellow;
+     padding:5px;
+     font-family:verdana;
+     font-size:10px;
+     text-align:justify;
+     display:none;
+ }
+/*//]]>*/
+</style>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -76,8 +95,8 @@
                             <%= Html.TextBoxFor(model => model.ScoreRows[i].ToValue) %>
                         </td>
                         
-                        <td>
-                            <%= Html.TextBoxFor(model => model.ScoreRows[i].FixedValue) %>
+                        <td  onkeypress="toolTip(<%=(i+1)*30+300 %>,700)">
+                            <%= Html.TextBoxFor(model => model.ScoreRows[i].FixedValue)%>
                         </td>
                     </tr>
                     <% } %>
@@ -94,5 +113,5 @@
         </tr>
         <% } %>    
     </table>
-
+<div id="foo"></div>
 </asp:Content>

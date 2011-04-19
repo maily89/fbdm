@@ -23,6 +23,52 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<Vector> SelectIndividualRankingToVector()
+        {
+            FBDEntities entities = new FBDEntities();
+            //may be miss include. Should consider all flow!!!
+            List<CustomersIndividualRanking> cbrList = entities.CustomersIndividualRanking
+                                                                .ToList();
+            List<Vector> vList = new List<Vector>();
+            foreach (CustomersIndividualRanking cbr in cbrList)
+            {
+                if (cbr.BasicIndexScore != null && cbr.CollateralIndexScore != null)
+                {
+                    Vector v = new Vector(cbr);
+                    vList.Add(v);
+                }
+            }
+            return vList;
+        }
+
+        /// <summary>
+        ///Select all customerRank with have Rank ID = Rank ID 
+        /// </summary>
+        /// <param name="RankID">Rank of Customer Rank</param>
+        /// <returns></returns>
+        public static List<Vector> SelectIndividualRankingToVector(string RankID)
+        {
+            FBDEntities entities = new FBDEntities();
+            //using this function only when you are sure albout IndividualClusterRanks of this kind of customer
+            List<CustomersIndividualRanking> cbrList = entities.CustomersIndividualRanking
+                                                                .Include(Constants.TABLE_INDIVIDUAL_CLUSTER_RANKS)
+                                                                .Where(cir => cir.IndividualClusterRanks!=null && RankID.Equals(cir.IndividualClusterRanks.RankID))
+                                                                .ToList();
+            List<Vector> vList = new List<Vector>();
+            foreach (CustomersIndividualRanking cbr in cbrList)
+            {
+                if (cbr.BasicIndexScore != null && cbr.CollateralIndexScore != null)
+                {
+                    Vector v = new Vector(cbr);
+                    vList.Add(v);
+                }
+            }
+            return vList;
+        }
+        /// <summary>
         /// return the Individual specified by id
         /// </summary>
         /// <param name="id">id of the Individual</param>
@@ -82,7 +128,9 @@ namespace FBD.Models
         public static CustomersIndividualRanking SelectIndividualRankingByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var individual = entities.CustomersIndividualRanking.First(i => i.ID == id);
+            var individual = entities.CustomersIndividualRanking
+                            .Include("IndividualClusterRanks")
+                            .First(i => i.ID == id);
             return individual;
         }
 
@@ -168,6 +216,101 @@ namespace FBD.Models
             int temp = entities.SaveChanges();
 
             return temp <= 0 ? 0 : 1;
+        }
+
+        /// <summary>
+        /// This code use for update business rank and centroid list
+        /// </summary>
+        /// <param name="ID">CustomerBusinessRankID: key of CustomerBusinessRank</param>
+        /// <param name="rankID">RankID,key of IndividualClusterRank(1,...10)</param>
+        /// <param name="u">Vector u, which is centroid of cluster which rank RankID</param>
+        /// <returns></returns>
+        public static int UpdateIndividualRanking(int ID, string rankID, IndividualClusterRanks icr)
+        {
+
+            FBDEntities entities = new FBDEntities();
+            //declare the temp object, which is get customer business rank by id
+            var temp = SelectIndividualRankingByID(ID, entities);//entities.CustomersIndividualRanking.First(i => i.ID.Equals(ID));
+            int result = 1;
+            if (temp.IndividualClusterRanks == null || !temp.IndividualClusterRanks.RankID.Equals(rankID))
+            {
+                //This solution don't check how many cluster in DB. because we base on db to process clustering.
+                //Check there are this rank in db, then update
+
+                //if (!IndividualClusterRanks.IsExistRank(rankID, entities))
+                //{
+                //    IndividualClusterRanks icr = new IndividualClusterRanks();
+                //    icr.ID = rankID;
+                //    icr.Rank = "Group" + rankID;
+                //    IndividualClusterRanks.AddRank(icr, entities);
+                //}
+                //then, update centroid for it 
+
+                //IndividualClusterRanks icr2 = IndividualClusterRanks.SelectClusterRankByID(rankID, entities);
+                //icr2.CentroidX = Convert.ToDecimal(u.x);// In this clustering, we just need x values
+                //icr2.CentroidY = Convert.ToDecimal(u.y);
+                //IndividualClusterRanks.EditRank(icr2, entities);
+                /*
+                var tempRank = BusinessRanks.SelectRankByID(rankID, entities);
+                temp.BusinessRanks = tempRank;
+                */
+                temp.DateModified = DateTime.Now;
+                temp.IndividualClusterRanks = icr;
+
+                result = entities.SaveChanges();
+            }
+            return result <= 0 ? 0 : 1;
+        }
+
+        public void cluster(CustomersIndividualRanking cir, double epsilon)
+        {
+            FBDEntities entity = new FBDEntities();
+            //Get all businessclusterrank
+            List<IndividualClusterRanks> icrList = IndividualClusterRanks.SelectClusterRank(entity);
+            List<Vector> vList = new List<Vector>();
+            //convert all bcr to vector to caculate
+            foreach (IndividualClusterRanks icr in icrList)
+            {
+                Vector v = new Vector(icr);
+                vList.Add(v);
+            }
+            //Convert customerbusinessranking to vector too.
+            Vector Vcir = new Vector(cir);
+            //Get the group customerbusinessrank which smallest distant to this cbr
+            int groupNo = Caculator.minDistant(Vcir, vList.ToArray());
+            string GroupRankID = icrList.ElementAt(groupNo).RankID;
+            //Get all customer in this group
+            List<Vector> ListVcir = CustomersIndividualRanking.SelectIndividualRankingToVector(GroupRankID.ToString());
+            Vector VOldCentroid = Caculator.centroid(ListVcir);
+            ListVcir.Add(Vcir);
+            Vector VNewCentroid = Caculator.centroid(ListVcir);
+
+            //If distance is < epsilon
+            if (Caculator.Distant(VOldCentroid, VNewCentroid) < epsilon)
+            {
+                //update centroid of BusinessRank to new
+                IndividualClusterRanks.updateCentroid(GroupRankID,VNewCentroid,entity);
+                //Update this customrclusterRank to this groupRankID
+                CustomersIndividualRanking.UpdateIndividualRanking(cir.ID, GroupRankID, icrList.ElementAt(groupNo));
+            }
+            else
+            {
+                //mining again and update all customerbusinessRanking
+                //This process cost alot of time- I hope this not happen frequency
+                List<Vector> VlistToMining = CustomersIndividualRanking.SelectIndividualRankingToVector();
+                List<Vector>[] result = KMean.Clustering(icrList.Count, VlistToMining, vList);
+
+                for (int i = 0; i < icrList.Count; i++)
+                {
+                    Vector centroid = Caculator.centroid(result[i]);
+                    //update centroid list
+                    IndividualClusterRanks.updateCentroid(icrList[i].RankID, centroid, entity);
+                    //then update all customerbusinessrank in this group
+                    foreach (Vector v in result[i])
+                        UpdateIndividualRanking(v.ID, v.RankID.ToString(), icrList[i]);
+                }
+
+            }
         }
 
         public static string GetBranchByRankingID(int id)

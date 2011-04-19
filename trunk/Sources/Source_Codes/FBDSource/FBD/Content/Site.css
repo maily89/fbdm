@@ -365,3 +365,13 @@ div#title
     color:#804000;
     font-weight:bold;
 }
+
+.done
+{
+    color:Blue;
+    font-size:x-large;
+    cursor:wait;
+    text-align:right;
+    width:70px;
+    margin-left:630px;
+}

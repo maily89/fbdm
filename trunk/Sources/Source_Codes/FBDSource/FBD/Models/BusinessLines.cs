@@ -64,7 +64,7 @@ namespace FBD.Models
             [ScaffoldColumn(false)]
             public int LineID { get; set; }
 
-            [DisplayName("Line Name")]
+            [DisplayName("Line Namexxxx")]
             [Required(ErrorMessage = "Line Name is required")]
             [StringLength(255)]
             public string LineName { get; set; }

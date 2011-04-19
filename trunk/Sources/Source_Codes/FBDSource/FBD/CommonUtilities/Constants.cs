@@ -50,6 +50,7 @@ namespace FBD.CommonUtilities
         public const string BUSINESS_INDUSTRY = "business Industry";
         public const string BUSINESS_LINE = "business Line";
         public const string BUSINESS_RANK = "business Rank";
+        public const string BUSINESS_CLUSTER_RANK = "business cluster Rank";
         public const string BUSINESS_RANKING_STRUCTURE = "business Ranking Structure";
         public const string BUSINESS_TYPE = "business Type";
         public const string BUSINESS_SCALE = "business Scale";
@@ -79,6 +80,7 @@ namespace FBD.CommonUtilities
         public const string INV_BASIC_INDEX = "Individual Basic Index";
         public const string INV_COLLATERAL_INDEX = "Individual collateral index";
         public const string INV_BASIC_RANK = "Individual Basic rank";
+        public const string INV_CLUSTER_RANK = "Individual cluster rank";
         public const string INV_SUMMARY_RANK = "Individual summary rank";
         public const string INV_BASIC_INDEX_SCORE = "Individual Basic Index score";
         public const string INV_BASIC_LEVEL_INDEX = "Individual Basic level Index";
@@ -100,7 +102,7 @@ namespace FBD.CommonUtilities
         public const string TABLE_BUSINESS_FINANCIAL_INDEX_LEVELS = "BusinessFinancialIndexLevels";
         public const string TABLE_BUSINESS_NONFINANCIAL_INDEX = "BusinessNonFinancialIndex";
         public const string TABLE_BUSINESS_NONFINANCIAL_INDEX_LEVELS = "BusinessNonFinancialIndexLevels";
-
+        public const string TABLE_BUSINESS_CLUSTER_RANKS = "BusinessClusterRanks";
         public const string TABLE_INDIVIDUAL_BORROWING_PURPOSES = "IndividualBorrowingPurposes";
         public const string TABLE_INDIVIDUAL_BASIC_INDEX = "IndividualBasicIndex";
         public const string TABLE_INDIVIDUAL_BASIC_INDEX_LEVELS = "IndividualBasicIndexLevels";
@@ -111,6 +113,9 @@ namespace FBD.CommonUtilities
         public const string TABLE_CUSTOMERS_LOAN_TERM = "CustomersLoanTerm";
         public const string TABLE_CUSTOMERS_BUSINESSES = "CustomersBusinesses";
         public const string TABLE_CUSTOMERS_BUSINESS_RANKING = "CustomersBusinessRanking";
+
+        //INV
+        public const string TABLE_INDIVIDUAL_CLUSTER_RANKS = "IndividualClusterRanks";
         public const string TABLE_CUSTOMERS_INDIVIDUAL_RANKING = "CustomersIndividualRanking";
         public const string TABLE_CUSTOMERS_INDIVIDUALS = "CustomersIndividuals";     
         
@@ -234,7 +239,9 @@ namespace FBD.CommonUtilities
 
         //10 centroid vector
         public static double[] level =  { 0,25, 32, 41 ,48,55,63,72,81,90,100};
-        
+        public static int NumberOfBsnCentroid = 10;
+        public static int NumberOfInvCentroid = 6;
+
         // RANKING STRUCTURE
         public const string RNK_STRUCTURE_AUDITED = "1";
         public const string RNK_STRUCTURE_NONAUDITED = "0";

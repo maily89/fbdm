@@ -41,7 +41,7 @@ namespace FBD.Models
                                                              .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                                                              .Include(Constants.TABLE_BUSINESS_RANKS).ToList();
             List<Vector> vList = new List<Vector>();
-            foreach(CustomersBusinessRanking cbr in cbrList)
+            foreach (CustomersBusinessRanking cbr in cbrList)
             {
                 if (cbr.FinancialScore != null && cbr.NonFinancialScore != null)
                 {
@@ -51,7 +51,29 @@ namespace FBD.Models
             }
             return vList;
         }
-
+        /// <summary>
+        /// Selecr businessRanking with RankID
+        /// </summary>
+        /// <returns></returns>
+        public static List<Vector> SelectBusinessRankingToVector(string RankID)
+        {
+            FBDEntities entities = new FBDEntities();
+            List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
+                                                             .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
+                                                             .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                             .Where(cbr =>cbr.BusinessRanks!=null && RankID.Equals(cbr.BusinessRanks.RankID))
+                                                             .ToList();
+            List<Vector> vList = new List<Vector>();
+            foreach (CustomersBusinessRanking cbr in cbrList)
+            {
+                if (cbr.FinancialScore != null && cbr.NonFinancialScore != null)
+                {
+                    Vector v = new Vector(cbr);
+                    vList.Add(v);
+                }
+            }
+            return vList;
+        }
         /// <summary>
         /// return the Business specified by id
         /// </summary>
@@ -62,6 +84,18 @@ namespace FBD.Models
             if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
             var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+
+            return Business;
+        }
+        /// <summary>
+        /// return the Business specified by RankID
+        /// </summary>
+        /// <param name="id">id of the Business</param>
+        /// <returns>Business</returns>
+        public static CustomersBusinessRanking SelectBusinessRankingByClusterRankID(string RankID,FBDEntities entities)
+        {
+            if (RankID.Length< 1) return null;
+            var Business = entities.CustomersBusinessRanking.First(i => i.BusinessClusterRanks!=null && RankID.Equals(i.BusinessClusterRanks.RankID));
 
             return Business;
         }
@@ -109,6 +143,7 @@ namespace FBD.Models
                 .Include("SystemReportingPeriods")
                 .Include("CustomersBusinesses")
                 .Include("CustomersBusinesses.SystemBranches")
+
                 .Where(i => (!isCifTested || i.CustomersBusinesses.CIF.StartsWith(cif)) && (!isPeriodTested || i.SystemReportingPeriods.PeriodID == periodID) && (!isBranchTested || i.CustomersBusinesses.SystemBranches.BranchID == branchID));
 
 
@@ -138,6 +173,7 @@ namespace FBD.Models
                                                             .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
                                                             .Include(Constants.TABLE_BUSINESS_SCALES)
                                                             .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                            .Include(Constants.TABLE_BUSINESS_CLUSTER_RANKS)
                                                             .First(i => i.ID == id);
             return business;
         }
@@ -204,17 +240,51 @@ namespace FBD.Models
             return result <= 0 ? 0 : 1;
         }
 
-        //should change type of rank ID
-        public static int UpdateBusinessRanking(int ID, string rankID)
+        /// <summary>
+        /// This code use for update business rank and centroid list
+        /// </summary>
+        /// <param name="ID">CustomerBusinessRankID: key of CustomerBusinessRank</param>
+        /// <param name="rankID">RankID,key of businessClusterRank(1,...10)</param>
+        /// <param name="u">Vector u, which is centroid of cluster which rank RankID</param>
+        /// <returns></returns>
+        public static int UpdateBusinessRanking(int ID, string rankID, BusinessClusterRanks bcr,FBDEntities entities)
         {
-            
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.CustomersBusinessRanking.First(i => i.ID == ID); ;
-            var tempRank = BusinessRanks.SelectRankByID(rankID, entities);
-            temp.BusinessRanks = tempRank;
-            temp.DateModified = DateTime.Now ;
-            
-            int result = entities.SaveChanges();
+
+            int result = 1;
+            //declare the temp object, which is get customer business rank by id
+            var temp = SelectBusinessRankingByID(ID, entities);//entities.CustomersBusinessRanking.First(i => i.ID.Equals(ID)); ;
+            if (temp.BusinessClusterRanks == null || !temp.BusinessClusterRanks.RankID.Equals(rankID))
+            {
+                //This solution don't check how many cluster in DB. because we base on db to process clustering.
+                //Check there are this rank in db, then update
+                // List<BusinessClusterRanks> bsr = BusinessClusterRanks.SelectClusterRank(entities);
+                /*if (!BusinessClusterRanks.IsExistRank(rankID, entities))
+                {
+                    BusinessClusterRanks bcr = new BusinessClusterRanks();
+                    bcr.RankID = rankID;
+                    bcr.Rank = "Group" + rankID;
+                    BusinessClusterRanks.AddRank(bcr, entities,false);
+                
+                }*/
+                //should check change here
+
+                //then, update centroid for it 
+
+                //BusinessClusterRanks bcr2 = BusinessClusterRanks.SelectClusterRankByID(rankID, entities);
+                //bcr2.Centroid = Convert.ToDecimal(u.x);// In this clustering, we just need x values
+                //BusinessClusterRanks.EditRank(bcr2, entities);
+
+                /*
+                var tempRank = BusinessRanks.SelectRankByID(rankID, entities);
+                temp.BusinessRanks = tempRank;
+                */
+                //check the businessClusterRank is change or not
+
+                temp.DateModified = DateTime.Now;
+                temp.BusinessClusterRanks = bcr;
+
+                result = entities.SaveChanges();
+            }
             return result <= 0 ? 0 : 1;
         }
 
@@ -224,7 +294,7 @@ namespace FBD.Models
         /// <param name="rankingID"> the rankingID deleted</param>
         public static int DeleteBusinessRanking(int id)
         {
-            
+
             FBDEntities entities = new FBDEntities();
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id, entities);
             entities.DeleteObject(ranking);
@@ -252,7 +322,7 @@ namespace FBD.Models
 
         public void LoadAll()
         {
-            
+
             this.BusinessIndustriesReference.Load();
             this.BusinessRanksReference.Load();
             this.BusinessScalesReference.Load();
@@ -263,44 +333,102 @@ namespace FBD.Models
             this.SystemReportingPeriodsReference.Load();
 
         }
+        /// <summary>
+        /// Check a customerbusinessrank is in which group and then compare the old centroid with new centroid
+        /// (new centroid is centroid after add this vector)
+        /// note: this algorythm just use for db with already have cluster.
+        /// </summary>
+        /// <param name="cbr">customerbusinessranking need to be cluster</param>
+        /// <param name="epsilon">difference distance suggest by user</param>
+        public void cluster(CustomersBusinessRanking cbr, double epsilon)
+        {
+            FBDEntities entity = new FBDEntities();
+            //Get all businessclusterrank
+            List<BusinessClusterRanks> bcrList = BusinessClusterRanks.SelectClusterRank(entity);
+            List<Vector> vList = new List<Vector>();
+            //convert all bcr to vector to caculate
+            foreach (BusinessClusterRanks bcr in bcrList)
+            {
+                Vector v = new Vector(bcr);
+                vList.Add(v);
+            }
+            //Convert customerbusinessranking to vector too.
+            Vector Vcbr = new Vector(cbr);
+            //Get the group customerbusinessrank which smallest distant to this cbr
+            int groupNo = Caculator.minDistant(Vcbr, vList.ToArray());
+            string GroupRankID = bcrList.ElementAt(groupNo).RankID;
+            //Get all customer in this group
+            List<Vector> ListVcbr = CustomersBusinessRanking.SelectBusinessRankingToVector(GroupRankID);
+            Vector VOldCentroid = Caculator.centroid(ListVcbr);
+            ListVcbr.Add(Vcbr);
+            Vector VNewCentroid = Caculator.centroid(ListVcbr);
+
+            //If distance is < epsilon
+            if (Caculator.Distant(VOldCentroid, VNewCentroid) < epsilon)
+            {
+                //update centroid of BusinessRank to new
+                BusinessClusterRanks.UpdateCentroid(GroupRankID, VNewCentroid, entity);
+                //Update this customrclusterRank to this groupRankID
+                CustomersBusinessRanking.UpdateBusinessRanking(cbr.ID, GroupRankID, bcrList.ElementAt(groupNo),entity);
+            }
+            else
+            {
+                //mining again and update all customerbusinessRanking
+                //This process cost alot of time- I hope this not happen frequency
+                List<Vector> VlistToMining = CustomersBusinessRanking.SelectBusinessRankingToVector();
+                List<Vector>[] result = KMean.Clustering(bcrList.Count, VlistToMining, vList);
+
+                for (int i = 0; i < bcrList.Count; i++)
+                {
+                    Vector centroid = Caculator.centroid(result[i]);
+                    //update centroid list
+                    BusinessClusterRanks.UpdateCentroid(bcrList[i].RankID, centroid, entity);
+                    //then update all customerbusinessrank in this group
+                    foreach (Vector v in result[i])
+                        UpdateBusinessRanking(v.ID, v.RankID.ToString(), bcrList[i],entity);
+                }
+
+            }
+
+        }
         public class CustomersBusinessRankingMetaData
         {
-        		
-        	[DisplayName("ID")]
-        	[Required]
+
+            [DisplayName("ID")]
+            [Required]
             public int ID { get; set; }
-        		
-        	[DisplayName("Credit Department")]
-        	[StringLength(255)]
+
+            [DisplayName("Credit Department")]
+            [StringLength(255)]
             public string CreditDepartment { get; set; }
-        		
-        	[DisplayName("Tax Code")]
-        	[StringLength(20)]
+
+            [DisplayName("Tax Code")]
+            [StringLength(20)]
             public string TaxCode { get; set; }
-        		
-        	[DisplayName("Customer Group")]
-        	[StringLength(1)]
+
+            [DisplayName("Customer Group")]
+            [StringLength(1)]
             public string CustomerGroup { get; set; }
-        		
-        	[DisplayName("Audited Status")]
-        	[StringLength(1)]
+
+            [DisplayName("Audited Status")]
+            [StringLength(1)]
             public string AuditedStatus { get; set; }
-        		
-        	[DisplayName("Total Debt")]
+
+            [DisplayName("Total Debt")]
             public Nullable<decimal> TotalDebt { get; set; }
-        		
-        		
-        	[DisplayName("Financial Score")]
+
+
+            [DisplayName("Financial Score")]
             public Nullable<decimal> FinancialScore { get; set; }
-        		
-        	[DisplayName("Non Financial Score")]
+
+            [DisplayName("Non Financial Score")]
             public Nullable<decimal> NonFinancialScore { get; set; }
-        		
-        	[DisplayName("User ID")]
-        	[StringLength(10)]
+
+            [DisplayName("User ID")]
+            [StringLength(10)]
             public string UserID { get; set; }
-        		
-        	[DisplayName("Date Modified")]
+
+            [DisplayName("Date Modified")]
             public Nullable<System.DateTime> DateModified { get; set; }
         }
     }
