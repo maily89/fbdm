@@ -174,7 +174,7 @@ namespace FBD.Models
             temp.LeafIndex = item.LeafIndex;
             if (!item.LeafIndex) return temp;
             item.BusinessFinancialIndexScore.Load();
-            if(temp.Index.ValueType=="C")
+            if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
             temp.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, IndustryID, scale, item.IndexID);
             return temp;
         }
@@ -203,7 +203,7 @@ namespace FBD.Models
                 item.BusinessFinancialIndexScore.Load();
                 customerFinancial.BusinessFinancialIndexLevelsReference.Load();
 
-                if (temp.Index.ValueType == "C")
+                if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 {
                     temp.ScoreList = BusinessFinancialIndexScore.SelectScoreByIndustryByScaleByFinancialIndex(entities, IndustryID, scale, item.IndexID);
                     foreach(BusinessFinancialIndexScore score in temp.ScoreList)
@@ -278,7 +278,7 @@ namespace FBD.Models
             FBDEntities entity = new FBDEntities();
             foreach (RNKFinancialRow item in rnkFinancialRow)
             {
-                if (item.LeafIndex && item.Index.ValueType == "C")
+                if (item.LeafIndex && item.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 {
                     if (ranking == null)
                     {

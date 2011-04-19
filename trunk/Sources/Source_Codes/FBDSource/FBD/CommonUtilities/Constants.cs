@@ -7,6 +7,7 @@ namespace FBD.CommonUtilities
 {
     public class Constants
     {
+
         /*Enum*/
         public enum IndividualRankStep
         {
@@ -84,6 +85,8 @@ namespace FBD.CommonUtilities
         public const string INV_COLL_LEVEL_INDEX = "Individual collateral level Index";
         public const string INV_PROPORTION = "Individual Proportion";
         public const string INV_COLL_RANK = "Individual Collateral Rank";
+
+        
         
 
         /****************** TABLE NAMES *******************/
@@ -188,6 +191,10 @@ namespace FBD.CommonUtilities
         public const string ERR_RPT_BASIC_INFO = "Error when exporting basic index information";
         public const string ERR_RPT_COLLATERAL_INFO = "Error when exporting collateral index information";
 
+        // RANKING ERROR
+        public const string ERR_RNK_RANKING = "There's error when loading ranking for {0}";
+        public const string ERR_RNK_GENERAL = "Error occured when loading the ranked customers. Please try again later";
+
         //COMMON
         public const string ERR_TO_DATE_LESS_THAN_FROM_DATE = "To date must be greater than from date. Please input again";
 
@@ -228,6 +235,12 @@ namespace FBD.CommonUtilities
         public const string RNK_STRUCTURE_NONAUDITED = "0";
         public const string RNK_STRUCTURE_FINANCIAL_INDEX = "1";
         public const string RNK_STRUCTURE_NONFINANCIAL_INDEX = "2";
+
+        
+        //Index
+        public const string INDEX_NUMERIC = "N";
+        public const string INDEX_CHARACTER = "C";
+
 
     }
 }

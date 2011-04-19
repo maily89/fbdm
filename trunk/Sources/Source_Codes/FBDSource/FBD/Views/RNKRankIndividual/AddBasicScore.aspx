@@ -49,7 +49,7 @@
             </td>
             <td><% if (Model[i].Index.LeafIndex)
                    {
-                       if (Model[i].Index.ValueType == "N")
+                       if (Model[i].Index.ValueType == FBD.CommonUtilities.Constants.INDEX_NUMERIC)
                        {%>
                            <%=Html.TextBoxFor(m => m[i].Score)%>
                        <%}

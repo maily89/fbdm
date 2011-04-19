@@ -73,7 +73,7 @@ namespace FBD.Models
 
             foreach (IndividualCollateralIndexScore item in scoreList)
             {
-                if (index.ValueType == "N") //numeric type
+                if (index.ValueType == FBD.CommonUtilities.Constants.INDEX_NUMERIC) //numeric type
                 {
                     decimal score = System.Convert.ToDecimal(indexScore.Value);
                     if (score >= item.FromValue && score <= item.ToValue)
@@ -132,7 +132,7 @@ namespace FBD.Models
 
             if (index == null) return;
 
-            if (index.ValueType == "C")
+            if (index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
             {
                 GetScoreForCharacter(indexScore, entities);
                 return;

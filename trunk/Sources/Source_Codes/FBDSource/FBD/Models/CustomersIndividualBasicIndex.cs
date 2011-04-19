@@ -170,7 +170,7 @@ namespace FBD.Models
             temp.LeafIndex = item.LeafIndex;
             if (!item.LeafIndex) return temp;
             item.IndividualBasicIndexScore.Load();
-            if (temp.Index.ValueType == "C")
+            if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 temp.ScoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, item.IndexID,purposeID);
             return temp;
         }
@@ -197,7 +197,7 @@ namespace FBD.Models
                 temp.Index = item;
                 temp.LeafIndex = true;
                 item.IndividualBasicIndexScore.Load();
-                if (temp.Index.ValueType == "C")
+                if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 {
                     temp.ScoreList = IndividualBasicIndexScore.SelectScoreByBasicAndPurposeIndex(entities, item.IndexID, purposeID);
                     foreach (IndividualBasicIndexScore score in temp.ScoreList)
