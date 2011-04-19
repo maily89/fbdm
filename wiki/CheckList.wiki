@@ -14,4 +14,4 @@ ChinhPLQ
 || step by step|| -- ||
 || On click tren bieu do|| -- ||
 || sau khi luu xong, co the cho nguoi dung thay customer list|| -- ||
-|| Du lieu bi delete|| -- ||
+|| Du lieu bi delete|| done- xu ly bang cach remove referent truoc khi delete ||
