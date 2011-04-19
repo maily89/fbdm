@@ -165,7 +165,7 @@ namespace FBD.Models
             temp.LeafIndex = item.LeafIndex;
             if (!item.LeafIndex) return temp;
             item.IndividualCollateralIndexScore.Load();
-            if (temp.Index.ValueType == "C")
+            if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 temp.ScoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities, item.IndexID);
             return temp;
         }
@@ -192,7 +192,7 @@ namespace FBD.Models
                 temp.Index = item;
                 temp.LeafIndex = true;
                 item.IndividualCollateralIndexScore.Load();
-                if (temp.Index.ValueType == "C")
+                if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 {
                     temp.ScoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities, item.IndexID);
                     foreach (IndividualCollateralIndexScore score in temp.ScoreList)

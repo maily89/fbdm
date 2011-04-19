@@ -48,7 +48,7 @@
                 <%= Html.Encode(String.Format("{0:F}", Model.ElementAt(i).Index.IndexName))%>
             </td>
             <td>
-                <%=(Model[i].Index.ValueType == "N") ? Html.Encode(Model.ElementAt(i).Score) : Html.Encode(Model[i].Value)%>
+                <%=(Model[i].Index.ValueType == FBD.CommonUtilities.Constants.INDEX_NUMERIC) ? Html.Encode(Model.ElementAt(i).Score) : Html.Encode(Model[i].Value)%>
             </td>
 
             <%if (ViewData["DetailView"] == null)

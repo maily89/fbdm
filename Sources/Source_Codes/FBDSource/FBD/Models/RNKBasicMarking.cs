@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
 using FBD.ViewModels;
+using FBD.CommonUtilities;
 
 namespace FBD.Models
 {
@@ -85,7 +86,7 @@ namespace FBD.Models
 
             foreach (IndividualBasicIndexScore item in scoreList)
             {
-                if (index.ValueType == "N") //numeric type
+                if (index.ValueType == Constants.INDEX_NUMERIC) //numeric type
                 {
                     decimal score = System.Convert.ToDecimal(indexScore.Value);
                     if (score >= item.FromValue && score <= item.ToValue)
@@ -160,7 +161,7 @@ namespace FBD.Models
 
             if (index == null || ranking.IndividualBorrowingPurposes == null) return ;
 
-            if (index.ValueType == "C")
+            if (index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
             {
                 GetScoreForCharacter(indexScore, entities);
                 return;

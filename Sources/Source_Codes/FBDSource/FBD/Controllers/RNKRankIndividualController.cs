@@ -670,7 +670,7 @@ namespace FBD.Controllers
             catch
             {
                 //TODO: Add to constants
-                TempData[Constants.ERR_MESSAGE] = "There's error when loading ranking for individual customer";
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_RNK_RANKING, Constants.CUSTOMER_INDIVIDUAL);
             }
             return View(model);
 
@@ -688,7 +688,7 @@ namespace FBD.Controllers
                 RNKRankMarking.RemarkAllIndividualRanking(id);
 
                 LoadRankingViewModel(id, model);
-                TempData["Dialog"] = "Rank was saved successfully";
+
                 return View("Ranking", model);
             }
             catch
@@ -742,7 +742,7 @@ namespace FBD.Controllers
             catch
             {
                 //TODO: add error text to constant
-                TempData[Constants.ERR_MESSAGE] = "Error occured when loading the ranked customers. Please try again later";
+                TempData[Constants.ERR_MESSAGE] = Constants.ERR_RNK_GENERAL;
                 return RedirectToAction("Index");
             }
         }

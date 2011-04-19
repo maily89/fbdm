@@ -169,7 +169,7 @@ namespace FBD.Models
             temp.LeafIndex = item.LeafIndex;
             if (!item.LeafIndex) return temp;
             item.BusinessNonFinancialIndexScore.Load();
-            if (temp.Index.ValueType == "C")
+            if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 temp.ScoreList = BusinessNonFinancialIndexScore.SelectScoreByIndustryByNonFinancialIndex(entities, IndustryID,  item.IndexID);
             return temp;
         }
@@ -196,7 +196,7 @@ namespace FBD.Models
                 temp.Index = item;
                 temp.LeafIndex = true;
                 item.BusinessNonFinancialIndexScore.Load();
-                if (temp.Index.ValueType == "C")
+                if (temp.Index.ValueType == FBD.CommonUtilities.Constants.INDEX_CHARACTER)
                 {
                     temp.ScoreList = BusinessNonFinancialIndexScore.SelectScoreByIndustryByNonFinancialIndex(entities, IndustryID,  item.IndexID);
                     foreach (BusinessNonFinancialIndexScore score in temp.ScoreList)

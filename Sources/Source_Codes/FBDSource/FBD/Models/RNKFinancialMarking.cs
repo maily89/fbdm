@@ -119,7 +119,7 @@ namespace FBD.Models
 
                 if (ranking.BusinessIndustries == null || ranking.BusinessScales == null) return 0;
 
-                if (indexScore.Index.ValueType == "N")
+                if (indexScore.Index.ValueType == Constants.INDEX_NUMERIC)
                 {
 
                     List<BusinessFinancialIndexScore> scoreList = BusinessFinancialIndexScore
@@ -165,7 +165,7 @@ namespace FBD.Models
         {
             foreach (BusinessFinancialIndexScore item in scoreList)
             {
-                if (index.ValueType == "N") //numeric type
+                if (index.ValueType == FBD.CommonUtilities.Constants.INDEX_NUMERIC) //numeric type
                 {
                     decimal score = System.Convert.ToDecimal(indexScore.Value);
                     if (score >= item.FromValue && score <= item.ToValue)
