@@ -134,6 +134,22 @@ namespace FBD.Models
             // return 0 if there is error, 1 otherwise
             return temp <= 0 ? 0 : 1;
         }
+
+        public static string GetBranchByCustomerID(int id)
+        {
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var customer = SelectIndividualByID(id);
+                if (customer.SystemBranches == null) return null;
+                return customer.SystemBranches.BranchID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public class CustomersIndividualsMetaData
         {
         		

@@ -18,6 +18,10 @@ namespace FBD.Controllers
         /// <returns>View of Index</returns>
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<CustomersBusinesses> model = null;
             try
             {
@@ -44,6 +48,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(string BranchID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<CustomersBusinesses> model = null;
             try
             {
@@ -74,6 +82,10 @@ namespace FBD.Controllers
         /// <returns>Add view</returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new RNKCustomerBusinessViewModel();
             model.SystemBranches = SystemBranches.SelectBranches();
             return View(model);
@@ -89,6 +101,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(RNKCustomerBusinessViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -119,6 +135,10 @@ namespace FBD.Controllers
         /// <returns>Index if edit sucess, Edit view with error other wise</returns>
         public ActionResult Edit(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new RNKCustomerBusinessViewModel();
             try
             {
@@ -146,6 +166,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Edit(int id, RNKCustomerBusinessViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -182,6 +206,10 @@ namespace FBD.Controllers
         /// <returns>redirect ot index</returns>
         public ActionResult Delete(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_CUSTOMERS_UPDATE, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 //if unable to delete, throw exception
