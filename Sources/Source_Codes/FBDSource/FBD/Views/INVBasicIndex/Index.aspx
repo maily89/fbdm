@@ -36,31 +36,33 @@
                 LeafIndex
             </th>
         </tr>
-
-    <% foreach (var item in Model) { %>
+<%if (Model != null)
+  { %>
+    <% foreach (var item in Model)
+       { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.IndexID }) %> |
+                <%= Html.ActionLink("Edit", "Edit", new { id = item.IndexID })%> |
                 <%= Html.ActionLink("Delete", "Delete", new { id = item.IndexID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete " + item.IndexName + "?');" })%>
             </td>
             <td>
-                <%= Html.Encode(item.IndexID) %>
+                <%= Html.Encode(item.IndexID)%>
             </td>
             <td>
-                <%= Html.Encode(item.IndexName) %>
+                <%= Html.Encode(item.IndexName)%>
             </td>
             <td>
-                <%= Html.Encode(item.Unit) %>
+                <%= Html.Encode(item.Unit)%>
             </td>
             <td>
-                <%= Html.Encode(item.Formula) %>
+                <%= Html.Encode(item.Formula)%>
             </td>
             <td>
-                <%= Html.Encode(item.ValueType) %>
+                <%= Html.Encode(item.ValueType)%>
             </td>
             <td>
-                <%= Html.Encode(item.LeafIndex) %>
+                <%= Html.Encode(item.LeafIndex)%>
             </td>
         </tr>
     
@@ -69,9 +71,13 @@
     </table>
 
     <h3>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Create New", "Create")%>
     </h3>
-
+<%}
+  else
+  { %>
+  <p class="scc-message">Can not connect to DB</p>
+<%} %>
 </asp:Content>
 
 

@@ -58,6 +58,8 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft ASP.NET\ASP.NET MVC 2\\Assemblies\System.Web.Mvc.dll</HintPath>
@@ -92,7 +94,11 @@
     <Compile Include="CommonUtilities\DropDownHelper.cs" />
     <Compile Include="CommonUtilities\KMean.cs" />
     <Compile Include="CommonUtilities\StringHelper.cs" />
-    <Compile Include="Controllers\MiningController.cs" />
+    <Compile Include="Controllers\BSNClusterRankController.cs" />
+    <Compile Include="Controllers\BSNMiningStepController.cs" />
+    <Compile Include="Controllers\INVClusterRankController.cs" />
+    <Compile Include="Controllers\BSNMiningController.cs" />
+    <Compile Include="Controllers\INVMiningController.cs" />
     <Compile Include="Controllers\RNKRankIndividualController.cs" />
     <Compile Include="Controllers\RNKCustomerBusinessController.cs" />
     <Compile Include="Controllers\RPTBusinessReportController.cs" />
@@ -141,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccessManager.cs" />
+    <Compile Include="Models\BusinessClusterRanks.cs" />
     <Compile Include="Models\BusinessFinancialIndex.cs" />
     <Compile Include="Models\BusinessFinancialIndexLevels.cs" />
     <Compile Include="Models\BusinessFinancialIndexProportion.cs" />
@@ -166,6 +173,7 @@
     </Compile>
     <Compile Include="Models\IIndexScore.cs" />
     <Compile Include="Models\IIndividualCollateralIndex.cs" />
+    <Compile Include="Models\IndividualClusterRanks.cs" />
     <Compile Include="Models\IRanks.cs" />
     <Compile Include="Models\RNKCollateralMarking.cs" />
     <Compile Include="Models\RNKBasicMarking.cs" />
@@ -554,9 +562,22 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\wait.gif" />
+    <Content Include="Scripts\Tooltip.js" />
+    <Content Include="Views\BSNClusterRank\Add.aspx" />
+    <Content Include="Views\BSNClusterRank\Edit.aspx" />
+    <Content Include="Views\BSNClusterRank\Index.aspx" />
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
+    <Content Include="Views\BSNMining\Index.aspx" />
+    <Content Include="Views\BSNMining\Map.ascx" />
+    <Content Include="Views\BSNMining\Save.aspx" />
+    <Content Include="Views\INVClusterRank\Add.aspx" />
+    <Content Include="Views\INVClusterRank\Edit.aspx" />
+    <Content Include="Views\INVClusterRank\Index.aspx" />
+    <Content Include="Views\INVMining\Index.aspx" />
+    <Content Include="Views\INVMining\Save.aspx" />
     <Content Include="Views\Mining\GetCustomerList.aspx" />
     <Content Include="Views\Mining\Index.aspx" />
     <Content Include="Views\RNKCustomerIndividuals\Add.aspx" />

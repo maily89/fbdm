@@ -105,5 +105,17 @@ namespace FBD.CommonUtilities
             x = y;
             y = temp;
         }
+
+        public static double sumDistance(List<Vector>[] result)
+        {
+            double sum = 0;
+            for (int i = 0; i < result.Length; i++)
+            {
+                Vector centr = centroid(result[i]);
+                foreach (Vector v in result[i])
+                    sum += Distant(v, centr);
+            }
+            return sum;
+        }
     }
 }

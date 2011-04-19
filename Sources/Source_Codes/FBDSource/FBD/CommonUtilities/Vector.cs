@@ -12,9 +12,13 @@ namespace FBD.CommonUtilities
         public double y { set; get; }
 
         //these properties just using for track id of customer who has score as this vector
+        //Id of customerbusinessRanking table
         public int ID;
+        //customerName in table CustomerBusinessRank
         public string CustomerName;
+        //RankID of a customer in table CustomerBusinessRank
         public int RankID;
+        //DateModified in table customerBusinessRank
         public DateTime modifiedDate;
 
         public Vector(double x, double y)
@@ -27,6 +31,10 @@ namespace FBD.CommonUtilities
             this.x = v.x;
             this.y = v.y;
         }
+        /// <summary>
+        /// Create Vector using customerbusinessRank
+        /// </summary>
+        /// <param name="cbr">CustomersBusinessRanking</param>
         public Vector(CustomersBusinessRanking cbr)
         {
 
@@ -43,10 +51,40 @@ namespace FBD.CommonUtilities
                 this.modifiedDate = cbr.DateModified.Value;
             }
         }
-        //public override string ToString()
-        //{
-        //    return ("X : " + x + "   Y : " + y);
-        //}
+        /// <summary>
+        /// Create vector using customerIndividualRank information
+        /// </summary>
+        /// <param name="cir"></param>
+        public Vector(CustomersIndividualRanking cir)
+        {
+            this.x = Convert.ToDouble(cir.CollateralIndexScore);
+            this.y = Convert.ToDouble(cir.CollateralIndexScore);
+            
+            //more information use for display to customer.
+
+        }
+
+        /// <summary>
+        /// vector create by business rank
+        /// </summary>
+        /// <param name="bcr">BusinessClusterRanks</param>
+        public Vector(BusinessClusterRanks bcr)
+        {
+            this.x = Convert.ToDouble(bcr.Centroid);
+            this.y = 0;
+            this.RankID = int.Parse(bcr.RankID);
+        }
+
+        /// <summary>
+        /// vector is created by individual cluster rank 
+        /// </summary>
+        /// <param name="icr"></param>
+        public Vector(IndividualClusterRanks icr)
+        {
+            this.x = Convert.ToDouble(icr.CentroidX);
+            this.y = Convert.ToDouble(icr.CentroidY);
+            this.RankID = int.Parse(icr.RankID);
+        }
         public bool Equal(Vector t)
         {
             if (t == null)

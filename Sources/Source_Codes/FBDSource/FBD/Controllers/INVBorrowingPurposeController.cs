@@ -80,7 +80,7 @@ namespace FBD.Controllers
             try
             {
                 // If there is no error from client
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && !IndividualBorrowingPurposes.IsExistPurpose(IndividualBorrowingPP.Purpose))
                 {
                     // Add new business financial index that has been inputted
                     int result = IndividualBorrowingPurposes.AddBorrowingPP(IndividualBorrowingPP);

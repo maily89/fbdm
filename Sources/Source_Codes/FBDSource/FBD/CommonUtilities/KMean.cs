@@ -24,11 +24,11 @@ namespace FBD.CommonUtilities
             //to do: separe List<Vector> V in to k List.
             
             //0. check input available
-            //if (k > V.Count)
-            //{
+            if (k > V.Count)
+            {
             //    System.Console.WriteLine("Wrong input");
-            //    return null;
-            //}
+                return null;
+            }
 
             //1. initialing k List and k centroid
             Vector[] previousCentroid = new Vector[k];

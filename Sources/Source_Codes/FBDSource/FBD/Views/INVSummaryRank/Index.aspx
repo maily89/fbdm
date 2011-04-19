@@ -44,9 +44,11 @@
                 <%= Html.Encode(item.Evaluation) %>
             </td>
             <td>
+            <%if (item.IndividualBasicRanks!=null) %>
                 <%= Html.Encode(item.IndividualBasicRanks.Rank) %>
             </td>
             <td>
+            <%if (item.IndividualCollateralRanks!=null) %>
                 <%= Html.Encode(item.IndividualCollateralRanks.Rank) %>
             </td>
         </tr>

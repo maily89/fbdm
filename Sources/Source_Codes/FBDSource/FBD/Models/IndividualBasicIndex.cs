@@ -139,6 +139,7 @@ namespace FBD.Models
             [DisplayName("Index Name")]
             [Required(ErrorMessage = "Index Name is required")]
             [StringLength(255)]
+            [RegularExpression(".{10,}",ErrorMessage="Index Name must have at least 10 character")]
             public string IndexName { get; set; }
 
             [DisplayName("Unit")]

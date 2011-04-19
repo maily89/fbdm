@@ -74,6 +74,17 @@ namespace FBD.Models
             
             return result <= 0 ? 0 : 1;
         }
+        /// <summary>
+        /// check there are any borrowing purpose with the name @purposeName
+        /// </summary>
+        /// <param name="PurposeName">Purpose name from user</param>
+        /// <returns></returns>
+
+        public static bool IsExistPurpose(string PurposeName)
+        {
+            FBDEntities FBDModel = new FBDEntities();
+            return FBDModel.IndividualBorrowingPurposes.Where(p => p.Purpose.Equals(PurposeName)).Any();
+        }
 
         public static int DeleteBorrowingPurpose(string id)
         {
@@ -95,6 +106,7 @@ namespace FBD.Models
             [DisplayName("Purpose ")]
             [Required(ErrorMessage = "Purpose is required")]
             [StringLength(255)]
+            [RegularExpression(".{10,}", ErrorMessage = "purpose must have at least 10 characters")]
             public string Purpose { get; set; }
         }
     }

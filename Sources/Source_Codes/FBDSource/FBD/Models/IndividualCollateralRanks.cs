@@ -102,9 +102,11 @@ namespace FBD.Models
             public string RankID { get; set; }
 
             [DisplayName("From Value")]
+            [Range(0, 9999999999, ErrorMessage = "To value can't be negative")]
             public Nullable<decimal> FromValue { get; set; }
 
             [DisplayName("To Value")]
+            [Range(0, 9999999999, ErrorMessage = "To value can't be negative")]
             public Nullable<decimal> ToValue { get; set; }
 
             [DisplayName("Rank")]

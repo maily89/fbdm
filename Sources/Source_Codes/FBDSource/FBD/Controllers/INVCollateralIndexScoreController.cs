@@ -31,7 +31,7 @@ namespace FBD.Controllers
 
             try
             {
-                List<IndividualCollateralIndex> lstCollateralIndex = IndividualCollateralIndex.SelectCollateralIndex();
+                List<IndividualCollateralIndex> lstCollateralIndex = IndividualCollateralIndex.SelectCollateralLeafIndex(FBDModel);
                 //List<BusinessFinancialIndex> lstFinancialIndexes = BusinessFinancialIndex.SelectFinancialIndex(FBDModel);
 
                 // If there is no information to choose from the drop down list, return empty-data View
@@ -146,10 +146,17 @@ namespace FBD.Controllers
                                             FBDModel, viewModelForSavingScore);
 
                     // The view model after saving information
+                    
                     INVCollateralIndexScoreViewModel viewModelAfterUpdating = IndividualCollateralIndexScore
                                                                 .CreateViewModelByCollateral(
                                                                 FBDModel,
                                                                 formCollection["CollateralIndexID"].ToString());
+                    String strCollateralIndexID = formCollection["CollateralIndexID"].ToString();
+                    if (strCollateralIndexID.Length < 1)
+                    {
+                        TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_SCORE);
+                        return View(viewModelAfterUpdating);
+                    }
                     // If saving gets error
                     if (errorLevel != null)
                     {
