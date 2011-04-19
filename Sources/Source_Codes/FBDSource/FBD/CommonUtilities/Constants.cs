@@ -127,6 +127,11 @@ namespace FBD.CommonUtilities
         public const string RIGHT_RANKING = "003";
         public const string RIGHT_SYSTEM_VIEW = "004";
         public const string RIGHT_SYSTEM_UPDATE = "005";
+        public const string RIGHT_RANKING_DELETE = "006";
+        public const string RIGHT_RANKING_VIEW = "007";
+        public const string RIGHT_CUSTOMERS_VIEW = "008";
+        public const string RIGHT_CUSTOMERS_UPDATE = "009";
+        public const string RIGHT_DATA_MINING = "010";
 
         
         /****************** REPORTING ********************/
