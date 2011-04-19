@@ -27,8 +27,8 @@ namespace FBD.Controllers
         static List<Vector>[] result = new List<Vector>[numOfCentroid];
         public ActionResult Index()
         {
-
-            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector();
+            string periodID = "1";
+            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(periodID);
             numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
             
             ViewData["cluster"] = numOfCentroid.ToString();

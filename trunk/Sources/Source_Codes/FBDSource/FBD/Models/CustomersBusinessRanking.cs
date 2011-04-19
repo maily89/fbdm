@@ -28,18 +28,19 @@ namespace FBD.Models
             return entities.CustomersBusinessRanking.OrderBy(OrderBy).ToList();
         }
 
-        //public static List<CustomersBusinessRanking> SelectBusinessRankingsDeOrder(string DeOrderBy, string Descending)
-        //{
-        //    FBDEntities entities = new FBDEntities();
-        //    return entities.CustomersBusinessRanking.OrderByDescending(DeOrderBy).ToList();
-        //}
+        /// <summary>
+        /// Select All BusinessRanking in a report period  To list vector
+        /// </summary>
+        /// <returns></returns>
 
-        public static List<Vector> SelectBusinessRankingToVector()
+        public static List<Vector> SelectBusinessRankingToVector(string periodID)
         {
             FBDEntities entities = new FBDEntities();
             List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
                                                              .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
-                                                             .Include(Constants.TABLE_BUSINESS_RANKS).ToList();
+                                                             .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                             .Where(cbr=>cbr.SystemReportingPeriods!=null && periodID.Equals(cbr.SystemReportingPeriods.PeriodID))
+                                                             .ToList();
             List<Vector> vList = new List<Vector>();
             foreach (CustomersBusinessRanking cbr in cbrList)
             {
@@ -51,17 +52,20 @@ namespace FBD.Models
             }
             return vList;
         }
+
+
         /// <summary>
         /// Selecr businessRanking with RankID
         /// </summary>
         /// <returns></returns>
-        public static List<Vector> SelectBusinessRankingToVector(string RankID)
+        public static List<Vector> SelectBusinessRankingToVector(string RankID, string periodID)
         {
             FBDEntities entities = new FBDEntities();
             List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
                                                              .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                                                              .Include(Constants.TABLE_BUSINESS_RANKS)
-                                                             .Where(cbr =>cbr.BusinessRanks!=null && RankID.Equals(cbr.BusinessRanks.RankID))
+                                                             .Where(cbr =>cbr.BusinessRanks!=null && RankID.Equals(cbr.BusinessRanks.RankID)
+                                                             && cbr.SystemReportingPeriods != null && periodID.Equals(cbr.SystemReportingPeriods.PeriodID))
                                                              .ToList();
             List<Vector> vList = new List<Vector>();
             foreach (CustomersBusinessRanking cbr in cbrList)
@@ -92,12 +96,13 @@ namespace FBD.Models
         /// </summary>
         /// <param name="id">id of the Business</param>
         /// <returns>Business</returns>
-        public static CustomersBusinessRanking SelectBusinessRankingByClusterRankID(string RankID,FBDEntities entities)
+        public static List<CustomersBusinessRanking> SelectBusinessRankingByClusterRankID(string RankID,FBDEntities entities)
         {
             if (RankID.Length< 1) return null;
-            var Business = entities.CustomersBusinessRanking.First(i => i.BusinessClusterRanks!=null && RankID.Equals(i.BusinessClusterRanks.RankID));
+            List<CustomersBusinessRanking> BusinessList = new List<CustomersBusinessRanking>();
+            BusinessList = entities.CustomersBusinessRanking.Where(i => i.BusinessClusterRanks != null && RankID.Equals(i.BusinessClusterRanks.RankID)).ToList();
 
-            return Business;
+            return BusinessList;
         }
 
         public static CustomersBusinessRanking SelectRankingByPeriodAndCustomer(string periodID, int customerID)
@@ -241,7 +246,22 @@ namespace FBD.Models
         }
 
         /// <summary>
-        /// This code use for update business rank and centroid list
+        /// This code used for update businessRanking when we have customerbusinessRanking and new businessclusterRanks
+        /// </summary>
+        /// <param name="cbr"></param>
+        /// <param name="bcr"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public static int UpdateBusinessRanking(CustomersBusinessRanking cbr, BusinessClusterRanks bcr, FBDEntities entities)
+        {
+            cbr.BusinessClusterRanks = bcr;
+            cbr.DateModified = DateTime.Now;
+            int result = entities.SaveChanges();
+            return result <= 0 ? 0 : 1;
+
+        }
+        /// <summary>
+        /// This code use for update business rank 
         /// </summary>
         /// <param name="ID">CustomerBusinessRankID: key of CustomerBusinessRank</param>
         /// <param name="rankID">RankID,key of businessClusterRank(1,...10)</param>
@@ -340,7 +360,7 @@ namespace FBD.Models
         /// </summary>
         /// <param name="cbr">customerbusinessranking need to be cluster</param>
         /// <param name="epsilon">difference distance suggest by user</param>
-        public void cluster(CustomersBusinessRanking cbr, double epsilon)
+        public void cluster(CustomersBusinessRanking cbr, double epsilon,string periodID)
         {
             FBDEntities entity = new FBDEntities();
             //Get all businessclusterrank
@@ -358,7 +378,7 @@ namespace FBD.Models
             int groupNo = Caculator.minDistant(Vcbr, vList.ToArray());
             string GroupRankID = bcrList.ElementAt(groupNo).RankID;
             //Get all customer in this group
-            List<Vector> ListVcbr = CustomersBusinessRanking.SelectBusinessRankingToVector(GroupRankID);
+            List<Vector> ListVcbr = CustomersBusinessRanking.SelectBusinessRankingToVector(GroupRankID, periodID);
             Vector VOldCentroid = Caculator.centroid(ListVcbr);
             ListVcbr.Add(Vcbr);
             Vector VNewCentroid = Caculator.centroid(ListVcbr);
@@ -375,7 +395,7 @@ namespace FBD.Models
             {
                 //mining again and update all customerbusinessRanking
                 //This process cost alot of time- I hope this not happen frequency
-                List<Vector> VlistToMining = CustomersBusinessRanking.SelectBusinessRankingToVector();
+                List<Vector> VlistToMining = CustomersBusinessRanking.SelectBusinessRankingToVector(periodID);
                 List<Vector>[] result = KMean.Clustering(bcrList.Count, VlistToMining, vList);
 
                 for (int i = 0; i < bcrList.Count; i++)

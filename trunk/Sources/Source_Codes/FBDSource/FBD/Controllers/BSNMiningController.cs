@@ -28,28 +28,40 @@ namespace FBD.Controllers
         public ActionResult Index()
         {
 
-            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector();
-            numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
-            //List<Vector> centroidList = new List<Vector>();
-            ////check success!!!
-            ////1 mining
-            //    //a. Create initial centroid vector
-            //for (int i = 0; i < Constants.level.Length-1; i++)
-            //{
-            //    double centroidX = (Constants.level[i] + Constants.level[i+1])/2;
-            //    Vector v = new Vector(centroidX, 0);
-            //    centroidList.Add(v);
-            //}
+            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
 
-            //another way to decide the number of centroid
-            /*
-            List<BusinessClusterRanks> bcrl = BusinessClusterRanks.SelectClusterRank();
-            int numOfCentroid = bcrl.Count();
-            */
-           
-            ViewData["cluster"] = numOfCentroid.ToString();
-                //b. Create list result to save result
+            List<SystemReportingPeriods> reportPeriodList = new List<SystemReportingPeriods>();
+            SystemReportingPeriods srp = new SystemReportingPeriods();
+            srp.PeriodID = "-1";
+            srp.PeriodName = "--Please select a period report--";
             
+            try
+            {
+                reportPeriodList = SystemReportingPeriods.SelectReportingPeriods();
+                if (reportPeriodList == null)
+                    throw new Exception();
+            }
+            catch
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
+            }
+
+            reportPeriodList.Insert(0,srp);
+            return View(reportPeriodList);
+        }
+
+        public ActionResult Cluster(string ID)
+        {
+            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(ID);
+            numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
+           
+
+            ViewData["cluster"] = numOfCentroid.ToString();
+            //b. Create list result to save result
+
 
             result = KMean.Clustering(numOfCentroid, vList, null);
             if (result == null)
@@ -58,14 +70,14 @@ namespace FBD.Controllers
                 return View();
             }
             result = Caculator.bubbleSort(result);
-            
+
             //3. Copy list vector to businessranking viewModel with nesseccary information???
 
 
             //4. Store list ranking into a session
 
             //I'm using another method: load again from DB
-          //  List<CustomersBusinessRanking> ListView = CustomersBusinessRanking.SelectBusinessRankings();
+            //  List<CustomersBusinessRanking> ListView = CustomersBusinessRanking.SelectBusinessRankings();
 
 
             for (int i = 0; i < numOfCentroid; i++)
@@ -73,21 +85,19 @@ namespace FBD.Controllers
                 List<Vector> listV = Caculator.bubbleSort(result[i]);
                 ViewData[i.ToString()] = listV;
             }
-            
-            return View();
-            //return View(result);
-        }
 
-        public ActionResult GetCustomerList()
+            return View();
+        }
+        public ActionResult GetCustomerList(string ID)
         {
-            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector();
+            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(ID);
             return View(vList);
         }
 
         [GridAction]
-        public ActionResult _GetCustomerList()
+        public ActionResult _GetCustomerList(string ID)
         {
-            return View(new GridModel(CustomersBusinessRanking.SelectBusinessRankingToVector()));
+            return View(new GridModel(CustomersBusinessRanking.SelectBusinessRankingToVector(ID)));
         }
         /// <summary>
         /// update centroid list and customerBusinessRanking
@@ -122,7 +132,7 @@ namespace FBD.Controllers
                 return Content("DONE");
             }
             else
-                return RedirectToAction("index");
+                return RedirectToAction("Cluster");
         }
         public ActionResult LoadPartial()
         {

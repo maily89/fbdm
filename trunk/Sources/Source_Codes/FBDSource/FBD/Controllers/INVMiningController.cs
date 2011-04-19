@@ -100,7 +100,7 @@ namespace FBD.Controllers
                 IndividualClusterRanks.updateCentroid(RankID, u, entities);
                 foreach (Vector v in result[i])
                 {
-                    CustomersIndividualRanking.UpdateIndividualRanking(v.ID, i.ToString(), icrList[i]);
+                    CustomersIndividualRanking.UpdateIndividualRanking(v.ID, i.ToString(), icrList[i],entities);
                 }
                 List<Vector> listV = Caculator.bubbleSort(result[i]);
                 ViewData[i.ToString()] = listV;

@@ -317,6 +317,13 @@
     <Compile Include="ViewModels\SYSUsersIndexViewModel.cs" />
     <Compile Include="ViewModels\SYSUsersViewModel.cs" />
     <Compile Include="CommonUtilities\Vector.cs" />
+    <Compile Include="Views\Shared\nullSite.Master.cs">
+      <DependentUpon>nullSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\nullSite.Master.designer.cs">
+      <DependentUpon>nullSite.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2010.3.1318\Black\editor.png" />
@@ -570,6 +577,7 @@
     <Content Include="Views\BSNLoanTerm\Add.aspx" />
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
+    <Content Include="Views\BSNMining\Cluster.aspx" />
     <Content Include="Views\BSNMining\Index.aspx" />
     <Content Include="Views\BSNMining\Map.ascx" />
     <Content Include="Views\BSNMining\Save.aspx" />
@@ -638,6 +646,7 @@
     <None Include="ReportDataSets\IndividualReportDataSet.xss">
       <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
     </None>
+    <Content Include="Views\Shared\nullSite.Master" />
     <Content Include="Report.sitemap" />
     <Content Include="Ranking.sitemap" />
     <Content Include="System.sitemap" />
