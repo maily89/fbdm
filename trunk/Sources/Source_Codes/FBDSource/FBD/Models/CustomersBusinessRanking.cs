@@ -233,6 +233,23 @@ namespace FBD.Models
             return temp <= 0 ? 0 : 1;
         }
 
+        public static string GetBranchByRankingID(int id)
+        {
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var ranking = entities.CustomersBusinessRanking
+                .Include("CustomersBusinesses")
+                .Include("CustomersBusinesses.SystemBranches").First(m => m.ID == id);
+                if (ranking.CustomersBusinesses == null || ranking.CustomersBusinesses.SystemBranches==null) return null;
+                return ranking.CustomersBusinesses.SystemBranches.BranchID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void LoadAll()
         {
             

@@ -15,6 +15,10 @@ namespace FBD.Controllers
         // TODO: check user ID
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<CustomersBusinessRanking> customerRankList = null;
             try
             {
@@ -45,6 +49,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Index(RNKBusinessIndex data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<CustomersBusinessRanking> model = null;
             try
             {
@@ -79,7 +87,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult AddStep1()
         {
-            //TODO: check branch
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new RNKPeriodViewModel();
             try
             {
@@ -101,7 +112,15 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult AddStep1(RNKPeriodViewModel data)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             if (data == null) return null;
+            if (!AccessManager.AllowUserToRankByBranch(CustomersBusinesses.GetBranchByCustomerID(data.CustomerID), Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new RNKPeriodViewModel();
             try
             {
@@ -163,8 +182,16 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Add(RNKBusinessRankingViewModel data,string SaveNext)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             int id;
             if (data == null) return null;
+            if (!AccessManager.AllowUserToRankByBranch(CustomersBusinesses.GetBranchByCustomerID(data.CustomerID), Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -232,6 +259,14 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult AddScore(List<RNKScaleRow> rknScaleRow,int rankID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(rankID), Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = rankID;
             return View(rknScaleRow);
         }
@@ -239,11 +274,27 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult SaveScore(List<RNKScaleRow> rknScaleRow,string SaveBack,string SaveNext,string Back,string rankID)
         {
-            ViewData["RankID"] = rankID;
-            if (Back != null) return View("AddScore", rknScaleRow);
 
             try
             {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(System.Convert.ToInt32(rankID)), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            try
+            {
+                ViewData["RankID"] = rankID;
+                if (Back != null) return View("AddScore", rknScaleRow);
+
                 FBDEntities entity = new FBDEntities();
                 int rankingID = 0;
 
@@ -276,6 +327,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult AddScoreCalculate(List<RNKScaleRow> rknScaleRow,string rankID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = rankID;
             if (rknScaleRow==null || rknScaleRow.Count<=0) return View(rknScaleRow);
 
@@ -305,6 +360,21 @@ namespace FBD.Controllers
         
         public ActionResult Ranking(int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             var model = new RNKRankFinal();
             try
             {
@@ -381,7 +451,22 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult AddFinancialScore(int id,string Edit)
         {
-            
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
             try
             {
                 ViewData["RankID"] = id;
@@ -407,7 +492,21 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult SaveFinancialScore(List<RNKFinancialRow> rnkFinancialRow,string Edit, string SaveBack, string SaveNext, string Back,string SaveRerank, int rankID)
         {
-
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(rankID), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             try
             {
                 ViewData["RankID"] = rankID.ToString();
@@ -468,6 +567,11 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult AddFinancialCalculate(List<RNKFinancialRow> rnkFinancialRow,string Edit, string rankID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+
             //return viewdata state
             ViewData["RankID"] = rankID;
             if(!string.IsNullOrEmpty(Edit)) ViewData["Edit"]=Edit;
@@ -492,6 +596,21 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult AddNonFinancialScore(int id,string Edit)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             try
             {
                 if(!string.IsNullOrEmpty(Edit)){
@@ -520,7 +639,21 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult SaveNonFinancialScore(List<RNKNonFinancialRow> rnkNonFinancialRow, string SaveBack, string SaveNext, string Back,string SaveRerank, int rankID,string Edit)
         {
-             
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(rankID), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             try
             {
                 ViewData["RankID"] = rankID.ToString();
@@ -580,6 +713,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult AddNonFinancialCalculate(List<RNKNonFinancialRow> rnkNonFinancialRow, string rankID,string Edit)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = rankID;
             if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
 
@@ -605,6 +742,21 @@ namespace FBD.Controllers
 
         public ActionResult EditInfo(int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             var ranking = CustomersBusinessRanking.SelectBusinessRankingByID(id);
             RNKBusinessRankingViewModel addModel = new RNKBusinessRankingViewModel();
 
@@ -647,6 +799,21 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult EditInfo(RNKBusinessRankingViewModel rknBusinessRankingViewModel,int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             int rankingID = id;
             if (rknBusinessRankingViewModel == null) return null;
             try
@@ -675,6 +842,21 @@ namespace FBD.Controllers
 
         public ActionResult EditScore(int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             ViewData["RankID"] = id.ToString();
             return View(CustomersBusinessScale.LoadAndAddScaleRow(id));
         }
@@ -682,6 +864,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult EditScoreCalculate(List<RNKScaleRow> rknScaleRow, string rankID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = rankID;
             if (rknScaleRow == null || rknScaleRow.Count <= 0) return View(rknScaleRow);
 
@@ -693,6 +879,21 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult EditScoreSave(List<RNKScaleRow> rnkScaleRow,string SaveBack,string SaveRerank,string Back,int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             try
             {
                 FBDEntities entity = new FBDEntities();
@@ -861,6 +1062,10 @@ namespace FBD.Controllers
         #region ViewDetail
         public ActionResult DetailGeneral(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 ViewData["RankID"] = id.ToString();
@@ -884,6 +1089,10 @@ namespace FBD.Controllers
         }
         public ActionResult DetailScale(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             try
             {
                 TempData["DetailView"] = "EditMode";
@@ -915,6 +1124,10 @@ namespace FBD.Controllers
         }
         public ActionResult DetailFinancial(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = id.ToString();
             try
             {
@@ -955,6 +1168,10 @@ namespace FBD.Controllers
 
         public ActionResult DetailNonFinancial(int id)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_VIEW, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             ViewData["RankID"] = id.ToString();
             try
             {
@@ -997,12 +1214,28 @@ namespace FBD.Controllers
         #region ViewCalculated
         public ActionResult EditScaleCalculate(int id)
         {
+
             return null;
         }
         #endregion
 
         public ActionResult Rerank(int id,string redirectAction)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             RNKRankFinal model = new RNKRankFinal();
             
             try
@@ -1024,6 +1257,21 @@ namespace FBD.Controllers
         }
         public ActionResult Delete(int id)
         {
+            try
+            {
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+                if (!AccessManager.AllowUserToRankByBranch(CustomersBusinessRanking.GetBranchByRankingID(id), Session[Constants.SESSION_USER_ID]))
+                {
+                    return RedirectToAction("Unauthorized", "SYSAuths");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
             try
             {
                 int result = CustomersBusinessRanking.DeleteBusinessRanking(id);
