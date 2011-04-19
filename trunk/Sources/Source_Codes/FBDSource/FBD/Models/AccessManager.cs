@@ -45,5 +45,35 @@ namespace FBD.Models
 
             return false;
         }
+
+        /// <summary>
+        /// The credit staff is allowed to rank a customer only in his branch
+        /// </summary>
+        /// <param name="customerBranchID">the branch of customer</param>
+        /// <param name="userID">credit staff</param>
+        /// <returns>true/false indicate allowing or not</returns>
+        public static bool AllowUserToRankByBranch(string customerBranchID, object userID)
+        {
+            if (userID == null || string.IsNullOrEmpty(customerBranchID))
+            {
+                return false;   
+            }
+
+            FBDEntities FBDModel = new FBDEntities();
+
+            var user = SystemUsers.SelectUserByID(userID.ToString());
+
+            if (user.SystemBranches == null)
+            {
+                return false;
+            }
+
+            if (user.SystemBranches.BranchID.Equals(customerBranchID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
