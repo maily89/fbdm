@@ -6,9 +6,15 @@ function CheckTotalFIProportion() {
 		    total=parseFloat(total)+parseFloat($("#ProportionRows_"+i.toString()+"__Proportion").val());
 		}
     }
-    if (total == 100) return "Total gets 100%";
-
-    return "Not enough. Total gets " + total.toString() + "%";
+    if (total == 100) {
+        alert("Total gets 100%");
+        return true;
+    }
+    else {
+        alert("Not equal. Total gets " + total.toString() + "%");
+        return false;
+    }
+    return false;
 }
 
 function CheckTotalNFIProportionByIndustry() {
@@ -21,9 +27,13 @@ function CheckTotalNFIProportionByIndustry() {
                 total = parseFloat(total) + parseFloat($("#ProportionRows_" + j.toString() + "__Proportion").val());
                 j++;
             }
-            if (total != 100) return "One or more leaf indexes do not get total equal their parent index";
+            if (total != 100) {
+                alert("One or more leaf indexes do not get total equal their parent index");
+                return false;
+            }
             i = j - 1;
         }
     }
-    return "Total gets fine";
+    alert("Total gets fine");
+    return true;
 }
