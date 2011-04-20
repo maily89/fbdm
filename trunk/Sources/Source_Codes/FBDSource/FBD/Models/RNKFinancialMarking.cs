@@ -149,7 +149,7 @@ namespace FBD.Models
             }
             indexScore.BusinessFinancialIndexReference.Load();
             var index=indexScore.BusinessFinancialIndex;
-            if (index == null || indexScore.BusinessFinancialIndex.LeafIndex)
+            if (index == null || !indexScore.BusinessFinancialIndex.LeafIndex)
             {
                 
                 return null;
