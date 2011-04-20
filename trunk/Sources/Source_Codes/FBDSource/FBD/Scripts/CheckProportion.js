@@ -7,7 +7,6 @@ function CheckTotalFIProportion() {
 		}
     }
     if (total == 100) {
-        alert("Total gets 100%");
         return true;
     }
     else {
@@ -34,6 +33,5 @@ function CheckTotalNFIProportionByIndustry() {
             i = j - 1;
         }
     }
-    alert("Total gets fine");
     return true;
 }
