@@ -41,7 +41,7 @@
 	<% using(Html.BeginForm("Rerank","RNKRankIndividual",new {id=ViewData["RankID"]})){ %>
 	<td>
 	<%=Html.Hidden("redirectAction","DetailGeneral") %>
-	<input type="submit" value="RE-CALCULATE RANK" />
+	<input type="submit" value="RE-CALCULATE RANK" onclick = "javascript:return confirm('Recalculate rank will overwrite current class rank. Do you want to continue?');"/>
 	</td>
 	<%} %>
 	</tr>

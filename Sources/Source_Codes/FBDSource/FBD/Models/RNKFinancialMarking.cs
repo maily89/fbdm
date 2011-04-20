@@ -131,6 +131,7 @@ namespace FBD.Models
                 {
                     BusinessFinancialIndexScore score = BusinessFinancialIndexScore.SelectBusinessFinancialIndexScoreByScoreID(entities, indexScore.ScoreID);
                     score.BusinessFinancialIndexLevelsReference.Load();
+                    if(score.BusinessFinancialIndexLevels!=null)
                     indexScore.CalculatedScore = score.BusinessFinancialIndexLevels.Score;
                     indexScore.Value = score.FixedValue;
                     return indexScore.CalculatedScore;
@@ -202,6 +203,7 @@ namespace FBD.Models
                     if (score >= item.FromValue && score <= item.ToValue)
                     {
                         item.BusinessFinancialIndexLevelsReference.Load();
+                        if(item.BusinessFinancialIndexLevels!=null)
                         indexScore.CalculatedScore = item.BusinessFinancialIndexLevels.Score;
                         return indexScore.CalculatedScore;
                     }

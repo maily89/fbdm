@@ -26,9 +26,11 @@ namespace FBD.ViewModels
             temp.CustomerName = customer.CustomerName;
 
             ranking.SystemReportingPeriodsReference.Load();
+            if(ranking.SystemReportingPeriods!=null) 
             temp.ReportingPeriod = ranking.SystemReportingPeriods.PeriodName;
 
             customer.SystemBranchesReference.Load();
+            if(customer.SystemBranches!=null)
             temp.Branch = customer.SystemBranches.BranchName;
 
             return temp;
@@ -49,6 +51,7 @@ namespace FBD.ViewModels
             temp.Date = ranking.Date.Value;
 
             customer.SystemBranchesReference.Load();
+            if(customer.SystemBranches!=null)
             temp.Branch = customer.SystemBranches.BranchName;
 
             return temp;

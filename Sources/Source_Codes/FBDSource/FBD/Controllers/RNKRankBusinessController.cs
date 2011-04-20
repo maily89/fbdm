@@ -154,7 +154,13 @@ namespace FBD.Controllers
                     RNKCustomerInfo temp = new RNKCustomerInfo();
                     temp.CIF = customer.CIF;
                     temp.CustomerName = customer.CustomerName;
-                    temp.ReportingPeriod = SystemReportingPeriods.SelectReportingPeriodByID(data.PeriodID).PeriodName;
+                    try
+                    {
+                        temp.ReportingPeriod = SystemReportingPeriods.SelectReportingPeriodByID(data.PeriodID).PeriodName;
+                    }
+                    catch
+                    {
+                    }
 
                     if (customer.SystemBranches != null)
                     temp.Branch = customer.SystemBranches.BranchName;
@@ -763,6 +769,7 @@ namespace FBD.Controllers
             ranking.DateModified = DateTime.Now;
 
             ranking.SystemReportingPeriodsReference.Load();
+            if(ranking.SystemReportingPeriods!=null)
             addModel.PeriodID = ranking.SystemReportingPeriods.PeriodID;
 
             ranking.BusinessIndustriesReference.Load();

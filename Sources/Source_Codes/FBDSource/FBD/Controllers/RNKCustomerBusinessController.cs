@@ -144,8 +144,12 @@ namespace FBD.Controllers
             {
                 model.SystemBranches = SystemBranches.SelectBranches();
                 model.CustomerBusiness = CustomersBusinesses.SelectBusinessByID(id);
-                model.CustomerBusiness.SystemBranchesReference.Load();
-                model.BranchID = model.CustomerBusiness.SystemBranches.BranchID;
+                if (model.CustomerBusiness != null)
+                {
+                    model.CustomerBusiness.SystemBranchesReference.Load();
+                    if(model.CustomerBusiness.SystemBranches!=null)
+                    model.BranchID = model.CustomerBusiness.SystemBranches.BranchID;
+                }
             }
             catch
             {
