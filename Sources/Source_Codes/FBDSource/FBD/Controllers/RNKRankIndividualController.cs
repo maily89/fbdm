@@ -88,6 +88,10 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Add()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             var model = new RNKIndividualViewModel();
             try
             {
@@ -745,7 +749,7 @@ namespace FBD.Controllers
         {
             try
             {
-                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_DELETE, Session[Constants.SESSION_USER_ID]))
                 {
                     return RedirectToAction("Unauthorized", "SYSAuths");
                 }

@@ -1259,7 +1259,7 @@ namespace FBD.Controllers
         {
             try
             {
-                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING, Session[Constants.SESSION_USER_ID]))
+                if (!AccessManager.AllowAccess(Constants.RIGHT_RANKING_DELETE, Session[Constants.SESSION_USER_ID]))
                 {
                     return RedirectToAction("Unauthorized", "SYSAuths");
                 }
