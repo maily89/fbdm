@@ -198,8 +198,11 @@ namespace FBD.Models
                     if (item.IndividualCollateralIndexLevels.LevelID.Equals(row.LevelID))
                     {
                         row.Checked = true;
-                        row.FromValue = (decimal)item.FromValue;
-                        row.ToValue = (decimal)item.ToValue;
+                        if (item.FixedValue == null)
+                        {
+                            row.FromValue = (decimal)item.FromValue;
+                            row.ToValue = (decimal)item.ToValue;
+                        }
                         row.FixedValue = item.FixedValue;
                         row.ScoreID = item.ScoreID;
 

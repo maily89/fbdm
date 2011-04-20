@@ -204,8 +204,12 @@ namespace FBD.Models
                     if (item.IndividualBasicIndexLevels.LevelID.Equals(row.LevelID))
                     {
                         row.Checked = true;
-                        row.FromValue = (decimal)item.FromValue;
-                        row.ToValue = (decimal)item.ToValue;
+                        //get from values and to values only when fixValue is null
+                        if (item.FixedValue == null)
+                        {
+                            row.FromValue = (decimal)item.FromValue;
+                            row.ToValue = (decimal)item.ToValue;
+                        }
                         row.FixedValue = item.FixedValue;
                         row.ScoreID = item.ScoreID;
 
