@@ -13,12 +13,12 @@ namespace FBD.Models
 
     public class RNKNonFinancialMarking
     {
-        private class ParentIndex
-        {
-            internal string ParentID ;
-            internal decimal TotalMark;
-            internal Nullable<decimal> Proportion;
-        }
+        //private class ParentIndex
+        //{
+        //    internal string ParentID;
+        //    internal decimal TotalMark;
+        //    internal Nullable<decimal> Proportion;
+        //}
         
         public static decimal CalculateNonFinancialScore(int rankingID,bool keepExistingLevel, FBDEntities entities)
         {

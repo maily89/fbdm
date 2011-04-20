@@ -67,7 +67,11 @@ namespace FBD.Models
         {
             indexScore.IndividualCollateralIndexReference.Load();
             var index=indexScore.IndividualCollateralIndex;
-
+            if (index == null)
+            {
+                indexScore.IndividualCollateralIndexLevels = null;
+                return null;
+            }
 
             List<IndividualCollateralIndexScore> scoreList = IndividualCollateralIndexScore.SelectScoreByCollateral(entities,index.IndexID);
 

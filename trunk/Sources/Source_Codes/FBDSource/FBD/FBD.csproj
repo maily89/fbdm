@@ -612,6 +612,7 @@
     <Content Include="Views\RNKCustomerBusiness\Add.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Edit.aspx" />
     <Content Include="Views\RNKCustomerBusiness\Index.aspx" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="CodeTemplates\AddController\Controller.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>

@@ -135,8 +135,12 @@ namespace FBD.Controllers
             {
                 model.SystemBranches = SystemBranches.SelectBranches();
                 model.CustomerIndividual = CustomersIndividuals.SelectIndividualByID(id);
-                model.CustomerIndividual.SystemBranchesReference.Load();
-                model.BranchID = model.CustomerIndividual.SystemBranches.BranchID;
+                if (model.CustomerIndividual != null)
+                {
+                    model.CustomerIndividual.SystemBranchesReference.Load();
+                    if(model.CustomerIndividual.SystemBranches!=null)
+                    model.BranchID = model.CustomerIndividual.SystemBranches.BranchID;
+                }
             }
             catch
             {

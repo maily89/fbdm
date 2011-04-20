@@ -137,8 +137,14 @@ namespace FBD.Models
             if (scale == null || string.IsNullOrEmpty(industryID)) return null;
             // get criteria and industry rankingID
             scale.BusinessScaleCriteriaReference.Load();
-            string criteriaID = scale.BusinessScaleCriteria.CriteriaID;
-
+            string criteriaID=null;
+            if (scale.BusinessScaleCriteria != null)
+                criteriaID = scale.BusinessScaleCriteria.CriteriaID;
+            else
+            {
+                scale.Score = null;
+                return null;
+            }
             //scale.CustomersBusinessRanking.BusinessIndustriesReference.Load();
             //string industryID = scale.CustomersBusinessRanking.BusinessIndustries.IndustryID;
 
