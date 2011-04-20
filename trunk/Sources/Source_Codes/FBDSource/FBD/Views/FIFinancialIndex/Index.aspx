@@ -61,7 +61,7 @@
             <td>
                 <%= Html.Encode(item.ValueType) %>
             </td>
-            <td onmousemove="alert('zzz')">
+            <td>
                 <%= Html.Encode(item.LeafIndex) %>
             </td>
         </tr>
