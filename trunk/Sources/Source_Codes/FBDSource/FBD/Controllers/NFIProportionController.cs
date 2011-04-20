@@ -136,7 +136,8 @@ namespace FBD.Controllers
                             }
                             catch (Exception)
                             {
-                                rowForSavingProportion.Proportion = 0;
+                                throw new Exception();
+                                //rowForSavingProportion.Proportion = 0;
                             }
                         }
 
@@ -315,7 +316,8 @@ namespace FBD.Controllers
                             }
                             catch (Exception)
                             {
-                                rowForSavingProportion.Proportion = 0;
+                                throw new Exception();
+                                //rowForSavingProportion.Proportion = 0;
                             }
                         }
 

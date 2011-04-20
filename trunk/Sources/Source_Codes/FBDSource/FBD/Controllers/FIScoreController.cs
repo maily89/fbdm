@@ -128,7 +128,8 @@ namespace FBD.Controllers
                         }
                         catch (Exception)
                         {
-                            rowForSavingScore.FromValue = 0;
+                            throw new Exception();
+                            //rowForSavingScore.FromValue = 0;
                         }
 
                         try
@@ -137,7 +138,8 @@ namespace FBD.Controllers
                         }
                         catch (Exception)
                         {
-                            rowForSavingScore.ToValue = 0;
+                            throw new Exception();
+                            //rowForSavingScore.ToValue = 0;
                         }
 
                         rowForSavingScore.FixedValue = formCollection["ScoreRows[" + i + "].FixedValue"].ToString();
