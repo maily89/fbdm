@@ -407,6 +407,8 @@ namespace FBD.Controllers
             ranking.BusinessRanksReference.Load();
             ranking.CustomersBusinessScale.Load();
             ranking.BusinessIndustriesReference.Load();
+            //load cluster Rank
+            ranking.BusinessClusterRanksReference.Load();
 
 
             if (ranking.BusinessScales != null)
@@ -422,8 +424,8 @@ namespace FBD.Controllers
 
             model.FinancialResult = ranking.FinancialScore != null ? ranking.FinancialScore.Value : 0;
             model.NonFinancialResult = ranking.NonFinancialScore != null ? ranking.NonFinancialScore.Value : 0;
-
-
+            //add clusterRank to model-chinhPLQ
+            model.ClusterRank = ranking.BusinessClusterRanks != null ? ranking.BusinessClusterRanks.Rank : null;
             try
             {
                 model.FinancialProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_FINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
@@ -1294,6 +1296,35 @@ namespace FBD.Controllers
             catch (Exception)
             {
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_DELETE, Constants.CUSTOMER_BUSINESS_RANKING);
+                return RedirectToAction("Index");
+            }
+
+        }
+        /// <summary>
+        /// this code using clustering for a customer 
+        /// </summary>
+        /// <param name="id"> cusomer ID</param>
+        /// <returns></returns>
+        public ActionResult ClusterOneCustomer(int ID)
+        {
+            //chua tinh den cac exception co the xay ra, code nay su dung trong dieu kien ly tuong.
+            double epsilon = Constants.epsilon;
+            FBDEntities entities = new FBDEntities();
+            try
+            {
+
+                CustomersBusinessRanking customer = CustomersBusinessRanking.SelectBusinessRankingByID(ID);
+                customer.SystemReportingPeriodsReference.Load();
+                if (customer.SystemReportingPeriods ==null)
+                    throw new Exception();
+                string periodID = customer.SystemReportingPeriods.PeriodID;
+                CustomersBusinessRanking.cluster(customer, epsilon, periodID, entities);
+
+                return RedirectToAction("ReRank", new { ID = ID, redirectAction = "DetailNonFinancial" });
+            }
+            catch (Exception)
+            {
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_UPDATE_CLUSTER, Constants.CUSTOMER_BUSINESS_RANKING);
                 return RedirectToAction("Index");
             }
 

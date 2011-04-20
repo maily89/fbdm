@@ -63,8 +63,8 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
                                                              .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
-                                                             .Include(Constants.TABLE_BUSINESS_RANKS)
-                                                             .Where(cbr =>cbr.BusinessRanks!=null && RankID.Equals(cbr.BusinessRanks.RankID)
+                                                             .Include(Constants.TABLE_BUSINESS_CLUSTER_RANKS)
+                                                             .Where(cbr =>cbr.BusinessClusterRanks!=null && RankID.Equals(cbr.BusinessClusterRanks.RankID)
                                                              && cbr.SystemReportingPeriods != null && periodID.Equals(cbr.SystemReportingPeriods.PeriodID))
                                                              .ToList();
             List<Vector> vList = new List<Vector>();
@@ -88,6 +88,22 @@ namespace FBD.Models
             if (id <= 0) return null;
             FBDEntities entities = new FBDEntities();
             var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+
+            return Business;
+        }
+
+        /// <summary>
+        /// return the Business specified by id with period report object
+        /// </summary>
+        /// <param name="id">id of the Business</param>
+        /// <returns>Business</returns>
+        public static CustomersBusinessRanking SelectBusinessRankingWithPRByID(int id)
+        {
+            if (id <= 0) return null;
+            FBDEntities entities = new FBDEntities();
+            var Business = entities.CustomersBusinessRanking
+                                   .Include("SystemReportingPeriods")
+                                   .First(i => i.ID == id);
 
             return Business;
         }
@@ -360,9 +376,8 @@ namespace FBD.Models
         /// </summary>
         /// <param name="cbr">customerbusinessranking need to be cluster</param>
         /// <param name="epsilon">difference distance suggest by user</param>
-        public void cluster(CustomersBusinessRanking cbr, double epsilon,string periodID)
+        public static void cluster(CustomersBusinessRanking cbr, double epsilon,string periodID,FBDEntities entity )
         {
-            FBDEntities entity = new FBDEntities();
             //Get all businessclusterrank
             List<BusinessClusterRanks> bcrList = BusinessClusterRanks.SelectClusterRank(entity);
             List<Vector> vList = new List<Vector>();
