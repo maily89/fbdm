@@ -184,7 +184,7 @@ namespace FBD.CommonUtilities
         // SCORE ERRORS
         public const string ERR_UPDATE_SCORE = "Error when updating to the level {0}. Try again later";
         public const string ERR_UPDATE_SCORE_COMMON = "Error when updating score. Try again later";
-
+        public const string ERR_UPDATE_CLUSTER = "Error when updating cluster rank. Try again later";
         // AUTHENTICATION ERRORS
         public const string ERR_LOGIN_MATCH = "The username and password do not match. Please input again";
         public const string ERR_LOGIN_INPUT = "Unable to login at this time. Please come back a bit later";
@@ -241,7 +241,7 @@ namespace FBD.CommonUtilities
         public static double[] level =  { 0,25, 32, 41 ,48,55,63,72,81,90,100};
         public static int NumberOfBsnCentroid = 10;
         public static int NumberOfInvCentroid = 6;
-
+        public static double epsilon = 1;
         // RANKING STRUCTURE
         public const string RNK_STRUCTURE_AUDITED = "1";
         public const string RNK_STRUCTURE_NONAUDITED = "0";

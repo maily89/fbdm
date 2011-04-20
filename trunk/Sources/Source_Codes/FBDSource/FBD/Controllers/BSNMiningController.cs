@@ -134,10 +134,6 @@ namespace FBD.Controllers
             else
                 return RedirectToAction("Cluster");
         }
-        public ActionResult LoadPartial()
-        {
-            return PartialView("Map");
-        }
-  
+       
     }
 }

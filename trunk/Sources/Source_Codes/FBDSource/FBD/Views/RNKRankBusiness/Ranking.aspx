@@ -42,7 +42,7 @@
     <b>
     Total Score<span class="brownText"><%= Html.Encode(String.Format("{0:F}", Model.TotalScore)) %></span><br />
     Class Rank<span class="brownText"><%= Html.Encode(Model.ClassRank) %></span><br />
-    Cluster Rank<span class="brownText"><%= Html.Encode(Model.ClusterRank) %></span><input type="button" value="Calculate Cluster Rank" /><br />
+    Cluster Rank<span class="brownText"><%= Html.Encode(Model.ClusterRank) %></span><input type="button" value="Calculate Cluster Rank" onclick="window.location.href='<%= Url.Action("ClusterOneCustomer", new { id = ViewData["RankID"] }) %>';"/><br />
     </b>    
     <hr />
     <%if (ViewData["Edit"]==null){ %>

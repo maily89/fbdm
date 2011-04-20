@@ -16,7 +16,7 @@ namespace FBD.CommonUtilities
         public int ID;
         //customerName in table CustomerBusinessRank
         public string CustomerName;
-        //RankID of a customer in table CustomerBusinessRank
+        //CLuster RankID of a customer in table CustomerBusinessRank
         public int RankID;
         //DateModified in table customerBusinessRank
         public DateTime modifiedDate;
@@ -41,10 +41,11 @@ namespace FBD.CommonUtilities
             this.x = Double.Parse(cbr.FinancialScore.ToString()) + Double.Parse(cbr.NonFinancialScore.ToString());
             this.y = 0;//Double.Parse(cbr.NonFinancialScore.ToString());
             this.ID = int.Parse(cbr.ID.ToString());
-            this.CustomerName = cbr.CustomersBusinesses.CustomerName.ToString();
-            if (cbr.BusinessRanks != null)
+            if(cbr.CustomersBusinesses!=null)
+                this.CustomerName = cbr.CustomersBusinesses.CustomerName.ToString();
+            if (cbr.BusinessClusterRanks != null)
             {
-                this.RankID = int.Parse(cbr.BusinessRanks.RankID.ToString());
+                this.RankID = int.Parse(cbr.BusinessClusterRanks.RankID.ToString());
             }
             if (cbr.DateModified != null)
             {
