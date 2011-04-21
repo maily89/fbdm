@@ -83,6 +83,7 @@
                     
                     <td>
                         <input type="submit" value="Save" />
+                        <input type='button' onclick="window.location.href='<%= Url.Action("LoginSuccess") %>';" value="Cancel" />
                     </td>
                 </tr>
             </table>
