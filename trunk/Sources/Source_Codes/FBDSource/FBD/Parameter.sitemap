@@ -5,18 +5,19 @@
       <siteMapNode title="Business Industries" controller="BSNIndustry" action="Index" />
       <siteMapNode title="Business Lines" controller="BSNLine" action="Index" />
       <siteMapNode title="Business Types" controller="BSNType" action="Index" />
+      <siteMapNode title="Business LoanTerm" controller="BSNLoanTerm" action="Index" />
       <siteMapNode title="Business Scales" >
         <siteMapNode title="Business Scale Criteria" controller="BSNScaleCriteria" action="Index" />
         <siteMapNode title="Business Scale Scoring" controller="BSNScaleScore" action="Index" />
         <siteMapNode title="Business Scale Types" controller="BSNScale" action="Index" />
       </siteMapNode>
-      <siteMapNode title="Financial Parameterss" siteMapFile="s">
+      <siteMapNode title="Financial Parameters" siteMapFile="s">
         <siteMapNode title="Financial Index" controller="FIFinancialIndex" action="Index" />
         <siteMapNode title="Financial Index Scoring" controller="FIScore" action="Index" />
         <siteMapNode title="Financial Index Proportion" controller="FIProportion" action="Index" />
         <siteMapNode title="Financial Index Level" controller="FILevels" action="Index" />
       </siteMapNode>
-      <siteMapNode title="Non-Financial Parameterss">
+      <siteMapNode title="Non-Financial Parameters">
         <siteMapNode title="Non-Financial Index" controller="NFINonFinancialIndex" action="Index" />
         <siteMapNode title="Non-Financial Index Scoring" controller="NFIScore" action="Index" />
         <siteMapNode title="Non-Financial Index Proportion By Industry" controller="NFIProportion" action="IndexByIndustry" />

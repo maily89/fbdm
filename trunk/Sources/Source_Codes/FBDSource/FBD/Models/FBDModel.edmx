@@ -1039,9 +1039,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomerBusinesses_SystemBranches_Delete">
-          <End Role="SystemBranches" Type="FBDModel.Store.SystemBranches" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemBranches" Type="FBDModel.Store.SystemBranches" Multiplicity="0..1" />
           <End Role="CustomersBusinesses" Type="FBDModel.Store.CustomersBusinesses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SystemBranches">
@@ -1137,9 +1135,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessClusterRanks_Delete">
-          <End Role="BusinessClusterRanks" Type="FBDModel.Store.BusinessClusterRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessClusterRanks" Type="FBDModel.Store.BusinessClusterRanks" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BusinessClusterRanks">
@@ -1151,9 +1147,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessIndustries" Type="FBDModel.Store.BusinessIndustries" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BusinessIndustries">
@@ -1165,9 +1159,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessRanks_Delete">
-          <End Role="BusinessRanks" Type="FBDModel.Store.BusinessRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessRanks" Type="FBDModel.Store.BusinessRanks" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BusinessRanks">
@@ -1179,9 +1171,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessScales_Delete">
-          <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessScales" Type="FBDModel.Store.BusinessScales" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BusinessScales">
@@ -1193,9 +1183,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessTypes_Delete">
-          <End Role="BusinessTypes" Type="FBDModel.Store.BusinessTypes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessTypes" Type="FBDModel.Store.BusinessTypes" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BusinessTypes">
@@ -1221,9 +1209,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_CustomersLoanTerm_Delete">
-          <End Role="CustomersLoanTerm" Type="FBDModel.Store.CustomersLoanTerm" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CustomersLoanTerm" Type="FBDModel.Store.CustomersLoanTerm" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CustomersLoanTerm">
@@ -1235,9 +1221,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_SystemCustomerTypes_Delete">
-          <End Role="SystemCustomerTypes" Type="FBDModel.Store.SystemCustomerTypes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemCustomerTypes" Type="FBDModel.Store.SystemCustomerTypes" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SystemCustomerTypes">
@@ -1249,9 +1233,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersBusinessRanking_SystemReportingPeriods_Delete">
-          <End Role="SystemReportingPeriods" Type="FBDModel.Store.SystemReportingPeriods" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemReportingPeriods" Type="FBDModel.Store.SystemReportingPeriods" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.Store.CustomersBusinessRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SystemReportingPeriods">
@@ -1389,9 +1371,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersIndividualRanking_CustomersLoanTerm_Delete">
-          <End Role="CustomersLoanTerm" Type="FBDModel.Store.CustomersLoanTerm" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CustomersLoanTerm" Type="FBDModel.Store.CustomersLoanTerm" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CustomersLoanTerm">
@@ -1403,9 +1383,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualBorrowingPurposes_Delete">
-          <End Role="IndividualBorrowingPurposes" Type="FBDModel.Store.IndividualBorrowingPurposes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualBorrowingPurposes" Type="FBDModel.Store.IndividualBorrowingPurposes" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IndividualBorrowingPurposes">
@@ -1417,9 +1395,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualClusterRanks_Delete">
-          <End Role="IndividualClusterRanks" Type="FBDModel.Store.IndividualClusterRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualClusterRanks" Type="FBDModel.Store.IndividualClusterRanks" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IndividualClusterRanks">
@@ -1431,9 +1407,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualSummaryRanks_Delete">
-          <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualSummaryRanks" Type="FBDModel.Store.IndividualSummaryRanks" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.Store.CustomersIndividualRanking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IndividualSummaryRanks">
@@ -1445,9 +1419,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomersIndividuals_SystemBranches_Delete">
-          <End Role="SystemBranches" Type="FBDModel.Store.SystemBranches" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemBranches" Type="FBDModel.Store.SystemBranches" Multiplicity="0..1" />
           <End Role="CustomersIndividuals" Type="FBDModel.Store.CustomersIndividuals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SystemBranches">
@@ -3405,9 +3377,7 @@
           <NavigationProperty Name="SystemUserGroups" Relationship="FBDModel.SystemUsers_SystemUserGroups_Delete" FromRole="SystemUsers" ToRole="SystemUserGroups" />
         </EntityType>
         <Association Name="CustomersBusinessRanking_BusinessClusterRanks_Delete">
-          <End Role="BusinessClusterRanks" Type="FBDModel.BusinessClusterRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessClusterRanks" Type="FBDModel.BusinessClusterRanks" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="BusinessFinancialIndexProportion_BusinessFinancialIndex_Delete">
@@ -3489,9 +3459,7 @@
           <End Role="BusinessScaleScore" Type="FBDModel.BusinessScaleScore" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessIndustries_Delete">
-          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessIndustries" Type="FBDModel.BusinessIndustries" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="BusinessNFIProportionByIndustry_BusinessNonFinancialIndex_Delete">
@@ -3549,9 +3517,7 @@
           <End Role="CustomersBusinessNonFinancialIndex" Type="FBDModel.CustomersBusinessNonFinancialIndex" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessRanks_Delete">
-          <End Role="BusinessRanks" Type="FBDModel.BusinessRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessRanks" Type="FBDModel.BusinessRanks" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="BusinessScaleScore_BusinessScaleCriteria_Delete">
@@ -3567,21 +3533,15 @@
           <End Role="CustomersBusinessScale" Type="FBDModel.CustomersBusinessScale" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessScales_Delete">
-          <End Role="BusinessScales" Type="FBDModel.BusinessScales" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessScales" Type="FBDModel.BusinessScales" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_BusinessTypes_Delete">
-          <End Role="BusinessTypes" Type="FBDModel.BusinessTypes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BusinessTypes" Type="FBDModel.BusinessTypes" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomerBusinesses_SystemBranches_Delete">
-          <End Role="SystemBranches" Type="FBDModel.SystemBranches" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemBranches" Type="FBDModel.SystemBranches" Multiplicity="0..1" />
           <End Role="CustomersBusinesses" Type="FBDModel.CustomersBusinesses" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_CustomersBusinesses_Delete">
@@ -3603,21 +3563,15 @@
           <End Role="CustomersBusinessNonFinancialIndex" Type="FBDModel.CustomersBusinessNonFinancialIndex" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_CustomersLoanTerm_Delete">
-          <End Role="CustomersLoanTerm" Type="FBDModel.CustomersLoanTerm" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CustomersLoanTerm" Type="FBDModel.CustomersLoanTerm" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_SystemCustomerTypes_Delete">
-          <End Role="SystemCustomerTypes" Type="FBDModel.SystemCustomerTypes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemCustomerTypes" Type="FBDModel.SystemCustomerTypes" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessRanking_SystemReportingPeriods_Delete">
-          <End Role="SystemReportingPeriods" Type="FBDModel.SystemReportingPeriods" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemReportingPeriods" Type="FBDModel.SystemReportingPeriods" Multiplicity="0..1" />
           <End Role="CustomersBusinessRanking" Type="FBDModel.CustomersBusinessRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersBusinessScale_CustomersBusinessRanking_Delete">
@@ -3669,33 +3623,23 @@
           <End Role="CustomersIndividualRanking" Type="FBDModel.CustomersIndividualRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersIndividualRanking_CustomersLoanTerm_Delete">
-          <End Role="CustomersLoanTerm" Type="FBDModel.CustomersLoanTerm" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CustomersLoanTerm" Type="FBDModel.CustomersLoanTerm" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.CustomersIndividualRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualBorrowingPurposes_Delete">
-          <End Role="IndividualBorrowingPurposes" Type="FBDModel.IndividualBorrowingPurposes" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualBorrowingPurposes" Type="FBDModel.IndividualBorrowingPurposes" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.CustomersIndividualRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualClusterRanks_Delete">
-          <End Role="IndividualClusterRanks" Type="FBDModel.IndividualClusterRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualClusterRanks" Type="FBDModel.IndividualClusterRanks" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.CustomersIndividualRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersIndividualRanking_IndividualSummaryRanks_Delete">
-          <End Role="IndividualSummaryRanks" Type="FBDModel.IndividualSummaryRanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="IndividualSummaryRanks" Type="FBDModel.IndividualSummaryRanks" Multiplicity="0..1" />
           <End Role="CustomersIndividualRanking" Type="FBDModel.CustomersIndividualRanking" Multiplicity="*" />
         </Association>
         <Association Name="CustomersIndividuals_SystemBranches_Delete">
-          <End Role="SystemBranches" Type="FBDModel.SystemBranches" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SystemBranches" Type="FBDModel.SystemBranches" Multiplicity="0..1" />
           <End Role="CustomersIndividuals" Type="FBDModel.CustomersIndividuals" Multiplicity="*" />
         </Association>
         <Association Name="IndividualBasicIndexProportion_IndividualBasicIndex_Delete">
@@ -4797,7 +4741,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="FBDModel">
-        <EntityTypeShape EntityType="FBDModel.BusinessClusterRanks" Width="1.5" PointX="6.75" PointY="21.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FBDModel.BusinessClusterRanks" Width="1.5" PointX="6.375" PointY="21.5" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndex" Width="1.5" PointX="0.75" PointY="18" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexLevels" Width="1.5" PointX="0.75" PointY="5.5" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.BusinessFinancialIndexProportion" Width="1.5" PointX="3" PointY="11.75" Height="1.7879850260416674" IsExpanded="true" />
@@ -4846,10 +4790,10 @@
         <EntityTypeShape EntityType="FBDModel.SystemUserGroupsRights" Width="1.5" PointX="9.75" PointY="38.5" Height="1.595683593749996" IsExpanded="true" />
         <EntityTypeShape EntityType="FBDModel.SystemUsers" Width="1.5" PointX="9.75" PointY="28.125" Height="2.3648893229166674" IsExpanded="true" />
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_BusinessClusterRanks_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.90625" PointY="21.5" />
-          <ConnectorPoint PointX="7.90625" PointY="14.1487939453125" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="14.1487939453125" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="14.1487939453125" />
+          <ConnectorPoint PointX="7.71875" PointY="21.5" />
+          <ConnectorPoint PointX="7.71875" PointY="14.1487939453125" />
+          <ConnectorPoint PointX="7.901041666666667" PointY="14.1487939453125" />
+          <ConnectorPoint PointX="8.0677083333333339" PointY="14.1487939453125" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="14.148793945312498" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="14.1487939453125" />
           <ConnectorPoint PointX="9" PointY="14.1487939453125" /></AssociationConnector>
@@ -4879,19 +4823,19 @@
           <ConnectorPoint PointX="5.833333333333333" PointY="17.25" />
           <ConnectorPoint PointX="6.666666666666667" PointY="17.25" />
           <ConnectorPoint PointX="6.833333333333333" PointY="17.25" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="17.25" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="17.25" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="17.25" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="17.25" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="17.25" />
           <ConnectorPoint PointX="8.4583333333333339" PointY="17.25" />
           <ConnectorPoint PointX="8.4791666666666661" PointY="17.25" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="17.25" />
           <ConnectorPoint PointX="8.75" PointY="17.25" />
-          <ConnectorPoint PointX="8.75" PointY="19" />
-          <ConnectorPoint PointX="8.7916666666666661" PointY="19" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="19" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="19" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="19" />
-          <ConnectorPoint PointX="11" PointY="19" />
+          <ConnectorPoint PointX="8.75" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="8.9583333333333339" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="10.791666666666666" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="11" PointY="18.499410807291667" />
           <ConnectorPoint PointX="11" PointY="17.375" />
           <ConnectorPoint PointX="11.541667166666665" PointY="17.375" />
           <ConnectorPoint PointX="11.708333833333333" PointY="17.375" />
@@ -4980,10 +4924,10 @@
           <ConnectorPoint PointX="2.9583333333333335" PointY="14.418146972656249" />
           <ConnectorPoint PointX="5.666666666666667" PointY="14.418146972656249" />
           <ConnectorPoint PointX="5.833333333333333" PointY="14.418146972656249" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="14.418146972656249" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="14.418146972656249" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="14.418146972656249" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="14.418146972656249" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="14.418146972656249" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="14.418146972656249" />
+          <ConnectorPoint PointX="7.901041666666667" PointY="14.418146972656249" />
+          <ConnectorPoint PointX="8.0677083333333339" PointY="14.418146972656249" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="14.418146972656247" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="14.418146972656249" />
           <ConnectorPoint PointX="9" PointY="14.418146972656249" /></AssociationConnector>
@@ -4998,31 +4942,33 @@
           <ConnectorPoint PointX="5.333333333333333" PointY="30.90625" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="30.906249999999996" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="30.90625" />
-          <ConnectorPoint PointX="9.6666666666666661" PointY="30.90625" />
-          <ConnectorPoint PointX="9.8333333333333339" PointY="30.90625" />
-          <ConnectorPoint PointX="11.385416666666666" PointY="30.90625" />
-          <ConnectorPoint PointX="11.708333333333334" PointY="30.90625" />
+          <ConnectorPoint PointX="11.447916666666666" PointY="30.90625" />
+          <ConnectorPoint PointX="11.614583333333334" PointY="30.90625" />
           <ConnectorPoint PointX="12" PointY="30.90625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionByType_BusinessTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="22.730286458333332" />
-          <ConnectorPoint PointX="4.5" PointY="23.25" />
-          <ConnectorPoint PointX="4.7916661666666664" PointY="23.25" />
-          <ConnectorPoint PointX="4.9583328333333325" PointY="23.25" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="23.25" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="23.25" />
-          <ConnectorPoint PointX="6.166666666666667" PointY="23.25" />
-          <ConnectorPoint PointX="6.333333333333333" PointY="23.25" />
-          <ConnectorPoint PointX="6.5" PointY="23.25" />
-          <ConnectorPoint PointX="6.5" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="8.2916666666666661" PointY="30.75" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="9.6666666666666661" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="9.8333333333333339" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="11.385416666666666" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="11.552083333333334" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="11.625" PointY="30.750000000000004" />
-          <ConnectorPoint PointX="11.625" PointY="31.753369513020836" />
-          <ConnectorPoint PointX="12" PointY="31.753369513020836" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="21.740143229166666" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="21.740143229166666" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="21.740143229166666" />
+          <ConnectorPoint PointX="6.125" PointY="21.740143229166666" />
+          <ConnectorPoint PointX="6.125" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="6.135416666666667" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="6.302083333333333" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.0338541666666661" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.2005208333333339" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.7708333333333339" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="8.9583333333333339" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="10.791666666666666" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.276039166666665" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.442705833333333" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.447916666666666" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.614583333333334" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.75" PointY="23.730286458333332" />
+          <ConnectorPoint PointX="11.75" PointY="30.375" />
+          <ConnectorPoint PointX="12.75" PointY="30.375" />
+          <ConnectorPoint PointX="12.75" PointY="30.75" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNFIProportionCalculated_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="5.25" PointY="25.067047526041666" />
           <ConnectorPoint PointX="5.625" PointY="25.067047526041666" />
@@ -5037,20 +4983,20 @@
           <ConnectorPoint PointX="5.833333333333333" PointY="16.569235026041667" />
           <ConnectorPoint PointX="6" PointY="16.569235026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.BusinessNonFinancialIndexScore_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="24.28125" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="24.28125" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="24.28125" />
-          <ConnectorPoint PointX="6.25" PointY="24.28125" />
-          <ConnectorPoint PointX="6.25" PointY="19.864889322916667" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="24.396393229166666" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="24.396393229166666" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="24.396393229166666" />
+          <ConnectorPoint PointX="6.21875" PointY="24.396393229166666" />
+          <ConnectorPoint PointX="6.21875" PointY="19.864889322916667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessNonFinancialIndex_BusinessNonFinancialIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.8749994999999995" PointY="23.5" />
-          <ConnectorPoint PointX="4.8749994999999995" PointY="22.980286458333332" />
+          <ConnectorPoint PointX="4.5" PointY="23.5" />
+          <ConnectorPoint PointX="4.5" PointY="22.980286458333332" />
           <ConnectorPoint PointX="5.541666666666667" PointY="22.980286458333332" />
           <ConnectorPoint PointX="5.708333333333333" PointY="22.980286458333332" />
           <ConnectorPoint PointX="5.75" PointY="22.980286458333332" />
           <ConnectorPoint PointX="5.75" PointY="13.922587890625" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="13.922587890625" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="13.922587890625" />
+          <ConnectorPoint PointX="7.901041666666667" PointY="13.922587890625" />
+          <ConnectorPoint PointX="8.0677083333333339" PointY="13.922587890625" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="13.922587890624998" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="13.922587890625" />
           <ConnectorPoint PointX="8.75" PointY="13.922587890625" />
@@ -5068,8 +5014,10 @@
           <ConnectorPoint PointX="8.625" PointY="18.682444661458334" />
           <ConnectorPoint PointX="8.4583333333333339" PointY="18.682444661458334" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="18.682444661458334" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="18.682444661458334" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="18.682444661458334" />
+          <ConnectorPoint PointX="8.2005208333333339" PointY="18.682444661458334" />
+          <ConnectorPoint PointX="8.0338541666666661" PointY="18.682444661458334" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="18.682444661458334" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="18.682444661458334" />
           <ConnectorPoint PointX="7.5" PointY="18.682444661458334" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessNonFinancialIndex_BusinessNonFinancialIndexLevels_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="10.643992513020834" />
@@ -5098,8 +5046,6 @@
           <ConnectorPoint PointX="8.6458333333333339" PointY="7.0379850260416674" />
           <ConnectorPoint PointX="10.75" PointY="7.0379850260416674" />
           <ConnectorPoint PointX="10.75" PointY="17" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="17" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="17" />
           <ConnectorPoint PointX="11.625000499999999" PointY="17" />
           <ConnectorPoint PointX="11.625000499999999" PointY="17.625" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_BusinessScales_Delete" ManuallyRouted="false">
@@ -5110,8 +5056,8 @@
           <ConnectorPoint PointX="2.9583333333333335" PointY="11.182190755208332" />
           <ConnectorPoint PointX="4.822916666666667" PointY="11.182190755208332" />
           <ConnectorPoint PointX="4.989583333333333" PointY="11.182190755208332" />
-          <ConnectorPoint PointX="7.994791666666667" PointY="11.182190755208332" />
-          <ConnectorPoint PointX="8.1614583333333339" PointY="11.182190755208332" />
+          <ConnectorPoint PointX="7.901041666666667" PointY="11.182190755208332" />
+          <ConnectorPoint PointX="8.0677083333333339" PointY="11.182190755208332" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="11.18219075520833" />
           <ConnectorPoint PointX="8.7083333333333339" PointY="11.182190755208332" />
           <ConnectorPoint PointX="8.75" PointY="11.182190755208332" />
@@ -5125,8 +5071,8 @@
           <ConnectorPoint PointX="5.833333333333333" PointY="17.052643229166666" />
           <ConnectorPoint PointX="6.666666666666667" PointY="17.052643229166666" />
           <ConnectorPoint PointX="6.833333333333333" PointY="17.052643229166666" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="17.052643229166666" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="17.052643229166666" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="17.052643229166666" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="17.052643229166666" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="17.052643229166666" />
           <ConnectorPoint PointX="8.4583333333333339" PointY="17.052643229166666" />
           <ConnectorPoint PointX="8.4791666666666661" PointY="17.052643229166666" />
@@ -5136,8 +5082,6 @@
           <ConnectorPoint PointX="9" PointY="17.052643229166666" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomerBusinesses_SystemBranches_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="29.365143229166666" />
-          <ConnectorPoint PointX="6.416666666666667" PointY="29.365143229166666" />
-          <ConnectorPoint PointX="6.583333333333333" PointY="29.365143229166666" />
           <ConnectorPoint PointX="6.75" PointY="29.365143229166666" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_CustomersBusinesses_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="29.365143229166666" />
@@ -5168,8 +5112,8 @@
           <ConnectorPoint PointX="8.9583333333333339" PointY="16.458984607747396" />
           <ConnectorPoint PointX="9" PointY="16.458984607747396" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_SystemCustomerTypes_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.078125" PointY="9.22068359375" />
-          <ConnectorPoint PointX="8.078125" PointY="16.82896234375" />
+          <ConnectorPoint PointX="7.984375" PointY="9.22068359375" />
+          <ConnectorPoint PointX="7.984375" PointY="16.82896234375" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="16.82896234375" />
           <ConnectorPoint PointX="8.4583333333333339" PointY="16.82896234375" />
           <ConnectorPoint PointX="8.4791666666666661" PointY="16.82896234375" />
@@ -5178,12 +5122,13 @@
           <ConnectorPoint PointX="8.9583333333333339" PointY="16.82896234375" />
           <ConnectorPoint PointX="9" PointY="16.82896234375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessRanking_SystemReportingPeriods_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="26.2112939453125" />
-          <ConnectorPoint PointX="8.2916666666666661" PointY="26.2112939453125" />
-          <ConnectorPoint PointX="8.7708333333333339" PointY="26.2112939453125" />
-          <ConnectorPoint PointX="8.8125" PointY="26.2112939453125" />
-          <ConnectorPoint PointX="8.8125" PointY="17.749704903645835" />
-          <ConnectorPoint PointX="9" PointY="17.749704903645835" /></AssociationConnector>
+          <ConnectorPoint PointX="8.1171875" PointY="25.125" />
+          <ConnectorPoint PointX="8.1171875" PointY="17.34375" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="17.34375" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="17.34375" />
+          <ConnectorPoint PointX="8.4791666666666661" PointY="17.34375" />
+          <ConnectorPoint PointX="8.9583333333333339" PointY="17.34375" />
+          <ConnectorPoint PointX="9" PointY="17.34375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersBusinessScale_CustomersBusinessRanking_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="17.937205403645834" />
           <ConnectorPoint PointX="10.791666666666666" PointY="17.937205403645834" />
@@ -5196,37 +5141,39 @@
           <ConnectorPoint PointX="11.25" PointY="22.115143229166666" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualBasicIndex_IndividualBasicIndex_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="33.674988606770832" />
-          <ConnectorPoint PointX="11.46875" PointY="33.674988606770832" />
-          <ConnectorPoint PointX="11.46875" PointY="23.105286458333332" /></AssociationConnector>
+          <ConnectorPoint PointX="11.53125" PointY="33.674988606770832" />
+          <ConnectorPoint PointX="11.53125" PointY="23.105286458333332" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualBasicIndex_IndividualBasicIndexLevels_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="24.53125" />
           <ConnectorPoint PointX="10.791666666666666" PointY="24.53125" />
           <ConnectorPoint PointX="10.958333333333334" PointY="24.53125" />
-          <ConnectorPoint PointX="11.385416666666666" PointY="24.53125" />
-          <ConnectorPoint PointX="11.645833333333334" PointY="24.53125" />
-          <ConnectorPoint PointX="11.7343775" PointY="24.53125" />
-          <ConnectorPoint PointX="11.7343775" PointY="23.105286458333332" /></AssociationConnector>
+          <ConnectorPoint PointX="11.3593725" PointY="24.53125" />
+          <ConnectorPoint PointX="11.3593725" PointY="23.105286458333332" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualCollateralIndex_CustomersIndividualRanking_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="20.59375" />
           <ConnectorPoint PointX="10.791666666666666" PointY="20.59375" />
           <ConnectorPoint PointX="10.958333333333334" PointY="20.59375" />
-          <ConnectorPoint PointX="12.791666666666666" PointY="20.59375" />
-          <ConnectorPoint PointX="13.083333333333334" PointY="20.59375" />
+          <ConnectorPoint PointX="13.916666666666666" PointY="20.59375" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="20.59375" />
           <ConnectorPoint PointX="14.25" PointY="20.59375" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualCollateralIndex_IndividualCollateralIndex_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="13.5" PointY="28.403595377604166" />
           <ConnectorPoint PointX="13.875" PointY="28.403595377604166" />
           <ConnectorPoint PointX="13.875" PointY="21.380770229166664" />
+          <ConnectorPoint PointX="13.916666666666666" PointY="21.380770229166664" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="21.380770229166664" />
           <ConnectorPoint PointX="14.25" PointY="21.380770229166664" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualCollateralIndex_IndividualCollateralIndexLevels_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="13.15625" PointY="24.625" />
           <ConnectorPoint PointX="13.15625" PointY="20.8593775" />
+          <ConnectorPoint PointX="13.916666666666666" PointY="20.8593775" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="20.8593775" />
           <ConnectorPoint PointX="14.25" PointY="20.8593775" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualRanking_CustomersIndividuals_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="36.365143229166669" />
           <ConnectorPoint PointX="8.625" PointY="36.365143229166669" />
           <ConnectorPoint PointX="8.625" PointY="21.201650390624998" />
-          <ConnectorPoint PointX="8.7291666666666661" PointY="21.201650390624998" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="21.201650390624998" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="21.201650390624998" />
           <ConnectorPoint PointX="9" PointY="21.201650390624998" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualRanking_CustomersLoanTerm_Delete" ManuallyRouted="false">
@@ -5234,6 +5181,8 @@
           <ConnectorPoint PointX="8.375" PointY="6.3722407695312508" />
           <ConnectorPoint PointX="8.375" PointY="20.1945731953125" />
           <ConnectorPoint PointX="8.4791666666666661" PointY="20.1945731953125" />
+          <ConnectorPoint PointX="8.7708333333333339" PointY="20.1945731953125" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="20.1945731953125" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="20.1945731953125" />
           <ConnectorPoint PointX="9" PointY="20.1945731953125" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualRanking_IndividualBorrowingPurposes_Delete" ManuallyRouted="false">
@@ -5241,6 +5190,8 @@
           <ConnectorPoint PointX="8.5625" PointY="2.8651432291666667" />
           <ConnectorPoint PointX="8.5625" PointY="22.208727585937496" />
           <ConnectorPoint PointX="8.6041666666666661" PointY="22.208727585937496" />
+          <ConnectorPoint PointX="8.7708333333333339" PointY="22.208727585937496" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="22.208727585937496" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="22.208727585937496" />
           <ConnectorPoint PointX="9" PointY="22.208727585937496" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividualRanking_IndividualClusterRanks_Delete" ManuallyRouted="false">
@@ -5252,6 +5203,8 @@
           <ConnectorPoint PointX="8.5" PointY="34.999492187499996" />
           <ConnectorPoint PointX="8.5" PointY="23.528300781249996" />
           <ConnectorPoint PointX="8.5416666666666661" PointY="23.528300781249996" />
+          <ConnectorPoint PointX="8.7708333333333339" PointY="23.528300781249996" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="23.528300781249996" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="23.528300781249996" />
           <ConnectorPoint PointX="9.75" PointY="23.528300781249996" />
           <ConnectorPoint PointX="9.75" PointY="23.153300781249996" /></AssociationConnector>
@@ -5262,61 +5215,59 @@
           <ConnectorPoint PointX="8.8645833333333339" PointY="35.249492187499996" />
           <ConnectorPoint PointX="8.5416666666666661" PointY="35.249492187499996" />
           <ConnectorPoint PointX="8.375" PointY="35.249492187499996" />
-          <ConnectorPoint PointX="8.375" PointY="23.559550781249996" />
-          <ConnectorPoint PointX="8.5416666666666661" PointY="23.559550781249996" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="23.559550781249996" />
-          <ConnectorPoint PointX="9.343748" PointY="23.559550781249996" />
+          <ConnectorPoint PointX="8.375" PointY="23.403300781249996" />
+          <ConnectorPoint PointX="8.5416666666666661" PointY="23.403300781249996" />
+          <ConnectorPoint PointX="8.7708333333333339" PointY="23.403300781249996" />
+          <ConnectorPoint PointX="8.7916666666666661" PointY="23.403300781249996" />
+          <ConnectorPoint PointX="8.9583333333333339" PointY="23.403300781249996" />
+          <ConnectorPoint PointX="9.343748" PointY="23.403300781249996" />
           <ConnectorPoint PointX="9.343748" PointY="23.153300781249996" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.CustomersIndividuals_SystemBranches_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="5.25" PointY="30.422587890625003" />
           <ConnectorPoint PointX="5.25" PointY="36.365143229166669" />
           <ConnectorPoint PointX="6.75" PointY="36.365143229166669" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexProportion_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="32" />
-          <ConnectorPoint PointX="9.75" PointY="30.614889322916667" />
-          <ConnectorPoint PointX="11.385416666666666" PointY="30.614889322916667" />
-          <ConnectorPoint PointX="11.645833333333334" PointY="30.614889322916667" />
-          <ConnectorPoint PointX="11.875" PointY="30.614889322916667" />
-          <ConnectorPoint PointX="11.875" PointY="23.355286458333332" />
-          <ConnectorPoint PointX="12.791666666666666" PointY="23.355286458333332" />
-          <ConnectorPoint PointX="12.958333333333334" PointY="23.355286458333332" />
-          <ConnectorPoint PointX="13" PointY="23.355286458333332" />
-          <ConnectorPoint PointX="13" PointY="18.393992513020834" />
-          <ConnectorPoint PointX="14.25" PointY="18.393992513020834" /></AssociationConnector>
+          <ConnectorPoint PointX="10.5" PointY="33.106484316406252" />
+          <ConnectorPoint PointX="11.447916666666666" PointY="33.106484316406252" />
+          <ConnectorPoint PointX="11.614583333333334" PointY="33.106484316406252" />
+          <ConnectorPoint PointX="14" PointY="33.106484316406252" />
+          <ConnectorPoint PointX="14" PointY="19.662985026041667" />
+          <ConnectorPoint PointX="14.041666666666666" PointY="19.662985026041667" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="19.662985026041667" />
+          <ConnectorPoint PointX="15" PointY="19.662985026041667" />
+          <ConnectorPoint PointX="15" PointY="19.287985026041667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndex_Delete" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.156252" PointY="32" />
-          <ConnectorPoint PointX="10.156252" PointY="31.114889322916667" />
-          <ConnectorPoint PointX="11.385416666666666" PointY="31.114889322916667" />
-          <ConnectorPoint PointX="11.552083333333334" PointY="31.114889322916667" />
-          <ConnectorPoint PointX="11.5625" PointY="31.114889322916667" />
-          <ConnectorPoint PointX="11.5625" PointY="23.605286458333332" />
-          <ConnectorPoint PointX="11.651044166666667" PointY="23.605286458333332" />
-          <ConnectorPoint PointX="11.958333333333334" PointY="23.605286458333332" />
-          <ConnectorPoint PointX="12.875" PointY="23.605286458333332" />
-          <ConnectorPoint PointX="12.875" PointY="15.307444661458334" />
-          <ConnectorPoint PointX="13.916666666666666" PointY="15.307444661458334" />
-          <ConnectorPoint PointX="14.083333333333334" PointY="15.307444661458334" />
-          <ConnectorPoint PointX="14.25" PointY="15.307444661458334" /></AssociationConnector>
+          <ConnectorPoint PointX="10.5" PointY="34.243492397135412" />
+          <ConnectorPoint PointX="14.125" PointY="34.243492397135412" />
+          <ConnectorPoint PointX="14.125" PointY="16.864889322916667" />
+          <ConnectorPoint PointX="14.510414666666666" PointY="16.864889322916667" />
+          <ConnectorPoint PointX="14.677081333333334" PointY="16.864889322916667" />
+          <ConnectorPoint PointX="15" PointY="16.864889322916667" />
+          <ConnectorPoint PointX="15" PointY="16.489889322916667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBasicIndexLevels_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="25.440869513020836" />
           <ConnectorPoint PointX="10.875" PointY="25.440869513020836" />
-          <ConnectorPoint PointX="10.875" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="11.916666666666666" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="12.083333333333334" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="12.791666666666666" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="12.958333333333334" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="13.916666666666666" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="14.083333333333334" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="15" PointY="16.864889322916667" />
-          <ConnectorPoint PointX="15" PointY="16.489889322916667" /></AssociationConnector>
+          <ConnectorPoint PointX="10.875" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="11.541667166666665" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="11.708333833333333" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="11.916666666666666" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="12.083333333333334" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="14.041666666666666" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="14.593748" PointY="17.239889322916667" />
+          <ConnectorPoint PointX="14.593748" PointY="16.489889322916667" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexProportion_IndividualBorrowingPurposes_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="3.39146684375" />
           <ConnectorPoint PointX="8.4791666666666661" PointY="3.3914668437499995" />
           <ConnectorPoint PointX="8.6458333333333339" PointY="3.39146684375" />
-          <ConnectorPoint PointX="14" PointY="3.39146684375" />
-          <ConnectorPoint PointX="14" PointY="17.125" />
-          <ConnectorPoint PointX="15" PointY="17.125" />
-          <ConnectorPoint PointX="15" PointY="17.5" /></AssociationConnector>
+          <ConnectorPoint PointX="13.75" PointY="3.39146684375" />
+          <ConnectorPoint PointX="13.75" PointY="17" />
+          <ConnectorPoint PointX="14.041666666666666" PointY="17" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="17" />
+          <ConnectorPoint PointX="14.510414666666666" PointY="17" />
+          <ConnectorPoint PointX="14.677081333333334" PointY="17" />
+          <ConnectorPoint PointX="15.1718735" PointY="17" />
+          <ConnectorPoint PointX="15.1718735" PointY="17.5" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualBasicIndexScore_IndividualBorrowingPurposes_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="2.3388191145833335" />
           <ConnectorPoint PointX="15" PointY="2.3388191145833335" />
@@ -5327,12 +5278,12 @@
         <AssociationConnector Association="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndex_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="13.5" PointY="27.7112939453125" />
           <ConnectorPoint PointX="13.791666666666666" PointY="27.7112939453125" />
-          <ConnectorPoint PointX="13.958333333333334" PointY="27.7112939453125" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="27.7112939453125" />
           <ConnectorPoint PointX="14.25" PointY="27.7112939453125" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualCollateralIndexScore_IndividualCollateralIndexLevels_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="13.5" PointY="25.3749995" />
           <ConnectorPoint PointX="13.791666666666666" PointY="25.3749995" />
-          <ConnectorPoint PointX="13.958333333333334" PointY="25.3749995" />
+          <ConnectorPoint PointX="14.208333333333334" PointY="25.3749995" />
           <ConnectorPoint PointX="15" PointY="25.3749995" />
           <ConnectorPoint PointX="15" PointY="26.125" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.IndividualSummaryRanks_IndividualCollateralRanks_Delete" ManuallyRouted="false">
@@ -5340,8 +5291,6 @@
           <ConnectorPoint PointX="6.75" PointY="44.802643229166669" /></AssociationConnector>
         <AssociationConnector Association="FBDModel.SystemUsers_SystemBranches_Delete" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="28.28125" />
-          <ConnectorPoint PointX="6.416666666666667" PointY="28.28125" />
-          <ConnectorPoint PointX="6.583333333333333" PointY="28.28125" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="28.281249999999996" />
           <ConnectorPoint PointX="8.9583333333333339" PointY="28.28125" />
           <ConnectorPoint PointX="9.75" PointY="28.28125" /></AssociationConnector>
