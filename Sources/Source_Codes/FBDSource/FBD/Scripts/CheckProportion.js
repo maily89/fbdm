@@ -22,13 +22,15 @@ function CheckTotalNFIProportionByIndustry() {
         if (!$("#ProportionRows_" + i.toString() + "__Proportion").length) {
             var total = 0;
             j = i + 1;
-            while ($("#ProportionRows_" + j.toString() + "__Proportion").length) {
-                total = parseFloat(total) + parseFloat($("#ProportionRows_" + j.toString() + "__Proportion").val());
-                j++;
-            }
-            if (total != 100) {
-                alert("One or more leaf indexes do not get total equal their parent index");
-                return false;
+            if ($("#ProportionRows_" + j.toString() + "__Proportion").length) {
+                while ($("#ProportionRows_" + j.toString() + "__Proportion").length) {
+                    total = parseFloat(total) + parseFloat($("#ProportionRows_" + j.toString() + "__Proportion").val());
+                    j++;
+                }
+                if (total != 100) {
+                    alert("One or more leaf indexes do not get total equal their parent index");
+                    return false;
+                }
             }
             i = j - 1;
         }
