@@ -23,13 +23,13 @@
             <tr>
                 <td>
                     <div class="editor-label">
-                        <%= Html.LabelFor(model => model.ID) %>
+                        <%= Html.LabelFor(model => model.RankID) %>
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
-                        <%= Html.TextBoxFor(model => model.ID) %>
-                        <%= Html.ValidationMessageFor(model => model.ID) %>
+                        <%= Html.TextBoxFor(model => model.RankID) %>
+                        <%= Html.ValidationMessageFor(model => model.RankID) %>
                     </div>
                </td>
            </tr>

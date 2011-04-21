@@ -24,6 +24,29 @@ namespace FBD.CommonUtilities
             }
             return new Vector(sumx / V.Count, sumy / V.Count);
         }
+        /// <summary>
+        /// this function use for caculator centroid of a list vector, if there is no vector in the list, return old centroid
+        /// </summary>
+        /// <param name="V"></param>
+        /// <param name="oldCentroid"></param>
+        /// <returns></returns>
+        public static Vector centroid(List<Vector> V,Vector oldCentroid)
+        {
+            
+            double sumx = 0;
+            double sumy = 0;
+            //Vector fn = new Vector();
+            foreach (Vector v in V)
+            {
+                sumx += v.x;
+                sumy += v.y;
+            }
+            if (V.Count!=0)
+                return new Vector(sumx / V.Count, sumy / V.Count);
+            else
+                return oldCentroid;    
+        }
+
         public static int minDistant(Vector u, Vector[] V)
         {
             int min = 0;

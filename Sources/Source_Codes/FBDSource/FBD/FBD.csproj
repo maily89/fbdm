@@ -569,6 +569,7 @@
     <Content Include="App_Data\FBD_log.ldf">
       <DependentUpon>FBD.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\wait.gif" />
     <Content Include="Scripts\Tooltip.js" />
     <Content Include="Views\BSNClusterRank\Add.aspx" />
@@ -584,6 +585,7 @@
     <Content Include="Views\INVClusterRank\Add.aspx" />
     <Content Include="Views\INVClusterRank\Edit.aspx" />
     <Content Include="Views\INVClusterRank\Index.aspx" />
+    <Content Include="Views\INVMining\Cluster.aspx" />
     <Content Include="Views\INVMining\Index.aspx" />
     <Content Include="Views\INVMining\Save.aspx" />
     <Content Include="Views\Mining\GetCustomerList.aspx" />

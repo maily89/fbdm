@@ -33,15 +33,23 @@
     <hr />
     <b>
     Class Rank<span class="brownText"><%= Html.Encode(Model.ClassRank) %></span><br />
-    Cluster Rank<span class="brownText"><%= Html.Encode(Model.ClusterRank) %></span><input type="button" value="Calculate Cluster Rank" /><br />
+    Cluster Rank<span class="brownText"><%= Html.Encode(Model.ClusterRank) %></span>
     </b>    
     <hr />
     <%if (ViewData["Edit"]==null){ %>
     <input type="button" value="OK" onclick="window.location.href='<%= Url.Action("Index" ) %>';"/>   
     <%} else{ %>
     <input type="button" value="OK" onclick="window.location.href='<%= Url.Action(ViewData["redirectAction"]!=null?ViewData["redirectAction"].ToString():"Index", new { id = ViewData["RankID"] })%>';"/>  
+    <%} %> 
+    <br />
+    <%if (Model.ClusterRank == null)
+      { %>
+    <input type="button" value="Calculate Cluster Rank" onclick="window.location.href='<%= Url.Action("ClusterOneCustomer",new{id =ViewData["RankID"] } ) %>';"  /><br />
+    <%}
+      else
+      { %>
+    <input type="button" value="ReCalculate Cluster Rank" onclick="window.location.href='<%= Url.Action("ClusterOneCustomer",new{id =ViewData["RankID"] } ) %>';" /><br />
     <%} %>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

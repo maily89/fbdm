@@ -20,7 +20,7 @@
         function loadPartial() {
             var ID = $("#PeriodReport").val();
             if (ID > 0) {
-                document.getElementById("partial").innerHTML = "<img src='../../Content/images/wait.gif' />";
+                $("#partial").html("<img src='/Content/images/loading.gif' />");
                 $("#partial").load('/BSNMining/Cluster/' + ID);
             }
         }

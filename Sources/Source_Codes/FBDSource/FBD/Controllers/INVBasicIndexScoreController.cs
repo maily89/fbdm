@@ -65,7 +65,7 @@ namespace FBD.Controllers
         public ActionResult Index(FormCollection formCollection)
         {
             FBDEntities FBDModel = new FBDEntities();
-
+            TempData[Constants.ERR_MESSAGE] = null;
             try
             { 
                 // If action posted to Controller is choosing item from drop down list...

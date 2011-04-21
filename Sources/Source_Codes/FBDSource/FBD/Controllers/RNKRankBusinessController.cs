@@ -1336,7 +1336,7 @@ namespace FBD.Controllers
                 string periodID = customer.SystemReportingPeriods.PeriodID;
                 CustomersBusinessRanking.cluster(customer, epsilon, periodID, entities);
 
-                return RedirectToAction("ReRank", new { ID = ID, redirectAction = "DetailNonFinancial" });
+                return RedirectToAction("ReRank", new { ID = ID, redirectAction = "Index" });
             }
             catch (Exception)
             {

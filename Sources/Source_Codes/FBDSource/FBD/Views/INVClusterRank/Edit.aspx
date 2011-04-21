@@ -22,13 +22,13 @@
                <tr>
                     <td>
                         <div class="editor-label">
-                            <%= Html.LabelFor(model => model.ID) %>
+                            <%= Html.LabelFor(model => model.RankID) %>
                         </div>
                     </td>
                     <td>
                         <div class="editor-field">
-                            <%= Html.TextBoxFor(model => model.ID, new { @readonly = "true", @disabled = "true" }) %>
-                            <%= Html.HiddenFor(model => model.ID) %>
+                            <%= Html.TextBoxFor(model => model.RankID, new { @readonly = "true", @disabled = "true" }) %>
+                            <%= Html.HiddenFor(model => model.RankID) %>
                         </div>
                    </td>
                </tr>
