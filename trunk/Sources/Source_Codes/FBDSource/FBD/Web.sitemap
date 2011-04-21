@@ -65,6 +65,5 @@
       </siteMapNode>
     </siteMapNode>
     <siteMapNode title="Report Management" description="Report Management" controller="" action="Index" />
-    <siteMapNode title="Sign In" description="Sign In" controller="SYSAuths" action="Login" />
   </siteMapNode>
 </siteMap>

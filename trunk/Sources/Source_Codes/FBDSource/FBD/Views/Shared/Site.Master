@@ -26,6 +26,10 @@
                 <a href="/SYSAuths/LoginSuccess/" style="color:White"><%=Session[FBD.CommonUtilities.Constants.SESSION_USER_ID].ToString()%> | </a>
                 <a href="/SYSAuths/Logout/" style="color:White">Sign Out</a>
                 <%} %>
+                <%else
+                    {%>
+                <a href="/SYSAuths/Login/" style="color:White">SIGN IN HERE</a>
+                <%} %>
             </div>
         </div>
         <div id="menu" >
