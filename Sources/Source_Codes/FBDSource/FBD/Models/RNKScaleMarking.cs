@@ -89,7 +89,15 @@ namespace FBD.Models
 
                 //get all scale score
                 List<BusinessScaleScore> scaleList = BusinessScaleScore.SelectScaleScore(industryID, item.CriteriaID);
-                decimal value = System.Convert.ToDecimal(item.Value);
+                decimal value;
+                try
+                {
+                    value = System.Convert.ToDecimal(item.Value);
+                }
+                catch
+                {
+                    value = 0;
+                }
                 foreach (BusinessScaleScore scaleScore in scaleList)
                 {
                     if (value >= scaleScore.FromValue && value <= scaleScore.ToValue)
@@ -150,7 +158,15 @@ namespace FBD.Models
 
             //get all scale score
             List<BusinessScaleScore> scaleList = BusinessScaleScore.SelectScaleScore(industryID, criteriaID);
-            decimal value=System.Convert.ToDecimal(scale.Value);
+            decimal value = 0;
+            try
+            {
+                value = System.Convert.ToDecimal(scale.Value);
+            }
+            catch
+            {
+                value = 0;
+            }
             foreach (BusinessScaleScore item in scaleList)
             {
                 if ((item.FromValue != null) && (item.ToValue != null))

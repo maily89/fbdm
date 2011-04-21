@@ -42,6 +42,7 @@ namespace FBD.Models
         /// <returns>A customer type with id = ID</returns>
         public static SystemCustomerTypes SelectTypeByID(string id, FBDEntities entities)
         {
+            if (string.IsNullOrEmpty(id) || entities==null) return null;
             return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
         }
 

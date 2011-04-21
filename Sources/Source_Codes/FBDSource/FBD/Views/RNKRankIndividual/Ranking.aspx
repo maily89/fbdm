@@ -12,7 +12,7 @@
 
     <%if (ViewData["Edit"] == null)
       { %>
-    <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.Basic);
+    <%Html.RenderPartial("IndividualStep", FBD.CommonUtilities.Constants.IndividualRankStep.Ranking);
       } %>
     <%Html.RenderPartial("CustomerInfo", FBD.ViewModels.RNKCustomerInfo.GetIndividualRankingInfo(System.Convert.ToInt32(ViewData["RankID"] ))); %>
 

@@ -64,7 +64,7 @@ namespace FBD.Models
         /// <returns>Business</returns>
         public static CustomersBusinesses SelectBusinessByID(int id, FBDEntities entities)
         {
-            if (entities == null) return null;
+            if (entities == null || id<=0) return null;
             var business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
             return business;
         }

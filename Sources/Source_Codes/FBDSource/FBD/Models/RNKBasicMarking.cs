@@ -88,7 +88,15 @@ namespace FBD.Models
             {
                 if (index.ValueType == Constants.INDEX_NUMERIC) //numeric type
                 {
-                    decimal score = System.Convert.ToDecimal(indexScore.Value);
+                    decimal score;
+                    try
+                    {
+                        score = System.Convert.ToDecimal(indexScore.Value);
+                    }
+                    catch
+                    {
+                        score = 0;
+                    }
                     if (score >= item.FromValue && score <= item.ToValue)
                     {
                         item.IndividualBasicIndexLevelsReference.Load();
