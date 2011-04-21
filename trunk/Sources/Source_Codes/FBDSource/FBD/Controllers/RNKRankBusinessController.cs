@@ -1154,7 +1154,15 @@ namespace FBD.Controllers
                 }
                 try
                 {
-                    var prop = System.Convert.ToDecimal(ViewData["FinancialProportion"]);
+                    decimal prop;
+                    try
+                    {
+                        prop = System.Convert.ToDecimal(ViewData["FinancialProportion"]);
+                    }
+                    catch
+                    {
+                        prop = 0;
+                    }
                     if (prop != 0 && tempScore != null)
                     {
                         ViewData["FinancialScore"] = tempScore / prop * 100;
@@ -1198,7 +1206,15 @@ namespace FBD.Controllers
                 }
                 try
                 {
-                    var prop = System.Convert.ToDecimal(ViewData["NonFinancialProportion"]);
+                    decimal prop ;
+                    try
+                    {
+                        prop = System.Convert.ToDecimal(ViewData["NonFinancialProportion"]);
+                    }
+                    catch
+                    {
+                        prop = 0;
+                    }
                     if (prop != 0 && tempScore != null)
                     {
                         ViewData["NonFinancialScore"] = tempScore / prop * 100;

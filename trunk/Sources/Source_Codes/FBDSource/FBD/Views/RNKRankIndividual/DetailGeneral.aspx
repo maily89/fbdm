@@ -21,7 +21,7 @@
 			<b>CIF Number: <span class="brownText"><%=Model.CustomerInfo.CIF  %></span></b><br/>
 			<b>Name: <span class="brownText"><%=Model.CustomerInfo.CustomerName  %></span></b><br/>
 			<b>Credit department: <span class="brownText"><%=Model.IndividualRanking.CreditDepartment %></span></b><br />
-			<b>Purpose: <span class="brownText"><%=Model.IndividualRanking.IndividualBorrowingPurposes.Purpose %></span></b><br/>
+			<b>Purpose: <span class="brownText"><%=Model.IndividualRanking.IndividualBorrowingPurposes!=null?Model.IndividualRanking.IndividualBorrowingPurposes.Purpose:null %></span></b><br/>
 		</td>
 		<td valign="top">
 			<b>Loan term: <span class="brownText"><%=Model.IndividualRanking.CustomersLoanTerm != null ? Model.IndividualRanking.CustomersLoanTerm.LoanTermName : null%></span></b><br/>

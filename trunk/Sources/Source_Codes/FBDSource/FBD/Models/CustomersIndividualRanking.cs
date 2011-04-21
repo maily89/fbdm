@@ -203,7 +203,6 @@ namespace FBD.Models
             temp.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(model.LoanTermID, entities);
             temp.IndividualBorrowingPurposes = IndividualBorrowingPurposes.SelectBorrowingPPByID(model.PurposeID, entities);
 
-            temp.Date = ranking.Date;
             temp.CreditDepartment = ranking.CreditDepartment;
             temp.TotalDebt = ranking.TotalDebt;
             temp.UserID = ranking.UserID;

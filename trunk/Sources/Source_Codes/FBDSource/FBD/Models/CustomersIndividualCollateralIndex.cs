@@ -232,7 +232,17 @@ namespace FBD.Models
 
             indexScore.IndividualCollateralIndex = IndividualCollateralIndex.SelectCollateralIndexByID(item.Index.IndexID, entities);
 
-            indexScore.Value = item.Score.ToString();
+            if (indexScore.IndividualCollateralIndex.ValueType == Constants.INDEX_NUMERIC)
+            {
+                if (item.Score != null)
+                {
+                    indexScore.Value = item.Score.ToString();
+                }
+                else
+                {
+                    indexScore.Value = "0";
+                }
+            }
             indexScore.CustomersIndividualRanking = CustomersIndividualRanking.SelectIndividualRankingByID(rankID, entities);
 
             if (item.ScoreID > 0)

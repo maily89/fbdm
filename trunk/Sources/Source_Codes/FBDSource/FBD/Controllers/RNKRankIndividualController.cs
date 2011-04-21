@@ -197,7 +197,11 @@ namespace FBD.Controllers
             if (model == null) return null;
             try
             {
-                if (!string.IsNullOrEmpty(Edit)) ViewData["Edit"] = Edit;
+                if (!string.IsNullOrEmpty(Edit))
+                {
+                    ViewData["Edit"] = Edit;
+                    ViewData["RankID"] = model.IndividualRanking.ID;
+                }
                 if (ModelState.IsValid)
                 {
                     if (String.IsNullOrEmpty(Edit))

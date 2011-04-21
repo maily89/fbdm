@@ -241,7 +241,10 @@ namespace FBD.Models
 
             var temp = SelectBusinessRankingByID(ranking.ID, entities);
 
+            if(rknBusinessRankingViewModel.CustomerID>0)
             temp.CustomersBusinesses = CustomersBusinesses.SelectBusinessByID(rknBusinessRankingViewModel.CustomerID, entities);
+
+            if(!string.IsNullOrEmpty(rknBusinessRankingViewModel.IndustryID))
             temp.BusinessIndustries = BusinessIndustries.SelectIndustryByID(rknBusinessRankingViewModel.IndustryID, entities);
             temp.BusinessTypes = BusinessTypes.SelectTypeByID(rknBusinessRankingViewModel.TypeID, entities);
             temp.CustomersLoanTerm = CustomersLoanTerm.SelectLoanTermByID(rknBusinessRankingViewModel.LoanID, entities);

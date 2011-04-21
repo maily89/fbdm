@@ -41,6 +41,7 @@ namespace FBD.Models
         /// <returns>A Period with id = ID</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id, FBDEntities entities)
         {
+            if (string.IsNullOrEmpty(id) || entities == null) return null;
             return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
         }
                 
