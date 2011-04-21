@@ -39,6 +39,7 @@ namespace FBD.Models
             List<CustomersBusinessRanking> cbrList = entities.CustomersBusinessRanking
                                                              .Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
                                                              .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                             .Include(Constants.TABLE_BUSINESS_CLUSTER_RANKS)
                                                              .Where(cbr=>cbr.SystemReportingPeriods!=null && periodID.Equals(cbr.SystemReportingPeriods.PeriodID))
                                                              .ToList();
             List<Vector> vList = new List<Vector>();

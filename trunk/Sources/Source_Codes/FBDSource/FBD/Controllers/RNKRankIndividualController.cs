@@ -865,12 +865,15 @@ namespace FBD.Controllers
         {
             var ranking = CustomersIndividualRanking.SelectIndividualRankingByID(id);
             ranking.IndividualSummaryRanksReference.Load();
+            //load referent cluster rank
+            ranking.IndividualClusterRanksReference.Load();
 
             if (ranking.IndividualSummaryRanks != null)
             {
                 model.ClassRank = ranking.IndividualSummaryRanks.Evaluation;
             }
-
+            //update Cluster Rank for individual
+            model.ClusterRank = (ranking.IndividualClusterRanks == null) ? null : ranking.IndividualClusterRanks.Rank;
             if (ranking.BasicIndexScore != null)
             {
                 model.BasicScore = ranking.BasicIndexScore.Value;
@@ -978,5 +981,29 @@ namespace FBD.Controllers
         }
         #endregion
 
+        //public actionresult clusteronecustomer(int id)
+        //{
+        //    //chua tinh den cac exception co the xay ra, code nay su dung trong dieu kien ly tuong.
+        //    double epsilon = constants.epsilon;
+        //    fbdentities entities = new fbdentities();
+        //    try
+        //    {
+
+        //        customersindividualranking customer = customersindividualranking.selectindividualrankingbyid(id);
+        //        //customer..load();
+        //        if (customer.systemreportingperiods == null)
+        //            throw new exception();
+        //        string periodid = customer.systemreportingperiods.periodid;
+        //        customersbusinessranking.cluster(customer, epsilon, periodid, entities);
+
+        //        return redirecttoaction("rerank", new { id = id, redirectaction = "index" });
+        //    }
+        //    catch (exception)
+        //    {
+        //        tempdata[constants.err_message] = string.format(constants.err_update_cluster, constants.customer_business_ranking);
+        //        return redirecttoaction("index");
+        //    }
+
+        //}
     }
 }

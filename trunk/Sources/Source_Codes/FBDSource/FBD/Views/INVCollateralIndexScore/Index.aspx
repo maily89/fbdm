@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<FBD.ViewModels.INVCollateralIndexScoreViewModel>" %>
 <asp:Content ID="Script" ContentPlaceHolderID="ScriptContent"  runat="server">
+<script src="/Scripts/CheckProportion.js" type="text/javascript"></script>
 <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
 <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
@@ -108,7 +109,7 @@
             <td></td>
             
             <td>
-                <input type="submit" name="Save" value="Save" />
+                <input type="submit" name="Save" value="Save" onclick="javascript: return CheckTotalFIProportion();" />
             </td>
         </tr>
         <% } %>    

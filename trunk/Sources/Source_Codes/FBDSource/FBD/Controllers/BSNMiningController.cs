@@ -37,7 +37,7 @@ namespace FBD.Controllers
             SystemReportingPeriods srp = new SystemReportingPeriods();
             srp.PeriodID = "-1";
             srp.PeriodName = "--Please select a period report--";
-            
+
             try
             {
                 reportPeriodList = SystemReportingPeriods.SelectReportingPeriods();
@@ -49,7 +49,7 @@ namespace FBD.Controllers
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.BUSINESS_LINE);
             }
 
-            reportPeriodList.Insert(0,srp);
+            reportPeriodList.Insert(0, srp);
             return View(reportPeriodList);
         }
 
@@ -57,7 +57,7 @@ namespace FBD.Controllers
         {
             List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(ID);
             numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
-           
+
 
             ViewData["cluster"] = numOfCentroid.ToString();
             //b. Create list result to save result
@@ -79,13 +79,15 @@ namespace FBD.Controllers
             //I'm using another method: load again from DB
             //  List<CustomersBusinessRanking> ListView = CustomersBusinessRanking.SelectBusinessRankings();
 
-
+            List<Vector> centroidList = new List<Vector>();
             for (int i = 0; i < numOfCentroid; i++)
             {
+                Vector cVector = Caculator.centroid(result[i]);
+                centroidList.Add(cVector);
                 List<Vector> listV = Caculator.bubbleSort(result[i]);
                 ViewData[i.ToString()] = listV;
             }
-
+            ViewData["centroidList"] = centroidList;
             return View();
         }
         public ActionResult GetCustomerList(string ID)
@@ -123,7 +125,8 @@ namespace FBD.Controllers
                     BusinessClusterRanks.UpdateCentroid(bcrID, u, entities);
                     foreach (Vector v in result[i])
                     {
-                        CustomersBusinessRanking.UpdateBusinessRanking(v.ID, bcrID, bcr[i],entities);
+                        if (!bcrID.Equals(v.RankID.ToString()))
+                            CustomersBusinessRanking.UpdateBusinessRanking(v.ID, bcrID, bcr[i], entities);
                     }
                     List<Vector> listV = Caculator.bubbleSort(result[i]);
                     ViewData[i.ToString()] = listV;
@@ -134,6 +137,6 @@ namespace FBD.Controllers
             else
                 return RedirectToAction("Cluster");
         }
-       
+
     }
 }

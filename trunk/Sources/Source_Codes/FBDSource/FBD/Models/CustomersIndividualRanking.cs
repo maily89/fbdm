@@ -31,6 +31,33 @@ namespace FBD.Models
             FBDEntities entities = new FBDEntities();
             //may be miss include. Should consider all flow!!!
             List<CustomersIndividualRanking> cbrList = entities.CustomersIndividualRanking
+                                                                .Include("CustomersIndividuals")
+                                                                .Include("IndividualClusterRanks")
+                                                                .ToList();
+            List<Vector> vList = new List<Vector>();
+            foreach (CustomersIndividualRanking cbr in cbrList)
+            {
+                if (cbr.BasicIndexScore != null && cbr.CollateralIndexScore != null)
+                {
+                    Vector v = new Vector(cbr);
+                    vList.Add(v);
+                }
+            }
+            return vList;
+        }
+
+        /// <summary>
+        /// Select to vector in a rank of time
+        /// </summary>
+        /// <returns></returns>
+        public static List<Vector> SelectIndividualRankingToVector(DateTime fromDate,DateTime toDate)
+        {
+            FBDEntities entities = new FBDEntities();
+            //may be miss include. Should consider all flow!!!
+            List<CustomersIndividualRanking> cbrList = entities.CustomersIndividualRanking
+                                                                .Include("CustomersIndividuals")
+                                                                .Include("IndividualClusterRanks")
+                                                                .Where(i=>i.Date> fromDate && i.Date<toDate)
                                                                 .ToList();
             List<Vector> vList = new List<Vector>();
             foreach (CustomersIndividualRanking cbr in cbrList)

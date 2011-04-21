@@ -7,6 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Index</h2>
+     <p class="scc-message"><%= TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.SCC_MESSAGE] : ""%></p>
+    <p class="err-message"><%= TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] != null ? TempData[FBD.CommonUtilities.Constants.ERR_MESSAGE] : ""%></p>
 
     <table>
         <tr>
@@ -27,11 +29,11 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
-                 <%= Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete rank " + item.Rank + "?');" })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.RankID }) %> |
+                 <%= Html.ActionLink("Delete", "Delete", new { id = item.RankID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete rank " + item.Rank + "?');" })%>
             </td>
             <td>
-                <%= Html.Encode(item.ID) %>
+                <%= Html.Encode(item.RankID) %>
             </td>
             <td>
                 <%= Html.Encode(item.Rank) %>

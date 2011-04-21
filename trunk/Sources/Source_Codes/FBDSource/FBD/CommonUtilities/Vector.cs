@@ -59,9 +59,19 @@ namespace FBD.CommonUtilities
         public Vector(CustomersIndividualRanking cir)
         {
             this.x = Convert.ToDouble(cir.CollateralIndexScore);
-            this.y = Convert.ToDouble(cir.CollateralIndexScore);
-            
+            this.y = Convert.ToDouble(cir.BasicIndexScore);
+            this.ID = int.Parse(cir.ID.ToString());
             //more information use for display to customer.
+            if (cir.CustomersIndividuals != null)
+                this.CustomerName = cir.CustomersIndividuals.CustomerName.ToString();
+            if (cir.IndividualClusterRanks != null)
+            {
+                this.RankID = int.Parse(cir.IndividualClusterRanks.RankID.ToString());
+            }
+            if (cir.DateModified != null)
+            {
+                this.modifiedDate = cir.DateModified.Value;
+            }
 
         }
 

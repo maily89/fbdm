@@ -1,15 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<FBD.CommonUtilities.Vector>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/nullSite.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+	Cluster
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Index</h2>
-    <%    
+
+    <h2>Cluster</h2>
+<%    
         System.Web.UI.DataVisualization.Charting.Chart Chart2 = new System.Web.UI.DataVisualization.Charting.Chart();
-        Chart2.Width = 800;
-        Chart2.Height = 500;
+        Chart2.Width = 1000;
+        Chart2.Height = 400;
         Chart2.RenderType = RenderType.ImageTag;
         if (!"0".Equals(ViewData["cluster"].ToString()))
         {
@@ -42,17 +43,18 @@
             // Add new custom legend item
             Chart2.Legends["Default"].CustomItems.Add(new LegendItem("LegendItem", System.Drawing.Color.Red, ""));
             Chart2.Legends["Default"].CustomItems[0].Cells.Add(new LegendCell(LegendCellType.Text, "Central", System.Drawing.ContentAlignment.MiddleLeft));
-            Chart2.Legends["Default"].CustomItems[0].Cells[0].Text = "Central";
-
+            //Chart2.Legends["Default"].CustomItems[0].Cells[0].Text = "Central";
+            
+            
             int index = 1;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < int.Parse(ViewData["cluster"].ToString()); i++)
             {   //Create series and config them
                 Chart2.Series.Add(i.ToString());
                 Chart2.Series[i.ToString()].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Point;
                 Chart2.Series[i.ToString()].MarkerSize = 10;
+                Chart2.Series[i.ToString()].MarkerStyle = MarkerStyle.Circle;
                 Chart2.Series[i.ToString()]["PointWidth"] = "0.2";
                 // add points to series    
-                Random r = new Random();
                 List<FBD.CommonUtilities.Vector> listResult = (List<FBD.CommonUtilities.Vector>)ViewData[i.ToString()];
                 int numberMember = listResult.Count;
                 for (int k = 0; k < numberMember; k++)
@@ -64,7 +66,7 @@
                     //Chart2.Series[i.ToString()]["DrawingStyle"] = "Cylinder";
                     //Chart2.Series[i.ToString()].XAxisType = AxisType.Primary;
 
-                    Chart2.Series[i.ToString()].Points[k].ToolTip = listResult[k].CustomerName.ToString() + " : " + listResult[k].x;
+                    Chart2.Series[i.ToString()].Points[k].ToolTip = listResult[k].CustomerName.ToString() + " : (" + listResult[k].x + "-"+listResult[k].y+")";
                     index++;
                 }
                 //get info from this chart
@@ -80,6 +82,27 @@
                 //Legend tooltip
                 Chart2.Series[i.ToString()].LegendToolTip = "Min: " + minPoint.YValues[0] + " - Max: " + MaxPoint.YValues[0];
 
+            }
+            //add centroid List
+
+            Chart2.Series.Add("centroidList");
+            Chart2.Series["centroidList"].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Point;
+            Chart2.Series["centroidList"].Color = System.Drawing.Color.Red;
+            Chart2.Series["centroidList"].MarkerSize = 15;
+            Chart2.Series["centroidList"].MarkerStyle = MarkerStyle.Star5;
+            Chart2.Series["centroidList"]["PointWidth"] = "0.2";
+            // add points to series    
+            List<FBD.CommonUtilities.Vector> centroidList = (List<FBD.CommonUtilities.Vector>)ViewData["centroidList"];
+            int numberCentroid = centroidList.Count;
+            for (int k = 0; k < numberCentroid; k++)
+            {
+                Chart2.Series["centroidList"].Points.AddXY(centroidList[k].x, centroidList[k].y);
+                //Chart2.Series[i.ToString()]["LineTension"] = "2.0";
+
+                //Chart2.Series[i.ToString()].IsValueShownAsLabel = true;
+                //Chart2.Series[i.ToString()]["DrawingStyle"] = "Cylinder";
+                //Chart2.Series[i.ToString()].XAxisType = AxisType.Primary;
+                Chart2.Series["centroidList"].Points[k].ToolTip = "(" + centroidList[k].x + "-" + centroidList[k].y + ")";
             }
         }
         else
@@ -103,7 +126,8 @@
     </div>
     
 </asp:Content>
-<asp:Content ID="Script" ContentPlaceHolderID="ScriptContent" runat="server">
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 
     <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
 
@@ -115,8 +139,7 @@
 
     <script type="text/javascript">
     function ShowWaitIcon() {
-        document.getElementById("cusomterResponse").innerHTML = "<img src='../../Content/images/wait.gif' />" ;
+        document.getElementById("cusomterResponse").innerHTML = "<img src='/Content/images/wait.gif' />" ;
     }
     </script>
-
 </asp:Content>

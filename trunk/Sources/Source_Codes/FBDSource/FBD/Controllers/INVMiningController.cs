@@ -25,50 +25,31 @@ namespace FBD.Controllers
         public ActionResult Index()
         {
 
-            List<Vector> vList = CustomersIndividualRanking.SelectIndividualRankingToVector();
-            numOfCentroid = IndividualClusterRanks.SelectClusterRank().Count;
-            //List<Vector> centroidList = new List<Vector>();
-            ////Se co cach xac dinh la centroid list sau va nhat dinh, se tim hieu ki cai nay!!!
-            ////check success!!!
-            ////1 mining
-            ////a. Create initial centroid vector
-            //for (int i = 0; i < Constants.level.Length - 1; i++)
-            //{
-            //    double centroidX = (Constants.level[i] + Constants.level[i + 1]) / 2;
-            //    Vector v = new Vector(centroidX, 0);
-            //    centroidList.Add(v);
-            //}
-            // Another way to decide the number of centroid
-            /*
-            List<BusinessClusterRanks> bcrl = BusinessClusterRanks.SelectClusterRank();
-            int numOfCentroid = bcrl.Count();
-            */
+            return View();
 
-            //int numOfCentroid = CommonUtilities.Constants.NumberOfInvCentroid;
+            //return View(result);
+        }
+
+        public ActionResult Cluster(string fromDate,string toDate)
+        {
+           
+            string[] arrFr = fromDate.Split('-');
+            string[] arrTo = toDate.Split('-');
+            DateTime dFromDate = new DateTime(int.Parse(arrFr[0]),int.Parse(arrFr[1]),int.Parse(arrFr[2]));
+            DateTime dToDate = new DateTime(int.Parse(arrTo[0]), int.Parse(arrTo[1]), int.Parse(arrTo[2]));
+            List<Vector> vList = CustomersIndividualRanking.SelectIndividualRankingToVector(dFromDate, dToDate);
+            numOfCentroid = IndividualClusterRanks.SelectClusterRank().Count;
             ViewData["cluster"] = numOfCentroid.ToString();
             //b. Create list result to save result
-            
+
 
             result = KMean.Clustering(numOfCentroid, vList, null);
             if (result == null)
             {
                 ViewData["cluster"] = "0";
                 return View();
-                
-            }
-            result = Caculator.bubbleSort(result);
-            //2. updating
-            //this process will process by user. They can choose update or not
 
-            /*    for (int i = 0; i < centroidList.Count; i++)
-                {
-                    foreach (Vector v in result[i])
-                    {
-                        CustomersIndividualRanking.UpdateIndividualRanking(v.ID, i.ToString());
-                    }
-                }
-             * 
-             * */
+            }
             //3. Copy list vector to Individualranking viewModel with nesseccary information???
 
 
@@ -77,36 +58,48 @@ namespace FBD.Controllers
             //I'm using another method: load again from DB
             //  List<CustomersIndividualRanking> ListView = CustomersIndividualRanking.SelectIndividualRankings();
 
-            
+            List<Vector> centroidList = new List<Vector>();
             for (int i = 0; i < numOfCentroid; i++)
             {
-                List<Vector> listV = Caculator.bubbleSort(result[i]);
-                ViewData[i.ToString()] = listV;
+                //List<Vector> listV = Caculator.bubbleSort(result[i]);
+                Vector vCentroid = Caculator.centroid(result[i]);
+                centroidList.Add(vCentroid);
+                ViewData[i.ToString()] = result[i];
             }
-
+            ViewData["centroidList"] = centroidList;
             return View();
-            //return View(result);
         }
+        /// <summary>
+        /// implement save ajax function
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
         public ActionResult Save()
         {
-            FBDEntities entities = new FBDEntities();
-            //2. updating
-            // this process will process by user. They can choose update or not
-            List<IndividualClusterRanks> icrList = IndividualClusterRanks.SelectClusterRank(entities);
-            for (int i = 0; i < numOfCentroid; i++)
+            if (Request.IsAjaxRequest())
             {
-                string RankID = icrList[i].RankID;
-                Vector u = CommonUtilities.Caculator.centroid(result[i]);
-                IndividualClusterRanks.updateCentroid(RankID, u, entities);
-                foreach (Vector v in result[i])
+                FBDEntities entities = new FBDEntities();
+                //2. updating
+                // this process will process by user. They can choose update or not
+                List<IndividualClusterRanks> icrList = IndividualClusterRanks.SelectClusterRank(entities);
+                for (int i = 0; i < numOfCentroid; i++)
                 {
-                    CustomersIndividualRanking.UpdateIndividualRanking(v.ID, i.ToString(), icrList[i],entities);
+                    string RankID = icrList[i].RankID;
+                    Vector u = CommonUtilities.Caculator.centroid(result[i]);
+                    IndividualClusterRanks.updateCentroid(RankID, u, entities);
+                    foreach (Vector v in result[i])
+                    {
+                        if(!RankID.Equals(v.RankID.ToString()))
+                        CustomersIndividualRanking.UpdateIndividualRanking(v.ID, RankID, icrList[i], entities);
+                    }
+                    List<Vector> listV = Caculator.bubbleSort(result[i]);
+                    ViewData[i.ToString()] = listV;
                 }
-                List<Vector> listV = Caculator.bubbleSort(result[i]);
-                ViewData[i.ToString()] = listV;
+                ViewData["cluster"] = numOfCentroid.ToString();
+                return Content("DONE");
             }
-            ViewData["cluster"] = numOfCentroid.ToString();
-            return View();
+            else
+                return RedirectToAction("Cluster");
         }
     }
 }

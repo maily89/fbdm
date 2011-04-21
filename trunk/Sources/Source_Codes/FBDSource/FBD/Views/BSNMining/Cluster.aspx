@@ -60,8 +60,7 @@
                 Chart2.Series[i.ToString()].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.SplineArea;
                 Chart2.Series[i.ToString()].MarkerSize = 10;
                 Chart2.Series[i.ToString()]["PointWidth"] = "0.2";
-                // add points to series    
-                Random r = new Random();
+                // add points to series 
                 List<FBD.CommonUtilities.Vector> listResult = (List<FBD.CommonUtilities.Vector>)ViewData[i.ToString()];
                 int numberMember = listResult.Count;
                 for (int k = 0; k < numberMember; k++)
@@ -90,6 +89,15 @@
                 Chart2.Series[i.ToString()].LegendToolTip = "Min: " + minPoint.YValues[0] + " - Max: " + MaxPoint.YValues[0];
 
             }
+            //add centroid List
+
+            Chart2.Series.Add("centroidList");
+            Chart2.Series["centroidList"].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Point;
+            Chart2.Series["centroidList"].Color = System.Drawing.Color.Red;
+            Chart2.Series["centroidList"].MarkerSize = 10;
+            Chart2.Series["centroidList"]["PointWidth"] = "0.2";
+            // add points to series    
+            
         }
         else
         {

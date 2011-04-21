@@ -41,6 +41,8 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
+
+            TempData[Constants.SCC_MESSAGE] = null;
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
             {
                 return RedirectToAction("Unauthorized", "SYSAuths");
@@ -108,6 +110,7 @@ namespace FBD.Controllers
         /// <returns></returns>
         public ActionResult Add()
         {
+
             if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_UPDATE, Session[Constants.SESSION_USER_ID]))
             {
                 return RedirectToAction("Unauthorized", "SYSAuths");
