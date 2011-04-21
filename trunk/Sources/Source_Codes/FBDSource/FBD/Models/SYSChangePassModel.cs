@@ -97,16 +97,19 @@ namespace FBD.Models
             [DisplayName("Old Password")]
             [Required(ErrorMessage = "Old Password is required")]
             [StringLength(20)]
+            [RegularExpression(".{7,}", ErrorMessage = "Password must have at least 7 character")]
             public string OldPassword { get; set; }
 
             [DisplayName("New Password")]
             [Required(ErrorMessage = "New Password is required")]
             [StringLength(20)]
+            [RegularExpression(".{7,}", ErrorMessage = "Password must have at least 7 character")]
             public string NewPassword { get; set; }
 
             [DisplayName("Confirm Password")]
             [Required(ErrorMessage = "Confirm Password is required")]
             [StringLength(20)]
+            [RegularExpression(".{7,}", ErrorMessage = "Password must have at least 7 character")]
             public string ConfirmNewPassword { get; set; }
         }
     }
