@@ -23,6 +23,21 @@ namespace FBD.Models
         }
 
         /// <summary>
+        /// list of CustomersIndividualRanking
+        /// </summary>
+        /// <returns>list of CustomersIndividualRanking</returns>
+        /// item.CustomersIndividualsReference.Load();
+        ///item.IndividualSummaryRanksReference.Load();
+        public static List<CustomersIndividualRanking> SelectIndividualRankingsForRankIndex()
+        {
+            FBDEntities entities = new FBDEntities();
+            return entities.CustomersIndividualRanking
+                            .Include("CustomersIndividuals")
+                            .Include("IndividualSummaryRanks")
+                            .ToList();
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -103,11 +118,19 @@ namespace FBD.Models
         public static CustomersIndividualRanking SelectIndividualRankingByID(int id)
         {
             if (id <= 0) return null;
-            FBDEntities entities = new FBDEntities();
-            var Individual = entities.CustomersIndividualRanking
-                                            .First(i => i.ID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Individual = entities.CustomersIndividualRanking
+                                                .First(i => i.ID == id);
 
-            return Individual;
+                return Individual;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
         /// <summary>
         /// Select all customer individual ranking by rankID
@@ -151,6 +174,7 @@ namespace FBD.Models
 
             var result = entities.CustomersIndividualRanking
                 .Include("CustomersIndividuals")
+                .Include("IndividualSummaryRanks")
                 .Include("CustomersIndividuals.SystemBranches")
                 .Where(i =>(!isCifTested || i.CustomersIndividuals.CIF.StartsWith(Cif)) 
                     && (!isBranchIDTested || i.CustomersIndividuals.SystemBranches.BranchID == BranchID) 
@@ -167,22 +191,38 @@ namespace FBD.Models
         public static CustomersIndividualRanking SelectIndividualRankingByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var individual = entities.CustomersIndividualRanking
-                            .Include("IndividualClusterRanks")
-                            .First(i => i.ID == id);
-            return individual;
+            try
+            {
+                var individual = entities.CustomersIndividualRanking
+                                    .Include("IndividualClusterRanks")
+                                    .First(i => i.ID == id);
+                return individual;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static CustomersIndividualRanking SelectIndividualRankingByIDWithReference(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var individual = entities.CustomersIndividualRanking
-                                            .Include(Constants.TABLE_CUSTOMERS_INDIVIDUALS)
-                                            .Include(Constants.TABLE_INDIVIDUAL_BORROWING_PURPOSES)
-                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
-                                            .Include(Constants.TABLE_INDIVIDUAL_SUMMARY_RANKS)
-                                            .First(i => i.ID == id);
-            return individual;
+            try
+            {
+                var individual = entities.CustomersIndividualRanking
+                                                    .Include(Constants.TABLE_CUSTOMERS_INDIVIDUALS)
+                                                    .Include(Constants.TABLE_INDIVIDUAL_BORROWING_PURPOSES)
+                                                    .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
+                                                    .Include(Constants.TABLE_INDIVIDUAL_SUMMARY_RANKS)
+                                                    .First(i => i.ID == id);
+                return individual;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

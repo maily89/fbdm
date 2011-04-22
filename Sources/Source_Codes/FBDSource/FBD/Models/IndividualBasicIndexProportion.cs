@@ -69,11 +69,19 @@ namespace FBD.Models
                                                                                                     int ProportionID)
         {
             //to: recheck about the exeption: null = null. however, we can't use .equal in null case9
-            IndividualBasicIndexProportion BasicIndexProportion = FBDModel
-                                                                         .IndividualBasicIndexProportion
-                                                                         .First(p => p.ProportionID.Equals(ProportionID));
-            
-            return BasicIndexProportion;
+            try
+            {
+                IndividualBasicIndexProportion BasicIndexProportion = FBDModel
+                                                                     .IndividualBasicIndexProportion
+                                                                     .First(p => p.ProportionID.Equals(ProportionID));
+
+                return BasicIndexProportion;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -46,17 +46,25 @@ namespace FBD.Models
 
         internal static BusinessNFIProportionByType SelectProportionByTypeAndIndex(FBDEntities entity, string parentID, string typeID)
         {
-            BusinessNFIProportionByType lstNFIProportionByType = entity
-                                                                    .BusinessNFIProportionByType
-                                                                    .Include("BusinessNonFinancialIndex")
-                                                                    .Include("BusinessTypes")
-                                                                    .First(p => p.BusinessTypes
-                                                                                 .TypeID
-                                                                                 .Equals(typeID)
-                                                                                 && p.BusinessNonFinancialIndex.IndexID==parentID
-                                                                            );
+            try
+            {
+                BusinessNFIProportionByType lstNFIProportionByType = entity
+                                                                            .BusinessNFIProportionByType
+                                                                            .Include("BusinessNonFinancialIndex")
+                                                                            .Include("BusinessTypes")
+                                                                            .First(p => p.BusinessTypes
+                                                                                         .TypeID
+                                                                                         .Equals(typeID)
+                                                                                         && p.BusinessNonFinancialIndex.IndexID == parentID
+                                                                                    );
 
-            return lstNFIProportionByType;
+                return lstNFIProportionByType;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
         /// <summary>
         /// Select a single record in BusinessNFIProportionByType with specified proportion id
@@ -67,9 +75,17 @@ namespace FBD.Models
         public static BusinessNFIProportionByType SelectNFIProportionByTypeByProportionID(FBDEntities FBDModel,
                                                                                                     int ProportionID)
         {
-            BusinessNFIProportionByType proportion = FBDModel.BusinessNFIProportionByType
-                                                             .First(p => p.ProportionID == ProportionID);
-            return proportion;
+            try
+            {
+                BusinessNFIProportionByType proportion = FBDModel.BusinessNFIProportionByType
+                                                                     .First(p => p.ProportionID == ProportionID);
+                return proportion;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -29,8 +29,17 @@ namespace FBD.Models
         /// <returns>A Period with id = ID</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            return entities.SystemReportingPeriods.First(i => i.PeriodID == id); 
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
+
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
 
@@ -41,8 +50,17 @@ namespace FBD.Models
         /// <returns>A Period with id = ID</returns>
         public static SystemReportingPeriods SelectReportingPeriodByID(string id, FBDEntities entities)
         {
-            if (string.IsNullOrEmpty(id) || entities == null) return null;
-            return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
+            try
+            {
+                if (string.IsNullOrEmpty(id) || entities == null) return null;
+                return entities.SystemReportingPeriods.First(i => i.PeriodID == id);
+
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
                 
 

@@ -159,7 +159,7 @@ namespace FBD.Models
         private static void GetScoreForCharacter(RNKCollateralRow indexScore, FBDEntities entities)
         {
             IndividualCollateralIndexScore score = IndividualCollateralIndexScore.SelectIndividualCollateralIndexScoreByScoreID(entities, indexScore.ScoreID);
-
+            if (score == null) return;
             score.IndividualCollateralIndexLevelsReference.Load();
             if (score.IndividualCollateralIndexLevels == null) return;
             indexScore.CalculatedScore = score.IndividualCollateralIndexLevels.Score;

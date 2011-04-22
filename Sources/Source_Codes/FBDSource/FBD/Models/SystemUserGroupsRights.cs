@@ -36,11 +36,19 @@ namespace FBD.Models
         /// <returns>A GroupsRights with id = ID</returns>
         public static SystemUserGroupsRights SelectSysGroupRightByID(FBDEntities entities, int id)
         {
-            SystemUserGroupsRights rightbyID = entities.SystemUserGroupsRights
-                                                       .Include("SystemRights")
-                                                       .Include("SystemUserGroups")
-                                                       .First(i => i.ID == id);
-            return rightbyID;
+            try
+            {
+                SystemUserGroupsRights rightbyID = entities.SystemUserGroupsRights
+                                                   .Include("SystemRights")
+                                                   .Include("SystemUserGroups")
+                                                   .First(i => i.ID == id);
+                return rightbyID;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

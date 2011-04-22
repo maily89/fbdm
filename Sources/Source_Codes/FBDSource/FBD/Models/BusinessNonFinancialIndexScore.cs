@@ -17,10 +17,18 @@ namespace FBD.Models
         public static BusinessNonFinancialIndexScore SelectBusinessNonFinancialIndexScoreByScoreID(FBDEntities FBDModel,
                                                                                                     int prmScoreID)
         {
-            BusinessNonFinancialIndexScore score = FBDModel.BusinessNonFinancialIndexScore
-                                                        .First(s => s.ScoreID == prmScoreID);
+            try
+            {
+                BusinessNonFinancialIndexScore score = FBDModel.BusinessNonFinancialIndexScore
+                                                                .First(s => s.ScoreID == prmScoreID);
 
-            return score;
+                return score;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -19,15 +19,31 @@ namespace FBD.Models
         public static BusinessTypes SelectTypeByID(string id)
         {
             FBDEntities entities = new FBDEntities();
-            var type = entities.BusinessTypes.First(i => i.TypeID == id);
-            return type;
+            try
+            {
+                var type = entities.BusinessTypes.First(i => i.TypeID == id);
+                return type;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static BusinessTypes SelectTypeByID(string id,FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var type = entities.BusinessTypes.First(i => i.TypeID == id);
-            return type;
+            try
+            {
+                var type = entities.BusinessTypes.First(i => i.TypeID == id);
+                return type;
+            }
+            catch
+            {
+                
+                return null;
+            }
         }
 
         public static int DeleteType(string id)

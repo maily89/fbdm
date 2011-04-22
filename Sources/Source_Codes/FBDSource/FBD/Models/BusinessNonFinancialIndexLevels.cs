@@ -33,12 +33,20 @@ namespace FBD.Models
         /// <returns>BusinessNonFinancialIndexLevels</returns>
         public static BusinessNonFinancialIndexLevels SelectNonFinancialIndexLevelsByID(Decimal id, FBDEntities FBDModel)
         {
-            BusinessNonFinancialIndexLevels businessNonFinancialIndexLevels = null;
+            try
+            {
+                BusinessNonFinancialIndexLevels businessNonFinancialIndexLevels = null;
 
-            // Get the business non-financial index from the entities model with the inputted ID
-            businessNonFinancialIndexLevels = FBDModel.BusinessNonFinancialIndexLevels.First(level => level.LevelID == id);
+                // Get the business non-financial index from the entities model with the inputted ID
+                businessNonFinancialIndexLevels = FBDModel.BusinessNonFinancialIndexLevels.First(level => level.LevelID == id);
 
-            return businessNonFinancialIndexLevels;
+                return businessNonFinancialIndexLevels;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -33,11 +33,19 @@ namespace FBD.Models
         /// <returns>Business</returns>
         public static CustomersBusinesses SelectBusinessByID(int id)
         {
-            
-            FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
 
-            return Business;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
+
+                return Business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -65,8 +73,16 @@ namespace FBD.Models
         public static CustomersBusinesses SelectBusinessByID(int id, FBDEntities entities)
         {
             if (entities == null || id<=0) return null;
-            var business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
-            return business;
+            try
+            {
+                var business = entities.CustomersBusinesses.Include(Constants.TABLE_SYSTEM_BRANCHES).First(i => i.BusinessID == id);
+                return business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

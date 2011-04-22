@@ -28,10 +28,19 @@ namespace FBD.Models
         public static BusinessIndustries SelectIndustryByID(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            FBDEntities entities = new FBDEntities();
-            var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
-            
-            return industry;
+
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
+
+                return industry;
+            }
+            catch 
+            {
+                
+                return null;
+            }
         }
 
         public static bool IsIDExist(string id)
@@ -49,9 +58,17 @@ namespace FBD.Models
         /// <returns>industry</returns>
         public static BusinessIndustries SelectIndustryByID(string id,FBDEntities entities)
         {
-            if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
-            return industry;
+            try
+            {
+                if (string.IsNullOrEmpty(id) || entities == null) return null;
+                var industry = entities.BusinessIndustries.First(i => i.IndustryID == id);
+                return industry;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

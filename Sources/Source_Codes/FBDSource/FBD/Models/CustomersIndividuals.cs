@@ -33,12 +33,20 @@ namespace FBD.Models
         public static CustomersIndividuals SelectIndividualByID(int id)
         {
 
-            FBDEntities entities = new FBDEntities();
-            var Individual = entities.CustomersIndividuals
-                                            .Include(Constants.TABLE_SYSTEM_BRANCHES)
-                                            .First(i => i.IndividualID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Individual = entities.CustomersIndividuals
+                                                .Include(Constants.TABLE_SYSTEM_BRANCHES)
+                                                .First(i => i.IndividualID == id);
 
-            return Individual;
+                return Individual;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -66,10 +74,18 @@ namespace FBD.Models
         public static CustomersIndividuals SelectIndividualByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var individual = entities.CustomersIndividuals
-                                            .Include(Constants.TABLE_SYSTEM_BRANCHES)
-                                            .First(i => i.IndividualID == id);
-            return individual;
+            try
+            {
+                var individual = entities.CustomersIndividuals
+                                                    .Include(Constants.TABLE_SYSTEM_BRANCHES)
+                                                    .First(i => i.IndividualID == id);
+                return individual;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -39,9 +39,17 @@ namespace FBD.Models
         public static BusinessScaleCriteria SelectScaleCriteriaByID(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            FBDEntities entities = new FBDEntities();
-            var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
-            return scaleCriteria;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
+                return scaleCriteria;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -53,8 +61,16 @@ namespace FBD.Models
         public static BusinessScaleCriteria SelectScaleCriteriaByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
-            return scaleCriteria;
+            try
+            {
+                var scaleCriteria = entities.BusinessScaleCriteria.First(i => i.CriteriaID == id);
+                return scaleCriteria;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

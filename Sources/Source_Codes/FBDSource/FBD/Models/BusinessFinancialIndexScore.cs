@@ -16,11 +16,19 @@ namespace FBD.Models
         /// <returns>A single record of BusinessFinancialIndexScore</returns>
         public static BusinessFinancialIndexScore SelectBusinessFinancialIndexScoreByScoreID(FBDEntities FBDModel,
                                                                                                     int prmScoreID)
-        { 
-            BusinessFinancialIndexScore score = FBDModel.BusinessFinancialIndexScore
-                                                        .First(s => s.ScoreID == prmScoreID);
+        {
+            try
+            {
+                BusinessFinancialIndexScore score = FBDModel.BusinessFinancialIndexScore
+                                                                .First(s => s.ScoreID == prmScoreID);
 
-            return score;
+                return score;
+            }
+            catch 
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -23,17 +23,17 @@ namespace FBD.Controllers
             try
             {
                 //load customer ranking list
-                customerRankList = CustomersBusinessRanking.SelectBusinessRankings();
+                customerRankList = CustomersBusinessRanking.SelectBusinessRankingForRankIndex();
                 if (customerRankList == null)
                 {
                     throw new Exception();
                 }
-                foreach (CustomersBusinessRanking item in customerRankList)
-                {
-                    item.BusinessScalesReference.Load();
-                    item.CustomersBusinessesReference.Load();
-                    item.BusinessRanksReference.Load();
-                }
+                //foreach (CustomersBusinessRanking item in customerRankList)
+                //{
+                //    item.BusinessScalesReference.Load();
+                //    item.CustomersBusinessesReference.Load();
+                //    item.BusinessRanksReference.Load();
+                //}
             }
             catch
             {
@@ -62,12 +62,12 @@ namespace FBD.Controllers
                 {
                     throw new Exception();
                 }
-                foreach (CustomersBusinessRanking item in model)
-                {
-                    item.BusinessScalesReference.Load();
-                    item.CustomersBusinessesReference.Load();
-                    item.BusinessRanksReference.Load();
-                }
+                //foreach (CustomersBusinessRanking item in model)
+                //{
+                //    item.BusinessScalesReference.Load();
+                //    item.CustomersBusinessesReference.Load();
+                //    item.BusinessRanksReference.Load();
+                //}
             }
             catch
             {
@@ -696,7 +696,7 @@ namespace FBD.Controllers
                 TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_ADD_POST, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
                 CustomersBusinessNonFinancialIndex.Reload(rnkNonFinancialRow);
                 ViewData["RankID"] = rankID.ToString();
-                return View(rnkNonFinancialRow);
+                return View("AddNonFinancialScore",rnkNonFinancialRow);
             }
         }
 

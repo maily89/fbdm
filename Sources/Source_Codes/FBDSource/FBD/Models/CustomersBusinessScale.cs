@@ -23,10 +23,18 @@ namespace FBD.Models
         public static CustomersBusinessScale SelectBusinessScaleByID(int id)
         {
 
-            FBDEntities entities = new FBDEntities();
-            var business = entities.CustomersBusinessScale.First(i => i.ID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var business = entities.CustomersBusinessScale.First(i => i.ID == id);
 
-            return business;
+                return business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -91,9 +99,17 @@ namespace FBD.Models
         /// <returns>business</returns>
         public static CustomersBusinessScale SelectBusinessScaleByID(int id, FBDEntities entities)
         {
-            if (entities == null) return null;
-            var business = entities.CustomersBusinessScale.First(i => i.ID == id);
-            return business;
+            try
+            {
+                if (entities == null) return null;
+                var business = entities.CustomersBusinessScale.First(i => i.ID == id);
+                return business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
 

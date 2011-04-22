@@ -48,7 +48,7 @@
                         <%= Html.ActionLink("Print","ExportBusinessInfo","RPTBusinessReport",  new { id = c.ID },null)%>|
                         <%= Html.ActionLink("Remove", "Delete", new { id = c.ID }, new { onclick = "javascript:return confirm('Are you sure you wish to delete item" + c.ID + "?');" })%>
                         <%
-        }).Title("").Width(150);
+        }).Title("").Width(70);
                 columns.Bound(c => c.CustomersBusinesses.CIF).Title("CIF");
                 columns.Bound(c => c.CustomersBusinesses.CustomerName).Title("Name");
                 columns.Template(c => {%><%=Html.Encode(String.Format("{0:F}", c.BusinessScales!=null?c.BusinessScales.Scale:null)) %><%})

@@ -30,9 +30,17 @@ namespace FBD.Models
         public static IndividualSummaryRanks SelectRankByID(FBDEntities entities,int id)
         {
 
-            var rank = entities.IndividualSummaryRanks.Include("IndividualBasicRanks").
-                                                                                  Include("IndividualCollateralRanks").First(i => i.ID == id);
-            return rank;
+            try
+            {
+                var rank = entities.IndividualSummaryRanks.Include("IndividualBasicRanks").
+                                                                                          Include("IndividualCollateralRanks").First(i => i.ID == id);
+                return rank;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
       

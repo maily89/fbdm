@@ -35,24 +35,40 @@ namespace FBD.Models
         /// <returns>IndividualCollateralIndexLevels</returns>
         public static IndividualCollateralIndexLevels SelectCollateralIndexLevelsByID(Decimal id)
         {
-            FBDEntities FBDModel = new FBDEntities();
+            try
+            {
+                FBDEntities FBDModel = new FBDEntities();
 
-            IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
+                IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
 
-            // Get the business Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
+                // Get the business Collateral Index from the entities model with the inputted ID
+                IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
 
-            return IndividualCollateralIndexLevels;
+                return IndividualCollateralIndexLevels;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static IndividualCollateralIndexLevels SelectCollateralIndexLevelsByID(Decimal id, FBDEntities FBDModel)
         {
-            IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
+            try
+            {
+                IndividualCollateralIndexLevels IndividualCollateralIndexLevels = null;
 
-            // Get the business Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
+                // Get the business Collateral Index from the entities model with the inputted ID
+                IndividualCollateralIndexLevels = FBDModel.IndividualCollateralIndexLevels.First(level => level.LevelID.Equals(id));
 
-            return IndividualCollateralIndexLevels;
+                return IndividualCollateralIndexLevels;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -29,8 +29,17 @@ namespace FBD.Models
         /// <returns>A SystemRight with id = ID</returns>
         public static SystemRights SelectRightsByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            return entities.SystemRights.First(i => i.RightID.Equals(id));
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                return entities.SystemRights.First(i => i.RightID.Equals(id));
+
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -42,7 +51,16 @@ namespace FBD.Models
         /// <returns>A SystemRight with id = ID</returns>
         public static SystemRights SelectRightsByID(string id, FBDEntities entities)
         {
-            return entities.SystemRights.First(i => i.RightID.Equals(id));
+            try
+            {
+                return entities.SystemRights.First(i => i.RightID.Equals(id));
+
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
         
         /// <summary>
@@ -75,12 +93,20 @@ namespace FBD.Models
         /// 0: if ERROR</returns>
         public static int EditRight(SystemRights right)
         {
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.SystemRights.First(i => i.RightID.Equals(right.RightID));
-            temp.RightName = right.RightName;
-            int result = entities.SaveChanges();
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var temp = entities.SystemRights.First(i => i.RightID.Equals(right.RightID));
+                temp.RightName = right.RightName;
+                int result = entities.SaveChanges();
 
-            return result <= 0 ? 0 : 1;
+                return result <= 0 ? 0 : 1;
+            }
+            catch (Exception)
+            {
+                
+                return 0;
+            }
         }
 
         /// <summary>

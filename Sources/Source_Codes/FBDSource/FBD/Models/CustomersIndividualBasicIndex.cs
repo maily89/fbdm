@@ -32,9 +32,17 @@ namespace FBD.Models
         /// <returns>basicIndex</returns>
         public static CustomersIndividualBasicIndex SelectBasicIndexByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var basicIndex = entities.CustomersIndividualBasicIndex.First(i => i.ID == id);
-            return basicIndex;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var basicIndex = entities.CustomersIndividualBasicIndex.First(i => i.ID == id);
+                return basicIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -45,9 +53,17 @@ namespace FBD.Models
         /// <returns>basicIndex</returns>
         public static CustomersIndividualBasicIndex SelectBasicIndexByID(int id, FBDEntities entities)
         {
-            if (entities == null || id <= 0) return null;
-            var basicIndex = entities.CustomersIndividualBasicIndex.First(i => i.ID == id);
-            return basicIndex;
+            try
+            {
+                if (entities == null || id <= 0) return null;
+                var basicIndex = entities.CustomersIndividualBasicIndex.First(i => i.ID == id);
+                return basicIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

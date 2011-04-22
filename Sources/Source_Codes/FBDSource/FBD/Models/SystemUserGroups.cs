@@ -29,9 +29,17 @@ namespace FBD.Models
         /// <returns>A Group with id = ID</returns>
         public static SystemUserGroups SelectUserGroupByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            var group = entities.SystemUserGroups.First(i => i.GroupID == id);
-            return group;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var group = entities.SystemUserGroups.First(i => i.GroupID == id);
+                return group;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -42,8 +50,16 @@ namespace FBD.Models
         /// <returns>A Group with id = ID</returns>
         public static SystemUserGroups SelectUserGroupByID(string id, FBDEntities entities)
         {
-            var group = entities.SystemUserGroups.First(i => i.GroupID == id);
-            return group;
+            try
+            {
+                var group = entities.SystemUserGroups.First(i => i.GroupID == id);
+                return group;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
 

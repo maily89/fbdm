@@ -29,9 +29,17 @@ namespace FBD.Models
         /// <returns>A Branch with id = ID</returns>
         public static SystemBranches SelectBranchByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            var Branch = entities.SystemBranches.First(i => i.BranchID == id);
-            return Branch;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Branch = entities.SystemBranches.First(i => i.BranchID == id);
+                return Branch;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -42,8 +50,16 @@ namespace FBD.Models
         /// <returns>A Branch with id = ID</returns>
         public static SystemBranches SelectBranchByID(string id, FBDEntities entities)
         {
-            var Branch = entities.SystemBranches.First(i => i.BranchID == id);
-            return Branch;
+            try
+            {
+                var Branch = entities.SystemBranches.First(i => i.BranchID == id);
+                return Branch;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

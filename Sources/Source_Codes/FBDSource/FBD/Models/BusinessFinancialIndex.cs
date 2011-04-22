@@ -33,12 +33,19 @@ namespace FBD.Models
         /// <returns>BusinessFinancialIndex</returns>
         public static BusinessFinancialIndex SelectFinancialIndexByID(FBDEntities FBDModel, string id)
         {
-            BusinessFinancialIndex businessFinancialIndex = null;
+            try
+            {
+                BusinessFinancialIndex businessFinancialIndex = null;
 
-            // Get the business financial index from the entities model with the inputted ID
-            businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
+                // Get the business financial index from the entities model with the inputted ID
+                businessFinancialIndex = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(id));
 
-            return businessFinancialIndex;
+                return businessFinancialIndex;
+            }
+            catch 
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -87,19 +94,27 @@ namespace FBD.Models
         public static int EditFinancialIndex(FBDEntities FBDModel, BusinessFinancialIndex businessFinancialIndex)
         {
             // Select the financial index to be updated from database
-            var temp = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(businessFinancialIndex.IndexID));
+            try
+            {
 
-            // Update the financial index to the entities
-            temp.IndexName = businessFinancialIndex.IndexName;
-            temp.Unit = businessFinancialIndex.Unit;
-            temp.Formula = businessFinancialIndex.Formula;
-            temp.ValueType = businessFinancialIndex.ValueType;
-            temp.LeafIndex = businessFinancialIndex.LeafIndex;
+                var temp = FBDModel.BusinessFinancialIndex.First(index => index.IndexID.Equals(businessFinancialIndex.IndexID));
 
-            // Save changes to the database
-            int result = FBDModel.SaveChanges();
+                // Update the financial index to the entities
+                temp.IndexName = businessFinancialIndex.IndexName;
+                temp.Unit = businessFinancialIndex.Unit;
+                temp.Formula = businessFinancialIndex.Formula;
+                temp.ValueType = businessFinancialIndex.ValueType;
+                temp.LeafIndex = businessFinancialIndex.LeafIndex;
 
-            return result <=0 ? 0 : 1;
+                // Save changes to the database
+                int result = FBDModel.SaveChanges();
+
+                return result <= 0 ? 0 : 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         /// <summary>

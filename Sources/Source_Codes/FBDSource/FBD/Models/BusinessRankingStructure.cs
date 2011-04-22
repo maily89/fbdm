@@ -29,9 +29,17 @@ namespace FBD.Models
         /// <returns>rankingStructure</returns>
         public static BusinessRankingStructure SelectRankingStructureByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var rankingStructure = entities.BusinessRankingStructure.First(i => i.ID == id);
-            return rankingStructure;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var rankingStructure = entities.BusinessRankingStructure.First(i => i.ID == id);
+                return rankingStructure;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -43,15 +51,31 @@ namespace FBD.Models
         public static BusinessRankingStructure SelectRankingStructureByID(int id, FBDEntities entities)
         {
 
-            var rankingStructure = entities.BusinessRankingStructure.First(i => i.ID == id);
-            return rankingStructure;
+            try
+            {
+                var rankingStructure = entities.BusinessRankingStructure.First(i => i.ID == id);
+                return rankingStructure;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static BusinessRankingStructure SelectRankingStructureByIndexAndAudit(string indexType, string auditType)
         {
-            FBDEntities entities=new FBDEntities();
-            var rankingStructure = entities.BusinessRankingStructure.First(r => r.AuditedStatus == auditType && r.IndexType == indexType);
-            return rankingStructure;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var rankingStructure = entities.BusinessRankingStructure.First(r => r.AuditedStatus == auditType && r.IndexType == indexType);
+                return rankingStructure;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
