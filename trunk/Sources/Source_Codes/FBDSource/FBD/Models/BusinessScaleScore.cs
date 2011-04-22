@@ -42,9 +42,18 @@ namespace FBD.Models
         /// <returns>scaleScore</returns>
         public static BusinessScaleScore SelectScaleScoreByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var scaleScore = entities.BusinessScaleScore.First(i => i.ScoreID == id);
-            return scaleScore;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var scaleScore = entities.BusinessScaleScore.First(i => i.ScoreID == id);
+                return scaleScore;
+
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -56,8 +65,16 @@ namespace FBD.Models
         public static BusinessScaleScore SelectScaleScoreByID(int id, FBDEntities entities)
         {
             if (entities == null) return null;
-            var scaleScore = entities.BusinessScaleScore.First(i => i.ScoreID == id);
-            return scaleScore;
+            try
+            {
+                var scaleScore = entities.BusinessScaleScore.First(i => i.ScoreID == id);
+                return scaleScore;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

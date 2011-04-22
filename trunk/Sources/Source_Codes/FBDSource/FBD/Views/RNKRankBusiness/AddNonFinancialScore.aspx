@@ -62,7 +62,7 @@
                        {%>
                        
                            <%=Html.DropDownListFor(m => m[i].ScoreID, new SelectList(Model[i].ScoreList as IEnumerable,
-               "ScoreID", "FixedValue", Model[i].ScoreID))%>
+                                              "ScoreID", "FixedValue", Model[i].ScoreID), new { style = "width: 300px;" })%>
                        <%}
                    }
             %>

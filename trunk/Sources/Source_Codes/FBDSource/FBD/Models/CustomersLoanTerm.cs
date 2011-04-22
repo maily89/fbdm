@@ -28,10 +28,18 @@ namespace FBD.Models
         public static CustomersLoanTerm SelectLoanTermByID(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            FBDEntities entities = new FBDEntities();
-            var loanTerm = entities.CustomersLoanTerm.First(i => i.LoanTermID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var loanTerm = entities.CustomersLoanTerm.First(i => i.LoanTermID == id);
 
-            return loanTerm;
+                return loanTerm;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static bool IsIDExist(string id)
@@ -50,8 +58,16 @@ namespace FBD.Models
         public static CustomersLoanTerm SelectLoanTermByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var loanTerm = entities.CustomersLoanTerm.First(i => i.LoanTermID == id);
-            return loanTerm;
+            try
+            {
+                var loanTerm = entities.CustomersLoanTerm.First(i => i.LoanTermID == id);
+                return loanTerm;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

@@ -36,9 +36,17 @@ namespace FBD.Models
         public static BusinessRanks SelectRankByID(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            FBDEntities entities = new FBDEntities();
-            var rank = entities.BusinessRanks.First(i => i.RankID == id);
-            return rank;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var rank = entities.BusinessRanks.First(i => i.RankID == id);
+                return rank;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -50,8 +58,16 @@ namespace FBD.Models
         public static BusinessRanks SelectRankByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var rank = entities.BusinessRanks.First(i => i.RankID == id);
-            return rank;
+            try
+            {
+                var rank = entities.BusinessRanks.First(i => i.RankID == id);
+                return rank;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

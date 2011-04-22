@@ -32,9 +32,17 @@ namespace FBD.Models
         /// <returns>nonFinancialIndex</returns>
         public static CustomersBusinessNonFinancialIndex SelectNonFinancialIndexByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var nonFinancialIndex = entities.CustomersBusinessNonFinancialIndex.First(i => i.ID == id);
-            return nonFinancialIndex;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var nonFinancialIndex = entities.CustomersBusinessNonFinancialIndex.First(i => i.ID == id);
+                return nonFinancialIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -94,8 +102,16 @@ namespace FBD.Models
         public static CustomersBusinessNonFinancialIndex SelectNonFinancialIndexByID(int id, FBDEntities entities)
         {
             if (entities == null || id <= 0) return null;
-            var nonFinancialIndex = entities.CustomersBusinessNonFinancialIndex.First(i => i.ID == id);
-            return nonFinancialIndex;
+            try
+            {
+                var nonFinancialIndex = entities.CustomersBusinessNonFinancialIndex.First(i => i.ID == id);
+                return nonFinancialIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
 

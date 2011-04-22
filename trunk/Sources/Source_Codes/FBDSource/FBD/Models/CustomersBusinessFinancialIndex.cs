@@ -32,9 +32,17 @@ namespace FBD.Models
         /// <returns>financialIndex</returns>
         public static CustomersBusinessFinancialIndex SelectFinancialIndexByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var financialIndex = entities.CustomersBusinessFinancialIndex.First(i => i.ID == id);
-            return financialIndex;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var financialIndex = entities.CustomersBusinessFinancialIndex.First(i => i.ID == id);
+                return financialIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -94,8 +102,16 @@ namespace FBD.Models
         public static CustomersBusinessFinancialIndex SelectFinancialIndexByID(int id, FBDEntities entities)
         {
             if (entities == null || id<=0) return null;
-            var financialIndex = entities.CustomersBusinessFinancialIndex.First(i => i.ID== id);
-            return financialIndex;
+            try
+            {
+                var financialIndex = entities.CustomersBusinessFinancialIndex.First(i => i.ID == id);
+                return financialIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
 

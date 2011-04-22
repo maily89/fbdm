@@ -29,8 +29,16 @@ namespace FBD.Models
         /// <returns>A Customer type with id = ID</returns>
         public static SystemCustomerTypes SelectTypeByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -43,7 +51,15 @@ namespace FBD.Models
         public static SystemCustomerTypes SelectTypeByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities==null) return null;
-            return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+            try
+            {
+                return entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -76,12 +92,20 @@ namespace FBD.Models
         /// 0: if ERROR</returns>
         public static int EditType(SystemCustomerTypes type)
         {
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(type.TypeID));
-            temp.TypeName = type.TypeName;
-            int result = entities.SaveChanges();
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(type.TypeID));
+                temp.TypeName = type.TypeName;
+                int result = entities.SaveChanges();
 
-            return result <= 0 ? 0 : 1;
+                return result <= 0 ? 0 : 1;
+            }
+            catch (Exception)
+            {
+                
+                return 0;
+            }
         }
 
         /// <summary>
@@ -96,12 +120,20 @@ namespace FBD.Models
         /// 0: if ERROR</returns>
         public static int DeleteType(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
-            entities.DeleteObject(temp);
-            int result = entities.SaveChanges();
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var temp = entities.SystemCustomerTypes.First(i => i.TypeID.Equals(id));
+                entities.DeleteObject(temp);
+                int result = entities.SaveChanges();
 
-            return result <= 0 ? 0 : 1;
+                return result <= 0 ? 0 : 1;
+            }
+            catch (Exception)
+            {
+                
+                return 0;
+            }
         }
 
         /// <summary>

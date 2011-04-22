@@ -56,25 +56,41 @@ namespace FBD.Models
         /// <returns>IndividualCollateralIndex</returns>
         public static IndividualCollateralIndex SelectCollateralIndexByID(string id)
         {
-            FBDEntities FBDModel = new FBDEntities();
+            try
+            {
+                FBDEntities FBDModel = new FBDEntities();
 
-            IndividualCollateralIndex IndividualCollateralIndex = null;
+                IndividualCollateralIndex IndividualCollateralIndex = null;
 
-            // Get the business Individual Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndex = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
+                // Get the business Individual Collateral Index from the entities model with the inputted ID
+                IndividualCollateralIndex = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
 
-            return IndividualCollateralIndex;
+                return IndividualCollateralIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static IndividualCollateralIndex SelectCollateralIndexByID(string id, FBDEntities FBDModel)
         {
             //FBDEntities FBDModel = new FBDEntities();
 
-            IndividualCollateralIndex IndividualCollateralIndex = null;
+            try
+            {
+                IndividualCollateralIndex IndividualCollateralIndex = null;
 
-            // Get the business Individual Collateral Index from the entities model with the inputted ID
-            IndividualCollateralIndex = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
-            return IndividualCollateralIndex;
+                // Get the business Individual Collateral Index from the entities model with the inputted ID
+                IndividualCollateralIndex = FBDModel.IndividualCollateralIndex.First(index => index.IndexID.Equals(id));
+                return IndividualCollateralIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

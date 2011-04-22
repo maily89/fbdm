@@ -53,25 +53,41 @@ namespace FBD.Models
         /// <returns>IndividualBasicIndex</returns>
         public static IndividualBasicIndex SelectBasicIndexByID(string id)
         {
-            FBDEntities FBDModel = new FBDEntities();
+            try
+            {
+                FBDEntities FBDModel = new FBDEntities();
 
-            IndividualBasicIndex IndividualBasicIndex = null;
+                IndividualBasicIndex IndividualBasicIndex = null;
 
-            // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
+                // Get the business Basic index from the entities model with the inputted ID
+                IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
 
-            return IndividualBasicIndex;
+                return IndividualBasicIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static IndividualBasicIndex SelectBasicIndexByID(string id, FBDEntities FBDModel)
         {
             //FBDEntities FBDModel = new FBDEntities();
 
-            IndividualBasicIndex IndividualBasicIndex = null;
+            try
+            {
+                IndividualBasicIndex IndividualBasicIndex = null;
 
-            // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
-            return IndividualBasicIndex;
+                // Get the business Basic index from the entities model with the inputted ID
+                IndividualBasicIndex = FBDModel.IndividualBasicIndex.First(index => index.IndexID.Equals(id));
+                return IndividualBasicIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

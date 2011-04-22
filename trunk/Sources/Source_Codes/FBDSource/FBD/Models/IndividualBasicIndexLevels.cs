@@ -35,24 +35,40 @@ namespace FBD.Models
         /// <returns>IndividualBasicIndexLevels</returns>
         public static IndividualBasicIndexLevels SelectBasicIndexLevelsByID(Decimal id)
         {
-            FBDEntities FBDModel = new FBDEntities();
+            try
+            {
+                FBDEntities FBDModel = new FBDEntities();
 
-            IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
+                IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
 
-            // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
+                // Get the business Basic index from the entities model with the inputted ID
+                IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
 
-            return IndividualBasicIndexLevels;
+                return IndividualBasicIndexLevels;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static IndividualBasicIndexLevels SelectBasicIndexLevelsByID(Decimal id,FBDEntities FBDModel)
         {
-            IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
+            try
+            {
+                IndividualBasicIndexLevels IndividualBasicIndexLevels = null;
 
-            // Get the business Basic index from the entities model with the inputted ID
-            IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
+                // Get the business Basic index from the entities model with the inputted ID
+                IndividualBasicIndexLevels = FBDModel.IndividualBasicIndexLevels.First(level => level.LevelID.Equals(id));
 
-            return IndividualBasicIndexLevels;
+                return IndividualBasicIndexLevels;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

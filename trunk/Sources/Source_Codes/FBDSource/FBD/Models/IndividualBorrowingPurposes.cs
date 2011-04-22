@@ -30,17 +30,33 @@ namespace FBD.Models
         public static IndividualBorrowingPurposes SelectBorrowingPPByID(string id)
         {
             if (id == null) return null;
-            FBDEntities FBDModel = new FBDEntities();
-            IndividualBorrowingPurposes IndividualBorrowingPurposes = null;
-            IndividualBorrowingPurposes = FBDModel.IndividualBorrowingPurposes.First(pp => pp.PurposeID.Equals(id));
-            return IndividualBorrowingPurposes;
+            try
+            {
+                FBDEntities FBDModel = new FBDEntities();
+                IndividualBorrowingPurposes IndividualBorrowingPurposes = null;
+                IndividualBorrowingPurposes = FBDModel.IndividualBorrowingPurposes.First(pp => pp.PurposeID.Equals(id));
+                return IndividualBorrowingPurposes;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static IndividualBorrowingPurposes SelectBorrowingPPByID(string id, FBDEntities FBDModel)
         {
-            IndividualBorrowingPurposes IndividualBorrowingPurposes = null;
-            IndividualBorrowingPurposes = FBDModel.IndividualBorrowingPurposes.First(pp => pp.PurposeID.Equals(id));
-            return IndividualBorrowingPurposes;
+            try
+            {
+                IndividualBorrowingPurposes IndividualBorrowingPurposes = null;
+                IndividualBorrowingPurposes = FBDModel.IndividualBorrowingPurposes.First(pp => pp.PurposeID.Equals(id));
+                return IndividualBorrowingPurposes;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
         /// <summary>
         /// 1. Receive information from parameter

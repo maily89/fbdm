@@ -23,12 +23,12 @@ namespace FBD.Controllers
             List<CustomersIndividualRanking> customerRankList = null;
             try
             {
-                customerRankList = CustomersIndividualRanking.SelectIndividualRankings();
-                foreach (CustomersIndividualRanking item in customerRankList)
-                {
-                    item.CustomersIndividualsReference.Load();
-                    item.IndividualSummaryRanksReference.Load();
-                }
+                customerRankList = CustomersIndividualRanking.SelectIndividualRankingsForRankIndex();
+                //foreach (CustomersIndividualRanking item in customerRankList)
+                //{
+                //    item.CustomersIndividualsReference.Load();
+                //    item.IndividualSummaryRanksReference.Load();
+                //}
                 if (customerRankList == null)
                 {
                     throw new Exception();
@@ -61,11 +61,11 @@ namespace FBD.Controllers
             {
 
                 customerRankList = CustomersIndividualRanking.SelectRankingByDateAndCifAndBranch(data.FromDate,data.ToDate, data.Cif, data.BranchID);
-                foreach (CustomersIndividualRanking item in customerRankList)
-                {
-                    item.CustomersIndividualsReference.Load();
-                    item.IndividualSummaryRanksReference.Load();
-                }
+                //foreach (CustomersIndividualRanking item in customerRankList)
+                //{
+                //    item.CustomersIndividualsReference.Load();
+                //    item.IndividualSummaryRanksReference.Load();
+                //}
                 if (customerRankList == null)
                 {
                     throw new Exception();

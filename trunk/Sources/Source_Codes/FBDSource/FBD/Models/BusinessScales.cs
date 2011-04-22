@@ -17,16 +17,32 @@ namespace FBD.Models
         public static BusinessScales SelectScaleByID(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            FBDEntities entities = new FBDEntities();
-            var scale = entities.BusinessScales.First(i => i.ScaleID == id);
-            return scale;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var scale = entities.BusinessScales.First(i => i.ScaleID == id);
+                return scale;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static BusinessScales SelectScaleByID(string id, FBDEntities entities)
         {
             if (string.IsNullOrEmpty(id) || entities == null) return null;
-            var scale = entities.BusinessScales.First(i => i.ScaleID == id);
-            return scale;
+            try
+            {
+                var scale = entities.BusinessScales.First(i => i.ScaleID == id);
+                return scale;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static int DeleteScale(string id)

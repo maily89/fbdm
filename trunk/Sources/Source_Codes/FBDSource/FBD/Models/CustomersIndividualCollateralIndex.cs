@@ -32,9 +32,17 @@ namespace FBD.Models
         /// <returns>collateralIndex</returns>
         public static CustomersIndividualCollateralIndex SelectCollateralIndexByID(int id)
         {
-            FBDEntities entities = new FBDEntities();
-            var collateralIndex = entities.CustomersIndividualCollateralIndex.First(i => i.ID == id);
-            return collateralIndex;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var collateralIndex = entities.CustomersIndividualCollateralIndex.First(i => i.ID == id);
+                return collateralIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -45,9 +53,17 @@ namespace FBD.Models
         /// <returns>collateralIndex</returns>
         public static CustomersIndividualCollateralIndex SelectCollateralIndexByID(int id, FBDEntities entities)
         {
-            if (entities == null || id <= 0) return null;
-            var collateralIndex = entities.CustomersIndividualCollateralIndex.First(i => i.ID == id);
-            return collateralIndex;
+            try
+            {
+                if (entities == null || id <= 0) return null;
+                var collateralIndex = entities.CustomersIndividualCollateralIndex.First(i => i.ID == id);
+                return collateralIndex;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

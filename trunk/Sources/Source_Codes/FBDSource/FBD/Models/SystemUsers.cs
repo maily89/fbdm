@@ -46,11 +46,19 @@ namespace FBD.Models
         /// <returns>A User with id = ID</returns>
         public static SystemUsers SelectUserByID(string id)
         {
-            FBDEntities entities = new FBDEntities();
-            var user = entities.SystemUsers.Include("SystemBranches")
-                                           .Include("SystemUserGroups")
-                                           .First(i => i.UserID == id);
-            return user;
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var user = entities.SystemUsers.Include("SystemBranches")
+                                               .Include("SystemUserGroups")
+                                               .First(i => i.UserID == id);
+                return user;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -61,10 +69,18 @@ namespace FBD.Models
         /// <returns>A User with id = ID</returns>
         public static SystemUsers SelectUserByID(string id, FBDEntities entities)
         {
-            var user = entities.SystemUsers.Include("SystemBranches")
-                                           .Include("SystemUserGroups")
-                                           .First(i => i.UserID == id);
-            return user;
+            try
+            {
+                var user = entities.SystemUsers.Include("SystemBranches")
+                                       .Include("SystemUserGroups")
+                                       .First(i => i.UserID == id);
+                return user;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

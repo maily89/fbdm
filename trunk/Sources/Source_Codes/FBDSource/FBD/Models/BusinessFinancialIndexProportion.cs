@@ -66,10 +66,18 @@ namespace FBD.Models
         public static BusinessFinancialIndexProportion SelectFinancialIndexProportionByProportionID(FBDEntities FBDModel,
                                                                                                     int ProportionID)
         {
-            BusinessFinancialIndexProportion financialIndexProportion = FBDModel
-                                                                         .BusinessFinancialIndexProportion
-                                                                         .First(p => p.ProportionID == ProportionID);
-            return financialIndexProportion;
+            try
+            {
+                BusinessFinancialIndexProportion financialIndexProportion = FBDModel
+                                                                                 .BusinessFinancialIndexProportion
+                                                                                 .First(p => p.ProportionID == ProportionID);
+                return financialIndexProportion;
+            }
+            catch
+            {
+
+                return null;
+            }
         }
 
         /// <summary>

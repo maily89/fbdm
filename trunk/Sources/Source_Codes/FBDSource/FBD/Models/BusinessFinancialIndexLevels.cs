@@ -33,12 +33,20 @@ namespace FBD.Models
         /// <returns>BusinessFinancialIndexLevels</returns>
         public static BusinessFinancialIndexLevels SelectFinancialIndexLevelsByID(Decimal id, FBDEntities FBDModel)
         {
-            BusinessFinancialIndexLevels businessFinancialIndexLevels = null;
+            try
+            {
+                BusinessFinancialIndexLevels businessFinancialIndexLevels = null;
 
-            // Get the business financial index from the entities model with the inputted ID
-            businessFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
-           
-            return businessFinancialIndexLevels;
+                // Get the business financial index from the entities model with the inputted ID
+                businessFinancialIndexLevels = FBDModel.BusinessFinancialIndexLevels.First(level => level.LevelID == id);
+
+                return businessFinancialIndexLevels;
+            }
+            catch 
+            {
+
+                return null;
+            }
         }
 
         /// <summary>

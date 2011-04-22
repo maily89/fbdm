@@ -22,6 +22,20 @@ namespace FBD.Models
             return entities.CustomersBusinessRanking.OrderBy(m => m.ID).ToList();
         }
 
+                    //        item.BusinessScalesReference.Load();
+                    //item.CustomersBusinessesReference.Load();
+                    //item.BusinessRanksReference.Load();
+        public static List<CustomersBusinessRanking> SelectBusinessRankingForRankIndex()
+        {
+            FBDEntities entities = new FBDEntities();
+            return entities.CustomersBusinessRanking
+                            .Include("BusinessScales")
+                            .Include("CustomersBusinesses")
+                            .Include("BusinessRanks")
+                            .ToList();
+
+        }
+
         public static List<CustomersBusinessRanking> SelectBusinessRankings(string OrderBy)
         {
             FBDEntities entities = new FBDEntities();
@@ -87,10 +101,18 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectBusinessRankingByID(int id)
         {
             if (id <= 0) return null;
-            FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Business = entities.CustomersBusinessRanking.First(i => i.ID == id);
 
-            return Business;
+                return Business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
@@ -101,12 +123,20 @@ namespace FBD.Models
         public static CustomersBusinessRanking SelectBusinessRankingWithPRByID(int id)
         {
             if (id <= 0) return null;
-            FBDEntities entities = new FBDEntities();
-            var Business = entities.CustomersBusinessRanking
-                                   .Include("SystemReportingPeriods")
-                                   .First(i => i.ID == id);
+            try
+            {
+                FBDEntities entities = new FBDEntities();
+                var Business = entities.CustomersBusinessRanking
+                                       .Include("SystemReportingPeriods")
+                                       .First(i => i.ID == id);
 
-            return Business;
+                return Business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
         /// <summary>
         /// return the Business specified by RankID
@@ -165,7 +195,8 @@ namespace FBD.Models
                 .Include("SystemReportingPeriods")
                 .Include("CustomersBusinesses")
                 .Include("CustomersBusinesses.SystemBranches")
-
+                .Include("BusinessScales")
+                .Include("BusinessRanks")
                 .Where(i => (!isCifTested || i.CustomersBusinesses.CIF.StartsWith(cif)) && (!isPeriodTested || i.SystemReportingPeriods.PeriodID == periodID) && (!isBranchTested || i.CustomersBusinesses.SystemBranches.BranchID == branchID));
 
 
@@ -179,25 +210,41 @@ namespace FBD.Models
         /// <returns>Business</returns>
         public static CustomersBusinessRanking SelectBusinessRankingByID(int id, FBDEntities entities)
         {
-            if (entities == null) return null;
-            var business = entities.CustomersBusinessRanking.First(i => i.ID == id);
-            return business;
+            try
+            {
+                if (entities == null) return null;
+                var business = entities.CustomersBusinessRanking.First(i => i.ID == id);
+                return business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         public static CustomersBusinessRanking SelectBusinessRankingByIDWithReference(int id, FBDEntities entities)
         {
-            if (entities == null) return null;
-            var business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
-                                                            .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
-                                                            .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
-                                                            .Include(Constants.TABLE_BUSINESS_TYPES)
-                                                            .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
-                                                            .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
-                                                            .Include(Constants.TABLE_BUSINESS_SCALES)
-                                                            .Include(Constants.TABLE_BUSINESS_RANKS)
-                                                            .Include(Constants.TABLE_BUSINESS_CLUSTER_RANKS)
-                                                            .First(i => i.ID == id);
-            return business;
+            try
+            {
+                if (entities == null) return null;
+                var business = entities.CustomersBusinessRanking.Include(Constants.TABLE_CUSTOMERS_BUSINESSES)
+                                                                .Include(Constants.TABLE_SYSTEM_REPORTING_PERIODS)
+                                                                .Include(Constants.TABLE_BUSINESS_INDUSTRIES)
+                                                                .Include(Constants.TABLE_BUSINESS_TYPES)
+                                                                .Include(Constants.TABLE_CUSTOMERS_LOAN_TERM)
+                                                                .Include(Constants.TABLE_SYSTEM_CUSTOMER_TYPE)
+                                                                .Include(Constants.TABLE_BUSINESS_SCALES)
+                                                                .Include(Constants.TABLE_BUSINESS_RANKS)
+                                                                .Include(Constants.TABLE_BUSINESS_CLUSTER_RANKS)
+                                                                .First(i => i.ID == id);
+                return business;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>

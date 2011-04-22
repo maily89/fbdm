@@ -184,6 +184,7 @@ namespace FBD.Models
         private static void GetScoreForCharacter(RNKBasicRow indexScore, FBDEntities entities)
         {
             IndividualBasicIndexScore score = IndividualBasicIndexScore.SelectIndividualBasicIndexScoreByScoreID(entities, indexScore.ScoreID);
+            if (score == null) return;
             score.IndividualBasicIndexLevelsReference.Load();
             if (score.IndividualBasicIndexLevels == null) return;
             indexScore.CalculatedScore = score.IndividualBasicIndexLevels.Score;

@@ -130,6 +130,7 @@ namespace FBD.Models
                 else
                 {
                     BusinessFinancialIndexScore score = BusinessFinancialIndexScore.SelectBusinessFinancialIndexScoreByScoreID(entities, indexScore.ScoreID);
+                    if (score == null) return 0;
                     score.BusinessFinancialIndexLevelsReference.Load();
                     if(score.BusinessFinancialIndexLevels!=null)
                     indexScore.CalculatedScore = score.BusinessFinancialIndexLevels.Score;

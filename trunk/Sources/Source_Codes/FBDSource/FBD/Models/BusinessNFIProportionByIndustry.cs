@@ -83,9 +83,17 @@ namespace FBD.Models
         public static BusinessNFIProportionByIndustry SelectNFIProportionByIndustryByProportionID(FBDEntities FBDModel,
                                                                                                     int ProportionID)
         {
-            BusinessNFIProportionByIndustry proportion = FBDModel.BusinessNFIProportionByIndustry
-                                                                 .First(p => p.ProportionID == ProportionID);
-            return proportion;
+            try
+            {
+                BusinessNFIProportionByIndustry proportion = FBDModel.BusinessNFIProportionByIndustry
+                                                                         .First(p => p.ProportionID == ProportionID);
+                return proportion;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
         }
 
         /// <summary>
