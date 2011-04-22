@@ -142,20 +142,19 @@ namespace FBD.Models
                 GetScore(indexScore, ranking);
 
                 //calculate score
-                if (indexScore.CalculatedScore !=0)
+
+                var proportion = IndividualBasicIndexProportion.SelectBasicIndexProportionByBorrowingPPAndBasicIndex(entities, purposeID, indexScore.Index.IndexID);
+
+                decimal score = indexScore.CalculatedScore;
+                if (proportion != null)
                 {
-                    var proportion = IndividualBasicIndexProportion.SelectBasicIndexProportionByBorrowingPPAndBasicIndex(entities, purposeID, indexScore.Index.IndexID);
-
-                    decimal score = indexScore.CalculatedScore;
-                    if (proportion != null)
-                    {
-                        decimal prop = proportion.Proportion.Value;
-                        indexScore.Proportion = prop;
-                        indexScore.Result = score * prop / 100;
-                        finalScore += score * prop;
-                    }
-
+                    decimal prop = proportion.Proportion.Value;
+                    indexScore.Proportion = prop;
+                    indexScore.Result = score * prop / 100;
+                    finalScore += score * prop;
                 }
+
+                
             }
             ranking.BasicIndexScore = finalScore / 100;
             return finalScore / 100;
