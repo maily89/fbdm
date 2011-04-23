@@ -52,8 +52,16 @@ namespace FBD.Models
             }
 
             totalScore = total/100;
-            totalProportion = GetFinancialProportion(ranking).Percentage.Value;
+            try
+            {
+                totalProportion = GetFinancialProportion(ranking).Percentage.Value;
 
+            }
+            catch (Exception)
+            {
+
+                totalProportion = 0;
+            }
         }
 
         public static BusinessRankingStructure GetFinancialProportion(CustomersBusinessRanking ranking)
@@ -103,8 +111,14 @@ namespace FBD.Models
                 }
                 
             }
-
-            ranking.FinancialScore = finalScore / 100 * GetFinancialProportion(ranking).Percentage.Value/100;
+            try
+            {
+                ranking.FinancialScore = finalScore / 100 * GetFinancialProportion(ranking).Percentage.Value / 100;
+            }
+            catch
+            {
+                ranking.FinancialScore = 0;
+            }
             entities.SaveChanges();
             return finalScore/100;
         }
