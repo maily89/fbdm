@@ -27,6 +27,7 @@
         </siteMapNode>
         <siteMapNode title="Ranking Structure" controller="BSNRankingStructure" action="Index" />
         <siteMapNode title="Business Ranks" controller="BSNRank" action="Index" />
+        <siteMapNode title="Business Cluster Ranks" controller="BSNClusterRank" action="Index" />
       </siteMapNode>
       <siteMapNode title="Individual Paramaters"  description="Managing Parameter for individual customers">
         <siteMapNode title="Borrowing purposes" controller="INVBorrowingPurpose" action="Index" />
@@ -44,6 +45,7 @@
           <siteMapNode title="Collateral Rank" controller="INVCollateralRank" action="Index" />
         </siteMapNode>
         <siteMapNode title="Summary Evaluation" controller="INVSummaryRank" action="Index" />
+        <siteMapNode title="Individual Cluster Ranks" controller="INVClusterRank" action="Index" />
       </siteMapNode>
     </siteMapNode>
     <siteMapNode title="System Management"  description="Managing System">
@@ -65,6 +67,9 @@
         <siteMapNode title="Individual Ranking" controller="RNKRankIndividual" action="Index" />
       </siteMapNode>
     </siteMapNode>
-    <siteMapNode title="Report Management" description="Report Management" controller="" action="Index" />
+      <siteMapNode title="Data Mining" description="Customers Clustering">
+          <siteMapNode title="Business Clustering" description="Customers Clustering" controller="BSNMining" action="Index" />
+          <siteMapNode title="Individuals Clustering" description="Customers Clustering" controller="INVMining" action="Index" />
+      </siteMapNode>  
   </siteMapNode>
 </siteMap>
