@@ -42,9 +42,12 @@ namespace FBD.CommonUtilities
         public const string CUSTOMER_BUSINESS_RANKING = "Ranked business Customer";
         public const string CUSTOMER_LOANTERM = "Loan term";
         public const string CUSTOMER_BUSINESS_FINANCIAL_INDEX = "Customer business financial index";
+        public const string CUSTOMER_BUSINESS_NONFINANCIAL_INDEX = "Customer business non-financial index";
 
         public const string CUSTOMER_INDIVIDUAL_RANKING = "Ranked Individual Customer";
         public const string CUSTOMER_INDIVIDUAL = "Individual Customer";
+        public const string CUSTOMER_INDIVIDUAL_BASIC = "Individual Customer basic index";
+        public const string CUSTOMER_INDIVIDUAL_COLLATERAL = "Individual Customer collateral index";
 
         //BUSINESS
         public const string BUSINESS_INDUSTRY = "business Industry";

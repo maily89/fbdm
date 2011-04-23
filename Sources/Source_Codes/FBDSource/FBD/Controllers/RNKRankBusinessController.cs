@@ -1177,9 +1177,10 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: ERROR MESSAGE
+                
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS_FINANCIAL_INDEX);
                 ViewData["DetailView"] = true;
-                return RedirectToAction("DetailGeneral");
+                return RedirectToAction("DetailGeneral", new { id = id });
             }
         }
 
@@ -1229,9 +1230,9 @@ namespace FBD.Controllers
             }
             catch (Exception)
             {
-                //TODO: ERROR MESSAGE
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_BUSINESS_NONFINANCIAL_INDEX);
                 ViewData["DetailView"] = true;
-                return RedirectToAction("DetailGeneral");
+                return RedirectToAction("DetailGeneral", new { id = id });
             }
         }
 
@@ -1276,7 +1277,8 @@ namespace FBD.Controllers
             }
             catch
             {
-                //TODO: ERROR message here
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_RNK_RANKING, Constants.CUSTOMER_BUSINESS);
+
             }
             return View("Ranking", model);
         }
