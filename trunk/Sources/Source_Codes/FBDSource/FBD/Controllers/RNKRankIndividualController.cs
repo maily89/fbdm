@@ -944,7 +944,8 @@ namespace FBD.Controllers
             catch
             {
                 ViewData["DetailView"] = true;
-                return RedirectToAction("DetailGeneral");
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_INDIVIDUAL_BASIC);
+                return RedirectToAction("DetailGeneral", new { id = id });
             }
         }
 
@@ -976,7 +977,8 @@ namespace FBD.Controllers
             catch
             {
                 ViewData["DetailView"] = true;
-                return RedirectToAction("DetailGeneral");
+                TempData[Constants.ERR_MESSAGE] = string.Format(Constants.ERR_INDEX, Constants.CUSTOMER_INDIVIDUAL_COLLATERAL);
+                return RedirectToAction("DetailGeneral", new { id = id });
             }
         }
         #endregion
