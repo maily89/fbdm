@@ -96,5 +96,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script> 
+<script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script> 
 </asp:Content>
 

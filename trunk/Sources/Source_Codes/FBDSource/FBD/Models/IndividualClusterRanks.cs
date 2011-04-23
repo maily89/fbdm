@@ -128,6 +128,11 @@ namespace FBD.Models
 
         public class IndividualClusterRanksMetaData
         {
+            [DisplayName("rankID")]
+            [Required(ErrorMessage = "Rank is required")]
+            [RegularExpression("[0-9]*", ErrorMessage = "ID must be a number")]
+            public string RankID { get; set; }
+
             [DisplayName("Rank")]
             [Required(ErrorMessage = "Rank is required")]
             [StringLength(10, ErrorMessage = "maximum 10 charater for rank")]

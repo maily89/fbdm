@@ -76,18 +76,20 @@
                     index++;
                 }
                 //get info from this chart
-                DataPoint MaxPoint = Chart2.Series[i.ToString()].Points.FindMaxByValue();
-                MaxPoint.IsValueShownAsLabel = true;
-                DataPoint minPoint = Chart2.Series[i.ToString()].Points.FindMinByValue();
-                //minPoint.IsValueShownAsLabel = true;
+                if (numberMember > 0)
+                {
+                    DataPoint MaxPoint = Chart2.Series[i.ToString()].Points.FindMaxByValue();
+                    MaxPoint.IsValueShownAsLabel = true;
+                    DataPoint minPoint = Chart2.Series[i.ToString()].Points.FindMinByValue();
+                    //minPoint.IsValueShownAsLabel = true;
 
-                int num = Chart2.Series[i.ToString()].Points.Count() + 1;
-                //legend text
+                    int num = Chart2.Series[i.ToString()].Points.Count() + 1;
+                    //legend text
 
-                Chart2.Series[i.ToString()].LegendText = "Group " + (i + 1).ToString() + " : " + num.ToString() + " members";
-                //Legend tooltip
-                Chart2.Series[i.ToString()].LegendToolTip = "Min: " + minPoint.YValues[0] + " - Max: " + MaxPoint.YValues[0];
-
+                    Chart2.Series[i.ToString()].LegendText = "Group " + (i + 1).ToString() + " : " + num.ToString() + " members";
+                    //Legend tooltip
+                    Chart2.Series[i.ToString()].LegendToolTip = "Min: " + minPoint.YValues[0] + " - Max: " + MaxPoint.YValues[0];
+                }
             }
             //add centroid List
 
