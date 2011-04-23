@@ -449,15 +449,12 @@ namespace FBD.Models
             ListVcbr.Add(Vcbr);
             Vector VNewCentroid = Caculator.centroid(ListVcbr);
 
+            //alway update centroid
+            BusinessClusterRanks.UpdateCentroid(GroupRankID, VNewCentroid, entity);
+            //Update this customrclusterRank to this groupRankID
+            CustomersBusinessRanking.UpdateBusinessRanking(cbr.ID, GroupRankID, bcrList.ElementAt(groupNo), entity);
             //If distance is < epsilon
-            if (Caculator.Distant(VOldCentroid, VNewCentroid) < epsilon)
-            {
-                //update centroid of BusinessRank to new
-                BusinessClusterRanks.UpdateCentroid(GroupRankID, VNewCentroid, entity);
-                //Update this customrclusterRank to this groupRankID
-                CustomersBusinessRanking.UpdateBusinessRanking(cbr.ID, GroupRankID, bcrList.ElementAt(groupNo),entity);
-            }
-            else
+            if (Caculator.Distant(VOldCentroid, VNewCentroid) > epsilon)
             {
                 //mining again and update all customerbusinessRanking
                 //This process cost alot of time- I hope this not happen frequency

@@ -82,10 +82,18 @@ namespace FBD.Models
             //    }
             //}
 
-            decimal totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+            try
+            {
+                decimal totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
 
-            ranking.NonFinancialScore = finalScore*totalProportion/10000;
+                ranking.NonFinancialScore = finalScore * totalProportion / 10000;
 
+            }
+            catch (Exception)
+            {
+                
+                ranking.NonFinancialScore=0;
+            }
             entities.SaveChanges();
             return finalScore/100;
 
@@ -241,8 +249,16 @@ namespace FBD.Models
             }
 
 
-            totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
+            try
+            {
+                totalProportion = BusinessRankingStructure.SelectRankingStructureByIndexAndAudit(Constants.RNK_STRUCTURE_NONFINANCIAL_INDEX, ranking.AuditedStatus).Percentage.Value;
 
+            }
+            catch (Exception)
+            {
+
+                totalProportion = 0;
+            }
 
         }
         public static decimal GetScore(RNKNonFinancialRow indexScore, CustomersBusinessRanking ranking)
