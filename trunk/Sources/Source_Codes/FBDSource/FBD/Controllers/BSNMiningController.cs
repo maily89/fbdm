@@ -90,16 +90,25 @@ namespace FBD.Controllers
             ViewData["centroidList"] = centroidList;
             return View();
         }
-        public ActionResult GetCustomerList(string ID)
+        public ActionResult GetCustomerList(int ID)
         {
-            List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(ID);
+            List<Vector> vList = result[ID];
+            foreach(Vector v in vList)
+            {
+                v.newRankID = ID+1;
+            }
             return View(vList);
         }
 
         [GridAction]
-        public ActionResult _GetCustomerList(string ID)
+        public ActionResult _GetCustomerList(int ID)
         {
-            return View(new GridModel(CustomersBusinessRanking.SelectBusinessRankingToVector(ID)));
+            List<Vector> vList = result[ID];
+            foreach (Vector v in vList)
+            {
+                v.newRankID = ID+1;
+            }
+            return View(new GridModel(result[ID]));
         }
         /// <summary>
         /// update centroid list and customerBusinessRanking

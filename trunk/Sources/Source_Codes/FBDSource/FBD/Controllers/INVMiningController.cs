@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FBD.CommonUtilities;
 using FBD.Models;
+using Telerik.Web.Mvc;
 
 namespace FBD.Controllers
 {
@@ -92,14 +93,25 @@ namespace FBD.Controllers
                         if(!RankID.Equals(v.RankID.ToString()))
                         CustomersIndividualRanking.UpdateIndividualRanking(v.ID, RankID, icrList[i], entities);
                     }
-                    List<Vector> listV = Caculator.bubbleSort(result[i]);
-                    ViewData[i.ToString()] = listV;
+                   // List<Vector> listV = Caculator.bubbleSort(result[i]);
+                    ViewData[i.ToString()] = result[i];
                 }
                 ViewData["cluster"] = numOfCentroid.ToString();
                 return Content("DONE");
             }
             else
                 return RedirectToAction("Cluster");
+        }
+        public ActionResult ListCustomer(int ID)
+        {
+            List<Vector> listVector = result[ID];
+            return View(listVector);
+        }
+
+        [GridAction]
+        public ActionResult _ListCustomer(int ID)
+        {
+            return View(new GridModel(result[ID]));
         }
     }
 }

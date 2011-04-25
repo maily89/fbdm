@@ -580,6 +580,7 @@
     <Content Include="Views\BSNLoanTerm\Edit.aspx" />
     <Content Include="Views\BSNLoanTerm\Index.aspx" />
     <Content Include="Views\BSNMining\Cluster.aspx" />
+    <Content Include="Views\BSNMining\GetCustomerList.aspx" />
     <Content Include="Views\BSNMining\Index.aspx" />
     <Content Include="Views\BSNMining\Map.ascx" />
     <Content Include="Views\BSNMining\Save.aspx" />
@@ -590,6 +591,7 @@
     <Content Include="Views\INVMiningByStep\NextStep.aspx" />
     <Content Include="Views\INVMining\Cluster.aspx" />
     <Content Include="Views\INVMining\Index.aspx" />
+    <Content Include="Views\INVMining\ListCustomer.aspx" />
     <Content Include="Views\INVMining\Save.aspx" />
     <Content Include="Views\Mining\GetCustomerList.aspx" />
     <Content Include="Views\Mining\Index.aspx" />
@@ -652,6 +654,7 @@
     <None Include="ReportDataSets\IndividualReportDataSet.xss">
       <DependentUpon>IndividualReportDataSet.xsd</DependentUpon>
     </None>
+    <Content Include="Views\Shared\ListUser.Master" />
     <Content Include="Views\Shared\nullSite.Master" />
     <Content Include="Report.sitemap" />
     <Content Include="Ranking.sitemap" />

@@ -16,8 +16,10 @@ namespace FBD.CommonUtilities
         public int ID;
         //customerName in table CustomerBusinessRank
         public string CustomerName;
-        //CLuster RankID of a customer in table CustomerBusinessRank
+        //CLuster RankID of a customer in table CustomerBusinessRank, load from db- old rank
         public int RankID;
+        //new rank id, create from clustering. 
+        public int newRankID;
         //DateModified in table customerBusinessRank
         public DateTime modifiedDate;
 
