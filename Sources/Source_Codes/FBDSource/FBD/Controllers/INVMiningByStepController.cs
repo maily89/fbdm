@@ -19,33 +19,11 @@ namespace FBD.Controllers
         static List<Vector>[] result = new List<Vector>[numOfCentroid];
         static List<Vector> vList = new List<Vector>();
         static Vector[] centroidArr = new Vector[numOfCentroid];
-        static double sumDistance = 0;
+        static double sumDistance = 999999999999;
         public ActionResult Index()
         {
             return View();
-            //List<Vector> vList = CustomersIndividualRanking.SelectIndividualRankingToVector();
-            //numOfCentroid = IndividualClusterRanks.SelectClusterRank().Count;
-            //ViewData["cluster"] = numOfCentroid.ToString();
-            ////b. Create list result to save result
-
-
-            //result = KMean.Clustering(numOfCentroid, vList, null);
-            //if (result == null)
-            //{
-            //    ViewData["cluster"] = "0";
-            //    return View();
-
-            //}
-
-            //List<Vector> centroidList = new List<Vector>();
-            //for (int i = 0; i < numOfCentroid; i++)
-            //{
-            //    Vector vCentroid = Caculator.centroid(result[i]);
-            //    centroidList.Add(vCentroid);
-            //    ViewData[i.ToString()] = result[i];
-            //}
-            //ViewData["centroidList"] = centroidList;
-            //return View();
+            
         }
         /// <summary>
         /// initialize
