@@ -23,8 +23,13 @@ namespace FBD.Controllers
         /// <returns>index view</returns>
         static int numOfCentroid = IndividualClusterRanks.SelectClusterRank().Count;
         static List<Vector>[] result = new List<Vector>[numOfCentroid];
+        List<IndividualClusterRanks> icrl = IndividualClusterRanks.SelectClusterRank();
         public ActionResult Index()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
 
             return View();
 
@@ -33,6 +38,10 @@ namespace FBD.Controllers
 
         public ActionResult Cluster(string fromDate,string toDate)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
            
             string[] arrFr = fromDate.Split('-');
             string[] arrTo = toDate.Split('-');
@@ -41,6 +50,7 @@ namespace FBD.Controllers
             List<Vector> vList = CustomersIndividualRanking.SelectIndividualRankingToVector(dFromDate, dToDate);
             numOfCentroid = IndividualClusterRanks.SelectClusterRank().Count;
             ViewData["cluster"] = numOfCentroid.ToString();
+            ViewData["clusterName"] = icrl;
             //b. Create list result to save result
 
 
@@ -77,6 +87,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Save()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             if (Request.IsAjaxRequest())
             {
                 FBDEntities entities = new FBDEntities();
@@ -100,18 +114,35 @@ namespace FBD.Controllers
                 return Content("DONE");
             }
             else
-                return RedirectToAction("Cluster");
+                return RedirectToAction("Cluster", new {fromDate="01-01-2010",toDate="01-01-2012" });
         }
         public ActionResult ListCustomer(int ID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<Vector> listVector = result[ID];
+            foreach (Vector v in listVector)
+            {
+                v.newRankName = icrl[ID].Rank.ToString();
+            }
             return View(listVector);
         }
 
         [GridAction]
         public ActionResult _ListCustomer(int ID)
         {
-            return View(new GridModel(result[ID]));
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
+            List<Vector> listVector = result[ID];
+            foreach (Vector v in listVector)
+            {
+                v.newRankName = icrl[ID].Rank.ToString();
+            }
+            return View(new GridModel(listVector));
         }
     }
 }
