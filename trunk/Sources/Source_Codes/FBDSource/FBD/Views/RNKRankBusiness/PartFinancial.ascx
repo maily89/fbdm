@@ -41,6 +41,7 @@
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
                 <%= Html.HiddenFor(m => m[i].Score)%>
                 <%= Html.HiddenFor(m => m[i].ScoreID)%>
+                <%= Html.HiddenFor(m=>m[i].Index.Unit) %>
                 <%= Html.Hidden("Index", i)%>
                 
             </td>

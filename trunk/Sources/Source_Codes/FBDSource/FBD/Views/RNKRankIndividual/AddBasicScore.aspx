@@ -27,6 +27,9 @@
             <th>
                 Value
             </th>
+            <th>
+                Unit
+            </th>
         </tr>
 
     <% for (int i = 0; i < Model.Count(); i++)
@@ -38,6 +41,7 @@
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m=>m[i].Index.IndexName) %>
                 <%= Html.HiddenFor(m=>m[i].Index.ValueType) %>
+                <%= Html.HiddenFor(m=>m[i].Index.Unit) %>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
                 <%= Html.HiddenFor(m => m[i].LeafIndex)%>
                 <%= Html.HiddenFor(m => m[i].CustomerScoreID)%>
@@ -62,6 +66,9 @@
                    }
             %>
                 
+            </td>
+            <td>
+                <%= Html.Encode(Model[i].Index.Unit) %>
             </td>
         </tr>
     
