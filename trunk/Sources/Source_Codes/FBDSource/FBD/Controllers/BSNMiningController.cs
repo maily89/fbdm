@@ -25,10 +25,11 @@ namespace FBD.Controllers
         /// <returns>index view</returns>
         static int numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
         static List<Vector>[] result = new List<Vector>[numOfCentroid];
+        List<BusinessClusterRanks> bcrl = BusinessClusterRanks.SelectClusterRank();
         public ActionResult Index()
         {
 
-            if (!AccessManager.AllowAccess(Constants.RIGHT_PARAMETERS_VIEW, Session[Constants.SESSION_USER_ID]))
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
             {
                 return RedirectToAction("Unauthorized", "SYSAuths");
             }
@@ -55,13 +56,17 @@ namespace FBD.Controllers
 
         public ActionResult Cluster(string ID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<Vector> vList = CustomersBusinessRanking.SelectBusinessRankingToVector(ID);
             numOfCentroid = BusinessClusterRanks.SelectClusterRank().Count;
 
 
             ViewData["cluster"] = numOfCentroid.ToString();
             //b. Create list result to save result
-
+            ViewData["clusterName"] = bcrl;
 
             result = KMean.Clustering(numOfCentroid, vList, null);
             if (result == null)
@@ -92,10 +97,14 @@ namespace FBD.Controllers
         }
         public ActionResult GetCustomerList(int ID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<Vector> vList = result[ID];
             foreach(Vector v in vList)
             {
-                v.newRankID = ID+1;
+                v.newRankName = bcrl[ID].Rank.ToString();
             }
             return View(vList);
         }
@@ -103,10 +112,14 @@ namespace FBD.Controllers
         [GridAction]
         public ActionResult _GetCustomerList(int ID)
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             List<Vector> vList = result[ID];
             foreach (Vector v in vList)
             {
-                v.newRankID = ID+1;
+                v.newRankName = bcrl[ID].Rank.ToString();
             }
             return View(new GridModel(result[ID]));
         }
@@ -117,6 +130,10 @@ namespace FBD.Controllers
         [HttpPost]
         public ActionResult Save()
         {
+            if (!AccessManager.AllowAccess(Constants.RIGHT_DATA_MINING, Session[Constants.SESSION_USER_ID]))
+            {
+                return RedirectToAction("Unauthorized", "SYSAuths");
+            }
             if (Request.IsAjaxRequest())
             {
                 FBDEntities entities = new FBDEntities();

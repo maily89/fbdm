@@ -130,7 +130,7 @@ namespace FBD.Models
         {
             [DisplayName("rankID")]
             [Required(ErrorMessage = "Rank is required")]
-            [RegularExpression("[0-9]*", ErrorMessage = "ID must be a number")]
+            [RegularExpression("[0-9]{2,}", ErrorMessage = "ID must be a number and more than 2 charater example:01,02")]
             public string RankID { get; set; }
 
             [DisplayName("Rank")]

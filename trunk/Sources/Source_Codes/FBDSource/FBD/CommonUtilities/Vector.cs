@@ -18,7 +18,9 @@ namespace FBD.CommonUtilities
         public string CustomerName;
         //CLuster RankID of a customer in table CustomerBusinessRank, load from db- old rank
         public int RankID;
-        //new rank id, create from clustering. 
+        public string RankName;
+        //new rank id,name create from clustering. 
+        public string newRankName;
         public int newRankID;
         //DateModified in table customerBusinessRank
         public DateTime modifiedDate;
@@ -48,6 +50,7 @@ namespace FBD.CommonUtilities
             if (cbr.BusinessClusterRanks != null)
             {
                 this.RankID = int.Parse(cbr.BusinessClusterRanks.RankID.ToString());
+                this.RankName = cbr.BusinessClusterRanks.Rank.ToString();
             }
             if (cbr.DateModified != null)
             {
@@ -69,6 +72,7 @@ namespace FBD.CommonUtilities
             if (cir.IndividualClusterRanks != null)
             {
                 this.RankID = int.Parse(cir.IndividualClusterRanks.RankID.ToString());
+                this.RankName = cir.IndividualClusterRanks.Rank.ToString();
             }
             if (cir.DateModified != null)
             {

@@ -28,7 +28,7 @@
             Chart2.ChartAreas["Series 1"].BackColor = System.Drawing.Color.White;
             Chart2.ChartAreas["Series 1"].BackSecondaryColor = System.Drawing.Color.FromArgb(211, 223, 240);
             Chart2.ChartAreas["Series 1"].BorderDashStyle = ChartDashStyle.Solid;
-
+            Chart2.ChartAreas["Series 1"].AxisY.Title = "Total Score";
             Chart2.ChartAreas["Series 1"].Area3DStyle.Enable3D = true;
             //Chart2.Series["Default"]["DrawingStyle"]="
             Chart2.ChartAreas["Series 1"].Area3DStyle.Inclination = 10;
@@ -42,8 +42,9 @@
             //Chart2.Legends["Default"].CustomItems.Add(new LegendItem("LegendItem", System.Drawing.Color.Red, ""));
             //Chart2.Legends["Default"].CustomItems[0].Cells.Add(new LegendCell(LegendCellType.Text, "Central", System.Drawing.ContentAlignment.MiddleLeft));
             //Chart2.Legends["Default"].CustomItems[0].Cells[0].Text = "Central";
-
+            System.Drawing.Color[] colors = {System.Drawing.Color.Red,System.Drawing.Color.Orange,System.Drawing.Color.Yellow,System.Drawing.Color.Green,System.Drawing.Color.DeepSkyBlue,System.Drawing.Color.Indigo,System.Drawing.Color.Violet};
             int index = 1;
+            List<FBD.Models.BusinessClusterRanks> cln = (List<FBD.Models.BusinessClusterRanks>)ViewData["clusterName"];
             for (int i = 0; i < int.Parse(ViewData["cluster"].ToString()); i++)
             {   
                 //Create series and config them
@@ -51,8 +52,10 @@
                 Chart2.Series[i.ToString()].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.SplineArea;
                 Chart2.Series[i.ToString()].MarkerSize = 10;
                 Chart2.Series[i.ToString()]["PointWidth"] = "0.2";
+                if(i<colors.Length)
+                    Chart2.Series[i.ToString()].Color = colors[i];
                 //add onclick
-                Chart2.Series[i.ToString()].MapAreaAttributes =
+                Chart2.Series[i.ToString()].LegendMapAreaAttributes =
                        "onclick=\"javascript:loadCustomer(#SER);\"";
                 // add points to series 
                 List<FBD.CommonUtilities.Vector> listResult = (List<FBD.CommonUtilities.Vector>)ViewData[i.ToString()];
@@ -73,8 +76,9 @@
                     DataPoint minPoint = Chart2.Series[i.ToString()].Points.FindMinByValue();
                     //minPoint.IsValueShownAsLabel = true;
                     int num = Chart2.Series[i.ToString()].Points.Count();
+                    
                     //legend text
-                    Chart2.Series[i.ToString()].LegendText = "Group " + (i + 1).ToString() + " : " + num.ToString() + " members";
+                    Chart2.Series[i.ToString()].LegendText = "Cluster " + cln[i].Rank + " : " + num.ToString() + " members";
                     //Legend tooltip
                     Chart2.Series[i.ToString()].LegendToolTip = "Min: " + minPoint.YValues[0] + " - Max: " + MaxPoint.YValues[0];
                 }
@@ -123,7 +127,9 @@
         document.getElementById("cusomterResponse").innerHTML = "<img src='../../Content/images/wait.gif' />" ;
     }
     function loadCustomer(x) {
-        $("#list").load('/BSNMining/GetCustomerList/' + x);
+
+        document.getElementById("list").innerHTML = "<img src='/Content/images/loading.gif' />";
+        $("#list").load('/BSNMining/GetCustomerList/' + x, new function() { window.scrollTo(0, 1000) });
     }
     </script>
 </asp:Content>
