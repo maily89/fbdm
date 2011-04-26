@@ -36,6 +36,7 @@
                 <%= Html.HiddenFor(m => m[i].Index.IndexName)%>
                 <%= Html.HiddenFor(m => m[i].Index.IndexID)%>
                 <%= Html.HiddenFor(m => m[i].Index.ValueType)%>
+                <%= Html.HiddenFor(m=>m[i].Index.Unit) %>
                 <%= Html.HiddenFor(m => m[i].CustomerScoreID)%>
                 <%= Html.HiddenFor(m => m[i].LeafIndex)%>
                 <%= Html.HiddenFor(m => m[i].RankingID)%>
