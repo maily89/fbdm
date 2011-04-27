@@ -42,14 +42,14 @@
     <input type="button" value="OK" onclick="window.location.href='<%= Url.Action(ViewData["redirectAction"]!=null?ViewData["redirectAction"].ToString():"Index", new { id = ViewData["RankID"] })%>';"/>  
     <%} %> 
     <br />
-    <%if (Model.ClusterRank == null)
+    <%--<%if (Model.ClusterRank == null)
       { %>
     <input type="button" value="Calculate Cluster Rank" onclick="window.location.href='<%= Url.Action("ClusterOneCustomer",new{id =ViewData["RankID"] } ) %>';"  /><br />
     <%}
       else
       { %>
     <input type="button" value="ReCalculate Cluster Rank" onclick="window.location.href='<%= Url.Action("ClusterOneCustomer",new{id =ViewData["RankID"] } ) %>';" /><br />
-    <%} %>
+    <%} %>--%>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

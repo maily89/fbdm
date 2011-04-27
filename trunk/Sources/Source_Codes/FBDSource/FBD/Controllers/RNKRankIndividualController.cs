@@ -132,7 +132,7 @@ namespace FBD.Controllers
             if (model == null) return null;
             try
             {
-                if (model.CustomerID > 0 && model.Date != null)
+                if (model.CustomerID > 0 && model.Date.Ticks>0)
                 {
                     //adding ranking object to model
                     var ranking = CustomersIndividualRanking.SelectRankingByDateAndCustomer(model.Date, model.CustomerID);

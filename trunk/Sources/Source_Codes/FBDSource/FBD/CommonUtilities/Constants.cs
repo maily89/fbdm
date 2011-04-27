@@ -196,13 +196,13 @@ namespace FBD.CommonUtilities
         public const string ERR_RESET_PASS = "Cannot reset this password. Plz come back later";
 
         // REPORTING ERRORS
-        public const string ERR_RPT_GENERAL_INFO = "Error when exporting general information";
-        public const string ERR_RPT_SCALE_INFO = "Error when exporting scale information";
-        public const string ERR_RPT_FINANCIAL_INFO = "Error when exporting financial information";
-        public const string ERR_RPT_NONFINANCIAL_INFO = "Error when exporting non-financial information";
-        public const string ERR_RPT_REPORT = "Some undefined problems have occurred when exporting data in Report Service or Controller";
-        public const string ERR_RPT_BASIC_INFO = "Error when exporting basic index information";
-        public const string ERR_RPT_COLLATERAL_INFO = "Error when exporting collateral index information";
+        public const string ERR_RPT_GENERAL_INFO = "";
+        public const string ERR_RPT_SCALE_INFO = "";
+        public const string ERR_RPT_FINANCIAL_INFO = "";
+        public const string ERR_RPT_NONFINANCIAL_INFO = "";
+        public const string ERR_RPT_REPORT = "";
+        public const string ERR_RPT_BASIC_INFO = "";
+        public const string ERR_RPT_COLLATERAL_INFO = "";
 
         // RANKING ERROR
         public const string ERR_RNK_RANKING = "There's error when loading ranking for {0}";
