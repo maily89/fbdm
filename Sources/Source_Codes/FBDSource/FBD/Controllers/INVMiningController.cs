@@ -114,7 +114,7 @@ namespace FBD.Controllers
                 return Content("DONE");
             }
             else
-                return RedirectToAction("Cluster", new {fromDate="01-01-2010",toDate="01-01-2012" });
+                return RedirectToAction("Index");
         }
         public ActionResult ListCustomer(int ID)
         {

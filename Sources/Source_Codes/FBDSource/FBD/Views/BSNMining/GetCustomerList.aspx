@@ -14,7 +14,7 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.CustomerName).Width(400); ;
-            columns.Bound(o => o.x).Width(50).Title("Total Score Score");
+            columns.Bound(o => o.x).Width(50).Title("Total Score");
             columns.Bound(o => o.RankName).Width(50).Title("Old Rank");
             columns.Bound(o => o.newRankName).Width(50).Title("New Rank");
             columns.Bound(o => o.modifiedDate).Format("{0:dd/MM/yyyy}").Width(120);

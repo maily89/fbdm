@@ -12,12 +12,12 @@
         .Name("Grid")
         .Columns(columns =>
         {
-            columns.Bound(o => o.CustomerName).Width(400); ;
-            columns.Bound(o => o.x).Width(50).Title("Basic index score");
-            columns.Bound(o => o.y).Width(50).Title("Colateral index score");
+            columns.Bound(o => o.CustomerName).Width(150); ;
+            columns.Bound(o => o.x).Width(50).Title("Basic score");
+            columns.Bound(o => o.y).Width(50).Title("Colateral score");
             columns.Bound(o => o.RankName).Width(50).Title("Old Rank");
             columns.Bound(o => o.newRankName).Width(50).Title("New Rank");
-            columns.Bound(o => o.modifiedDate).Format("{0:MM/dd/yyyy}").Width(120);
+            columns.Bound(o => o.modifiedDate).Format("{0:dd/MM/yyyy}").Width(120);
         })
         .DataBinding(dataBinding => dataBinding.Ajax().Select("_ListCustomer",
                 "INVMining").Enabled(true))
